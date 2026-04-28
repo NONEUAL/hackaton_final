@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Negros Occidental | Heritage & Highlands</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --hacienda-green: #1b4332;
+            --sugar-gold: #d4af37;
+            --soft-cream: #fdfaf5;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--soft-cream);
+            color: #2c2c2c;
+        }
+
+        h1, h2, h3, .serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Hero Split Layout */
+        .hero-split {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-image-side {
+            background: url('https://images.unsplash.com/photo-1623945410940-7988365691ef?auto=format&fit=crop&q=80&w=1200') no-repeat center center/cover;
+            min-height: 60vh;
+            border-radius: 0 0 0 150px;
+        }
+
+        /* Organic Image Shape */
+        .organic-img {
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            transition: all 0.5s ease;
+        }
+
+        /* Glassmorphism Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 2rem;
+            color: white;
+        }
+
+        /* Parallax-style Section */
+        .highland-section {
+            background: linear-gradient(rgba(27, 67, 50, 0.8), rgba(27, 67, 50, 0.8)), 
+                        url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=1920');
+            background-attachment: fixed;
+            background-size: cover;
+            padding: 100px 0;
+            clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%);
+        }
+
+        .food-card {
+            border: none;
+            background: none;
+            transition: 0.4s;
+        }
+
+        .food-card img {
+            border-radius: 2rem;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .food-card:hover {
+            transform: translateY(-15px);
+        }
+
+        .accent-line {
+            width: 80px;
+            height: 4px;
+            background-color: var(--sugar-gold);
+            margin-bottom: 2rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light pt-4">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-3 serif" href="index.html">NEGROS</a>
+            <div class="ms-auto">
+                <a href="index.html" class="text-decoration-none text-dark me-4 small fw-bold">HOME</a>
+                <a href="oriental.html" class="text-decoration-none text-dark small fw-bold">EXPLORE ORIENTAL →</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. Hero Section (Heritage) -->
+    <section class="hero-split mt-4">
+        <div class="container">
+            <div class="row g-0 align-items-center">
+                <div class="col-lg-5 p-4 p-md-5">
+                    <div class="accent-line"></div>
+                    <h1 class="display-2 fw-bold mb-4">The Land of <br><span style="color: var(--sugar-gold);">Heritage.</span></h1>
+                    <p class="lead text-muted mb-5">Step into a world where history is etched in stone and sweetness is a way of life. Negros Occidental welcomes you to its majestic ruins and golden fields.</p>
+                    <button class="btn btn-outline-dark px-5 py-3 rounded-pill fw-bold">VIEW THE RUINS</button>
+                </div>
+                <div class="col-lg-7 hero-image-side shadow-lg"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. The Sugar Story (Organic Offset) -->
+    <section class="py-5 my-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 order-md-2">
+                    <img src="https://images.unsplash.com/photo-1594142101150-f896f6004b7e?auto=format&fit=crop&q=80&w=800" class="img-fluid organic-img shadow-lg" alt="Sugar Cane">
+                </div>
+                <div class="col-md-5 order-md-1 p-5">
+                    <h2 class="display-4 mb-4">Sugarbowl of the Philippines</h2>
+                    <p>For centuries, the rhythm of life here has been set by the sugarcane harvest. Discover the "Hacienda" lifestyle—a blend of Spanish elegance and Filipino resilience.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Highland Escape (The Mountains) -->
+    <section class="highland-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 text-center text-white">
+                    <h2 class="display-3 serif mb-5">The Highland Escape</h2>
+                    <div class="glass-card p-5 shadow">
+                        <h3>Mt. Kanlaon Majesty</h3>
+                        <p class="lead">From the sulfur springs of Mambukal to the peak of the tallest volcano in the Visayas. Breathe in the cool mountain air and find your sanctuary.</p>
+                        <hr class="my-4 opacity-25">
+                        <div class="d-flex justify-content-around">
+                            <span><i class="bi bi-tree"></i> 7 Waterfalls</span>
+                            <span><i class="bi bi-thermometer-half"></i> Hot Springs</span>
+                            <span><i class="bi bi-mountain"></i> Hiking</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Gastronomy Gallery -->
+    <section class="py-5 bg-white">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h2 class="display-4 serif">A Taste of the North</h2>
+                <div class="accent-line mx-auto"></div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card food-card">
+                        <img src="https://images.unsplash.com/photo-1563379091339-03b21bc4a4f8?auto=format&fit=crop&q=80&w=600" alt="Inasal">
+                        <div class="card-body px-0">
+                            <h4 class="serif mt-3">Chicken Inasal</h4>
+                            <p class="small text-muted">The smoky, savory soul of Bacolod City.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card food-card">
+                        <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&q=80&w=600" alt="Cakes">
+                        <div class="card-body px-0">
+                            <h4 class="serif mt-3">Calea Pastries</h4>
+                            <p class="small text-muted">Indulge in the finest cakes of the sugar capital.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card food-card">
+                        <img src="https://images.unsplash.com/photo-1540324155974-7523202daa3f?auto=format&fit=crop&q=80&w=600" alt="MassKara">
+                        <div class="card-body px-0">
+                            <h4 class="serif mt-3">MassKara Joy</h4>
+                            <p class="small text-muted">The spirit of the "City of Smiles."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Footer / Bridge -->
+    <footer class="py-5" style="background-color: #111; color: white;">
+        <div class="container text-center py-5">
+            <h5 class="text-uppercase tracking-widest mb-4" style="letter-spacing: 3px; font-size: 0.8rem;">Finished with the North?</h5>
+            <h2 class="display-5 serif mb-5">Deeper waters await.</h2>
+            <a href="oriental.html" class="btn btn-lg px-5 py-3 rounded-pill" style="background-color: var(--sugar-gold); color: black; font-weight: 600;">
+                EXPLORE NEGROS ORIENTAL
+            </a>
+            <div class="mt-5 opacity-25">
+                <p>© 2024 Negros Occidental Tourism</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

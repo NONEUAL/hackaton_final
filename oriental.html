@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Negros Oriental | Soul of the Sea</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --ocean-blue: #0077b6;
+            --sand-beige: #f4f1de;
+            --deep-sea: #023e8a;
+            --foam-white: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--foam-white);
+            color: #2c3e50;
+        }
+
+        h1, h2, h3, .serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Airy Hero Section */
+        .hero-oriental {
+            height: 80vh;
+            background: linear-gradient(to bottom, rgba(0, 119, 182, 0.3), rgba(248, 249, 250, 1)), 
+                        url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=1920') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        /* Wave Divider */
+        .wave-container {
+            position: relative;
+            background: var(--ocean-blue);
+            height: 100px;
+        }
+
+        /* Circular "Bubble" Images */
+        .bubble-img {
+            width: 280px;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 8px solid white;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: transform 0.4s ease;
+        }
+
+        .bubble-img:hover {
+            transform: scale(1.05) rotate(3deg);
+        }
+
+        /* Manjuyod Sandbar Section */
+        .sandbar-section {
+            background-color: var(--sand-beige);
+            border-radius: 100px 100px 0 0;
+            padding: 100px 0;
+        }
+
+        .floating-card {
+            background: white;
+            border: none;
+            border-radius: 2rem;
+            transition: 0.3s;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+        }
+
+        .floating-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .text-cyan {
+            color: var(--ocean-blue);
+        }
+
+        /* Custom Navigation for Oriental */
+        .nav-oriental {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top nav-oriental border-bottom border-light">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-3 serif" href="index.html">NEGROS</a>
+            <div class="ms-auto">
+                <a href="index.html" class="text-decoration-none text-dark me-4 small fw-bold">HOME</a>
+                <a href="occidental.html" class="text-decoration-none text-dark small fw-bold">← THE NORTH</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 1. Hero Section (The Sea) -->
+    <section class="hero-oriental">
+        <div class="container">
+            <span class="text-uppercase tracking-widest mb-3 d-block text-cyan fw-bold" style="letter-spacing: 4px;">Welcome to the South</span>
+            <h1 class="display-1 fw-bold mb-3">Soul of the <span class="text-cyan">Sea.</span></h1>
+            <p class="lead mx-auto mb-5" style="max-width: 600px;">A place where time slows down, the people are gentle, and the ocean tells its oldest stories.</p>
+        </div>
+    </section>
+
+    <!-- 2. Apo Island (Underwater Sanctuary) -->
+    <section class="py-5">
+        <div class="container text-center py-5">
+            <h2 class="display-4 mb-5">Underwater Sanctuary</h2>
+            <div class="row g-5 justify-content-center">
+                <div class="col-md-4">
+                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=600" class="bubble-img mb-4" alt="Turtle">
+                    <h4 class="serif">Apo Island</h4>
+                    <p class="text-muted px-3">Swim alongside majestic sea turtles in one of the world's most successful marine protected areas.</p>
+                </div>
+                <div class="col-md-4">
+                    <img src="https://images.unsplash.com/photo-1582967788606-a171c1080cb0?auto=format&fit=crop&q=80&w=600" class="bubble-img mb-4" alt="Corals">
+                    <h4 class="serif">Coral Gardens</h4>
+                    <p class="text-muted px-3">Explore vibrant, kaleidoscopic reefs that teem with life just inches below the surface.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Dumaguete (The City of Gentle People) -->
+    <section class="py-5 bg-white">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="display-3 serif mb-4">City of <br><span class="text-cyan">Gentle People</span></h2>
+                    <p class="lead mb-4">In Dumaguete, life revolves around the University vibe and the famous Rizal Boulevard. It’s a city that breathes culture and calm.</p>
+                    <div class="d-flex gap-3 mb-4">
+                        <div class="p-3 bg-light rounded-4">
+                            <h5 class="mb-0 serif">Silvanas</h5>
+                            <small>The Sweetest Souvenir</small>
+                        </div>
+                        <div class="p-3 bg-light rounded-4">
+                            <h5 class="mb-0 serif">Silliman</h5>
+                            <small>Heritage Campus</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <img src="https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?auto=format&fit=crop&q=80&w=400" class="img-fluid rounded-5 shadow-sm" style="margin-top: 40px;" alt="Dumaguete">
+                        </div>
+                        <div class="col-6">
+                            <img src="https://images.unsplash.com/photo-1506466010722-395aa2bef877?auto=format&fit=crop&q=80&w=400" class="img-fluid rounded-5 shadow-sm" alt="Sea">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Manjuyod Sandbar (The Maldives of the Philippines) -->
+    <section class="sandbar-section">
+        <div class="container text-center">
+            <h2 class="display-4 serif mb-5">Manjuyod Sandbar</h2>
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <div class="card floating-card overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=1200" class="card-img-top" style="height: 400px; object-fit: cover;" alt="Sandbar">
+                        <div class="card-body p-5">
+                            <h3 class="serif mb-3">A Desert of White Sand in the Middle of the Sea</h3>
+                            <p class="lead text-muted">Wake up in a stilt cottage as the tide goes out, revealing a pristine white sandbar stretching as far as the eye can see.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Footer -->
+    <footer class="py-5" style="background-color: var(--deep-sea); color: white;">
+        <div class="container text-center py-4">
+            <h2 class="serif mb-4">NEGROS</h2>
+            <p class="opacity-50">One Island. Two Spirits. Infinite Memories.</p>
+            <div class="mt-5">
+                <a href="index.html" class="btn btn-outline-light rounded-pill px-4 me-2">Back to Start</a>
+                <a href="occidental.html" class="btn btn-cyan rounded-pill px-4 text-white" style="background: var(--ocean-blue);">Explore North</a>
+            </div>
+            <p class="mt-5 small opacity-25">© 2024 Negros Oriental Tourism - Visit Responsibly</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

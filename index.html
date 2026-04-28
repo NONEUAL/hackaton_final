@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Negros Island | Sweetness Beyond Sugar</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --kanlaon-green: #1b4332;
+            --muscovado-gold: #c7923e;
+            --ocean-teal: #006d77;
+            --parchment: #fdfaf5;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--parchment);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, .serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* Modern Glassmorphism Navbar */
+        .navbar {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Hero Section with Organic Shape */
+        .hero-section {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&q=80&w=1920') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            clip-path: ellipse(150% 100% at 50% 0%); /* Organic curve at bottom */
+        }
+
+        /* Custom Rounded Buttons */
+        .btn-negros {
+            background-color: var(--muscovado-gold);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            border: none;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .btn-negros:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(199, 146, 62, 0.4);
+            background-color: #b07d2f;
+            color: white;
+        }
+
+        /* Bento Grid Style */
+        .bento-item {
+            border-radius: 2rem;
+            overflow: hidden;
+            position: relative;
+            height: 300px;
+            transition: transform 0.4s ease;
+        }
+        
+        .bento-item:hover {
+            transform: scale(1.02);
+        }
+
+        .bento-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .bento-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2rem;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+        }
+
+        /* Experience Splitter */
+        .split-card {
+            border-radius: 2.5rem;
+            border: none;
+            transition: 0.5s;
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            align-items: flex-end;
+            text-decoration: none;
+        }
+
+        .split-card:hover {
+            transform: translateY(-10px);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-3" href="#">NEGROS</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto text-uppercase fw-semibold" style="font-size: 0.8rem;">
+                    <li class="nav-item"><a class="nav-link px-3" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="occidental.html">Occidental</a></li>
+                    <li class="nav-item"><a class="nav-link px-3" href="oriental.html">Oriental</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section text-center">
+        <div class="container">
+            <span class="text-uppercase tracking-widest mb-3 d-block" style="letter-spacing: 5px;">Discover the Island of</span>
+            <h1 class="display-1 fw-bold mb-4">Sweetness & Smiles</h1>
+            <p class="lead mb-5 opacity-75">From the sugar heritage of the North to the crystal depths of the South.</p>
+            <a href="#explore" class="btn btn-negros">Start the Journey</a>
+        </div>
+    </section>
+
+    <!-- The Two Worlds Choice -->
+    <section id="explore" class="py-5">
+        <div class="container py-5">
+            <div class="text-center mb-5">
+                <h2 class="display-4 fw-bold">Choose Your Spirit</h2>
+                <p class="text-muted">Two provinces, one heart. Where will you go first?</p>
+            </div>
+            <div class="row g-4">
+                <!-- Occidental -->
+                <div class="col-md-6">
+                    <a href="occidental.html" class="card split-card shadow" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1542332213-31f87348057f?auto=format&fit=crop&q=80&w=800');">
+                        <div class="card-body p-5 text-white">
+                            <h3 class="display-5">Occidental</h3>
+                            <p>The Sugarbowl of the Philippines: Heritage, Mountains, and Grandeur.</p>
+                        </div>
+                    </a>
+                </div>
+                <!-- Oriental -->
+                <div class="col-md-6">
+                    <a href="oriental.html" class="card split-card shadow" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?auto=format&fit=crop&q=80&w=800');">
+                        <div class="card-body p-5 text-white">
+                            <h3 class="display-5">Oriental</h3>
+                            <p>The Gateway to the Sea: Diving, Serenity, and University Charm.</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Culture Advertisement (Bento Grid) -->
+    <section class="py-5 bg-white">
+        <div class="container">
+            <div class="row g-4">
+                <!-- MassKara Festival (Large) -->
+                <div class="col-md-8">
+                    <div class="bento-item shadow">
+                        <img src="https://images.unsplash.com/photo-1540324155974-7523202daa3f?auto=format&fit=crop&q=80&w=1200" class="bento-img" alt="MassKara">
+                        <div class="bento-overlay">
+                            <span class="badge rounded-pill bg-warning text-dark mb-2">Culture</span>
+                            <h3 class="h2">MassKara Festival</h3>
+                            <p class="small opacity-75">Witness the city of smiles in its most vibrant, rhythmic state.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Food (Small) -->
+                <div class="col-md-4">
+                    <div class="bento-item shadow">
+                        <img src="https://images.unsplash.com/photo-1563379091339-03b21bc4a4f8?auto=format&fit=crop&q=80&w=600" class="bento-img" alt="Food">
+                        <div class="bento-overlay">
+                            <h3 class="h4">Tastes of Negros</h3>
+                            <p class="small">Inasal, Silvanas, and more.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Nature (Small) -->
+                <div class="col-md-4">
+                    <div class="bento-item shadow">
+                        <img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&q=80&w=600" class="bento-img" alt="Nature">
+                        <div class="bento-overlay">
+                            <h3 class="h4">Lush Wilds</h3>
+                            <p class="small">Mt. Kanlaon's majesty.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Diving (Large) -->
+                <div class="col-md-8">
+                    <div class="bento-item shadow">
+                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=1200" class="bento-img" alt="Diving">
+                        <div class="bento-overlay">
+                            <span class="badge rounded-pill bg-info text-white mb-2">Adventure</span>
+                            <h3 class="h2">Apo Island Marine Life</h3>
+                            <p class="small opacity-75">Swim with turtles in one of the world's best marine sanctuaries.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-5 text-center" style="background-color: var(--kanlaon-green); color: white;">
+        <div class="container">
+            <h2 class="serif mb-4">Negros Island</h2>
+            <p class="opacity-50">An organic journey through the heart of the Philippines.</p>
+            <hr class="w-25 mx-auto my-4 border-light opacity-25">
+            <p class="small">© 2024 Explore Negros. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
