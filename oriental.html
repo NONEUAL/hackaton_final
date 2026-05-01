@@ -4,158 +4,604 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Negros Oriental | Soul of the Sea</title>
-    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
     <style>
         :root {
             --ocean-blue: #0077b6;
-            --sand-beige: #f4f1de;
             --deep-sea: #023e8a;
-            --foam-white: #f8f9fa;
+            --seafoam: #caf0f8;
+            --sand-light: #f8f4ed;
+            --teal-dark: #005f73;
+            --warm-sand: #f4ede4;
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--foam-white);
+            font-family: 'DM Sans', sans-serif;
+            background-color: #f8f9fa;
             color: #2c3e50;
+            overflow-x: hidden;
         }
 
-        h1, h2, h3, .serif {
-            font-family: 'Playfair Display', serif;
+        h1, h2, h3, h4, .serif {
+            font-family: 'Cormorant Garamond', serif;
         }
 
-        /* Airy Hero Section */
-        .hero-oriental {
-            height: 80vh;
-            background: linear-gradient(to bottom, rgba(0, 119, 182, 0.3), rgba(248, 249, 250, 1)), 
-                        url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=1920') no-repeat center center/cover;
+        /* ── NAVBAR ── */
+        .navbar {
+            background: transparent;
+            transition: background 0.4s ease;
+            padding: 1.2rem 0;
+        }
+
+        .navbar.scrolled {
+            background: rgba(2, 62, 138, 0.95);
+            backdrop-filter: blur(12px);
+            padding: 0.8rem 0;
+        }
+
+        .navbar-brand {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            color: white !important;
+            text-decoration: none;
+        }
+
+        .nav-link-plain {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.73rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .nav-link-plain:hover { color: #90e0ef; }
+
+        /* ── HERO ── */
+        .hero-ori {
+            height: 100vh;
+            position: relative;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
+            overflow: hidden;
         }
 
-        /* Wave Divider */
-        .wave-container {
+        .hero-ori-bg {
+            position: absolute;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=1920') no-repeat center center/cover;
+        }
+
+        .hero-ori-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(2,62,138,0.55) 0%, rgba(0,0,0,0.45) 60%, rgba(248,249,250,1) 100%);
+        }
+
+        .hero-ori-content {
             position: relative;
-            background: var(--ocean-blue);
-            height: 100px;
+            z-index: 2;
+            color: white;
+            max-width: 680px;
         }
 
-        /* Circular "Bubble" Images */
-        .bubble-img {
-            width: 280px;
-            height: 280px;
+        .section-label {
+            font-size: 0.68rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: #90e0ef;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .accent-line-blue {
+            width: 60px;
+            height: 3px;
+            background: var(--ocean-blue);
+            margin-bottom: 1.5rem;
+        }
+
+        /* ── BUTTONS ── */
+        .btn-ocean {
+            background-color: var(--ocean-blue);
+            color: white;
+            padding: 13px 32px;
+            border-radius: 50px;
+            border: none;
+            font-size: 0.76rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            font-family: 'DM Sans', sans-serif;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .btn-ocean:hover {
+            background-color: #005a8e;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,119,182,0.4);
+            color: white;
+        }
+
+        .btn-outline-ocean {
+            background: transparent;
+            color: white;
+            padding: 13px 32px;
+            border-radius: 50px;
+            border: 1.5px solid rgba(255,255,255,0.45);
+            font-size: 0.76rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+            font-family: 'DM Sans', sans-serif;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        .btn-outline-ocean:hover {
+            border-color: white;
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+
+        /* ── APO ISLAND ── */
+        .apo-section {
+            padding: 7rem 0;
+            background: white;
+        }
+
+        .bubble-wrap {
+            position: relative;
+            display: flex;
+            justify-content: center;
+        }
+
+        .bubble-img-main {
+            width: 320px;
+            height: 320px;
             object-fit: cover;
             border-radius: 50%;
             border: 8px solid white;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            transition: transform 0.4s ease;
+            box-shadow: 0 20px 50px rgba(0,119,182,0.2);
+            transition: transform 0.5s ease;
         }
 
-        .bubble-img:hover {
+        .bubble-img-main:hover {
             transform: scale(1.05) rotate(3deg);
         }
 
-        /* Manjuyod Sandbar Section */
-        .sandbar-section {
-            background-color: var(--sand-beige);
-            border-radius: 100px 100px 0 0;
-            padding: 100px 0;
+        .bubble-img-small {
+            position: absolute;
+            bottom: -20px;
+            right: 10px;
+            width: 160px;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 5px solid white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
 
-        .floating-card {
+        .turtle-fact {
+            background: linear-gradient(135deg, #e0f7fa, #b3e5fc);
+            border-radius: 1.25rem;
+            padding: 1.25rem 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .turtle-fact h6 {
+            color: var(--deep-sea);
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .turtle-fact p {
+            font-size: 0.85rem;
+            color: #1565c0;
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        /* ── DUMAGUETE ── */
+        .dumaguete-section {
+            padding: 7rem 0;
+            background: var(--sand-light);
+        }
+
+        .duma-card {
             background: white;
-            border: none;
+            border-radius: 1.5rem;
+            padding: 1.75rem;
+            border: 1px solid rgba(0,0,0,0.06);
+            transition: transform 0.35s ease, box-shadow 0.35s ease;
+            height: 100%;
+        }
+
+        .duma-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 45px rgba(0,0,0,0.08);
+        }
+
+        .duma-icon {
+            width: 48px;
+            height: 48px;
+            background: #e3f2fd;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .duma-card h5 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .duma-card p {
+            font-size: 0.87rem;
+            color: #666;
+            line-height: 1.65;
+            margin: 0;
+        }
+
+        /* ── RIZAL BOULEVARD ── */
+        .boulevard-section {
+            padding: 7rem 0;
+            background: white;
+        }
+
+        /* ── MANJUYOD ── */
+        .manjuyod-section {
+            padding: 7rem 0;
+            background: var(--warm-sand);
+        }
+
+        .sandbar-hero-img {
+            width: 100%;
+            height: 480px;
+            object-fit: cover;
             border-radius: 2rem;
-            transition: 0.3s;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
         }
 
-        .floating-card:hover {
-            transform: translateY(-10px);
+        .sandbar-info-card {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            border: 1px solid rgba(0,0,0,0.06);
         }
 
-        .text-cyan {
+        .sandbar-info-card h6 {
+            font-size: 0.72rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
             color: var(--ocean-blue);
+            font-weight: 600;
+            margin-bottom: 0.4rem;
         }
 
-        /* Custom Navigation for Oriental */
-        .nav-oriental {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(5px);
+        .sandbar-info-card p {
+            font-size: 0.88rem;
+            color: #444;
+            line-height: 1.65;
+            margin: 0;
+        }
+
+        /* ── WATERFALLS ── */
+        .waterfalls-section {
+            padding: 7rem 0;
+            background: var(--teal-dark);
+            color: white;
+            position: relative;
+        }
+
+        .waterfall-card {
+            border-radius: 1.75rem;
+            overflow: hidden;
+            position: relative;
+            height: 400px;
+            transition: transform 0.4s ease;
+        }
+
+        .waterfall-card:hover { transform: scale(1.03); }
+
+        .waterfall-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .waterfall-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 50%);
+        }
+
+        .waterfall-card-text {
+            position: absolute;
+            bottom: 1.75rem;
+            left: 1.75rem;
+            color: white;
+        }
+
+        .waterfall-card-text h4 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+        }
+
+        .waterfall-card-text p {
+            font-size: 0.82rem;
+            opacity: 0.7;
+            margin: 0;
+        }
+
+        /* ── TWIN LAKES ── */
+        .lakes-section {
+            padding: 7rem 0;
+            background: #f0f8ff;
+        }
+
+        /* ── WHALE WATCHING ── */
+        .whale-section {
+            padding: 7rem 0;
+            background: var(--deep-sea);
+            color: white;
+        }
+
+        .whale-stat {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .whale-stat-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #90e0ef;
+            line-height: 1;
+        }
+
+        .whale-stat-label {
+            font-size: 0.83rem;
+            opacity: 0.6;
+            margin-top: 0.5rem;
+            line-height: 1.5;
+        }
+
+        .whale-divider {
+            width: 1px;
+            background: rgba(255,255,255,0.1);
+            margin: 0;
+        }
+
+        /* ── SILLIMAN ── */
+        .silliman-section {
+            padding: 7rem 0;
+            background: white;
+        }
+
+        /* ── SILVANAS ── */
+        .silvanas-section {
+            padding: 5rem 0;
+            background: var(--sand-light);
+        }
+
+        /* ── FOOTER ── */
+        .ori-footer {
+            padding: 6rem 0 3rem;
+            background: var(--deep-sea);
+            color: white;
+        }
+
+        /* ── ANIMATIONS ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.12s; }
+        .reveal-delay-2 { transition-delay: 0.24s; }
+        .reveal-delay-3 { transition-delay: 0.36s; }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .hero-ori { height: 85vh; }
+            .hero-ori-overlay {
+                background: linear-gradient(to bottom, rgba(2,62,138,0.7) 0%, rgba(0,0,0,0.5) 50%, rgba(248,249,250,1) 100%);
+            }
+            .bubble-img-main { width: 240px; height: 240px; }
+            .bubble-img-small { width: 110px; height: 110px; }
+            .sandbar-hero-img { height: 280px; }
+            .waterfall-card { height: 300px; }
         }
     </style>
 </head>
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top nav-oriental border-bottom border-light">
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand fw-bold fs-3 serif" href="index.html">NEGROS</a>
-            <div class="ms-auto">
-                <a href="index.html" class="text-decoration-none text-dark me-4 small fw-bold">HOME</a>
-                <a href="occidental.html" class="text-decoration-none text-dark small fw-bold">← THE NORTH</a>
+            <a class="navbar-brand" href="index.html">NEGROS</a>
+            <div class="ms-auto d-flex gap-4 align-items-center">
+                <a href="index.html" class="nav-link-plain">Home</a>
+                <a href="occidental.html" class="nav-link-plain">← The North</a>
+                <a href="oriental.html" class="nav-link-plain" style="color:#90e0ef;">Oriental</a>
             </div>
         </div>
     </nav>
 
-    <!-- 1. Hero Section (The Sea) -->
-    <section class="hero-oriental">
+    <!-- Hero -->
+    <section class="hero-ori">
+        <div class="hero-ori-bg"></div>
+        <div class="hero-ori-overlay"></div>
         <div class="container">
-            <span class="text-uppercase tracking-widest mb-3 d-block text-cyan fw-bold" style="letter-spacing: 4px;">Welcome to the South</span>
-            <h1 class="display-1 fw-bold mb-3">Soul of the <span class="text-cyan">Sea.</span></h1>
-            <p class="lead mx-auto mb-5" style="max-width: 600px;">A place where time slows down, the people are gentle, and the ocean tells its oldest stories.</p>
-        </div>
-    </section>
-
-    <!-- 2. Apo Island (Underwater Sanctuary) -->
-    <section class="py-5">
-        <div class="container text-center py-5">
-            <h2 class="display-4 mb-5">Underwater Sanctuary</h2>
-            <div class="row g-5 justify-content-center">
-                <div class="col-md-4">
-                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=600" class="bubble-img mb-4" alt="Turtle">
-                    <h4 class="serif">Apo Island</h4>
-                    <p class="text-muted px-3">Swim alongside majestic sea turtles in one of the world's most successful marine protected areas.</p>
-                </div>
-                <div class="col-md-4">
-                    <img src="https://images.unsplash.com/photo-1582967788606-a171c1080cb0?auto=format&fit=crop&q=80&w=600" class="bubble-img mb-4" alt="Corals">
-                    <h4 class="serif">Coral Gardens</h4>
-                    <p class="text-muted px-3">Explore vibrant, kaleidoscopic reefs that teem with life just inches below the surface.</p>
+            <div class="hero-ori-content reveal">
+                <span class="section-label">Welcome to the South</span>
+                <h1 style="font-size:clamp(3.5rem,9vw,7rem); font-weight:700; font-style:italic; line-height:0.9; margin-bottom:1.5rem; color:white;">Soul of<br>the Sea.</h1>
+                <p style="font-size:1rem; opacity:0.8; max-width:500px; margin:0 auto 2.5rem; line-height:1.75; font-weight:300;">A place where time slows down, the people are gentle, and the ocean tells its oldest stories.</p>
+                <div class="d-flex gap-3 justify-content-center flex-wrap">
+                    <a href="#apo" class="btn-ocean">Apo Island</a>
+                    <a href="#manjuyod" class="btn-outline-ocean">Manjuyod Sandbar</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 3. Dumaguete (The City of Gentle People) -->
-    <section class="py-5 bg-white">
-        <div class="container py-5">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <h2 class="display-3 serif mb-4">City of <br><span class="text-cyan">Gentle People</span></h2>
-                    <p class="lead mb-4">In Dumaguete, life revolves around the University vibe and the famous Rizal Boulevard. It’s a city that breathes culture and calm.</p>
-                    <div class="d-flex gap-3 mb-4">
-                        <div class="p-3 bg-light rounded-4">
-                            <h5 class="mb-0 serif">Silvanas</h5>
-                            <small>The Sweetest Souvenir</small>
+    <!-- Apo Island -->
+    <section id="apo" class="apo-section">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-5 reveal">
+                    <div class="bubble-wrap">
+                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=700" class="bubble-img-main" alt="Sea turtle Apo Island" loading="lazy">
+                        <img src="https://images.unsplash.com/photo-1582967788606-a171c1080cb0?auto=format&fit=crop&q=80&w=400" class="bubble-img-small" alt="Coral reef" loading="lazy">
+                    </div>
+                </div>
+                <div class="col-lg-6 offset-lg-1 reveal reveal-delay-2">
+                    <div class="accent-line-blue"></div>
+                    <span class="section-label">Dauin, Negros Oriental</span>
+                    <h2 style="font-size:clamp(2.2rem,5vw,3.5rem); font-weight:700; font-style:italic; margin-bottom:0.75rem;">Apo Island Marine Sanctuary</h2>
+                    <p style="color:#555; line-height:1.85; font-size:0.95rem; margin-bottom:1.5rem;">One of the world's most celebrated marine protected areas, Apo Island is home to over 650 species of fish and 400 species of coral. But what makes it truly legendary is the sea turtles — specifically, the hawksbill and green turtles that have made this island their home for generations.</p>
+                    <p style="color:#555; line-height:1.85; font-size:0.95rem; margin-bottom:2rem;">The sanctuary's success is entirely community-driven. In 1982, local fishermen voluntarily gave up fishing rights to one-third of the island's surrounding waters. Today, that sacrifice has turned Apo Island into a global model for marine conservation.</p>
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-6">
+                            <div class="turtle-fact">
+                                <h6>Turtle Sightings</h6>
+                                <p>Near-guaranteed encounters with green and hawksbill turtles on almost every dive or snorkel, year-round.</p>
+                            </div>
                         </div>
-                        <div class="p-3 bg-light rounded-4">
-                            <h5 class="mb-0 serif">Silliman</h5>
-                            <small>Heritage Campus</small>
+                        <div class="col-md-6">
+                            <div class="turtle-fact">
+                                <h6>How to Get There</h6>
+                                <p>45-min bangka from Malatapay Beach Market (Zamboanguita), or day trips from Dumaguete. Overnight homestays available on the island.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6">
+            </div>
+        </div>
+    </section>
+
+    <!-- Dumaguete City -->
+    <section class="dumaguete-section">
+        <div class="container">
+            <div class="text-center mb-5 reveal">
+                <span class="section-label">Dumaguete City</span>
+                <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(2.2rem,5vw,3.5rem); font-weight:700; font-style:italic;">City of Gentle People</h2>
+                <p style="color:#666; max-width:540px; margin:0.75rem auto 0; font-size:0.93rem; line-height:1.7;">Dumaguete is the capital of Negros Oriental — a university city with a distinctly calm, intellectual, and unhurried character.</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-3 reveal">
+                    <div class="duma-card">
+                        <div class="duma-icon">🎓</div>
+                        <h5>Silliman University</h5>
+                        <p>The oldest American-founded university in Asia (est. 1901). Its tree-lined campus is a heritage landmark and the heartbeat of the city's academic identity.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 reveal reveal-delay-1">
+                    <div class="duma-card">
+                        <div class="duma-icon">🚶</div>
+                        <h5>Rizal Boulevard</h5>
+                        <p>The famous seaside promenade where locals jog, students strum guitars, vendors sell taho, and the Visayan Sea stretches to the horizon.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 reveal reveal-delay-2">
+                    <div class="duma-card">
+                        <div class="duma-icon">🔔</div>
+                        <h5>Dumaguete Bell Tower</h5>
+                        <p>A 350-year-old Spanish watchtower beside St. Catherine of Alexandria Cathedral — once used to warn of Moro pirate raids, now a beloved city icon.</p>
+                    </div>
+                </div>
+                <div class="col-md-3 reveal reveal-delay-3">
+                    <div class="duma-card">
+                        <div class="duma-icon">🍮</div>
+                        <h5>Sans Rival Cakes</h5>
+                        <p>Home of the legendary Sans Rival (meringue, butter cream, cashews) and Silvanas. The café on Perdices Street has been serving them for decades.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rizal Boulevard Feature -->
+    <section class="boulevard-section">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6 reveal">
                     <div class="row g-3">
                         <div class="col-6">
-                            <img src="https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?auto=format&fit=crop&q=80&w=400" class="img-fluid rounded-5 shadow-sm" style="margin-top: 40px;" alt="Dumaguete">
+                            <img src="https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?auto=format&fit=crop&q=80&w=400" style="width:100%; height:260px; object-fit:cover; border-radius:1.5rem; margin-top:40px;" alt="Dumaguete Boulevard" loading="lazy">
                         </div>
                         <div class="col-6">
-                            <img src="https://images.unsplash.com/photo-1506466010722-395aa2bef877?auto=format&fit=crop&q=80&w=400" class="img-fluid rounded-5 shadow-sm" alt="Sea">
+                            <img src="https://images.unsplash.com/photo-1506466010722-395aa2bef877?auto=format&fit=crop&q=80&w=400" style="width:100%; height:260px; object-fit:cover; border-radius:1.5rem;" alt="Dumaguete Sea" loading="lazy">
+                        </div>
+                        <div class="col-12">
+                            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=800" style="width:100%; height:200px; object-fit:cover; border-radius:1.5rem;" alt="Seaside" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5 offset-lg-1 reveal reveal-delay-2">
+                    <div class="accent-line-blue"></div>
+                    <span class="section-label">The Heart of the City</span>
+                    <h2 style="font-size:clamp(2rem,4.5vw,3.2rem); font-weight:700; font-style:italic; margin-bottom:1.25rem;">Rizal Boulevard</h2>
+                    <p style="color:#555; line-height:1.85; font-size:0.93rem; margin-bottom:1.25rem;">The soul of Dumaguete is a 1.5-kilometre seafront promenade lined with acacia trees, pensiones, and open-air restaurants. At any hour, the Boulevard is alive — joggers at dawn, students with laptops by midday, families and couples at sunset.</p>
+                    <p style="color:#555; line-height:1.85; font-size:0.93rem; margin-bottom:1.75rem;">The view across the narrow Tañon Strait frames the silhouette of Cebu Island in the distance. On clear evenings, the sky turns amber and violet — and the taho vendors make their rounds one final time.</p>
+                    <div style="background:#f0f8ff; border-radius:1rem; padding:1.25rem 1.5rem; border-left:3px solid var(--ocean-blue);">
+                        <p style="font-size:0.88rem; color:#1a3a5c; margin:0; font-style:italic; line-height:1.65;">"In Dumaguete, time does not move faster than a bicycle."</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Manjuyod Sandbar -->
+    <section id="manjuyod" class="manjuyod-section">
+        <div class="container">
+            <div class="text-center mb-5 reveal">
+                <span class="section-label">Manjuyod, Negros Oriental</span>
+                <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(2.2rem,5vw,3.5rem); font-weight:700; font-style:italic;">Manjuyod Sandbar</h2>
+                <p style="color:#666; max-width:520px; margin:0.75rem auto 0; font-size:0.93rem; line-height:1.7;">The Maldives of the Philippines — a 7-kilometre stretch of white sand that emerges from the sea at low tide.</p>
+            </div>
+            <div class="row g-4 align-items-start">
+                <div class="col-lg-8 reveal">
+                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=1200" class="sandbar-hero-img shadow-lg" alt="Manjuyod Sandbar" loading="lazy">
+                </div>
+                <div class="col-lg-4 reveal reveal-delay-2">
+                    <div class="d-flex flex-column gap-3">
+                        <div class="sandbar-info-card">
+                            <h6>What it is</h6>
+                            <p>A 7km sandbar that lies submerged at high tide, then emerges as a glowing white strip of sand — ribboning across turquoise water with the mountains of Negros as backdrop.</p>
+                        </div>
+                        <div class="sandbar-info-card">
+                            <h6>The Stilt Cottages</h6>
+                            <p>Rustic bamboo cottages built on stilts in the middle of the sea. Wake up as the tide recedes and walk out onto your own private sandbar. Book well in advance during peak months.</p>
+                        </div>
+                        <div class="sandbar-info-card">
+                            <h6>Best Time to Visit</h6>
+                            <p>March to June for the longest, brightest sandbars. Visit at low tide (check tide tables before you go — timing is everything).</p>
+                        </div>
+                        <div class="sandbar-info-card">
+                            <h6>Dolphins on the Way</h6>
+                            <p>The boat ride from Bais City often passes through a dolphin corridor — spinner and spotted dolphins frequently accompany the bangka.</p>
                         </div>
                     </div>
                 </div>
@@ -163,17 +609,81 @@
         </div>
     </section>
 
-    <!-- 4. Manjuyod Sandbar (The Maldives of the Philippines) -->
-    <section class="sandbar-section">
-        <div class="container text-center">
-            <h2 class="display-4 serif mb-5">Manjuyod Sandbar</h2>
-            <div class="row justify-content-center">
-                <div class="col-md-10">
-                    <div class="card floating-card overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=1200" class="card-img-top" style="height: 400px; object-fit: cover;" alt="Sandbar">
-                        <div class="card-body p-5">
-                            <h3 class="serif mb-3">A Desert of White Sand in the Middle of the Sea</h3>
-                            <p class="lead text-muted">Wake up in a stilt cottage as the tide goes out, revealing a pristine white sandbar stretching as far as the eye can see.</p>
+    <!-- Bais City Whale & Dolphin Watching -->
+    <section class="whale-section">
+        <div class="container">
+            <div class="text-center mb-5 reveal">
+                <span class="section-label" style="color:#90e0ef;">Bais City, Negros Oriental</span>
+                <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(2.2rem,5vw,3.5rem); font-weight:700; font-style:italic; color:white;">Whale & Dolphin Watching</h2>
+                <p style="color:rgba(255,255,255,0.55); max-width:520px; margin:0.75rem auto 0; font-size:0.93rem; line-height:1.7;">The Tañon Strait is one of the longest and most biodiverse marine corridors in Southeast Asia.</p>
+            </div>
+            <div class="row g-4 mb-5">
+                <div class="col-md-8 reveal">
+                    <img src="https://images.unsplash.com/photo-1568430462989-44163eb1752f?auto=format&fit=crop&q=80&w=1000" style="width:100%; height:360px; object-fit:cover; border-radius:2rem;" alt="Whale watching" loading="lazy">
+                </div>
+                <div class="col-md-4 reveal reveal-delay-2">
+                    <div style="display:flex; flex-direction:column; gap:1px; height:100%;">
+                        <div class="whale-stat" style="background:rgba(255,255,255,0.05); border-radius:1.5rem 1.5rem 0 0; flex:1; display:flex; flex-direction:column; justify-content:center;">
+                            <div class="whale-stat-num">13</div>
+                            <div class="whale-stat-label">species of cetaceans recorded in the Tañon Strait</div>
+                        </div>
+                        <div class="whale-stat" style="background:rgba(255,255,255,0.08); flex:1; display:flex; flex-direction:column; justify-content:center;">
+                            <div class="whale-stat-num">Spinner</div>
+                            <div class="whale-stat-label">dolphins, the most commonly sighted, live here year-round</div>
+                        </div>
+                        <div class="whale-stat" style="background:rgba(255,255,255,0.05); border-radius:0 0 1.5rem 1.5rem; flex:1; display:flex; flex-direction:column; justify-content:center;">
+                            <div class="whale-stat-num">6am</div>
+                            <div class="whale-stat-label">best departure time — calmer seas, highest sighting probability</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center reveal">
+                <p style="color:rgba(255,255,255,0.55); font-size:0.9rem; max-width:580px; margin:0 auto; line-height:1.75;">The typical tour combines a morning on the water spotting dolphins and whales with an afternoon at Manjuyod Sandbar — one of the finest days you can spend in the Philippines.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Waterfalls -->
+    <section class="waterfalls-section">
+        <div class="container">
+            <div class="text-center mb-5 reveal">
+                <span class="section-label" style="color:rgba(144,224,239,0.8);">Into the Interior</span>
+                <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(2.2rem,5vw,3.5rem); font-weight:700; font-style:italic; color:white;">Forest Waterfalls</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6 reveal">
+                    <div class="waterfall-card shadow">
+                        <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&q=80&w=800" alt="Casaroro Falls" loading="lazy">
+                        <div class="waterfall-card-overlay"></div>
+                        <div class="waterfall-card-text">
+                            <h4>Casaroro Falls</h4>
+                            <p>Valencia, Negros Oriental · 30-metre single plunge · challenging trail through bamboo forest</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 reveal reveal-delay-2">
+                    <div class="waterfall-card shadow">
+                        <img src="https://images.unsplash.com/photo-1596401057633-54a8a2b72eb8?auto=format&fit=crop&q=80&w=800" alt="Pulangbato Falls" loading="lazy">
+                        <div class="waterfall-card-overlay"></div>
+                        <div class="waterfall-card-text">
+                            <h4>Pulangbato Falls</h4>
+                            <p>Valencia · Red-rock canyon walls · accessible swimming hole below the falls</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-4 mt-1">
+                <div class="col-12 reveal">
+                    <div style="background:rgba(255,255,255,0.07); border-radius:1.5rem; padding:2rem 2.5rem;">
+                        <div class="row align-items-center">
+                            <div class="col-md-8">
+                                <h4 style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; color:white; margin-bottom:0.5rem;">Twin Lakes of Balinsasayao</h4>
+                                <p style="color:rgba(255,255,255,0.55); font-size:0.9rem; line-height:1.7; margin:0;">Two volcanic crater lakes — Balinsasayao and Danao — sit side by side in a protected natural park near Sibulan. Kayaks, forest trails, and morning mist over still water make this one of the most peaceful places in Oriental.</p>
+                            </div>
+                            <div class="col-md-4 text-md-end mt-3 mt-md-0">
+                                <a href="#" style="display:inline-block; background:rgba(255,255,255,0.1); color:white; padding:12px 28px; border-radius:50px; font-size:0.76rem; letter-spacing:2px; text-transform:uppercase; text-decoration:none; border:1px solid rgba(255,255,255,0.2); transition:all 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.18)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">Plan a Visit</a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -181,20 +691,107 @@
         </div>
     </section>
 
-    <!-- 5. Footer -->
-    <footer class="py-5" style="background-color: var(--deep-sea); color: white;">
-        <div class="container text-center py-4">
-            <h2 class="serif mb-4">NEGROS</h2>
-            <p class="opacity-50">One Island. Two Spirits. Infinite Memories.</p>
-            <div class="mt-5">
-                <a href="index.html" class="btn btn-outline-light rounded-pill px-4 me-2">Back to Start</a>
-                <a href="occidental.html" class="btn btn-cyan rounded-pill px-4 text-white" style="background: var(--ocean-blue);">Explore North</a>
+    <!-- Silliman University -->
+    <section class="silliman-section">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-5 reveal">
+                    <div class="accent-line-blue"></div>
+                    <span class="section-label">Est. 1901 · Dumaguete City</span>
+                    <h2 style="font-size:clamp(2rem,4.5vw,3.2rem); font-weight:700; font-style:italic; margin-bottom:1.25rem;">Silliman University</h2>
+                    <p style="color:#555; line-height:1.85; font-size:0.93rem; margin-bottom:1.25rem;">Founded by American Presbyterian missionaries, Silliman is the first American-founded university in Asia and the Philippines' first private university. More than a century later, its tree-canopied campus remains the intellectual and cultural nucleus of Dumaguete.</p>
+                    <p style="color:#555; line-height:1.85; font-size:0.93rem; margin-bottom:1.75rem;">The campus itself is worth visiting — its Anthropology Museum, the landmark church, and the marine laboratory (one of the oldest in Southeast Asia) are all open to the public.</p>
+                    <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+                        <div style="background:#e3f2fd; border-radius:0.75rem; padding:0.75rem 1rem; text-align:center;">
+                            <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:700; color:var(--deep-sea);">1901</div>
+                            <div style="font-size:0.75rem; color:#1565c0; margin-top:2px;">Year founded</div>
+                        </div>
+                        <div style="background:#e3f2fd; border-radius:0.75rem; padding:0.75rem 1rem; text-align:center;">
+                            <div style="font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:700; color:var(--deep-sea);">1st</div>
+                            <div style="font-size:0.75rem; color:#1565c0; margin-top:2px;">American-founded university in Asia</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 offset-lg-1 reveal reveal-delay-2">
+                    <img src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&q=80&w=900" style="width:100%; height:480px; object-fit:cover; border-radius:2rem; box-shadow:0 20px 50px rgba(0,0,0,0.12);" alt="University campus" loading="lazy">
+                </div>
             </div>
-            <p class="mt-5 small opacity-25">© 2024 Negros Oriental Tourism - Visit Responsibly</p>
+        </div>
+    </section>
+
+    <!-- Silvanas / Food -->
+    <section class="silvanas-section">
+        <div class="container">
+            <div class="text-center mb-5 reveal">
+                <span class="section-label">The Taste of Oriental</span>
+                <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,4.5vw,3rem); font-weight:700; font-style:italic;">What to Eat in the South</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4 reveal">
+                    <div style="background:white; border-radius:1.5rem; overflow:hidden; border:1px solid rgba(0,0,0,0.06); transition: transform 0.35s ease;" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
+                        <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&q=80&w=600" style="width:100%; height:220px; object-fit:cover;" alt="Silvanas" loading="lazy">
+                        <div style="padding:1.5rem;">
+                            <h4 style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:700; margin-bottom:0.5rem;">Silvanas</h4>
+                            <p style="font-size:0.87rem; color:#666; line-height:1.65; margin:0;">Cashew meringue wafers sandwiched with French butter cream, then rolled in cookie crumbs. The definitive souvenir of Dumaguete — take home a box (or several).</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 reveal reveal-delay-1">
+                    <div style="background:white; border-radius:1.5rem; overflow:hidden; border:1px solid rgba(0,0,0,0.06); transition: transform 0.35s ease;" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
+                        <img src="https://images.unsplash.com/photo-1464093515883-ec948246accb?auto=format&fit=crop&q=80&w=600" style="width:100%; height:220px; object-fit:cover;" alt="Fresh Seafood" loading="lazy">
+                        <div style="padding:1.5rem;">
+                            <h4 style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:700; margin-bottom:0.5rem;">Fresh Seafood</h4>
+                            <p style="font-size:0.87rem; color:#666; line-height:1.65; margin:0;">Grilled tuna, kinilaw (ceviche), and chilled crab from the Tañon Strait. The Malatapay market (Wednesday only) is where locals come for the freshest catch straight off the boats.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 reveal reveal-delay-2">
+                    <div style="background:white; border-radius:1.5rem; overflow:hidden; border:1px solid rgba(0,0,0,0.06); transition: transform 0.35s ease;" onmouseover="this.style.transform='translateY(-8px)'" onmouseout="this.style.transform='translateY(0)'">
+                        <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&q=80&w=600" style="width:100%; height:220px; object-fit:cover;" alt="Budbud Kabog" loading="lazy">
+                        <div style="padding:1.5rem;">
+                            <h4 style="font-family:'Cormorant Garamond',serif; font-size:1.5rem; font-weight:700; margin-bottom:0.5rem;">Budbud Kabog</h4>
+                            <p style="font-size:0.87rem; color:#666; line-height:1.65; margin:0;">Sticky millet wrapped in banana leaf and steamed with coconut milk — the traditional breakfast of the Orient. Paired with hot tsokolate (native cocoa), it's a morning that stays with you.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="ori-footer text-center">
+        <div class="container">
+            <h2 style="font-family:'Cormorant Garamond',serif; font-size:3rem; font-style:italic; margin-bottom:0.5rem; color:white;">Negros</h2>
+            <p style="opacity:0.4; font-size:0.9rem; margin-bottom:2.5rem;">One Island. Two Spirits. Infinite Memories.</p>
+            <div class="d-flex gap-3 justify-content-center flex-wrap mb-5">
+                <a href="index.html" style="background:rgba(255,255,255,0.1); color:white; padding:12px 28px; border-radius:50px; font-size:0.76rem; letter-spacing:2px; text-transform:uppercase; text-decoration:none; border:1px solid rgba(255,255,255,0.15); transition:all 0.3s;" onmouseover="this.style.background='rgba(255,255,255,0.18)'" onmouseout="this.style.background='rgba(255,255,255,0.1)'">Back to Start</a>
+                <a href="occidental.html" class="btn-ocean">Explore the North</a>
+            </div>
+            <div style="border-top:1px solid rgba(255,255,255,0.08); padding-top:2rem;">
+                <p style="opacity:0.2; font-size:0.78rem; margin:0;">© 2024 Negros Oriental Tourism — Visit Responsibly</p>
+            </div>
         </div>
     </footer>
 
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const nav = document.getElementById('mainNav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 60);
+        });
+
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+        }, { threshold: 0.1 });
+        reveals.forEach(r => observer.observe(r));
+
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                const target = document.querySelector(a.getAttribute('href'));
+                if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+            });
+        });
+    </script>
 </body>
 </html>

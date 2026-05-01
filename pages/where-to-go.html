@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Where to Go | Negros Island Tourism</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-negros fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">NEGROS</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="where-to-go.html">Where to Go</a></li>
+                    <li class="nav-item"><a class="nav-link" href="what-to-buy.html">What to Buy</a></li>
+                    <li class="nav-item"><a class="nav-link" href="festivals.html">Festivals</a></li>
+                    <li class="nav-item"><a class="nav-link" href="developer.html">About Dev</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <div class="page-hero" style="background-image: url('https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&q=80&w=1920'); padding-top: 80px;">
+        <div class="hero-content text-center container">
+            <span class="d-block mb-3 text-uppercase letter-wide" style="font-size:0.75rem;opacity:0.8;">Explore the Island</span>
+            <h1 class="display-3 fw-bold">Where to Go</h1>
+            <p class="lead opacity-75 mt-3">10 incredible destinations across Negros Occidental &amp; Oriental</p>
+        </div>
+    </div>
+
+    <!-- Filter Tabs -->
+    <section class="py-4 bg-white shadow-sm sticky-top" style="top:72px;z-index:100;">
+        <div class="container">
+            <div class="d-flex gap-3 overflow-auto">
+                <button class="btn btn-sm rounded-pill fw-semibold filter-btn active" onclick="filterCards('all', this)" style="background:var(--kanlaon-green);color:#fff;white-space:nowrap;padding:8px 20px;">All Destinations</button>
+                <button class="btn btn-sm rounded-pill fw-semibold filter-btn" onclick="filterCards('occidental', this)" style="background:var(--sand-beige);color:#333;white-space:nowrap;padding:8px 20px;">Negros Occidental</button>
+                <button class="btn btn-sm rounded-pill fw-semibold filter-btn" onclick="filterCards('oriental', this)" style="background:var(--sand-beige);color:#333;white-space:nowrap;padding:8px 20px;">Negros Oriental</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Destination Grid -->
+    <section class="section-pad">
+        <div class="container">
+            <div class="row g-4" id="destinationGrid">
+
+                <!-- 1 -->
+                <div class="col-md-6 col-lg-4 dest-item" data-province="occidental">
+                    <a href="../inner/destinations/the-ruins.html" class="text-decoration-none text-dark">
+                        <div class="destination-card">
+                            <div class="card-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="The Ruins">
+                            </div>
+                            <div class="card-body">
+                                <span class="province-badge">Negros Occidental</span>
+                                <h5 class="card-title">The Ruins, Talisay</h5>
+                                <p class="card-text text-muted small">The "Taj Mahal of Negros" — a hauntingly beautiful early 20th-century mansion, now an iconic landmark.</p>
+                                <span class="text-gold small fw-semibold">Explore <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 2 -->
+                <div class="col-md-6 col-lg-4 dest-item" data-province="occidental">
+                    <a href="../inner/destinations/mambukal.html" class="text-decoration-none text-dark">
+                        <div class="destination-card">
+                            <div class="card-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Mambukal">
+                            </div>
+                            <div class="card-body">
+                                <span class="province-badge">Negros Occidental</span>
+                                <h5 class="card-title">Mambukal Mountain Resort</h5>
+                                <p class="card-text text-muted small">Seven cascading waterfalls, sulfur springs, and lush forests at the foot of Mt. Kanlaon.</p>
+                                <span class="text-gold small fw-semibold">Explore <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 3 -->
+                <div class="col-md-6 col-lg-4 dest-item" data-province="occidental">
+                    <a href="../inner/destinations/bacolod-plaza.html" class="text-decoration-none text-dark">
+                        <div class="destination-card">
+                            <div class="card-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1568605114967-8130f3a36994?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Bacolod">
+                            </div>
+                            <div class="card-body">
+                                <span class="province-badge">Negros Occidental</span>
+                                <h5 class="card-title">Bacolod City Plaza</h5>
+                                <p class="card-text text-muted small">The vibrant heart of the City of Smiles — surrounded by heritage buildings, restaurants, and local life.</p>
+                                <span class="text-gold small fw-semibold">Explore <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 4 -->
+                <div class="col-md-6 col-lg-4 dest-item" data-province="occidental">
+                    <a href="../inner/destinations/silay-heritage.html" class="text-decoration-none text-dark">
+                        <div class="destination-card">
+                            <div class="card-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1577495508048-b635879837f1?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Silay">
+                            </div>
+                            <div class="card-body">
+                                <span class="province-badge">Negros Occidental</span>
+                                <h5 class="card-title">Silay Heritage City</h5>
+                                <p class="card-text text-muted small">Walk through preserved ancestral houses and absorb the colonial elegance of Negros' cultural capital.</p>
+                                <span class="text-gold small fw-semibold">Explore <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 5 -->
+                <div class="col-md-6 col-lg-4 dest-item" data-province="occidental">
+                    <a href="../inner/destinations/mt-kanlaon.html" class="text-decoration-none text-dark">
+                        <div class="destination-card">
+                            <div class="card-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1455156218388-5e61b526818b?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Mt Kanlaon">
+                            </div>
+                            <div class="card-body">
+                                <span class="province-badge">Negros Occidental</span>
+                                <h5 class="card-title">Mt. Kanlaon Natural Park</h5>
+                                <p class="card-text text-muted small">The highest peak in the Visayas — an active stratovolcano cloaked in biodiversity and adventure.</p>
+                                <span class="text-gold small fw-semibold">Explore <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 6 -->
+                <div class="col-md-6 col-lg-4 dest-item" data-province="oriental">
+                    <a href="../inner/destinations/apo-island.html" class="text-decoration-none text-dark">
+                        <div class="destination-card">
+                            <div class="card-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Apo Island">
+                            </div>
+                            <div class="card-body">
+                                <span class="province-badge">Negros Oriental</span>
+                                <h5 class="card-title">Apo Island Marine Sanctuary</h5>
+                                <p class="card-text text-muted small">World-renowned diving and snorkeling with sea turtles in a thriving marine protected area.</p>
+                                <span class="text-gold small fw-semibold">Explore <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 7 -->
+                <div class="col-md-6 col-lg-4 dest-item" data-province="oriental">
+                    <a href="../inner/destinations/manjuyod-sandbar.html" class="text-decoration-none text-dark">
+                        <div class="destination-card">
+                            <div class="card-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Manjuyod">
+                            </div>
+                            <div class="card-body">
+                                <span class="province-badge">Negros Oriental</span>
+                                <h5 class="card-title">Manjuyod Sandbar</h5>
+                                <p class="card-text text-muted small">A stunning white-sand peninsula stretching 7 km — the "Maldives of the Philippines."</p>
+                                <span class="text-gold small fw-semibold">Explore <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 8 -->
+                <div class="col-md-6 col-lg-4 dest-item" data-province="oriental">
+                    <a href="../inner/destinations/dumaguete.html" class="text-decoration-none text-dark">
+                        <div class="destination-card">
+                            <div class="card-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Dumaguete">
+                            </div>
+                            <div class="card-body">
+                                <span class="province-badge">Negros Oriental</span>
+                                <h5 class="card-title">Dumaguete City</h5>
+                                <p class="card-text text-muted small">The "City of Gentle People" — home to Silliman University, the famous Boulevard, and laid-back culture.</p>
+                                <span class="text-gold small fw-semibold">Explore <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 9 -->
+                <div class="col-md-6 col-lg-4 dest-item" data-province="oriental">
+                    <a href="../inner/destinations/casaroro-falls.html" class="text-decoration-none text-dark">
+                        <div class="destination-card">
+                            <div class="card-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Casaroro Falls">
+                            </div>
+                            <div class="card-body">
+                                <span class="province-badge">Negros Oriental</span>
+                                <h5 class="card-title">Casaroro Falls</h5>
+                                <p class="card-text text-muted small">A dramatic 30-meter waterfall hidden in a canyon — reward for a short but thrilling hike in Valencia.</p>
+                                <span class="text-gold small fw-semibold">Explore <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 10 -->
+                <div class="col-md-6 col-lg-4 dest-item" data-province="oriental">
+                    <a href="../inner/destinations/twin-lakes.html" class="text-decoration-none text-dark">
+                        <div class="destination-card">
+                            <div class="card-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1533240332313-0db49b459ad6?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Twin Lakes">
+                            </div>
+                            <div class="card-body">
+                                <span class="province-badge">Negros Oriental</span>
+                                <h5 class="card-title">Twin Lakes, Balinsasayaw</h5>
+                                <p class="card-text text-muted small">Two crater lakes nestled in the mountains above Valencia, offering stunning highland scenery.</p>
+                                <span class="text-gold small fw-semibold">Explore <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+            </div><!-- /.row -->
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-main">
+        <div class="container text-center py-4">
+            <h2 class="mb-3">NEGROS</h2>
+            <p class="opacity-50 small">One Island. Two Spirits. Infinite Memories.</p>
+            <hr class="footer-divider w-25 mx-auto my-4">
+            <div class="d-flex gap-3 justify-content-center flex-wrap">
+                <a href="../index.html" class="btn-outline-gold">Back to Home</a>
+                <a href="what-to-buy.html" class="btn-gold">What to Buy</a>
+            </div>
+            <p class="small opacity-25 mt-4 mb-0">© 2026 Explore Negros. IT 210 Final Project.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function filterCards(province, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => {
+                b.style.background = 'var(--sand-beige)';
+                b.style.color = '#333';
+            });
+            btn.style.background = 'var(--kanlaon-green)';
+            btn.style.color = '#fff';
+
+            document.querySelectorAll('.dest-item').forEach(card => {
+                if (province === 'all' || card.dataset.province === province) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>

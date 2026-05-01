@@ -4,186 +4,703 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Negros Occidental | Heritage & Highlands</title>
-    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
     <style>
         :root {
             --hacienda-green: #1b4332;
-            --sugar-gold: #d4af37;
+            --sugar-gold: #c7923e;
             --soft-cream: #fdfaf5;
+            --deep-earth: #2c1810;
+            --warm-white: #fefcf8;
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--soft-cream);
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--warm-white);
             color: #2c2c2c;
+            overflow-x: hidden;
         }
 
-        h1, h2, h3, .serif {
-            font-family: 'Playfair Display', serif;
+        h1, h2, h3, h4, .serif {
+            font-family: 'Cormorant Garamond', serif;
         }
 
-        /* Hero Split Layout */
-        .hero-split {
-            min-height: 90vh;
+        /* ── NAVBAR ── */
+        .navbar {
+            background: transparent;
+            transition: background 0.4s ease;
+            padding: 1.2rem 0;
+        }
+
+        .navbar.scrolled {
+            background: rgba(27, 67, 50, 0.96);
+            backdrop-filter: blur(12px);
+            padding: 0.8rem 0;
+        }
+
+        .navbar-brand {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            color: white !important;
+            text-decoration: none;
+        }
+
+        .nav-link-plain {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.73rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+            text-decoration: none;
+            transition: color 0.3s;
+            padding: 0.4rem 0;
+        }
+
+        .nav-link-plain:hover { color: var(--sugar-gold); }
+
+        /* ── HERO ── */
+        .hero-occ {
+            height: 100vh;
+            position: relative;
             display: flex;
             align-items: center;
+            overflow: hidden;
         }
 
-        .hero-image-side {
-            background: url('https://images.unsplash.com/photo-1623945410940-7988365691ef?auto=format&fit=crop&q=80&w=1200') no-repeat center center/cover;
-            min-height: 60vh;
-            border-radius: 0 0 0 150px;
+        .hero-occ-bg {
+            position: absolute;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1623945410940-7988365691ef?auto=format&fit=crop&q=80&w=1920') no-repeat center center/cover;
         }
 
-        /* Organic Image Shape */
-        .organic-img {
-            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-            transition: all 0.5s ease;
+        .hero-occ-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg, rgba(27,67,50,0.85) 0%, rgba(27,67,50,0.3) 60%, transparent 100%);
         }
 
-        /* Glassmorphism Card */
-        .glass-card {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            border-radius: 2rem;
+        .hero-occ-content {
+            position: relative;
+            z-index: 2;
             color: white;
+            max-width: 560px;
         }
 
-        /* Parallax-style Section */
-        .highland-section {
-            background: linear-gradient(rgba(27, 67, 50, 0.8), rgba(27, 67, 50, 0.8)), 
-                        url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=1920');
-            background-attachment: fixed;
-            background-size: cover;
-            padding: 100px 0;
-            clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%);
-        }
-
-        .food-card {
-            border: none;
-            background: none;
-            transition: 0.4s;
-        }
-
-        .food-card img {
-            border-radius: 2rem;
-            height: 400px;
-            object-fit: cover;
-        }
-
-        .food-card:hover {
-            transform: translateY(-15px);
+        .section-label {
+            font-size: 0.68rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--sugar-gold);
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 1rem;
         }
 
         .accent-line {
-            width: 80px;
-            height: 4px;
+            width: 60px;
+            height: 3px;
+            background: var(--sugar-gold);
+            margin-bottom: 1.5rem;
+        }
+
+        /* ── BUTTONS ── */
+        .btn-gold {
             background-color: var(--sugar-gold);
+            color: white;
+            padding: 13px 32px;
+            border-radius: 50px;
+            border: none;
+            font-size: 0.76rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 600;
+            font-family: 'DM Sans', sans-serif;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .btn-gold:hover {
+            background-color: #a8782e;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(199,146,62,0.4);
+            color: white;
+        }
+
+        .btn-outline-light-custom {
+            background: transparent;
+            color: white;
+            padding: 13px 32px;
+            border-radius: 50px;
+            border: 1.5px solid rgba(255,255,255,0.45);
+            font-size: 0.76rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+            font-family: 'DM Sans', sans-serif;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s;
+        }
+
+        .btn-outline-light-custom:hover {
+            border-color: white;
+            background: rgba(255,255,255,0.1);
+            color: white;
+        }
+
+        /* ── THE RUINS ── */
+        .ruins-section {
+            padding: 7rem 0;
+            background: var(--warm-white);
+        }
+
+        .ruins-img-wrap {
+            position: relative;
+        }
+
+        .ruins-img-main {
+            width: 100%;
+            height: 560px;
+            object-fit: cover;
+            border-radius: 2rem;
+        }
+
+        .ruins-img-float {
+            position: absolute;
+            bottom: -40px;
+            right: -30px;
+            width: 220px;
+            height: 280px;
+            object-fit: cover;
+            border-radius: 1.5rem;
+            border: 6px solid var(--warm-white);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        /* ── SUGAR STORY ── */
+        .sugar-section {
+            background: var(--hacienda-green);
+            padding: 7rem 0;
+            color: white;
+            position: relative;
+        }
+
+        .sugar-section::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 0; right: 0;
+            height: 100px;
+            background: var(--warm-white);
+            clip-path: ellipse(55% 100% at 50% 0%);
+        }
+
+        .sugar-section::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            left: 0; right: 0;
+            height: 100px;
+            background: var(--soft-cream);
+            clip-path: ellipse(55% 100% at 50% 100%);
+            z-index: 1;
+        }
+
+        .sugar-stat {
+            border-left: 3px solid var(--sugar-gold);
+            padding-left: 1.25rem;
             margin-bottom: 2rem;
+        }
+
+        .sugar-stat-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1;
+            color: var(--sugar-gold);
+        }
+
+        .sugar-stat-label {
+            font-size: 0.85rem;
+            opacity: 0.65;
+            margin-top: 0.25rem;
+        }
+
+        /* ── SILAY CITY ── */
+        .silay-section {
+            padding: 7rem 0;
+            background: var(--soft-cream);
+        }
+
+        .mansion-card {
+            border-radius: 1.5rem;
+            overflow: hidden;
+            position: relative;
+            height: 320px;
+            transition: transform 0.4s ease;
+        }
+
+        .mansion-card:hover { transform: scale(1.03); }
+
+        .mansion-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .mansion-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 55%);
+        }
+
+        .mansion-card-text {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            color: white;
+        }
+
+        .mansion-card-text h5 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.2rem;
+        }
+
+        .mansion-card-text small {
+            font-size: 0.78rem;
+            opacity: 0.65;
+        }
+
+        /* ── HIGHLAND / MAMBUKAL ── */
+        .highland-section {
+            padding: 8rem 0;
+            background: linear-gradient(rgba(27,67,50,0.88), rgba(27,67,50,0.88)),
+                        url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=1920') no-repeat center center/fixed;
+            color: white;
+        }
+
+        .glass-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 2rem;
+            color: white;
+            padding: 2.5rem;
+        }
+
+        .highland-feature {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .highland-icon {
+            width: 44px;
+            height: 44px;
+            background: rgba(199,146,62,0.2);
+            border: 1px solid rgba(199,146,62,0.4);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+
+        .highland-feature h6 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+
+        .highland-feature p {
+            font-size: 0.83rem;
+            opacity: 0.65;
+            margin: 0;
+        }
+
+        /* ── MASKKARA DEEP DIVE ── */
+        .maskkara-section {
+            padding: 7rem 0;
+            background: var(--warm-white);
+        }
+
+        .maskkara-timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .maskkara-timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--sugar-gold), transparent);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2.5rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -2rem;
+            top: 6px;
+            width: 10px;
+            height: 10px;
+            background: var(--sugar-gold);
+            border-radius: 50%;
+            border: 2px solid var(--warm-white);
+        }
+
+        .timeline-year {
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--sugar-gold);
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .timeline-item h5 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }
+
+        .timeline-item p {
+            font-size: 0.88rem;
+            color: #666;
+            line-height: 1.65;
+            margin: 0;
+        }
+
+        /* ── GASTRONOMY ── */
+        .gastro-section {
+            padding: 7rem 0;
+            background: white;
+        }
+
+        .food-card-occ {
+            border: none;
+            border-radius: 1.5rem;
+            overflow: hidden;
+            background: var(--soft-cream);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .food-card-occ:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 45px rgba(0,0,0,0.1);
+        }
+
+        .food-card-occ img {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+        }
+
+        .food-card-body {
+            padding: 1.5rem;
+        }
+
+        .food-card-body h4 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.4rem;
+        }
+
+        .food-card-body p {
+            font-size: 0.87rem;
+            color: #666;
+            line-height: 1.65;
+            margin: 0;
+        }
+
+        /* ── BACOLOD CITY ── */
+        .bacolod-section {
+            padding: 7rem 0;
+            background: var(--soft-cream);
+        }
+
+        .city-spot {
+            display: flex;
+            gap: 1.25rem;
+            padding: 1.5rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            align-items: flex-start;
+        }
+
+        .city-spot-num {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--sugar-gold);
+            opacity: 0.5;
+            line-height: 1;
+            min-width: 48px;
+        }
+
+        .city-spot h5 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .city-spot p {
+            font-size: 0.86rem;
+            color: #666;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* ── FOOTER / BRIDGE ── */
+        .bridge-footer {
+            padding: 6rem 0 3rem;
+            background: #111;
+            color: white;
+        }
+
+        /* ── ANIMATIONS ── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.35s; }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 768px) {
+            .ruins-img-float { display: none; }
+            .ruins-img-main { height: 320px; }
+            .hero-occ { height: 85vh; }
+            .hero-occ-overlay {
+                background: rgba(27,67,50,0.7);
+            }
         }
     </style>
 </head>
 <body>
 
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light pt-4">
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand fw-bold fs-3 serif" href="index.html">NEGROS</a>
-            <div class="ms-auto">
-                <a href="index.html" class="text-decoration-none text-dark me-4 small fw-bold">HOME</a>
-                <a href="oriental.html" class="text-decoration-none text-dark small fw-bold">EXPLORE ORIENTAL →</a>
+            <a class="navbar-brand" href="index.html">NEGROS</a>
+            <div class="ms-auto d-flex gap-4 align-items-center">
+                <a href="index.html" class="nav-link-plain">Home</a>
+                <a href="occidental.html" class="nav-link-plain" style="color:var(--sugar-gold);">Occidental</a>
+                <a href="oriental.html" class="nav-link-plain">Explore Oriental →</a>
             </div>
         </div>
     </nav>
 
-    <!-- 1. Hero Section (Heritage) -->
-    <section class="hero-split mt-4">
+    <!-- Hero -->
+    <section class="hero-occ">
+        <div class="hero-occ-bg"></div>
+        <div class="hero-occ-overlay"></div>
         <div class="container">
-            <div class="row g-0 align-items-center">
-                <div class="col-lg-5 p-4 p-md-5">
+            <div class="hero-occ-content reveal">
+                <div class="accent-line"></div>
+                <span class="section-label" style="color:rgba(199,146,62,0.9);">Negros Occidental</span>
+                <h1 style="font-size:clamp(3rem,8vw,5.5rem); font-weight:700; font-style:italic; line-height:0.95; margin-bottom:1.5rem; color:white;">The Land of<br>Heritage.</h1>
+                <p style="font-size:1rem; opacity:0.75; line-height:1.75; margin-bottom:2rem; font-weight:300;">Where grand ruins whisper colonial stories, golden fields feed a nation, and a city dances through every hardship with a smile.</p>
+                <div class="d-flex gap-3 flex-wrap">
+                    <a href="#ruins" class="btn-gold">The Ruins</a>
+                    <a href="#highlands" class="btn-outline-light-custom">Highlands</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- The Ruins of Talisay -->
+    <section id="ruins" class="ruins-section">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6 reveal">
+                    <div class="ruins-img-wrap">
+                        <img src="https://images.unsplash.com/photo-1548013146-72479768bada?auto=format&fit=crop&q=80&w=900" class="ruins-img-main shadow-lg" alt="The Ruins Talisay" loading="lazy">
+                        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&q=80&w=400" class="ruins-img-float shadow-lg" alt="The Ruins detail" loading="lazy">
+                    </div>
+                </div>
+                <div class="col-lg-5 offset-lg-1 reveal reveal-delay-2" style="padding-top: 2rem;">
                     <div class="accent-line"></div>
-                    <h1 class="display-2 fw-bold mb-4">The Land of <br><span style="color: var(--sugar-gold);">Heritage.</span></h1>
-                    <p class="lead text-muted mb-5">Step into a world where history is etched in stone and sweetness is a way of life. Negros Occidental welcomes you to its majestic ruins and golden fields.</p>
-                    <button class="btn btn-outline-dark px-5 py-3 rounded-pill fw-bold">VIEW THE RUINS</button>
+                    <span class="section-label">Talisay City, Negros Occidental</span>
+                    <h2 style="font-size:clamp(2.2rem,5vw,3.5rem); font-weight:700; font-style:italic; margin-bottom:1.25rem; line-height:1.1;">The Ruins of Talisay</h2>
+                    <p style="color:#555; line-height:1.85; font-size:0.95rem; margin-bottom:1.25rem;">Standing amid the sugarcane fields of Talisay, the Ruins is the skeletal remains of the early 20th-century mansion of Don Mariano Ledesma Lacson — built as a monument of love for his Portuguese wife, Maria Braga, who died in childbirth.</p>
+                    <p style="color:#555; line-height:1.85; font-size:0.95rem; margin-bottom:1.5rem;">During World War II, retreating Filipino guerrillas burned the mansion rather than surrender it to Japanese forces. The Italianate columns and coral-and-egg-white walls survived the flames — earning it the nickname <em>"Taj Mahal of Negros."</em></p>
+                    <div style="background:var(--soft-cream); border-radius:1rem; padding:1.25rem 1.5rem; border-left:3px solid var(--sugar-gold);">
+                        <p style="font-size:0.88rem; color:#444; margin:0; font-style:italic; line-height:1.65;">"The walls glowed gold in the sunset — like the love story that built them was still burning."</p>
+                    </div>
                 </div>
-                <div class="col-lg-7 hero-image-side shadow-lg"></div>
             </div>
         </div>
     </section>
 
-    <!-- 2. The Sugar Story (Organic Offset) -->
-    <section class="py-5 my-5">
+    <!-- The Sugar Story -->
+    <section class="sugar-section">
+        <div class="container" style="position:relative; z-index:2;">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-5 reveal">
+                    <span class="section-label" style="color:rgba(199,146,62,0.85);">The Hacienda Life</span>
+                    <h2 style="font-size:clamp(2rem,4.5vw,3.2rem); font-weight:700; font-style:italic; color:white; margin-bottom:1.25rem; line-height:1.1;">Sugarbowl of the Philippines</h2>
+                    <p style="opacity:0.7; line-height:1.85; font-size:0.93rem; margin-bottom:0;">For over two centuries, the rhythm of life in Occidental has been set by the sugarcane harvest. The hacienda system — vast sugar estates managed by landed families — shaped the island's culture, architecture, cuisine, and soul.</p>
+                </div>
+                <div class="col-lg-6 offset-lg-1 reveal reveal-delay-2">
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <div class="sugar-stat">
+                                <div class="sugar-stat-number">60%</div>
+                                <div class="sugar-stat-label">of Philippine sugar produced in Negros Occidental</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="sugar-stat">
+                                <div class="sugar-stat-number">400+</div>
+                                <div class="sugar-stat-label">years of sugarcane cultivation on the island</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="sugar-stat">
+                                <div class="sugar-stat-number">31</div>
+                                <div class="sugar-stat-label">sugar mills still operating across the province</div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="sugar-stat">
+                                <div class="sugar-stat-number">Muscovado</div>
+                                <div class="sugar-stat-label">the prized unrefined heritage sugar of Negros</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Silay City -->
+    <section class="silay-section">
         <div class="container">
-            <div class="row align-items-center">
-                <div class="col-md-6 order-md-2">
-                    <img src="https://images.unsplash.com/photo-1594142101150-f896f6004b7e?auto=format&fit=crop&q=80&w=800" class="img-fluid organic-img shadow-lg" alt="Sugar Cane">
+            <div class="text-center mb-5 reveal">
+                <span class="section-label">Silay City, Negros Occidental</span>
+                <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(2.2rem,5vw,3.5rem); font-weight:700; font-style:italic;">The Paris of Negros</h2>
+                <p style="color:#666; max-width:520px; margin:0.75rem auto 0; font-size:0.92rem; line-height:1.7;">Silay City is home to 30+ heritage mansions from the Spanish and American colonial eras — the finest concentration of ancestral houses in the Philippines.</p>
+            </div>
+            <div class="row g-3">
+                <div class="col-md-4 reveal">
+                    <div class="mansion-card shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1533090161767-e6ffed986c88?auto=format&fit=crop&q=80&w=600" alt="Heritage Mansion" loading="lazy">
+                        <div class="mansion-card-overlay"></div>
+                        <div class="mansion-card-text">
+                            <h5>Balay Negrense</h5>
+                            <small>1897 · Museum & Heritage House</small>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-md-5 order-md-1 p-5">
-                    <h2 class="display-4 mb-4">Sugarbowl of the Philippines</h2>
-                    <p>For centuries, the rhythm of life here has been set by the sugarcane harvest. Discover the "Hacienda" lifestyle—a blend of Spanish elegance and Filipino resilience.</p>
+                <div class="col-md-4 reveal reveal-delay-1">
+                    <div class="mansion-card shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1576698483491-8c43f0862543?auto=format&fit=crop&q=80&w=600" alt="Heritage Architecture" loading="lazy">
+                        <div class="mansion-card-overlay"></div>
+                        <div class="mansion-card-text">
+                            <h5>San Diego Pro-Cathedral</h5>
+                            <small>1934 · Spanish Colonial Church</small>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 reveal reveal-delay-2">
+                    <div class="mansion-card shadow-sm">
+                        <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&q=80&w=600" alt="Heritage Street" loading="lazy">
+                        <div class="mansion-card-overlay"></div>
+                        <div class="mansion-card-text">
+                            <h5>Heritage Walking Tour</h5>
+                            <small>30+ ancestral houses</small>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 3. Highland Escape (The Mountains) -->
-    <section class="highland-section">
+    <!-- Highland / Mambukal -->
+    <section id="highlands" class="highland-section">
         <div class="container">
             <div class="row justify-content-center">
-                <div class="col-md-8 text-center text-white">
-                    <h2 class="display-3 serif mb-5">The Highland Escape</h2>
-                    <div class="glass-card p-5 shadow">
-                        <h3>Mt. Kanlaon Majesty</h3>
-                        <p class="lead">From the sulfur springs of Mambukal to the peak of the tallest volcano in the Visayas. Breathe in the cool mountain air and find your sanctuary.</p>
-                        <hr class="my-4 opacity-25">
-                        <div class="d-flex justify-content-around">
-                            <span><i class="bi bi-tree"></i> 7 Waterfalls</span>
-                            <span><i class="bi bi-thermometer-half"></i> Hot Springs</span>
-                            <span><i class="bi bi-mountain"></i> Hiking</span>
-                        </div>
-                    </div>
+                <div class="col-md-10 text-center reveal">
+                    <span class="section-label" style="color:rgba(199,146,62,0.85);">The Mountains of Occidental</span>
+                    <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(2.5rem,6vw,4.5rem); font-weight:700; font-style:italic; color:white; margin-bottom:3rem;">Highland Escapes</h2>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 4. Gastronomy Gallery -->
-    <section class="py-5 bg-white">
-        <div class="container py-5">
-            <div class="text-center mb-5">
-                <h2 class="display-4 serif">A Taste of the North</h2>
-                <div class="accent-line mx-auto"></div>
             </div>
             <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card food-card">
-                        <img src="https://images.unsplash.com/photo-1563379091339-03b21bc4a4f8?auto=format&fit=crop&q=80&w=600" alt="Inasal">
-                        <div class="card-body px-0">
-                            <h4 class="serif mt-3">Chicken Inasal</h4>
-                            <p class="small text-muted">The smoky, savory soul of Bacolod City.</p>
+                <div class="col-md-6 reveal">
+                    <div class="glass-card h-100">
+                        <span class="section-label" style="color:rgba(199,146,62,0.85);">Murcia, Negros Occidental</span>
+                        <h3 style="font-size:1.8rem; font-weight:700; margin-bottom:1rem; color:white;">Mambukal Mountain Resort</h3>
+                        <p style="opacity:0.7; font-size:0.9rem; line-height:1.75; margin-bottom:1.75rem;">Nestled at the foot of Mt. Kanlaon, Mambukal is a government-run mountain resort unlike anything else in the Philippines — cool air, seven waterfalls, natural hot and cold pools, and jungle trails winding through primary forest.</p>
+                        <div class="highland-feature">
+                            <div class="highland-icon">💧</div>
+                            <div>
+                                <h6>7 Waterfalls</h6>
+                                <p>Each with a trail of its own — from easy 30-minute walks to challenging 3-hour treks.</p>
+                            </div>
+                        </div>
+                        <div class="highland-feature">
+                            <div class="highland-icon">♨️</div>
+                            <div>
+                                <h6>Hot Sulfur Springs</h6>
+                                <p>Natural geothermal pools fed by the volcanic activity of Mt. Kanlaon.</p>
+                            </div>
+                        </div>
+                        <div class="highland-feature">
+                            <div class="highland-icon">🦇</div>
+                            <div>
+                                <h6>Giant Flying Foxes</h6>
+                                <p>At dusk, thousands of fruit bats emerge from the forest canopy — a surreal natural spectacle.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card food-card">
-                        <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&q=80&w=600" alt="Cakes">
-                        <div class="card-body px-0">
-                            <h4 class="serif mt-3">Calea Pastries</h4>
-                            <p class="small text-muted">Indulge in the finest cakes of the sugar capital.</p>
+                <div class="col-md-6 reveal reveal-delay-2">
+                    <div class="glass-card h-100">
+                        <span class="section-label" style="color:rgba(199,146,62,0.85);">Canlaon City</span>
+                        <h3 style="font-size:1.8rem; font-weight:700; margin-bottom:1rem; color:white;">Mt. Kanlaon Natural Park</h3>
+                        <p style="opacity:0.7; font-size:0.9rem; line-height:1.75; margin-bottom:1.75rem;">At 2,465 meters, Mt. Kanlaon is the highest peak in the Visayas and an active stratovolcano. The Kanlaon Natural Park surrounding it is one of the Philippines' most important biodiversity hotspots — home to endemic species found nowhere else on earth.</p>
+                        <div class="highland-feature">
+                            <div class="highland-icon">🏔️</div>
+                            <div>
+                                <h6>2,465m Summit</h6>
+                                <p>The highest point in the Visayas — a 2-day climb for experienced mountaineers.</p>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card food-card">
-                        <img src="https://images.unsplash.com/photo-1540324155974-7523202daa3f?auto=format&fit=crop&q=80&w=600" alt="MassKara">
-                        <div class="card-body px-0">
-                            <h4 class="serif mt-3">MassKara Joy</h4>
-                            <p class="small text-muted">The spirit of the "City of Smiles."</p>
+                        <div class="highland-feature">
+                            <div class="highland-icon">🦅</div>
+                            <div>
+                                <h6>Endemic Wildlife</h6>
+                                <p>The Negros bleeding-heart pigeon and Philippine cockatoo still find sanctuary here.</p>
+                            </div>
+                        </div>
+                        <div class="highland-feature">
+                            <div class="highland-icon">🌿</div>
+                            <div>
+                                <h6>Mossy Forests</h6>
+                                <p>Ancient moss-draped trees at the upper elevations feel utterly otherworldly.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -191,21 +708,157 @@
         </div>
     </section>
 
-    <!-- 5. Footer / Bridge -->
-    <footer class="py-5" style="background-color: #111; color: white;">
-        <div class="container text-center py-5">
-            <h5 class="text-uppercase tracking-widest mb-4" style="letter-spacing: 3px; font-size: 0.8rem;">Finished with the North?</h5>
-            <h2 class="display-5 serif mb-5">Deeper waters await.</h2>
-            <a href="oriental.html" class="btn btn-lg px-5 py-3 rounded-pill" style="background-color: var(--sugar-gold); color: black; font-weight: 600;">
-                EXPLORE NEGROS ORIENTAL
-            </a>
-            <div class="mt-5 opacity-25">
-                <p>© 2024 Negros Occidental Tourism</p>
+    <!-- MassKara Festival Deep Dive -->
+    <section class="maskkara-section">
+        <div class="container">
+            <div class="row align-items-center g-5">
+                <div class="col-lg-6 reveal">
+                    <img src="https://images.unsplash.com/photo-1540324155974-7523202daa3f?auto=format&fit=crop&q=80&w=900" style="width:100%; height:500px; object-fit:cover; border-radius:2rem;" alt="MassKara Festival" loading="lazy">
+                </div>
+                <div class="col-lg-5 offset-lg-1 reveal reveal-delay-2">
+                    <div class="accent-line"></div>
+                    <span class="section-label">October · Bacolod City</span>
+                    <h2 style="font-size:clamp(2rem,5vw,3.2rem); font-weight:700; font-style:italic; margin-bottom:1.5rem;">MassKara Festival</h2>
+                    <div class="maskkara-timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-year">1980 — The Birth</div>
+                            <h5>Born from Crisis</h5>
+                            <p>Two tragedies struck in 1980: the sinking of MV Don Juan (claiming hundreds of Negrense lives) and the collapse of sugar prices. City leaders created MassKara as a defiant act of joy — <em>MassKara</em> meaning "many faces" and "mass" for the crowd.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">The Masks</div>
+                            <h5>The Icon of Smiles</h5>
+                            <p>Each elaborately painted smiling mask is handcrafted by local artisans. Performers compete in street dancing with increasing intensity as the festival week builds toward its grand finale.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-year">How to Attend</div>
+                            <h5>The Grand Parade</h5>
+                            <p>The festival runs the entire month of October, climaxing on the weekend nearest the 19th. Book accommodation at least 2 months in advance — the whole island converges on Bacolod.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bacolod City -->
+    <section class="bacolod-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 reveal">
+                    <span class="section-label">The City of Smiles</span>
+                    <h2 style="font-size:clamp(2.2rem,5vw,3.5rem); font-weight:700; font-style:italic; margin-bottom:1rem;">Bacolod City</h2>
+                    <p style="color:#555; line-height:1.85; font-size:0.93rem; margin-bottom:0;">Bacolod is the beating heart of Occidental — a city that prides itself on warmth, food, and an almost defiant cheerfulness. Beyond the festival, there's a city worth wandering slowly.</p>
+                </div>
+                <div class="col-lg-6 offset-lg-1 reveal reveal-delay-1">
+                    <div class="city-spot">
+                        <span class="city-spot-num">01</span>
+                        <div>
+                            <h5>Lacson Street Inasal Row</h5>
+                            <p>A strip of outdoor inasal stalls that have been grilling since the 1950s. The smoke, the communal dining, the liver sauce — this is the real Bacolod experience.</p>
+                        </div>
+                    </div>
+                    <div class="city-spot">
+                        <span class="city-spot-num">02</span>
+                        <div>
+                            <h5>Bacolod Capitol Park & Lagoon</h5>
+                            <p>The civic heart of the city — a grand Art Deco-influenced capitol building overlooking a lagoon, where locals jog, children feed ducks, and couples watch the sunset.</p>
+                        </div>
+                    </div>
+                    <div class="city-spot">
+                        <span class="city-spot-num">03</span>
+                        <div>
+                            <h5>Calea Pastries & Coffee</h5>
+                            <p>The most famous bakery in Negros — possibly in the Visayas. Known for its brazo de mercedes and layered cakes. Expect a queue; it's always worth the wait.</p>
+                        </div>
+                    </div>
+                    <div class="city-spot">
+                        <span class="city-spot-num">04</span>
+                        <div>
+                            <h5>San Sebastian Cathedral</h5>
+                            <p>A Spanish colonial cathedral at the center of Bacolod, where the faithful gather every morning and the pigeons own the plaza by afternoon.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gastronomy -->
+    <section class="gastro-section">
+        <div class="container">
+            <div class="text-center mb-5 reveal">
+                <span class="section-label">A Taste of the North</span>
+                <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(2.2rem,5vw,3.5rem); font-weight:700; font-style:italic;">Flavours of Occidental</h2>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4 reveal">
+                    <div class="food-card-occ">
+                        <img src="https://images.unsplash.com/photo-1563379091339-03b21bc4a4f8?auto=format&fit=crop&q=80&w=600" alt="Chicken Inasal" loading="lazy">
+                        <div class="food-card-body">
+                            <h4>Chicken Inasal</h4>
+                            <p>The smoky, savory soul of Bacolod. Marinated in calamansi, vinegar, lemongrass, and annatto, then grilled over charcoal. Eat it with garlic rice drizzled in chicken oil.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 reveal reveal-delay-1">
+                    <div class="food-card-occ">
+                        <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&q=80&w=600" alt="Piaya" loading="lazy">
+                        <div class="food-card-body">
+                            <h4>Piaya & Napoleones</h4>
+                            <p>The definitive Bacolod pasalubong. Piaya is a flatbread stuffed with muscovado sugar; Napoleones are flaky cream-filled pastries from Silay. Buy boxes of both before leaving.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 reveal reveal-delay-2">
+                    <div class="food-card-occ">
+                        <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&q=80&w=600" alt="Calea Cakes" loading="lazy">
+                        <div class="food-card-body">
+                            <h4>Calea's Famous Cakes</h4>
+                            <p>Indulge in some of the finest bakery work in the country. The brazo de mercedes — a rolled meringue and custard cake — is legendary. The queues start before the doors open.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bridge Footer -->
+    <footer class="bridge-footer text-center">
+        <div class="container">
+            <p style="font-size:0.7rem; letter-spacing:4px; text-transform:uppercase; opacity:0.35; margin-bottom:1rem;">You've explored the north.</p>
+            <h2 style="font-family:'Cormorant Garamond',serif; font-size:clamp(2rem,5vw,3.5rem); font-style:italic; margin-bottom:2rem; color:white;">Deeper waters await.</h2>
+            <a href="oriental.html" class="btn-gold">Explore Negros Oriental</a>
+            <div style="margin-top:5rem; padding-top:2rem; border-top:1px solid rgba(255,255,255,0.08);">
+                <div style="display:flex; justify-content:center; gap:2rem; margin-bottom:1rem; flex-wrap:wrap;">
+                    <a href="index.html" style="color:rgba(255,255,255,0.3); font-size:0.75rem; letter-spacing:2px; text-decoration:none; text-transform:uppercase;">Home</a>
+                    <a href="occidental.html" style="color:rgba(255,255,255,0.3); font-size:0.75rem; letter-spacing:2px; text-decoration:none; text-transform:uppercase;">Occidental</a>
+                    <a href="oriental.html" style="color:rgba(255,255,255,0.3); font-size:0.75rem; letter-spacing:2px; text-decoration:none; text-transform:uppercase;">Oriental</a>
+                </div>
+                <p style="opacity:0.2; font-size:0.78rem; margin:0;">© 2024 Negros Occidental Tourism</p>
             </div>
         </div>
     </footer>
 
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const nav = document.getElementById('mainNav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 60);
+        });
+
+        const reveals = document.querySelectorAll('.reveal');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+        }, { threshold: 0.1 });
+        reveals.forEach(r => observer.observe(r));
+
+        document.querySelectorAll('a[href^="#"]').forEach(a => {
+            a.addEventListener('click', e => {
+                const target = document.querySelector(a.getAttribute('href'));
+                if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+            });
+        });
+    </script>
 </body>
-</html>
+</html>  

@@ -4,214 +4,341 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Negros Island | Sweetness Beyond Sugar</title>
-    <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --kanlaon-green: #1b4332;
-            --muscovado-gold: #c7923e;
-            --ocean-teal: #006d77;
-            --parchment: #fdfaf5;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--parchment);
-            color: #333;
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, .serif {
-            font-family: 'Playfair Display', serif;
-        }
-
-        /* Modern Glassmorphism Navbar */
-        .navbar {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        /* Hero Section with Organic Shape */
-        .hero-section {
-            height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
-                        url('https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&q=80&w=1920') no-repeat center center/cover;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            clip-path: ellipse(150% 100% at 50% 0%); /* Organic curve at bottom */
-        }
-
-        /* Custom Rounded Buttons */
-        .btn-negros {
-            background-color: var(--muscovado-gold);
-            color: white;
-            padding: 12px 30px;
-            border-radius: 50px;
-            border: none;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 600;
-        }
-
-        .btn-negros:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 20px rgba(199, 146, 62, 0.4);
-            background-color: #b07d2f;
-            color: white;
-        }
-
-        /* Bento Grid Style */
-        .bento-item {
-            border-radius: 2rem;
-            overflow: hidden;
-            position: relative;
-            height: 300px;
-            transition: transform 0.4s ease;
-        }
-        
-        .bento-item:hover {
-            transform: scale(1.02);
-        }
-
-        .bento-img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .bento-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 2rem;
-            background: linear-gradient(transparent, rgba(0,0,0,0.8));
-            color: white;
-        }
-
-        /* Experience Splitter */
-        .split-card {
-            border-radius: 2.5rem;
-            border: none;
-            transition: 0.5s;
-            background-size: cover;
-            background-position: center;
-            height: 500px;
-            display: flex;
-            align-items: flex-end;
-            text-decoration: none;
-        }
-
-        .split-card:hover {
-            transform: translateY(-10px);
-        }
-    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <!-- ═══ NAVBAR ═══ -->
+    <nav class="navbar navbar-expand-lg navbar-negros fixed-top">
         <div class="container">
-            <a class="navbar-brand fw-bold fs-3" href="#">NEGROS</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <a class="navbar-brand" href="index.html">NEGROS</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto text-uppercase fw-semibold" style="font-size: 0.8rem;">
-                    <li class="nav-item"><a class="nav-link px-3" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link px-3" href="occidental.html">Occidental</a></li>
-                    <li class="nav-item"><a class="nav-link px-3" href="oriental.html">Oriental</a></li>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
+                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pages/where-to-go.html">Where to Go</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pages/what-to-buy.html">What to Buy</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pages/festivals.html">Festivals</a></li>
+                    <li class="nav-item"><a class="nav-link" href="pages/developer.html">About Dev</a></li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero-section text-center">
+    <!-- ═══ HERO ═══ -->
+    <section class="hero-main">
         <div class="container">
-            <span class="text-uppercase tracking-widest mb-3 d-block" style="letter-spacing: 5px;">Discover the Island of</span>
-            <h1 class="display-1 fw-bold mb-4">Sweetness & Smiles</h1>
-            <p class="lead mb-5 opacity-75">From the sugar heritage of the North to the crystal depths of the South.</p>
-            <a href="#explore" class="btn btn-negros">Start the Journey</a>
-        </div>
-    </section>
-
-    <!-- The Two Worlds Choice -->
-    <section id="explore" class="py-5">
-        <div class="container py-5">
-            <div class="text-center mb-5">
-                <h2 class="display-4 fw-bold">Choose Your Spirit</h2>
-                <p class="text-muted">Two provinces, one heart. Where will you go first?</p>
-            </div>
-            <div class="row g-4">
-                <!-- Occidental -->
-                <div class="col-md-6">
-                    <a href="occidental.html" class="card split-card shadow" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1542332213-31f87348057f?auto=format&fit=crop&q=80&w=800');">
-                        <div class="card-body p-5 text-white">
-                            <h3 class="display-5">Occidental</h3>
-                            <p>The Sugarbowl of the Philippines: Heritage, Mountains, and Grandeur.</p>
-                        </div>
-                    </a>
-                </div>
-                <!-- Oriental -->
-                <div class="col-md-6">
-                    <a href="oriental.html" class="card split-card shadow" style="background-image: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?auto=format&fit=crop&q=80&w=800');">
-                        <div class="card-body p-5 text-white">
-                            <h3 class="display-5">Oriental</h3>
-                            <p>The Gateway to the Sea: Diving, Serenity, and University Charm.</p>
-                        </div>
-                    </a>
-                </div>
+            <span class="eyebrow">Discover the Island of</span>
+            <h1 class="fw-bold mb-3">Sweetness &amp; <em>Smiles</em></h1>
+            <p class="lead">From the sugar heritage of Occidental to the crystal depths of Oriental. One island, two spirits.</p>
+            <div class="d-flex gap-3 justify-content-center flex-wrap">
+                <a href="pages/where-to-go.html" class="btn-gold">Explore Now</a>
+                <a href="#about-region" class="btn-outline-gold" style="border-color:#fff;color:#fff;">Learn More</a>
             </div>
         </div>
     </section>
 
-    <!-- Culture Advertisement (Bento Grid) -->
-    <section class="py-5 bg-white">
+    <!-- ═══ REGION IDENTITY ═══ -->
+    <section id="about-region" class="section-pad bg-white">
         <div class="container">
-            <div class="row g-4">
-                <!-- MassKara Festival (Large) -->
-                <div class="col-md-8">
-                    <div class="bento-item shadow">
-                        <img src="https://images.unsplash.com/photo-1540324155974-7523202daa3f?auto=format&fit=crop&q=80&w=1200" class="bento-img" alt="MassKara">
-                        <div class="bento-overlay">
-                            <span class="badge rounded-pill bg-warning text-dark mb-2">Culture</span>
-                            <h3 class="h2">MassKara Festival</h3>
-                            <p class="small opacity-75">Witness the city of smiles in its most vibrant, rhythmic state.</p>
+            <div class="row align-items-center g-5">
+                <div class="col-lg-5">
+                    <div class="accent-line mb-4"></div>
+                    <h2 class="display-5 mb-4">The Heart of the Visayas</h2>
+                    <p class="text-muted mb-3">Negros Island — officially divided into Negros Occidental and Negros Oriental — is the fourth-largest island in the Philippines. Known as the <strong>Sugar Capital of the Philippines</strong>, its fertile plains have fueled the nation's sweet heritage for over a century.</p>
+                    <p class="text-muted mb-3">From the volcanic highlands of <strong>Mt. Kanlaon</strong> to the pristine reefs of <strong>Apo Island</strong>, Negros offers an extraordinary range of landscapes, cultures, and flavors that reward every kind of traveler.</p>
+                    <p class="text-muted">The island is home to the legendary <strong>MassKara Festival</strong> — the City of Smiles in full celebration — and the gentle, university-town charm of Dumaguete, where life flows easy along the boulevard.</p>
+                </div>
+                <div class="col-lg-7">
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <img src="https://images.unsplash.com/photo-1623945410940-7988365691ef?auto=format&fit=crop&q=80&w=600" class="img-fluid rounded-4 shadow" style="height:220px;object-fit:cover;" alt="Bacolod">
+                        </div>
+                        <div class="col-6 pt-4">
+                            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=600" class="img-fluid rounded-4 shadow" style="height:220px;object-fit:cover;" alt="Apo Island">
+                        </div>
+                        <div class="col-12">
+                            <div class="row g-3">
+                                <div class="col-4 text-center p-3 rounded-3" style="background:var(--sand-beige);">
+                                    <div class="fw-bold fs-4 text-green">2</div>
+                                    <div class="small text-muted">Provinces</div>
+                                </div>
+                                <div class="col-4 text-center p-3 rounded-3" style="background:var(--sand-beige);">
+                                    <div class="fw-bold fs-4 text-green">13,328</div>
+                                    <div class="small text-muted">km² area</div>
+                                </div>
+                                <div class="col-4 text-center p-3 rounded-3" style="background:var(--sand-beige);">
+                                    <div class="fw-bold fs-4 text-green">4M+</div>
+                                    <div class="small text-muted">Population</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <!-- Food (Small) -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ PROVINCE SPLIT ═══ -->
+    <section class="section-pad">
+        <div class="container">
+            <div class="text-center mb-5">
+                <div class="accent-line mx-auto mb-3"></div>
+                <h2 class="display-5">Two Provinces, One Heart</h2>
+                <p class="text-muted">Where will you begin your journey?</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <a href="pages/where-to-go.html" class="split-card shadow-lg d-block" style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.72)), url('https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&q=80&w=900');">
+                        <div class="p-5 text-white">
+                            <span class="province-badge" style="background:rgba(255,255,255,0.15);color:#fff;">Negros Occidental</span>
+                            <h3 class="display-5 fw-bold">The Heritage North</h3>
+                            <p class="opacity-75">Haciendas, The Ruins, MassKara, and the world-famous Chicken Inasal.</p>
+                            <span class="btn-outline-gold mt-3 d-inline-block" style="border-color:#fff;color:#fff;">Explore →</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-6">
+                    <a href="pages/where-to-go.html" class="split-card shadow-lg d-block" style="background-image: linear-gradient(to bottom, rgba(0,0,0,0.15), rgba(0,0,0,0.72)), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=900');">
+                        <div class="p-5 text-white">
+                            <span class="province-badge" style="background:rgba(255,255,255,0.15);color:#fff;">Negros Oriental</span>
+                            <h3 class="display-5 fw-bold">The Gentle South</h3>
+                            <p class="opacity-75">Apo Island, Manjuyod Sandbar, Dumaguete, and the sweetest Silvanas.</p>
+                            <span class="btn-outline-gold mt-3 d-inline-block" style="border-color:#fff;color:#fff;">Explore →</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ WHERE TO GO PREVIEW ═══ -->
+    <section class="section-pad bg-white">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-end mb-5 flex-wrap gap-3">
+                <div>
+                    <div class="accent-line mb-3"></div>
+                    <h2 class="display-5 mb-1">Where to Go</h2>
+                    <p class="text-muted mb-0">Unmissable destinations across both provinces</p>
+                </div>
+                <a href="pages/where-to-go.html" class="btn-gold">View All Destinations</a>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <a href="inner/destinations/the-ruins.html" class="text-decoration-none text-dark">
+                        <div class="destination-card">
+                            <div class="card-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="The Ruins">
+                            </div>
+                            <div class="card-body">
+                                <span class="province-badge">Negros Occidental</span>
+                                <h5 class="card-title">The Ruins, Talisay</h5>
+                                <p class="card-text text-muted small">The "Taj Mahal of Negros" — a hauntingly beautiful early 20th-century mansion surrounded by lush gardens.</p>
+                                <span class="text-gold small fw-semibold">Learn More →</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="inner/destinations/apo-island.html" class="text-decoration-none text-dark">
+                        <div class="destination-card">
+                            <div class="card-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Apo Island">
+                            </div>
+                            <div class="card-body">
+                                <span class="province-badge">Negros Oriental</span>
+                                <h5 class="card-title">Apo Island Marine Sanctuary</h5>
+                                <p class="card-text text-muted small">Swim with sea turtles and explore one of the world's most celebrated marine protected areas.</p>
+                                <span class="text-gold small fw-semibold">Learn More →</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="inner/destinations/manjuyod-sandbar.html" class="text-decoration-none text-dark">
+                        <div class="destination-card">
+                            <div class="card-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Manjuyod">
+                            </div>
+                            <div class="card-body">
+                                <span class="province-badge">Negros Oriental</span>
+                                <h5 class="card-title">Manjuyod Sandbar</h5>
+                                <p class="card-text text-muted small">The "Maldives of the Philippines" — a pristine white sandbar that emerges from the sea at low tide.</p>
+                                <span class="text-gold small fw-semibold">Learn More →</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ WHAT TO BUY PREVIEW ═══ -->
+    <section class="section-pad" style="background: var(--sand-beige);">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-end mb-5 flex-wrap gap-3">
+                <div>
+                    <div class="accent-line mb-3"></div>
+                    <h2 class="display-5 mb-1">What to Buy</h2>
+                    <p class="text-muted mb-0">Authentic products, delicacies &amp; souvenirs from Negros</p>
+                </div>
+                <a href="pages/what-to-buy.html" class="btn-gold">View All Products</a>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <a href="inner/products/silvanas.html" class="text-decoration-none text-dark">
+                        <div class="product-card">
+                            <div class="card-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Silvanas">
+                            </div>
+                            <div class="card-body">
+                                <span class="province-badge">Negros Oriental</span>
+                                <h5 class="card-title">Silvanas</h5>
+                                <p class="card-text text-muted small">Dumaguete's iconic frozen dessert — layers of cashew meringue, buttercream, and cookie crumbs.</p>
+                                <span class="text-gold small fw-semibold">Learn More →</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="inner/products/muscovado.html" class="text-decoration-none text-dark">
+                        <div class="product-card">
+                            <div class="card-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1530982011887-3cc11cc85693?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Muscovado">
+                            </div>
+                            <div class="card-body">
+                                <span class="province-badge">Negros Occidental</span>
+                                <h5 class="card-title">Muscovado Sugar</h5>
+                                <p class="card-text text-muted small">Unrefined raw cane sugar with a rich molasses flavor — the soul of Negros' sugarcane heritage.</p>
+                                <span class="text-gold small fw-semibold">Learn More →</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="inner/products/inasal.html" class="text-decoration-none text-dark">
+                        <div class="product-card">
+                            <div class="card-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1563379091339-03b21bc4a4f8?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Inasal">
+                            </div>
+                            <div class="card-body">
+                                <span class="province-badge">Negros Occidental</span>
+                                <h5 class="card-title">Chicken Inasal</h5>
+                                <p class="card-text text-muted small">Bacolod's gift to Philippine cuisine — marinated chicken grilled over charcoal with annatto oil.</p>
+                                <span class="text-gold small fw-semibold">Learn More →</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ FESTIVALS PREVIEW ═══ -->
+    <section class="section-pad bg-white">
+        <div class="container">
+            <div class="d-flex justify-content-between align-items-end mb-5 flex-wrap gap-3">
+                <div>
+                    <div class="accent-line mb-3"></div>
+                    <h2 class="display-5 mb-1">Festivals &amp; Events</h2>
+                    <p class="text-muted mb-0">Vibrant celebrations that define the Negrense spirit</p>
+                </div>
+                <a href="pages/festivals.html" class="btn-gold">View All Festivals</a>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <a href="inner/festivals/masskara.html" class="text-decoration-none text-dark">
+                        <div class="festival-card">
+                            <div class="card-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1540324155974-7523202daa3f?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="MassKara">
+                            </div>
+                            <div class="card-body">
+                                <span class="province-badge">Bacolod City</span>
+                                <h5 class="card-title">MassKara Festival</h5>
+                                <p class="card-text text-muted small">Every October, Bacolod erupts in a kaleidoscope of smiling masks, street dancing, and music.</p>
+                                <span class="text-gold small fw-semibold">Learn More →</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="inner/festivals/buglasan.html" class="text-decoration-none text-dark">
+                        <div class="festival-card">
+                            <div class="card-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Buglasan">
+                            </div>
+                            <div class="card-body">
+                                <span class="province-badge">Negros Oriental</span>
+                                <h5 class="card-title">Buglasan Festival</h5>
+                                <p class="card-text text-muted small">The "Festival of Festivals" — a week-long celebration of Negros Oriental's diverse cultural heritage.</p>
+                                <span class="text-gold small fw-semibold">Learn More →</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-md-4">
+                    <a href="inner/festivals/panaad.html" class="text-decoration-none text-dark">
+                        <div class="festival-card">
+                            <div class="card-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Panaad">
+                            </div>
+                            <div class="card-body">
+                                <span class="province-badge">Negros Occidental</span>
+                                <h5 class="card-title">Panaad sa Sugbo</h5>
+                                <p class="card-text text-muted small">A grand showcase of the Negrense culture at Panaad Park — food, crafts, music, and local identity.</p>
+                                <span class="text-gold small fw-semibold">Learn More →</span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ BENTO / CULTURE AD ═══ -->
+    <section class="section-pad" style="background: var(--kanlaon-green);">
+        <div class="container">
+            <div class="text-center mb-5 text-white">
+                <h2 class="display-5">The Negros Experience</h2>
+                <p class="opacity-50">Culture, nature, and flavor — all in one island</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-8">
+                    <div class="bento-item shadow">
+                        <img src="https://images.unsplash.com/photo-1540324155974-7523202daa3f?auto=format&fit=crop&q=80&w=1200" alt="MassKara">
+                        <div class="bento-overlay">
+                            <span class="badge rounded-pill bg-warning text-dark mb-2">Culture</span>
+                            <h3 class="h2">MassKara Festival</h3>
+                            <p class="small opacity-75">Witness Bacolod in its most vibrant, rhythmic state every October.</p>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-md-4">
                     <div class="bento-item shadow">
-                        <img src="https://images.unsplash.com/photo-1563379091339-03b21bc4a4f8?auto=format&fit=crop&q=80&w=600" class="bento-img" alt="Food">
+                        <img src="https://images.unsplash.com/photo-1563379091339-03b21bc4a4f8?auto=format&fit=crop&q=80&w=600" alt="Food">
                         <div class="bento-overlay">
                             <h3 class="h4">Tastes of Negros</h3>
                             <p class="small">Inasal, Silvanas, and more.</p>
                         </div>
                     </div>
                 </div>
-                <!-- Nature (Small) -->
                 <div class="col-md-4">
                     <div class="bento-item shadow">
-                        <img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&q=80&w=600" class="bento-img" alt="Nature">
+                        <img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&q=80&w=600" alt="Nature">
                         <div class="bento-overlay">
                             <h3 class="h4">Lush Wilds</h3>
-                            <p class="small">Mt. Kanlaon's majesty.</p>
+                            <p class="small">Mt. Kanlaon's majesty awaits.</p>
                         </div>
                     </div>
                 </div>
-                <!-- Diving (Large) -->
                 <div class="col-md-8">
                     <div class="bento-item shadow">
-                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=1200" class="bento-img" alt="Diving">
+                        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=1200" alt="Diving">
                         <div class="bento-overlay">
                             <span class="badge rounded-pill bg-info text-white mb-2">Adventure</span>
                             <h3 class="h2">Apo Island Marine Life</h3>
@@ -223,17 +350,45 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-5 text-center" style="background-color: var(--kanlaon-green); color: white;">
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="footer-main">
         <div class="container">
-            <h2 class="serif mb-4">Negros Island</h2>
-            <p class="opacity-50">An organic journey through the heart of the Philippines.</p>
-            <hr class="w-25 mx-auto my-4 border-light opacity-25">
-            <p class="small">© 2024 Explore Negros. All Rights Reserved.</p>
+            <div class="row g-5 mb-5">
+                <div class="col-lg-4">
+                    <h2 class="mb-3">NEGROS</h2>
+                    <p class="opacity-50 small">A journey through the heart of the Philippines — where sugar meets the sea and smiles are a way of life.</p>
+                </div>
+                <div class="col-lg-2 col-6">
+                    <p class="resume-section-title" style="color:var(--muscovado-gold);">Explore</p>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="pages/where-to-go.html">Where to Go</a></li>
+                        <li class="mb-2"><a href="pages/what-to-buy.html">What to Buy</a></li>
+                        <li class="mb-2"><a href="pages/festivals.html">Festivals</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-6">
+                    <p class="resume-section-title" style="color:var(--muscovado-gold);">Region</p>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="#">Negros Occidental</a></li>
+                        <li class="mb-2"><a href="#">Negros Oriental</a></li>
+                        <li class="mb-2"><a href="pages/developer.html">Developer</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-4">
+                    <p class="resume-section-title" style="color:var(--muscovado-gold);">Connect</p>
+                    <div>
+                        <a href="#" target="_blank" class="social-icon-link"><i class="bi bi-facebook"></i></a>
+                        <a href="#" target="_blank" class="social-icon-link"><i class="bi bi-instagram"></i></a>
+                        <a href="#" target="_blank" class="social-icon-link"><i class="bi bi-twitter-x"></i></a>
+                        <a href="#" target="_blank" class="social-icon-link"><i class="bi bi-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="footer-divider">
+            <p class="small opacity-25 text-center mt-4 mb-0">© 2026 Explore Negros. IT 210 Final Project. All Rights Reserved.</p>
         </div>
     </footer>
 
-    <!-- Bootstrap JS Bundle -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

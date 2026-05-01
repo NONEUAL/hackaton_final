@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Festivals & Events | Negros Island Tourism</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-negros fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">NEGROS</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="mainNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="where-to-go.html">Where to Go</a></li>
+                    <li class="nav-item"><a class="nav-link" href="what-to-buy.html">What to Buy</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="festivals.html">Festivals</a></li>
+                    <li class="nav-item"><a class="nav-link" href="developer.html">About Dev</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <div class="page-hero" style="background-image: url('https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=80&w=1920'); padding-top: 80px;">
+        <div class="hero-content text-center container">
+            <span class="d-block mb-3 text-uppercase letter-wide" style="font-size:0.75rem;opacity:0.8;">Celebrate with Negros</span>
+            <h1 class="display-3 fw-bold">Festivals &amp; Events</h1>
+            <p class="lead opacity-75 mt-3">10 vibrant celebrations that define the Negrense spirit</p>
+        </div>
+    </div>
+
+    <!-- Month Quick Nav -->
+    <section class="py-4 bg-white shadow-sm sticky-top" style="top:72px;z-index:100;">
+        <div class="container">
+            <div class="d-flex gap-3 overflow-auto">
+                <button class="btn btn-sm rounded-pill fw-semibold filter-btn active" onclick="filterFest('all',this)" style="background:var(--kanlaon-green);color:#fff;white-space:nowrap;padding:8px 20px;">All Festivals</button>
+                <button class="btn btn-sm rounded-pill fw-semibold filter-btn" onclick="filterFest('occidental',this)" style="background:var(--sand-beige);color:#333;white-space:nowrap;padding:8px 20px;">Negros Occidental</button>
+                <button class="btn btn-sm rounded-pill fw-semibold filter-btn" onclick="filterFest('oriental',this)" style="background:var(--sand-beige);color:#333;white-space:nowrap;padding:8px 20px;">Negros Oriental</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Festival Grid -->
+    <section class="section-pad bg-white">
+        <div class="container">
+            <div class="row g-4" id="festivalGrid">
+
+                <!-- 1 -->
+                <div class="col-md-6 col-lg-4 fest-item" data-province="occidental">
+                    <a href="../inner/festivals/masskara.html" class="text-decoration-none text-dark">
+                        <div class="festival-card">
+                            <div class="card-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1540324155974-7523202daa3f?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="MassKara">
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="province-badge">Bacolod City</span>
+                                    <span class="small text-muted"><i class="bi bi-calendar3"></i> October</span>
+                                </div>
+                                <h5 class="card-title">MassKara Festival</h5>
+                                <p class="card-text text-muted small">Bacolod's iconic festival of smiling masks, street dancing, and joyful celebration every third week of October.</p>
+                                <span class="text-gold small fw-semibold">View Details <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 2 -->
+                <div class="col-md-6 col-lg-4 fest-item" data-province="occidental">
+                    <a href="../inner/festivals/panaad.html" class="text-decoration-none text-dark">
+                        <div class="festival-card">
+                            <div class="card-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Panaad">
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="province-badge">Bacolod City</span>
+                                    <span class="small text-muted"><i class="bi bi-calendar3"></i> April</span>
+                                </div>
+                                <h5 class="card-title">Panaad sa Sugbo</h5>
+                                <p class="card-text text-muted small">A grand provincial showcase at Panaad Park featuring cultural performances, food, crafts, and tourism exhibits.</p>
+                                <span class="text-gold small fw-semibold">View Details <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 3 -->
+                <div class="col-md-6 col-lg-4 fest-item" data-province="occidental">
+                    <a href="../inner/festivals/sinulog-sa-kanlaon.html" class="text-decoration-none text-dark">
+                        <div class="festival-card">
+                            <div class="card-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Sinulog">
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="province-badge">La Castellana</span>
+                                    <span class="small text-muted"><i class="bi bi-calendar3"></i> January</span>
+                                </div>
+                                <h5 class="card-title">Sinulog sa Kanlaon</h5>
+                                <p class="card-text text-muted small">A vibrant devotional festival honoring the Santo Niño with colorful street dances and religious processions.</p>
+                                <span class="text-gold small fw-semibold">View Details <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 4 -->
+                <div class="col-md-6 col-lg-4 fest-item" data-province="occidental">
+                    <a href="../inner/festivals/aug-festival.html" class="text-decoration-none text-dark">
+                        <div class="festival-card">
+                            <div class="card-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1574391884720-bbc3740c59d1?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Sugarcane Festival">
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="province-badge">Negros Occidental</span>
+                                    <span class="small text-muted"><i class="bi bi-calendar3"></i> August</span>
+                                </div>
+                                <h5 class="card-title">Sugarcane Industry Week</h5>
+                                <p class="card-text text-muted small">An annual event celebrating the province's sugarcane legacy with trade fairs, exhibits, and sweet promotions.</p>
+                                <span class="text-gold small fw-semibold">View Details <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 5 -->
+                <div class="col-md-6 col-lg-4 fest-item" data-province="occidental">
+                    <a href="../inner/festivals/inasal-festival.html" class="text-decoration-none text-dark">
+                        <div class="festival-card">
+                            <div class="card-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Inasal Festival">
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="province-badge">Bacolod City</span>
+                                    <span class="small text-muted"><i class="bi bi-calendar3"></i> October</span>
+                                </div>
+                                <h5 class="card-title">Inasal Festival</h5>
+                                <p class="card-text text-muted small">A food-lovers' paradise celebrating the legendary Chicken Inasal with cook-offs, grill-offs, and street feasts.</p>
+                                <span class="text-gold small fw-semibold">View Details <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 6 -->
+                <div class="col-md-6 col-lg-4 fest-item" data-province="oriental">
+                    <a href="../inner/festivals/buglasan.html" class="text-decoration-none text-dark">
+                        <div class="festival-card">
+                            <div class="card-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Buglasan">
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="province-badge">Dumaguete City</span>
+                                    <span class="small text-muted"><i class="bi bi-calendar3"></i> October</span>
+                                </div>
+                                <h5 class="card-title">Buglasan Festival</h5>
+                                <p class="card-text text-muted small">The "Festival of Festivals" — a week-long cultural showcase of the many festivals of Negros Oriental's municipalities.</p>
+                                <span class="text-gold small fw-semibold">View Details <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 7 -->
+                <div class="col-md-6 col-lg-4 fest-item" data-province="oriental">
+                    <a href="../inner/festivals/sandurot.html" class="text-decoration-none text-dark">
+                        <div class="festival-card">
+                            <div class="card-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Sandurot">
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="province-badge">Dumaguete City</span>
+                                    <span class="small text-muted"><i class="bi bi-calendar3"></i> November</span>
+                                </div>
+                                <h5 class="card-title">Sandurot Festival</h5>
+                                <p class="card-text text-muted small">A celebration of friendship and cultural unity, commemorating Dumaguete's foundation anniversary with music and dance.</p>
+                                <span class="text-gold small fw-semibold">View Details <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 8 -->
+                <div class="col-md-6 col-lg-4 fest-item" data-province="oriental">
+                    <a href="../inner/festivals/tambayon.html" class="text-decoration-none text-dark">
+                        <div class="festival-card">
+                            <div class="card-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Tambayon">
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="province-badge">Tanjay City</span>
+                                    <span class="small text-muted"><i class="bi bi-calendar3"></i> December</span>
+                                </div>
+                                <h5 class="card-title">Tambayon Festival</h5>
+                                <p class="card-text text-muted small">Tanjay City's annual festival celebrating its fishing and farming heritage with street dances and folk arts.</p>
+                                <span class="text-gold small fw-semibold">View Details <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 9 -->
+                <div class="col-md-6 col-lg-4 fest-item" data-province="oriental">
+                    <a href="../inner/festivals/daing-festival.html" class="text-decoration-none text-dark">
+                        <div class="festival-card">
+                            <div class="card-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Daing Festival">
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="province-badge">Bindoy, Negros Oriental</span>
+                                    <span class="small text-muted"><i class="bi bi-calendar3"></i> March</span>
+                                </div>
+                                <h5 class="card-title">Daing Festival</h5>
+                                <p class="card-text text-muted small">Celebrating Bindoy's dried fish industry — a unique coastal food festival filled with local flavor and community pride.</p>
+                                <span class="text-gold small fw-semibold">View Details <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- 10 -->
+                <div class="col-md-6 col-lg-4 fest-item" data-province="oriental">
+                    <a href="../inner/festivals/apo-dive-fest.html" class="text-decoration-none text-dark">
+                        <div class="festival-card">
+                            <div class="card-img-wrapper">
+                                <img src="https://images.unsplash.com/photo-1582967788606-a171c1080cb0?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Apo Dive Fest">
+                            </div>
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <span class="province-badge">Dauin, Negros Oriental</span>
+                                    <span class="small text-muted"><i class="bi bi-calendar3"></i> July</span>
+                                </div>
+                                <h5 class="card-title">Apo Island Dive Festival</h5>
+                                <p class="card-text text-muted small">An annual celebration of marine conservation at Apo Island — with underwater photo contests, reef cleanups, and dives.</p>
+                                <span class="text-gold small fw-semibold">View Details <i class="bi bi-arrow-right"></i></span>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-main">
+        <div class="container text-center py-4">
+            <h2 class="mb-3">NEGROS</h2>
+            <p class="opacity-50 small">Celebrate the Negrense way.</p>
+            <hr class="footer-divider w-25 mx-auto my-4">
+            <div class="d-flex gap-3 justify-content-center flex-wrap">
+                <a href="../index.html" class="btn-outline-gold">Back to Home</a>
+                <a href="what-to-buy.html" class="btn-gold">What to Buy</a>
+            </div>
+            <p class="small opacity-25 mt-4 mb-0">© 2026 Explore Negros. IT 210 Final Project.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function filterFest(province, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => {
+                b.style.background = 'var(--sand-beige)';
+                b.style.color = '#333';
+            });
+            btn.style.background = 'var(--kanlaon-green)';
+            btn.style.color = '#fff';
+            document.querySelectorAll('.fest-item').forEach(card => {
+                card.style.display = (province === 'all' || card.dataset.province === province) ? '' : 'none';
+            });
+        }
+    </script>
+</body>
+</html>
