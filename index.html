@@ -5,113 +5,870 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Negros Island | Sweetness Beyond Sugar</title>
 
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,700;1,500;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<!-- Bootstrap -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<!-- Icons -->
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css" rel="stylesheet">
 
+<style>
+/* ── TOKENS ── */
+:root {
+  --ink:        #1c1710;
+  --ink-soft:   #3d3527;
+  --gold:       #c8722a;
+  --gold-warm:  #e8933e;
+  --gold-pale:  #f5ddb8;
+  --cream:      #faf5ec;
+  --cream-dark: #f0e8d8;
+  --parchment:  #e8dcc8;
+  --green-deep: #1a3d2b;
+  --green-mid:  #2d5a3d;
+  --green-soft: #4a7c5a;
+  --sea:        #1b4d6e;
+  --muted:      #7a6e5e;
+  --white:      #fff;
 
+  --f-display: 'Playfair Display', Georgia, serif;
+  --f-serif:   'Libre Baskerville', Georgia, serif;
+  --f-sans:    'Jost', sans-serif;
+}
+
+/* ── RESET ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--f-sans);
+  background: var(--cream);
+  color: var(--ink);
+  overflow-x: hidden;
+}
+h1,h2,h3,h4,h5 { font-family: var(--f-display); }
+a { text-decoration: none; color: inherit; }
+img { display: block; max-width: 100%; }
+
+/* ── GRAIN OVERLAY (site-wide texture) ── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+/* ── WOVEN PATTERN UTILITY ── */
+.woven-bg {
+  background-color: var(--green-deep);
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      rgba(255,255,255,0.025) 0px,
+      rgba(255,255,255,0.025) 1px,
+      transparent 1px,
+      transparent 12px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(255,255,255,0.025) 0px,
+      rgba(255,255,255,0.025) 1px,
+      transparent 1px,
+      transparent 12px
+    );
+}
+
+/* ── NAVBAR ── */
+.nav-neg {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: 1.2rem 0;
+  transition: background 0.5s, padding 0.4s;
+}
+.nav-neg.scrolled {
+  background: rgba(26, 61, 43, 0.97);
+  backdrop-filter: blur(16px);
+  padding: 0.7rem 0;
+  border-bottom: 1px solid rgba(200,114,42,0.18);
+}
+.nav-brand {
+  font-family: var(--f-display);
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: var(--white);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.nav-brand span {
+  color: var(--gold-warm);
+}
+.nav-link-neg {
+  color: rgba(255,255,255,0.75);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  padding: 0.3rem 0;
+  transition: color 0.2s;
+  position: relative;
+}
+.nav-link-neg::after {
+  content: '';
+  position: absolute;
+  bottom: -2px; left: 0;
+  width: 0; height: 1px;
+  background: var(--gold-warm);
+  transition: width 0.3s;
+}
+.nav-link-neg:hover { color: var(--gold-warm); }
+.nav-link-neg:hover::after { width: 100%; }
+.navbar-toggler {
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 4px 8px;
+}
+.navbar-toggler-icon { filter: invert(1); }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    url('https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&q=80&w=1920')
+    no-repeat center center / cover;
+}
+.hero-tint {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    165deg,
+    rgba(26,61,43,0.82) 0%,
+    rgba(26,61,43,0.55) 45%,
+    rgba(28,23,16,0.7) 100%
+  );
+}
+/* Radial vignette */
+.hero-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.45) 100%);
+}
+/* Diagonal stripe texture on hero */
+.hero-texture {
+  position: absolute;
+  inset: 0;
+  opacity: 0.06;
+  background-image: repeating-linear-gradient(
+    -55deg,
+    rgba(255,255,255,0.6) 0px,
+    rgba(255,255,255,0.6) 1px,
+    transparent 1px,
+    transparent 18px
+  );
+}
+/* Bottom fade */
+.hero-fade {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 160px;
+  background: linear-gradient(transparent, var(--cream));
+}
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 760px;
+  padding: 0 1.5rem;
+}
+.hero-eyebrow {
+  display: inline-block;
+  font-family: var(--f-sans);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--gold-warm);
+  border: 1px solid rgba(232,147,62,0.4);
+  padding: 0.35rem 1.1rem;
+  border-radius: 50px;
+  margin-bottom: 1.75rem;
+  backdrop-filter: blur(6px);
+  background: rgba(232,147,62,0.08);
+}
+.hero h1 {
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-weight: 900;
+  line-height: 0.92;
+  color: var(--white);
+  margin-bottom: 1.5rem;
+  letter-spacing: -1px;
+}
+.hero h1 em {
+  font-style: italic;
+  color: var(--gold-warm);
+}
+.hero-sub {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.72);
+  line-height: 1.75;
+  max-width: 520px;
+  margin: 0 auto 2.5rem;
+  font-weight: 300;
+  font-family: var(--f-serif);
+  font-style: italic;
+}
+.hero-scroll {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255,255,255,0.45);
+  font-size: 0.6rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-family: var(--f-sans);
+  animation: bobScroll 2.5s ease-in-out infinite;
+}
+.hero-scroll-line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(to bottom, transparent, rgba(232,147,62,0.7));
+}
+@keyframes bobScroll {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(6px); }
+}
+
+/* ── BUTTONS ── */
+.btn-gold {
+  background: var(--gold);
+  color: var(--white);
+  padding: 13px 32px;
+  border-radius: 3px;
+  border: none;
+  font-family: var(--f-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  display: inline-block;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.btn-gold::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.15), transparent);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.btn-gold:hover { background: #a85c20; color: var(--white); transform: translateY(-2px); box-shadow: 0 10px 28px rgba(200,114,42,0.4); }
+.btn-gold:hover::before { opacity: 1; }
+
+.btn-outline-cream {
+  background: transparent;
+  color: var(--white);
+  padding: 12px 30px;
+  border-radius: 3px;
+  border: 1.5px solid rgba(255,255,255,0.45);
+  font-family: var(--f-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  display: inline-block;
+  transition: all 0.3s;
+}
+.btn-outline-cream:hover { border-color: var(--white); background: rgba(255,255,255,0.1); color: var(--white); }
+
+/* ── SECTION COMMONS ── */
+.section-pad { padding: 90px 0; }
+.section-eyebrow {
+  font-family: var(--f-sans);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.75rem;
+  display: block;
+}
+.accent-rule {
+  width: 48px;
+  height: 2px;
+  background: linear-gradient(to right, var(--gold), transparent);
+  margin-bottom: 1.25rem;
+  border: none;
+}
+.section-heading {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+/* ── ABOUT STRIP ── */
+.about-section { background: var(--cream); }
+
+.stat-block {
+  border-left: 2px solid var(--gold);
+  padding: 0.75rem 1.25rem;
+}
+.stat-block .num {
+  font-family: var(--f-display);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--green-deep);
+  line-height: 1;
+}
+.stat-block .lbl {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-top: 3px;
+  font-family: var(--f-sans);
+}
+
+.img-stack { position: relative; }
+.img-main-r {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 12px 16px 40px rgba(0,0,0,0.18);
+}
+.img-float-r {
+  position: absolute;
+  bottom: -36px;
+  right: -20px;
+  width: 200px;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 6px solid var(--cream);
+  box-shadow: 8px 12px 30px rgba(0,0,0,0.18);
+}
+.about-pullquote {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--ink-soft);
+  border-left: 3px solid var(--gold);
+  padding: 0.75rem 1.5rem;
+  margin: 1.75rem 0;
+  line-height: 1.7;
+  background: linear-gradient(to right, rgba(200,114,42,0.05), transparent);
+}
+
+/* ── PROVINCE SPLIT ── */
+.province-section {
+  background: var(--cream-dark);
+  background-image: repeating-linear-gradient(
+    90deg,
+    rgba(200,114,42,0.03) 0px,
+    rgba(200,114,42,0.03) 1px,
+    transparent 1px,
+    transparent 60px
+  );
+}
+
+.province-card {
+  position: relative;
+  height: 520px;
+  overflow: hidden;
+  border-radius: 4px;
+  cursor: pointer;
+  display: block;
+}
+.province-card img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.province-card:hover img { transform: scale(1.08); }
+.province-card-tint {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(26,23,16,0.88) 0%, rgba(26,23,16,0.1) 55%);
+  transition: opacity 0.4s;
+}
+.province-card:hover .province-card-tint { opacity: 0.85; }
+.province-card-body {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 2.5rem;
+  color: var(--white);
+}
+.province-tag {
+  display: inline-block;
+  font-family: var(--f-sans);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background: rgba(232,147,62,0.2);
+  border: 1px solid rgba(232,147,62,0.45);
+  padding: 0.3rem 0.8rem;
+  border-radius: 2px;
+  margin-bottom: 0.85rem;
+  color: var(--gold-warm);
+}
+.province-card-body h3 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  line-height: 1.1;
+  margin-bottom: 0.6rem;
+}
+.province-card-body p {
+  font-size: 0.9rem;
+  opacity: 0.72;
+  line-height: 1.65;
+  font-family: var(--f-serif);
+  font-style: italic;
+  margin-bottom: 1.25rem;
+}
+.province-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gold-warm);
+  transition: gap 0.2s;
+}
+.province-card:hover .province-arrow { gap: 10px; }
+
+/* ── DESTINATION GRID ── */
+.destinations-section { background: var(--white); }
+
+.filter-strip { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+.chip {
+  padding: 0.38rem 1rem;
+  border-radius: 2px;
+  border: 1.5px solid var(--parchment);
+  background: transparent;
+  font-family: var(--f-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.25s;
+}
+.chip:hover, .chip.active {
+  background: var(--green-deep);
+  border-color: var(--green-deep);
+  color: var(--white);
+}
+
+.dest-card {
+  background: var(--white);
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.07);
+  cursor: pointer;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  height: 100%;
+}
+.dest-card:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(0,0,0,0.12); }
+.dest-card-img {
+  height: 220px;
+  overflow: hidden;
+  position: relative;
+}
+.dest-card-img img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.dest-card:hover .dest-card-img img { transform: scale(1.08); }
+.dest-card-badge {
+  position: absolute;
+  top: 1rem; left: 1rem;
+  font-family: var(--f-sans);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 0.25rem 0.7rem;
+  border-radius: 2px;
+  background: rgba(26,61,43,0.85);
+  color: var(--gold-pale);
+  backdrop-filter: blur(6px);
+}
+.dest-card-body { padding: 1.25rem 1.5rem 1.75rem; }
+.dest-card-body h5 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+.dest-card-body p {
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.65;
+  margin-bottom: 1rem;
+  font-family: var(--f-serif);
+}
+.dest-card-link {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--gold);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: gap 0.2s;
+}
+.dest-card:hover .dest-card-link { gap: 9px; }
+
+/* ── PRODUCTS SECTION ── */
+.products-section {
+  background: var(--cream-dark);
+  position: relative;
+}
+.products-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 1;
+  background-image:
+    repeating-linear-gradient(0deg, rgba(200,114,42,0.04) 0px, rgba(200,114,42,0.04) 1px, transparent 1px, transparent 28px),
+    repeating-linear-gradient(90deg, rgba(200,114,42,0.04) 0px, rgba(200,114,42,0.04) 1px, transparent 1px, transparent 28px);
+  pointer-events: none;
+}
+
+/* ── BENTO / EXPERIENCE ── */
+.bento-section { background: var(--green-deep); }
+.bento-section.woven-bg {
+  background-image:
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.018) 0px, rgba(255,255,255,0.018) 1px, transparent 1px, transparent 10px),
+    repeating-linear-gradient(-45deg, rgba(255,255,255,0.018) 0px, rgba(255,255,255,0.018) 1px, transparent 1px, transparent 10px),
+    linear-gradient(160deg, var(--green-deep) 0%, #0f2a1c 100%);
+}
+.bento-cell {
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+.bento-cell img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+.bento-cell:hover img { transform: scale(1.05); }
+.bento-glass {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(26,23,16,0.85) 0%, rgba(26,23,16,0.05) 50%);
+}
+.bento-label {
+  position: absolute;
+  bottom: 1.5rem; left: 1.5rem; right: 1.5rem;
+  color: var(--white);
+}
+.bento-tag {
+  display: inline-block;
+  font-family: var(--f-sans);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background: var(--gold);
+  padding: 0.22rem 0.65rem;
+  border-radius: 2px;
+  margin-bottom: 0.5rem;
+}
+.bento-label h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+  line-height: 1.2;
+}
+.bento-label p { font-size: 0.82rem; opacity: 0.65; margin: 0; font-family: var(--f-serif); font-style: italic; }
+
+/* ── FESTIVALS ── */
+.festivals-section { background: var(--white); }
+
+/* ── FOOTER ── */
+.footer {
+  background: var(--ink);
+  color: rgba(255,255,255,0.7);
+  padding: 72px 0 28px;
+  position: relative;
+  overflow: hidden;
+}
+.footer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  background-image:
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.5) 0px, rgba(255,255,255,0.5) 1px, transparent 1px, transparent 8px),
+    repeating-linear-gradient(-45deg, rgba(255,255,255,0.5) 0px, rgba(255,255,255,0.5) 1px, transparent 1px, transparent 8px);
+}
+.footer-brand {
+  font-family: var(--f-display);
+  font-size: 2rem;
+  font-weight: 900;
+  color: var(--white);
+  letter-spacing: 2px;
+}
+.footer-brand span { color: var(--gold-warm); }
+.footer-tagline {
+  font-size: 0.83rem;
+  font-family: var(--f-serif);
+  font-style: italic;
+  opacity: 0.45;
+  margin-top: 0.4rem;
+}
+.footer-label {
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+  display: block;
+}
+.footer-link {
+  display: block;
+  color: rgba(255,255,255,0.5);
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+  transition: color 0.2s;
+}
+.footer-link:hover { color: var(--gold-warm); }
+.social-btn {
+  width: 40px; height: 40px;
+  border-radius: 2px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255,255,255,0.55);
+  font-size: 1rem;
+  transition: all 0.25s;
+  margin-right: 0.4rem;
+}
+.social-btn:hover { background: var(--gold); border-color: var(--gold); color: var(--white); transform: translateY(-3px); }
+.footer-divider { border-color: rgba(255,255,255,0.08); margin: 2.5rem 0 1.5rem; }
+.footer-copy { font-size: 0.76rem; opacity: 0.2; text-align: center; }
+
+/* ── MODALS ── */
+.modal-content {
+  border: none;
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--cream);
+}
+.modal-hero-img { width: 100%; height: 300px; object-fit: cover; }
+.modal-body-inner { padding: 2rem; }
+.modal-province {
+  font-family: var(--f-sans);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.5rem;
+}
+.modal-body-inner h4 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  line-height: 1.15;
+}
+.modal-body-inner p { font-size: 0.92rem; color: var(--ink-soft); line-height: 1.8; margin-bottom: 0.9rem; font-family: var(--f-serif); }
+.modal-pills { display: flex; flex-wrap: wrap; gap: 0.6rem; margin-top: 1.25rem; }
+.modal-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: var(--parchment);
+  color: var(--green-deep);
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 0.4rem 0.9rem;
+  border-radius: 2px;
+  font-family: var(--f-sans);
+}
+.modal-close-x {
+  position: absolute;
+  top: 0.75rem; right: 0.75rem;
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.4);
+  border: none;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  z-index: 10;
+}
+.modal-close-x:hover { background: rgba(0,0,0,0.65); }
+
+/* ── GRID HEADER ── */
+.grid-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+/* ── ANIMATIONS ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-d1 { transition-delay: 0.1s; }
+.reveal-d2 { transition-delay: 0.2s; }
+.reveal-d3 { transition-delay: 0.32s; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 768px) {
+  .img-float-r { display: none; }
+  .province-card { height: 360px; }
+  .hero h1 { letter-spacing: -0.5px; }
+}
+</style>
 </head>
 <body>
 
-<!-- ─────────────────────────────────────
-     NAVBAR
-───────────────────────────────────── -->
-<nav class="navbar navbar-expand-lg navbar-neg fixed-top">
-  <div class="container">
-    <a class="navbar-brand" href="#">NEGROS</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+<!-- ── NAVBAR ── -->
+<nav class="nav-neg" id="mainNav">
+  <div class="container d-flex align-items-center justify-content-between">
+    <a class="nav-brand" href="#">NEG<span>ROS</span></a>
+    <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="mainNav">
-      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-1">
-        <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="#destinations">Destinations</a></li>
-        <li class="nav-item"><a class="nav-link" href="#products">What to Buy</a></li>
-        <li class="nav-item"><a class="nav-link" href="#festivals">Festivals</a></li>
-      </ul>
+    <div class="collapse navbar-collapse d-lg-flex justify-content-end" id="navMenu">
+      <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center gap-3 gap-lg-4 mt-3 mt-lg-0">
+        <a class="nav-link-neg active" href="#">Home</a>
+        <a class="nav-link-neg" href="#destinations">Destinations</a>
+        <a class="nav-link-neg" href="#products">What to Buy</a>
+        <a class="nav-link-neg" href="#festivals">Festivals</a>
+        <a href="occidental.html" style="font-family:var(--f-sans);font-size:0.68rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--gold-warm);border:1px solid rgba(232,147,62,0.4);padding:0.35rem 0.9rem;border-radius:2px;transition:all 0.25s;" onmouseover="this.style.background='rgba(232,147,62,0.15)'" onmouseout="this.style.background='transparent'">Explore ↗</a>
+      </div>
     </div>
   </div>
 </nav>
 
-<!-- ─────────────────────────────────────
-     HERO
-───────────────────────────────────── -->
+<!-- ── HERO ── -->
 <section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-tint"></div>
+  <div class="hero-texture"></div>
+  <div class="hero-vignette"></div>
+  <div class="hero-fade"></div>
   <div class="hero-inner">
-    <span class="eyebrow" style="color:var(--gold-light);">Discover the Island of</span>
-    <h1>Sweetness &amp; <em>Smiles</em></h1>
-    <p class="subtitle">From the sugar heritage of Occidental to the crystal depths of Oriental. One island, two spirits, endless stories.</p>
-    <div class="hero-actions">
-      <a href="#destinations" class="btn-primary-neg">Explore Now</a>
-      <a href="#about" class="btn-ghost">Learn More</a>
+    <div class="hero-eyebrow">Discover the Island of Sweetness</div>
+    <h1>Where Sugar<br><em>Meets the Sea</em></h1>
+    <p class="hero-sub">From the hacienda heritage of Occidental to the crystal depths of Oriental — one island, two spirits, endless stories.</p>
+    <div class="d-flex gap-3 justify-content-center flex-wrap">
+      <a href="#destinations" class="btn-gold">Explore Now</a>
+      <a href="#about" class="btn-outline-cream">Learn More</a>
     </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <span>Scroll</span>
   </div>
 </section>
 
-<!-- ─────────────────────────────────────
-     ABOUT REGION
-───────────────────────────────────── -->
+<!-- ── ABOUT ── -->
 <section id="about" class="about-section section-pad">
   <div class="container">
     <div class="row align-items-center g-5">
-      <div class="col-lg-5">
-        <div class="accent-bar"></div>
-        <span class="eyebrow">The Visayas</span>
-        <h2 style="font-size:clamp(2rem,4vw,2.8rem); margin-bottom:1.25rem; line-height:1.2;">The Heart of the Visayas</h2>
-        <p style="color:var(--muted); margin-bottom:1rem;">Negros Island — divided into Negros Occidental and Negros Oriental — is the fourth-largest island in the Philippines. Known as the <strong style="color:var(--dark);">Sugar Capital of the Philippines</strong>, its fertile plains have fueled the nation's sweet heritage for over a century.</p>
-        <p style="color:var(--muted); margin-bottom:1rem;">From the volcanic highlands of <strong style="color:var(--dark);">Mt. Kanlaon</strong> to the pristine reefs of <strong style="color:var(--dark);">Apo Island</strong>, Negros offers landscapes, cultures, and flavors that reward every kind of traveler.</p>
-        <p style="color:var(--muted); margin-bottom:2rem;">The island is home to the legendary <strong style="color:var(--dark);">MassKara Festival</strong> and the gentle, university-town charm of Dumaguete, where life flows easy along the boulevard.</p>
-        <div class="row g-3">
-          <div class="col-4"><div class="stat-pill"><div class="num">2</div><div class="label">Provinces</div></div></div>
-          <div class="col-4"><div class="stat-pill"><div class="num">13k</div><div class="label">km² area</div></div></div>
-          <div class="col-4"><div class="stat-pill"><div class="num">4M+</div><div class="label">People</div></div></div>
+      <div class="col-lg-5 reveal">
+        <hr class="accent-rule">
+        <span class="section-eyebrow">The Philippines' Visayas</span>
+        <h2 class="section-heading">The Heart of the Visayas</h2>
+        <p style="color:var(--muted);font-family:var(--f-serif);font-size:0.95rem;line-height:1.85;margin-bottom:1rem;">Negros Island — divided into Negros Occidental and Negros Oriental — is the fourth-largest island in the Philippines. Known as the <strong style="color:var(--ink);">Sugar Capital of the Philippines</strong>, its fertile plains have fueled the nation's sweet heritage for over a century.</p>
+
+        <div class="about-pullquote">
+          "From the volcanic highlands of Mt. Kanlaon to the pristine reefs of Apo Island — the island rewards every kind of traveler."
+        </div>
+
+        <p style="color:var(--muted);font-family:var(--f-serif);font-size:0.93rem;line-height:1.8;margin-bottom:2rem;">Home to the legendary <strong style="color:var(--ink);">MassKara Festival</strong> and the gentle, university-town charm of Dumaguete, where life flows easy along the boulevard.</p>
+
+        <div class="d-flex gap-4 flex-wrap">
+          <div class="stat-block">
+            <div class="num">2</div>
+            <div class="lbl">Provinces</div>
+          </div>
+          <div class="stat-block">
+            <div class="num">13k</div>
+            <div class="lbl">km² area</div>
+          </div>
+          <div class="stat-block">
+            <div class="num">4M+</div>
+            <div class="lbl">People</div>
+          </div>
         </div>
       </div>
-      <div class="col-lg-6 offset-lg-1">
-        <div class="img-stack">
-          <img class="img-main" src="https://images.unsplash.com/photo-1623945410940-7988365691ef?auto=format&fit=crop&q=80&w=800" alt="Bacolod">
-          <img class="img-float" src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=400" alt="Apo Island">
+
+      <div class="col-lg-6 offset-lg-1 reveal reveal-d2">
+        <div class="img-stack" style="padding-bottom:50px;">
+          <img class="img-main-r" src="https://images.unsplash.com/photo-1623945410940-7988365691ef?auto=format&fit=crop&q=80&w=800" alt="Bacolod">
+          <img class="img-float-r" src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=400" alt="Apo Island">
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ─────────────────────────────────────
-     PROVINCE SPLIT
-───────────────────────────────────── -->
+<!-- ── PROVINCE SPLIT ── -->
 <section class="province-section section-pad">
   <div class="container">
-    <div class="text-center mb-5">
-      <div class="accent-bar mx-auto"></div>
-      <h2 style="font-size:clamp(1.8rem,4vw,2.6rem);">Two Provinces, One Heart</h2>
-      <p style="color:var(--muted);">Where will you begin your journey?</p>
+    <div class="text-center mb-5 reveal">
+      <hr class="accent-rule mx-auto">
+      <h2 class="section-heading">Two Provinces, One Heart</h2>
+      <p style="color:var(--muted);font-family:var(--f-serif);font-style:italic;">Where will you begin your journey?</p>
     </div>
     <div class="row g-4">
-      <div class="col-md-6">
+      <div class="col-md-6 reveal">
         <div class="province-card" onclick="scrollToFilter('destinations','occidental')">
           <img src="https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&q=80&w=900" alt="Negros Occidental">
-          <div class="province-card-overlay"></div>
+          <div class="province-card-tint"></div>
           <div class="province-card-body">
-            <span class="province-tag">Negros Occidental</span>
+            <div class="province-tag">Negros Occidental</div>
             <h3>The Heritage North</h3>
             <p>Haciendas, The Ruins, MassKara, and the world-famous Chicken Inasal.</p>
-            <span class="btn-ghost" style="font-size:0.75rem;padding:8px 20px;">Explore →</span>
+            <span class="province-arrow">Explore <i class="bi bi-arrow-right"></i></span>
           </div>
         </div>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6 reveal reveal-d1">
         <div class="province-card" onclick="scrollToFilter('destinations','oriental')">
           <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=900" alt="Negros Oriental">
-          <div class="province-card-overlay"></div>
+          <div class="province-card-tint"></div>
           <div class="province-card-body">
-            <span class="province-tag">Negros Oriental</span>
+            <div class="province-tag">Negros Oriental</div>
             <h3>The Gentle South</h3>
             <p>Apo Island, Manjuyod Sandbar, Dumaguete, and the sweetest Silvanas.</p>
-            <span class="btn-ghost" style="font-size:0.75rem;padding:8px 20px;">Explore →</span>
+            <span class="province-arrow">Explore <i class="bi bi-arrow-right"></i></span>
           </div>
         </div>
       </div>
@@ -119,118 +876,131 @@
   </div>
 </section>
 
-<!-- ─────────────────────────────────────
-     DESTINATIONS
-───────────────────────────────────── -->
-<section id="destinations" class="section-pad" style="background:var(--white);">
+<!-- ── DESTINATIONS ── -->
+<section id="destinations" class="destinations-section section-pad">
   <div class="container">
-    <div class="grid-section-title">
+    <div class="grid-header reveal">
       <div>
-        <div class="accent-bar"></div>
-        <h2>Where to Go</h2>
-        <p style="color:var(--muted);margin:0;">Unmissable destinations across both provinces</p>
+        <hr class="accent-rule">
+        <h2 class="section-heading" style="margin:0;">Where to Go</h2>
+        <p style="color:var(--muted);margin:0;font-size:0.9rem;font-family:var(--f-serif);font-style:italic;">Unmissable destinations across both provinces</p>
       </div>
     </div>
-    <div class="filter-bar" id="dest-filter">
-      <button class="filter-chip active" onclick="filterGrid('dest','all',this)">All</button>
-      <button class="filter-chip" onclick="filterGrid('dest','occidental',this)">Negros Occidental</button>
-      <button class="filter-chip" onclick="filterGrid('dest','oriental',this)">Negros Oriental</button>
+    <div class="filter-strip reveal" id="dest-filter">
+      <button class="chip active" onclick="filterGrid('dest','all',this)">All</button>
+      <button class="chip" onclick="filterGrid('dest','occidental',this)">Negros Occidental</button>
+      <button class="chip" onclick="filterGrid('dest','oriental',this)">Negros Oriental</button>
     </div>
     <div class="row g-4" id="dest-grid">
 
-      <!-- Destination cards — data-province for filtering -->
-      <div class="col-sm-6 col-lg-4 dest-item" data-province="occidental">
-        <div class="item-card" onclick="openModal('modal-ruins')">
-          <div class="card-img"><img src="https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&q=80&w=600" alt="The Ruins"></div>
-          <div class="card-body">
-            <span class="badge-prov">Negros Occidental</span>
+      <div class="col-sm-6 col-lg-4 dest-item reveal" data-province="occidental">
+        <div class="dest-card" onclick="openModal('modal-ruins')">
+          <div class="dest-card-img">
+            <img src="https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&q=80&w=600" alt="The Ruins">
+            <div class="dest-card-badge">Negros Occidental</div>
+          </div>
+          <div class="dest-card-body">
             <h5>The Ruins, Talisay</h5>
             <p>The "Taj Mahal of Negros" — a hauntingly beautiful 20th-century mansion amid sugarcane fields.</p>
-            <span class="learn-more-link">Learn More <i class="bi bi-arrow-right"></i></span>
+            <span class="dest-card-link">Learn More <i class="bi bi-arrow-right"></i></span>
           </div>
         </div>
       </div>
 
-      <div class="col-sm-6 col-lg-4 dest-item" data-province="occidental">
-        <div class="item-card" onclick="openModal('modal-mambukal')">
-          <div class="card-img"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=600" alt="Mambukal"></div>
-          <div class="card-body">
-            <span class="badge-prov">Negros Occidental</span>
+      <div class="col-sm-6 col-lg-4 dest-item reveal reveal-d1" data-province="occidental">
+        <div class="dest-card" onclick="openModal('modal-mambukal')">
+          <div class="dest-card-img">
+            <img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=600" alt="Mambukal">
+            <div class="dest-card-badge">Negros Occidental</div>
+          </div>
+          <div class="dest-card-body">
             <h5>Mambukal Mountain Resort</h5>
             <p>Seven cascading waterfalls, sulfur springs, and lush forests at the foot of Mt. Kanlaon.</p>
-            <span class="learn-more-link">Learn More <i class="bi bi-arrow-right"></i></span>
+            <span class="dest-card-link">Learn More <i class="bi bi-arrow-right"></i></span>
           </div>
         </div>
       </div>
 
-      <div class="col-sm-6 col-lg-4 dest-item" data-province="occidental">
-        <div class="item-card" onclick="openModal('modal-silay')">
-          <div class="card-img"><img src="https://images.unsplash.com/photo-1533090161767-e6ffed986c88?auto=format&fit=crop&q=80&w=600" alt="Silay"></div>
-          <div class="card-body">
-            <span class="badge-prov">Negros Occidental</span>
+      <div class="col-sm-6 col-lg-4 dest-item reveal reveal-d2" data-province="occidental">
+        <div class="dest-card" onclick="openModal('modal-silay')">
+          <div class="dest-card-img">
+            <img src="https://images.unsplash.com/photo-1533090161767-e6ffed986c88?auto=format&fit=crop&q=80&w=600" alt="Silay">
+            <div class="dest-card-badge">Negros Occidental</div>
+          </div>
+          <div class="dest-card-body">
             <h5>Silay Heritage City</h5>
             <p>Walk through 30+ preserved ancestral houses in the "Paris of Negros."</p>
-            <span class="learn-more-link">Learn More <i class="bi bi-arrow-right"></i></span>
+            <span class="dest-card-link">Learn More <i class="bi bi-arrow-right"></i></span>
           </div>
         </div>
       </div>
 
-      <div class="col-sm-6 col-lg-4 dest-item" data-province="occidental">
-        <div class="item-card" onclick="openModal('modal-kanlaon')">
-          <div class="card-img"><img src="https://images.unsplash.com/photo-1455156218388-5e61b526818b?auto=format&fit=crop&q=80&w=600" alt="Mt Kanlaon"></div>
-          <div class="card-body">
-            <span class="badge-prov">Negros Occidental</span>
+      <div class="col-sm-6 col-lg-4 dest-item reveal" data-province="occidental">
+        <div class="dest-card" onclick="openModal('modal-kanlaon')">
+          <div class="dest-card-img">
+            <img src="https://images.unsplash.com/photo-1455156218388-5e61b526818b?auto=format&fit=crop&q=80&w=600" alt="Mt Kanlaon">
+            <div class="dest-card-badge">Negros Occidental</div>
+          </div>
+          <div class="dest-card-body">
             <h5>Mt. Kanlaon Natural Park</h5>
             <p>The highest peak in the Visayas — an active stratovolcano cloaked in biodiversity.</p>
-            <span class="learn-more-link">Learn More <i class="bi bi-arrow-right"></i></span>
+            <span class="dest-card-link">Learn More <i class="bi bi-arrow-right"></i></span>
           </div>
         </div>
       </div>
 
-      <div class="col-sm-6 col-lg-4 dest-item" data-province="oriental">
-        <div class="item-card" onclick="openModal('modal-apo')">
-          <div class="card-img"><img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=600" alt="Apo Island"></div>
-          <div class="card-body">
-            <span class="badge-prov">Negros Oriental</span>
+      <div class="col-sm-6 col-lg-4 dest-item reveal reveal-d1" data-province="oriental">
+        <div class="dest-card" onclick="openModal('modal-apo')">
+          <div class="dest-card-img">
+            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=600" alt="Apo Island">
+            <div class="dest-card-badge">Negros Oriental</div>
+          </div>
+          <div class="dest-card-body">
             <h5>Apo Island Marine Sanctuary</h5>
             <p>Swim with sea turtles in one of the world's most celebrated marine protected areas.</p>
-            <span class="learn-more-link">Learn More <i class="bi bi-arrow-right"></i></span>
+            <span class="dest-card-link">Learn More <i class="bi bi-arrow-right"></i></span>
           </div>
         </div>
       </div>
 
-      <div class="col-sm-6 col-lg-4 dest-item" data-province="oriental">
-        <div class="item-card" onclick="openModal('modal-manjuyod')">
-          <div class="card-img"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=600" alt="Manjuyod"></div>
-          <div class="card-body">
-            <span class="badge-prov">Negros Oriental</span>
+      <div class="col-sm-6 col-lg-4 dest-item reveal reveal-d2" data-province="oriental">
+        <div class="dest-card" onclick="openModal('modal-manjuyod')">
+          <div class="dest-card-img">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=600" alt="Manjuyod">
+            <div class="dest-card-badge">Negros Oriental</div>
+          </div>
+          <div class="dest-card-body">
             <h5>Manjuyod Sandbar</h5>
             <p>A stunning 7 km white-sand strip that emerges from the sea at low tide — the "Maldives of the Philippines."</p>
-            <span class="learn-more-link">Learn More <i class="bi bi-arrow-right"></i></span>
+            <span class="dest-card-link">Learn More <i class="bi bi-arrow-right"></i></span>
           </div>
         </div>
       </div>
 
-      <div class="col-sm-6 col-lg-4 dest-item" data-province="oriental">
-        <div class="item-card" onclick="openModal('modal-dumaguete')">
-          <div class="card-img"><img src="https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?auto=format&fit=crop&q=80&w=600" alt="Dumaguete"></div>
-          <div class="card-body">
-            <span class="badge-prov">Negros Oriental</span>
+      <div class="col-sm-6 col-lg-4 dest-item reveal" data-province="oriental">
+        <div class="dest-card" onclick="openModal('modal-dumaguete')">
+          <div class="dest-card-img">
+            <img src="https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?auto=format&fit=crop&q=80&w=600" alt="Dumaguete">
+            <div class="dest-card-badge">Negros Oriental</div>
+          </div>
+          <div class="dest-card-body">
             <h5>Dumaguete City</h5>
             <p>The "City of Gentle People" — home to Silliman University, the famous Boulevard, and laid-back culture.</p>
-            <span class="learn-more-link">Learn More <i class="bi bi-arrow-right"></i></span>
+            <span class="dest-card-link">Learn More <i class="bi bi-arrow-right"></i></span>
           </div>
         </div>
       </div>
 
-      <div class="col-sm-6 col-lg-4 dest-item" data-province="oriental">
-        <div class="item-card" onclick="openModal('modal-casaroro')">
-          <div class="card-img"><img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&q=80&w=600" alt="Casaroro Falls"></div>
-          <div class="card-body">
-            <span class="badge-prov">Negros Oriental</span>
+      <div class="col-sm-6 col-lg-4 dest-item reveal reveal-d1" data-province="oriental">
+        <div class="dest-card" onclick="openModal('modal-casaroro')">
+          <div class="dest-card-img">
+            <img src="https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&q=80&w=600" alt="Casaroro Falls">
+            <div class="dest-card-badge">Negros Oriental</div>
+          </div>
+          <div class="dest-card-body">
             <h5>Casaroro Falls</h5>
             <p>A dramatic 30-meter waterfall hidden in a canyon — reward for a thrilling hike in Valencia.</p>
-            <span class="learn-more-link">Learn More <i class="bi bi-arrow-right"></i></span>
+            <span class="dest-card-link">Learn More <i class="bi bi-arrow-right"></i></span>
           </div>
         </div>
       </div>
@@ -239,146 +1009,53 @@
   </div>
 </section>
 
-<!-- ─────────────────────────────────────
-     WHAT TO BUY
-───────────────────────────────────── -->
-<section id="products" class="section-pad" style="background:var(--sand);">
+<!-- ── BENTO EXPERIENCE ── -->
+<section class="bento-section woven-bg section-pad">
   <div class="container">
-    <div class="grid-section-title">
-      <div>
-        <div class="accent-bar"></div>
-        <h2>What to Buy</h2>
-        <p style="color:var(--muted);margin:0;">Authentic products, delicacies &amp; souvenirs</p>
-      </div>
-    </div>
-    <div class="filter-bar" id="prod-filter">
-      <button class="filter-chip active" onclick="filterGrid('prod','all',this)">All</button>
-      <button class="filter-chip" onclick="filterGrid('prod','food',this)">Food &amp; Delicacies</button>
-      <button class="filter-chip" onclick="filterGrid('prod','craft',this)">Crafts &amp; Souvenirs</button>
-    </div>
-    <div class="row g-4" id="prod-grid">
-
-      <div class="col-sm-6 col-lg-4 prod-item" data-cat="food">
-        <div class="item-card" onclick="openModal('modal-silvanas')">
-          <div class="card-img"><img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&q=80&w=600" alt="Silvanas"></div>
-          <div class="card-body">
-            <span class="badge-prov">Negros Oriental · Food</span>
-            <h5>Silvanas</h5>
-            <p>Dumaguete's iconic frozen dessert — cashew meringue, buttercream, and cookie crumbs.</p>
-            <span class="learn-more-link">Learn More <i class="bi bi-arrow-right"></i></span>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-sm-6 col-lg-4 prod-item" data-cat="food">
-        <div class="item-card" onclick="openModal('modal-muscovado')">
-          <div class="card-img"><img src="https://images.unsplash.com/photo-1530982011887-3cc11cc85693?auto=format&fit=crop&q=80&w=600" alt="Muscovado"></div>
-          <div class="card-body">
-            <span class="badge-prov">Negros Occidental · Food</span>
-            <h5>Muscovado Sugar</h5>
-            <p>Unrefined raw cane sugar with a rich molasses flavor — the soul of Negros' sugarcane heritage.</p>
-            <span class="learn-more-link">Learn More <i class="bi bi-arrow-right"></i></span>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-sm-6 col-lg-4 prod-item" data-cat="food">
-        <div class="item-card" onclick="openModal('modal-inasal')">
-          <div class="card-img"><img src="https://images.unsplash.com/photo-1563379091339-03b21bc4a4f8?auto=format&fit=crop&q=80&w=600" alt="Inasal"></div>
-          <div class="card-body">
-            <span class="badge-prov">Negros Occidental · Food</span>
-            <h5>Chicken Inasal</h5>
-            <p>Bacolod's gift to Philippine cuisine — marinated chicken grilled over charcoal with annatto oil.</p>
-            <span class="learn-more-link">Learn More <i class="bi bi-arrow-right"></i></span>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-sm-6 col-lg-4 prod-item" data-cat="food">
-        <div class="item-card" onclick="openModal('modal-piaya')">
-          <div class="card-img"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=600" alt="Piaya"></div>
-          <div class="card-body">
-            <span class="badge-prov">Negros Occidental · Food</span>
-            <h5>Piaya</h5>
-            <p>A sweet, flaky flatbread filled with muscovado sugar — Bacolod's most beloved pasalubong.</p>
-            <span class="learn-more-link">Learn More <i class="bi bi-arrow-right"></i></span>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-sm-6 col-lg-4 prod-item" data-cat="food">
-        <div class="item-card" onclick="openModal('modal-sansrival')">
-          <div class="card-img"><img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&q=80&w=600" alt="Sans Rival"></div>
-          <div class="card-body">
-            <span class="badge-prov">Negros Oriental · Food</span>
-            <h5>Sans Rival Cake</h5>
-            <p>A decadent Dumaguete dessert of crispy cashew meringue layered with rich French buttercream.</p>
-            <span class="learn-more-link">Learn More <i class="bi bi-arrow-right"></i></span>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-sm-6 col-lg-4 prod-item" data-cat="craft">
-        <div class="item-card" onclick="openModal('modal-mask')">
-          <div class="card-img"><img src="https://images.unsplash.com/photo-1570913149827-d2ac84ab3f9a?auto=format&fit=crop&q=80&w=600" alt="MassKara Mask"></div>
-          <div class="card-body">
-            <span class="badge-prov">Negros Occidental · Craft</span>
-            <h5>MassKara Festival Mask</h5>
-            <p>Hand-painted souvenir masks adorned with flowers and glitter — a wearable symbol of Bacolod's joy.</p>
-            <span class="learn-more-link">Learn More <i class="bi bi-arrow-right"></i></span>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ─────────────────────────────────────
-     BENTO / EXPERIENCE GRID
-───────────────────────────────────── -->
-<section class="bento-section section-pad">
-  <div class="container">
-    <div class="text-center mb-5">
+    <div class="text-center mb-5 reveal">
       <h2 style="color:var(--white);font-size:clamp(1.8rem,4vw,2.6rem);">The Negros Experience</h2>
-      <p style="color:rgba(255,255,255,0.45);">Culture, nature, and flavor — all in one island</p>
+      <p style="color:rgba(255,255,255,0.4);font-family:var(--f-serif);font-style:italic;margin-top:0.4rem;">Culture, nature, and flavor — all in one island</p>
     </div>
     <div class="row g-3">
-      <div class="col-md-8">
+      <div class="col-md-8 reveal">
         <div class="bento-cell" style="height:300px;">
           <img src="https://images.unsplash.com/photo-1540324155974-7523202daa3f?auto=format&fit=crop&q=80&w=1000" alt="MassKara">
-          <div class="bento-overlay">
-            <span class="tag">Culture</span>
+          <div class="bento-glass"></div>
+          <div class="bento-label">
+            <div class="bento-tag">Culture</div>
             <h3>MassKara Festival</h3>
             <p>Witness Bacolod in its most vibrant state every October.</p>
           </div>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4 reveal reveal-d1">
         <div class="bento-cell" style="height:300px;">
           <img src="https://images.unsplash.com/photo-1563379091339-03b21bc4a4f8?auto=format&fit=crop&q=80&w=600" alt="Food">
-          <div class="bento-overlay">
-            <span class="tag">Flavors</span>
+          <div class="bento-glass"></div>
+          <div class="bento-label">
+            <div class="bento-tag">Flavors</div>
             <h3>Tastes of Negros</h3>
             <p>Inasal, Silvanas, and more.</p>
           </div>
         </div>
       </div>
-      <div class="col-md-4">
+      <div class="col-md-4 reveal">
         <div class="bento-cell" style="height:280px;">
           <img src="https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&q=80&w=600" alt="Nature">
-          <div class="bento-overlay">
-            <span class="tag">Nature</span>
+          <div class="bento-glass"></div>
+          <div class="bento-label">
+            <div class="bento-tag">Nature</div>
             <h3>Lush Wilds</h3>
             <p>Mt. Kanlaon's majesty awaits.</p>
           </div>
         </div>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-8 reveal reveal-d1">
         <div class="bento-cell" style="height:280px;">
           <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=1000" alt="Diving">
-          <div class="bento-overlay">
-            <span class="tag">Adventure</span>
+          <div class="bento-glass"></div>
+          <div class="bento-label">
+            <div class="bento-tag">Adventure</div>
             <h3>Apo Island Marine Life</h3>
             <p>Swim with turtles in one of the world's best marine sanctuaries.</p>
           </div>
@@ -388,93 +1065,103 @@
   </div>
 </section>
 
-<!-- ─────────────────────────────────────
-     FESTIVALS
-───────────────────────────────────── -->
-<section id="festivals" class="section-pad" style="background:var(--white);">
-  <div class="container">
-    <div class="grid-section-title">
+<!-- ── PRODUCTS ── -->
+<section id="products" class="products-section section-pad">
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="grid-header reveal">
       <div>
-        <div class="accent-bar"></div>
-        <h2>Festivals &amp; Events</h2>
-        <p style="color:var(--muted);margin:0;">Vibrant celebrations that define the Negrense spirit</p>
+        <hr class="accent-rule">
+        <h2 class="section-heading" style="margin:0;">What to Buy</h2>
+        <p style="color:var(--muted);margin:0;font-family:var(--f-serif);font-style:italic;font-size:0.9rem;">Authentic products, delicacies &amp; souvenirs</p>
       </div>
     </div>
-    <div class="filter-bar">
-      <button class="filter-chip active" onclick="filterGrid('fest','all',this)">All</button>
-      <button class="filter-chip" onclick="filterGrid('fest','occidental',this)">Negros Occidental</button>
-      <button class="filter-chip" onclick="filterGrid('fest','oriental',this)">Negros Oriental</button>
+    <div class="filter-strip reveal" id="prod-filter">
+      <button class="chip active" onclick="filterGrid('prod','all',this)">All</button>
+      <button class="chip" onclick="filterGrid('prod','food',this)">Food &amp; Delicacies</button>
+      <button class="chip" onclick="filterGrid('prod','craft',this)">Crafts &amp; Souvenirs</button>
     </div>
-    <div class="row g-4" id="fest-grid">
+    <div class="row g-4" id="prod-grid">
 
-      <div class="col-sm-6 col-lg-4 fest-item" data-province="occidental">
-        <div class="item-card" onclick="openModal('modal-masskara')">
-          <div class="card-img"><img src="https://images.unsplash.com/photo-1540324155974-7523202daa3f?auto=format&fit=crop&q=80&w=600" alt="MassKara"></div>
-          <div class="card-body">
-            <span class="badge-prov">Bacolod · October</span>
-            <h5>MassKara Festival</h5>
-            <p>Bacolod's iconic festival of smiling masks, street dancing, and joyful celebration.</p>
-            <span class="learn-more-link">Learn More <i class="bi bi-arrow-right"></i></span>
+      <div class="col-sm-6 col-lg-4 prod-item reveal" data-cat="food">
+        <div class="dest-card" onclick="openModal('modal-silvanas')">
+          <div class="dest-card-img">
+            <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&q=80&w=600" alt="Silvanas">
+            <div class="dest-card-badge">Oriental · Food</div>
+          </div>
+          <div class="dest-card-body">
+            <h5>Silvanas</h5>
+            <p>Dumaguete's iconic frozen dessert — cashew meringue, buttercream, and cookie crumbs.</p>
+            <span class="dest-card-link">Learn More <i class="bi bi-arrow-right"></i></span>
           </div>
         </div>
       </div>
 
-      <div class="col-sm-6 col-lg-4 fest-item" data-province="occidental">
-        <div class="item-card" onclick="openModal('modal-panaad')">
-          <div class="card-img"><img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=80&w=600" alt="Panaad"></div>
-          <div class="card-body">
-            <span class="badge-prov">Bacolod · April</span>
-            <h5>Panaad sa Sugbo</h5>
-            <p>A grand provincial showcase at Panaad Park — food, crafts, music, and local identity.</p>
-            <span class="learn-more-link">Learn More <i class="bi bi-arrow-right"></i></span>
+      <div class="col-sm-6 col-lg-4 prod-item reveal reveal-d1" data-cat="food">
+        <div class="dest-card" onclick="openModal('modal-muscovado')">
+          <div class="dest-card-img">
+            <img src="https://images.unsplash.com/photo-1530982011887-3cc11cc85693?auto=format&fit=crop&q=80&w=600" alt="Muscovado">
+            <div class="dest-card-badge">Occidental · Food</div>
+          </div>
+          <div class="dest-card-body">
+            <h5>Muscovado Sugar</h5>
+            <p>Unrefined raw cane sugar with a rich molasses flavor — the soul of Negros' sugarcane heritage.</p>
+            <span class="dest-card-link">Learn More <i class="bi bi-arrow-right"></i></span>
           </div>
         </div>
       </div>
 
-      <div class="col-sm-6 col-lg-4 fest-item" data-province="oriental">
-        <div class="item-card" onclick="openModal('modal-buglasan')">
-          <div class="card-img"><img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=600" alt="Buglasan"></div>
-          <div class="card-body">
-            <span class="badge-prov">Dumaguete · October</span>
-            <h5>Buglasan Festival</h5>
-            <p>The "Festival of Festivals" — a week-long showcase of Negros Oriental's rich culture.</p>
-            <span class="learn-more-link">Learn More <i class="bi bi-arrow-right"></i></span>
+      <div class="col-sm-6 col-lg-4 prod-item reveal reveal-d2" data-cat="food">
+        <div class="dest-card" onclick="openModal('modal-inasal')">
+          <div class="dest-card-img">
+            <img src="https://images.unsplash.com/photo-1563379091339-03b21bc4a4f8?auto=format&fit=crop&q=80&w=600" alt="Inasal">
+            <div class="dest-card-badge">Occidental · Food</div>
+          </div>
+          <div class="dest-card-body">
+            <h5>Chicken Inasal</h5>
+            <p>Bacolod's gift to Philippine cuisine — marinated chicken grilled over charcoal with annatto oil.</p>
+            <span class="dest-card-link">Learn More <i class="bi bi-arrow-right"></i></span>
           </div>
         </div>
       </div>
 
-      <div class="col-sm-6 col-lg-4 fest-item" data-province="oriental">
-        <div class="item-card" onclick="openModal('modal-sandurot')">
-          <div class="card-img"><img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&q=80&w=600" alt="Sandurot"></div>
-          <div class="card-body">
-            <span class="badge-prov">Dumaguete · November</span>
-            <h5>Sandurot Festival</h5>
-            <p>A celebration of friendship and unity commemorating Dumaguete's foundation anniversary.</p>
-            <span class="learn-more-link">Learn More <i class="bi bi-arrow-right"></i></span>
+      <div class="col-sm-6 col-lg-4 prod-item reveal" data-cat="food">
+        <div class="dest-card" onclick="openModal('modal-piaya')">
+          <div class="dest-card-img">
+            <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=600" alt="Piaya">
+            <div class="dest-card-badge">Occidental · Food</div>
+          </div>
+          <div class="dest-card-body">
+            <h5>Piaya</h5>
+            <p>A sweet, flaky flatbread filled with muscovado sugar — Bacolod's most beloved pasalubong.</p>
+            <span class="dest-card-link">Learn More <i class="bi bi-arrow-right"></i></span>
           </div>
         </div>
       </div>
 
-      <div class="col-sm-6 col-lg-4 fest-item" data-province="occidental">
-        <div class="item-card" onclick="openModal('modal-inasal-fest')">
-          <div class="card-img"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&q=80&w=600" alt="Inasal Festival"></div>
-          <div class="card-body">
-            <span class="badge-prov">Bacolod · October</span>
-            <h5>Inasal Festival</h5>
-            <p>A food-lovers' paradise celebrating the legendary Chicken Inasal with cook-offs and street feasts.</p>
-            <span class="learn-more-link">Learn More <i class="bi bi-arrow-right"></i></span>
+      <div class="col-sm-6 col-lg-4 prod-item reveal reveal-d1" data-cat="food">
+        <div class="dest-card" onclick="openModal('modal-sansrival')">
+          <div class="dest-card-img">
+            <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&q=80&w=600" alt="Sans Rival">
+            <div class="dest-card-badge">Oriental · Food</div>
+          </div>
+          <div class="dest-card-body">
+            <h5>Sans Rival Cake</h5>
+            <p>A decadent Dumaguete dessert of crispy cashew meringue layered with rich French buttercream.</p>
+            <span class="dest-card-link">Learn More <i class="bi bi-arrow-right"></i></span>
           </div>
         </div>
       </div>
 
-      <div class="col-sm-6 col-lg-4 fest-item" data-province="oriental">
-        <div class="item-card" onclick="openModal('modal-apo-dive')">
-          <div class="card-img"><img src="https://images.unsplash.com/photo-1582967788606-a171c1080cb0?auto=format&fit=crop&q=80&w=600" alt="Apo Dive Fest"></div>
-          <div class="card-body">
-            <span class="badge-prov">Dauin · July</span>
-            <h5>Apo Island Dive Festival</h5>
-            <p>Annual celebration of marine conservation with underwater photo contests and reef cleanups.</p>
-            <span class="learn-more-link">Learn More <i class="bi bi-arrow-right"></i></span>
+      <div class="col-sm-6 col-lg-4 prod-item reveal reveal-d2" data-cat="craft">
+        <div class="dest-card" onclick="openModal('modal-mask')">
+          <div class="dest-card-img">
+            <img src="https://images.unsplash.com/photo-1570913149827-d2ac84ab3f9a?auto=format&fit=crop&q=80&w=600" alt="Mask">
+            <div class="dest-card-badge">Occidental · Craft</div>
+          </div>
+          <div class="dest-card-body">
+            <h5>MassKara Festival Mask</h5>
+            <p>Hand-painted souvenir masks adorned with flowers and glitter — a wearable symbol of Bacolod's joy.</p>
+            <span class="dest-card-link">Learn More <i class="bi bi-arrow-right"></i></span>
           </div>
         </div>
       </div>
@@ -483,68 +1170,168 @@
   </div>
 </section>
 
-<!-- ─────────────────────────────────────
-     FOOTER
-───────────────────────────────────── -->
-<footer class="footer">
+<!-- ── FESTIVALS ── -->
+<section id="festivals" class="festivals-section section-pad">
   <div class="container">
+    <div class="grid-header reveal">
+      <div>
+        <hr class="accent-rule">
+        <h2 class="section-heading" style="margin:0;">Festivals &amp; Events</h2>
+        <p style="color:var(--muted);margin:0;font-family:var(--f-serif);font-style:italic;font-size:0.9rem;">Vibrant celebrations that define the Negrense spirit</p>
+      </div>
+    </div>
+    <div class="filter-strip reveal" id="fest-filter">
+      <button class="chip active" onclick="filterGrid('fest','all',this)">All</button>
+      <button class="chip" onclick="filterGrid('fest','occidental',this)">Negros Occidental</button>
+      <button class="chip" onclick="filterGrid('fest','oriental',this)">Negros Oriental</button>
+    </div>
+    <div class="row g-4" id="fest-grid">
+
+      <div class="col-sm-6 col-lg-4 fest-item reveal" data-province="occidental">
+        <div class="dest-card" onclick="openModal('modal-masskara')">
+          <div class="dest-card-img">
+            <img src="https://images.unsplash.com/photo-1540324155974-7523202daa3f?auto=format&fit=crop&q=80&w=600" alt="MassKara">
+            <div class="dest-card-badge">Bacolod · October</div>
+          </div>
+          <div class="dest-card-body">
+            <h5>MassKara Festival</h5>
+            <p>Bacolod's iconic festival of smiling masks, street dancing, and joyful celebration.</p>
+            <span class="dest-card-link">Learn More <i class="bi bi-arrow-right"></i></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4 fest-item reveal reveal-d1" data-province="occidental">
+        <div class="dest-card" onclick="openModal('modal-panaad')">
+          <div class="dest-card-img">
+            <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=80&w=600" alt="Panaad">
+            <div class="dest-card-badge">Bacolod · April</div>
+          </div>
+          <div class="dest-card-body">
+            <h5>Panaad sa Sugbo</h5>
+            <p>A grand provincial showcase at Panaad Park — food, crafts, music, and local identity.</p>
+            <span class="dest-card-link">Learn More <i class="bi bi-arrow-right"></i></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4 fest-item reveal reveal-d2" data-province="oriental">
+        <div class="dest-card" onclick="openModal('modal-buglasan')">
+          <div class="dest-card-img">
+            <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=600" alt="Buglasan">
+            <div class="dest-card-badge">Dumaguete · October</div>
+          </div>
+          <div class="dest-card-body">
+            <h5>Buglasan Festival</h5>
+            <p>The "Festival of Festivals" — a week-long showcase of Negros Oriental's rich culture.</p>
+            <span class="dest-card-link">Learn More <i class="bi bi-arrow-right"></i></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4 fest-item reveal" data-province="oriental">
+        <div class="dest-card" onclick="openModal('modal-sandurot')">
+          <div class="dest-card-img">
+            <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&q=80&w=600" alt="Sandurot">
+            <div class="dest-card-badge">Dumaguete · November</div>
+          </div>
+          <div class="dest-card-body">
+            <h5>Sandurot Festival</h5>
+            <p>A celebration of friendship and unity commemorating Dumaguete's foundation anniversary.</p>
+            <span class="dest-card-link">Learn More <i class="bi bi-arrow-right"></i></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4 fest-item reveal reveal-d1" data-province="occidental">
+        <div class="dest-card" onclick="openModal('modal-inasal-fest')">
+          <div class="dest-card-img">
+            <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&q=80&w=600" alt="Inasal Festival">
+            <div class="dest-card-badge">Bacolod · October</div>
+          </div>
+          <div class="dest-card-body">
+            <h5>Inasal Festival</h5>
+            <p>A food-lovers' paradise celebrating the legendary Chicken Inasal with cook-offs and street feasts.</p>
+            <span class="dest-card-link">Learn More <i class="bi bi-arrow-right"></i></span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6 col-lg-4 fest-item reveal reveal-d2" data-province="oriental">
+        <div class="dest-card" onclick="openModal('modal-apo-dive')">
+          <div class="dest-card-img">
+            <img src="https://images.unsplash.com/photo-1582967788606-a171c1080cb0?auto=format&fit=crop&q=80&w=600" alt="Apo Dive">
+            <div class="dest-card-badge">Dauin · July</div>
+          </div>
+          <div class="dest-card-body">
+            <h5>Apo Island Dive Festival</h5>
+            <p>Annual celebration of marine conservation with underwater photo contests and reef cleanups.</p>
+            <span class="dest-card-link">Learn More <i class="bi bi-arrow-right"></i></span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer class="footer">
+  <div class="container" style="position:relative;z-index:1;">
     <div class="row g-5 mb-4">
       <div class="col-lg-4">
-        <h2>NEGROS</h2>
-        <p style="font-size:0.88rem;opacity:0.5;margin-top:0.5rem;max-width:280px;">Where sugar meets the sea and smiles are a way of life.</p>
+        <div class="footer-brand">NEG<span>ROS</span></div>
+        <p class="footer-tagline">Where sugar meets the sea<br>and smiles are a way of life.</p>
       </div>
       <div class="col-lg-2 col-6">
-        <p class="footer-label">Explore</p>
-        <nav class="footer-nav">
-          <a href="#destinations">Where to Go</a>
-          <a href="#products">What to Buy</a>
-          <a href="#festivals">Festivals</a>
-        </nav>
+        <span class="footer-label">Explore</span>
+        <a href="#destinations" class="footer-link">Where to Go</a>
+        <a href="#products" class="footer-link">What to Buy</a>
+        <a href="#festivals" class="footer-link">Festivals</a>
       </div>
       <div class="col-lg-2 col-6">
-        <p class="footer-label">Region</p>
-        <nav class="footer-nav">
-          <a href="#">Negros Occidental</a>
-          <a href="#">Negros Oriental</a>
-        </nav>
+        <span class="footer-label">Region</span>
+        <a href="occidental.html" class="footer-link">Negros Occidental</a>
+        <a href="oriental.html" class="footer-link">Negros Oriental</a>
       </div>
       <div class="col-lg-4">
-        <p class="footer-label">Connect</p>
+        <span class="footer-label">Connect</span>
         <div>
-          <a href="#" class="social-link"><i class="bi bi-facebook"></i></a>
-          <a href="#" class="social-link"><i class="bi bi-instagram"></i></a>
-          <a href="#" class="social-link"><i class="bi bi-twitter-x"></i></a>
-          <a href="#" class="social-link"><i class="bi bi-youtube"></i></a>
+          <a href="#" class="social-btn"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="social-btn"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="social-btn"><i class="bi bi-twitter-x"></i></a>
+          <a href="#" class="social-btn"><i class="bi bi-youtube"></i></a>
         </div>
       </div>
     </div>
     <hr class="footer-divider">
-    <p style="font-size:0.78rem;opacity:0.22;text-align:center;margin:0;">© 2026 Explore Negros. IT 210 Final Project. All Rights Reserved.</p>
+    <p class="footer-copy">© 2026 Explore Negros. IT 210 Final Project. All Rights Reserved.</p>
   </div>
 </footer>
 
 
-<!-- ═══════════════════════════════════════════════════════
-     MODALS — Destinations
-═══════════════════════════════════════════════════════ -->
+<!-- ════════════════════════════════
+     MODALS
+════════════════════════════════ -->
 
+<!-- helper macro: all modals share the same structure -->
 <!-- The Ruins -->
 <div class="modal fade" id="modal-ruins" tabindex="-1">
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
       <div style="position:relative;">
         <img class="modal-hero-img" src="https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&q=80&w=900" alt="The Ruins">
-        <div class="modal-header-custom"><button class="modal-close-btn" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button></div>
+        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
       </div>
-      <div class="modal-body">
-        <p class="modal-sub">Talisay City, Negros Occidental</p>
+      <div class="modal-body-inner">
+        <p class="modal-province">Talisay City, Negros Occidental</p>
         <h4>The Ruins of Talisay</h4>
         <p>Standing amid sugarcane fields, The Ruins is the skeletal remains of the early 20th-century mansion of Don Mariano Ledesma Lacson — built as a monument of love for his Portuguese wife, Maria Braga, who died in childbirth.</p>
         <p>During World War II, retreating Filipino guerrillas burned the mansion rather than surrender it to Japanese forces. The Italianate columns survived the flames, earning it the nickname <em>"Taj Mahal of Negros."</em></p>
-        <div class="modal-info-row">
-          <span class="modal-info-pill"><i class="bi bi-clock"></i> Open daily, 8am–10pm</span>
-          <span class="modal-info-pill"><i class="bi bi-geo-alt"></i> Talisay City</span>
-          <span class="modal-info-pill"><i class="bi bi-ticket"></i> Entrance fee applies</span>
+        <div class="modal-pills">
+          <span class="modal-pill"><i class="bi bi-clock"></i> Open daily, 8am–10pm</span>
+          <span class="modal-pill"><i class="bi bi-geo-alt"></i> Talisay City</span>
+          <span class="modal-pill"><i class="bi bi-ticket"></i> Entrance fee applies</span>
         </div>
       </div>
     </div>
@@ -557,17 +1344,17 @@
     <div class="modal-content">
       <div style="position:relative;">
         <img class="modal-hero-img" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=900" alt="Mambukal">
-        <div class="modal-header-custom"><button class="modal-close-btn" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button></div>
+        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
       </div>
-      <div class="modal-body">
-        <p class="modal-sub">Murcia, Negros Occidental</p>
+      <div class="modal-body-inner">
+        <p class="modal-province">Murcia, Negros Occidental</p>
         <h4>Mambukal Mountain Resort</h4>
         <p>Nestled at the foot of Mt. Kanlaon, Mambukal is a government-run mountain resort featuring seven waterfalls, natural hot and cold pools, and jungle trails winding through primary forest.</p>
         <p>At dusk, thousands of giant fruit bats emerge from the forest canopy — a surreal natural spectacle you won't forget.</p>
-        <div class="modal-info-row">
-          <span class="modal-info-pill"><i class="bi bi-water"></i> 7 waterfalls</span>
-          <span class="modal-info-pill"><i class="bi bi-thermometer-half"></i> Hot sulfur springs</span>
-          <span class="modal-info-pill"><i class="bi bi-geo-alt"></i> Murcia, Negros Occidental</span>
+        <div class="modal-pills">
+          <span class="modal-pill"><i class="bi bi-water"></i> 7 waterfalls</span>
+          <span class="modal-pill"><i class="bi bi-thermometer-half"></i> Hot sulfur springs</span>
+          <span class="modal-pill"><i class="bi bi-geo-alt"></i> Murcia</span>
         </div>
       </div>
     </div>
@@ -580,62 +1367,62 @@
     <div class="modal-content">
       <div style="position:relative;">
         <img class="modal-hero-img" src="https://images.unsplash.com/photo-1533090161767-e6ffed986c88?auto=format&fit=crop&q=80&w=900" alt="Silay">
-        <div class="modal-header-custom"><button class="modal-close-btn" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button></div>
+        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
       </div>
-      <div class="modal-body">
-        <p class="modal-sub">Silay City, Negros Occidental</p>
+      <div class="modal-body-inner">
+        <p class="modal-province">Silay City, Negros Occidental</p>
         <h4>Silay Heritage City</h4>
         <p>Known as the "Paris of Negros," Silay City is home to 30+ heritage mansions from the Spanish and American colonial eras — the finest concentration of ancestral houses in the Philippines.</p>
         <p>The Balay Negrense (1897) is the crown jewel — a well-preserved Victorian-style house that now serves as a museum of Negrense hacienda life.</p>
-        <div class="modal-info-row">
-          <span class="modal-info-pill"><i class="bi bi-building"></i> 30+ heritage houses</span>
-          <span class="modal-info-pill"><i class="bi bi-map"></i> Walking tour available</span>
+        <div class="modal-pills">
+          <span class="modal-pill"><i class="bi bi-building"></i> 30+ heritage houses</span>
+          <span class="modal-pill"><i class="bi bi-map"></i> Walking tour available</span>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Mt. Kanlaon -->
+<!-- Mt Kanlaon -->
 <div class="modal fade" id="modal-kanlaon" tabindex="-1">
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
       <div style="position:relative;">
         <img class="modal-hero-img" src="https://images.unsplash.com/photo-1455156218388-5e61b526818b?auto=format&fit=crop&q=80&w=900" alt="Mt Kanlaon">
-        <div class="modal-header-custom"><button class="modal-close-btn" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button></div>
+        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
       </div>
-      <div class="modal-body">
-        <p class="modal-sub">Canlaon City, Negros Occidental</p>
+      <div class="modal-body-inner">
+        <p class="modal-province">Canlaon City, Negros Occidental</p>
         <h4>Mt. Kanlaon Natural Park</h4>
         <p>At 2,465 meters, Mt. Kanlaon is the highest peak in the Visayas and an active stratovolcano. The surrounding natural park is one of the Philippines' most important biodiversity hotspots.</p>
-        <p>Home to the Negros bleeding-heart pigeon and Philippine cockatoo, the mossy forests at upper elevations feel utterly otherworldly.</p>
-        <div class="modal-info-row">
-          <span class="modal-info-pill"><i class="bi bi-arrow-up"></i> 2,465m summit</span>
-          <span class="modal-info-pill"><i class="bi bi-exclamation-triangle"></i> Active volcano — check advisories</span>
-          <span class="modal-info-pill"><i class="bi bi-person-check"></i> Permit required</span>
+        <p>Home to the Negros bleeding-heart pigeon and Philippine cockatoo — the mossy forests at upper elevations feel utterly otherworldly.</p>
+        <div class="modal-pills">
+          <span class="modal-pill"><i class="bi bi-arrow-up"></i> 2,465m summit</span>
+          <span class="modal-pill"><i class="bi bi-exclamation-triangle"></i> Active volcano</span>
+          <span class="modal-pill"><i class="bi bi-person-check"></i> Permit required</span>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Apo Island -->
+<!-- Apo -->
 <div class="modal fade" id="modal-apo" tabindex="-1">
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
       <div style="position:relative;">
         <img class="modal-hero-img" src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=900" alt="Apo Island">
-        <div class="modal-header-custom"><button class="modal-close-btn" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button></div>
+        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
       </div>
-      <div class="modal-body">
-        <p class="modal-sub">Dauin, Negros Oriental</p>
+      <div class="modal-body-inner">
+        <p class="modal-province">Dauin, Negros Oriental</p>
         <h4>Apo Island Marine Sanctuary</h4>
         <p>One of the world's most celebrated marine protected areas, Apo Island is home to over 650 species of fish and 400 species of coral. Sea turtle encounters are near-guaranteed year-round.</p>
         <p>In 1982, local fishermen voluntarily gave up fishing rights to one-third of the surrounding waters. Today, Apo Island is a global model for community-driven marine conservation.</p>
-        <div class="modal-info-row">
-          <span class="modal-info-pill"><i class="bi bi-water"></i> 650+ fish species</span>
-          <span class="modal-info-pill"><i class="bi bi-clock"></i> 45-min bangka from Malatapay</span>
-          <span class="modal-info-pill"><i class="bi bi-house"></i> Overnight homestays available</span>
+        <div class="modal-pills">
+          <span class="modal-pill"><i class="bi bi-water"></i> 650+ fish species</span>
+          <span class="modal-pill"><i class="bi bi-clock"></i> 45-min bangka from Malatapay</span>
+          <span class="modal-pill"><i class="bi bi-house"></i> Homestays available</span>
         </div>
       </div>
     </div>
@@ -648,17 +1435,17 @@
     <div class="modal-content">
       <div style="position:relative;">
         <img class="modal-hero-img" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=900" alt="Manjuyod">
-        <div class="modal-header-custom"><button class="modal-close-btn" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button></div>
+        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
       </div>
-      <div class="modal-body">
-        <p class="modal-sub">Manjuyod, Negros Oriental</p>
+      <div class="modal-body-inner">
+        <p class="modal-province">Manjuyod, Negros Oriental</p>
         <h4>Manjuyod Sandbar</h4>
         <p>A 7-kilometre stretch of white sand that lies submerged at high tide, then emerges as a glowing ribbon of sand across turquoise water — with the mountains of Negros as backdrop.</p>
         <p>Rustic bamboo cottages on stilts let you wake up as the tide recedes and walk out onto your own private sandbar. The boat ride from Bais City often passes spinner and spotted dolphins.</p>
-        <div class="modal-info-row">
-          <span class="modal-info-pill"><i class="bi bi-calendar-check"></i> Best: March–June</span>
-          <span class="modal-info-pill"><i class="bi bi-water"></i> Visit at low tide</span>
-          <span class="modal-info-pill"><i class="bi bi-house"></i> Stilt cottages available</span>
+        <div class="modal-pills">
+          <span class="modal-pill"><i class="bi bi-calendar-check"></i> Best: March–June</span>
+          <span class="modal-pill"><i class="bi bi-water"></i> Visit at low tide</span>
+          <span class="modal-pill"><i class="bi bi-house"></i> Stilt cottages</span>
         </div>
       </div>
     </div>
@@ -671,50 +1458,45 @@
     <div class="modal-content">
       <div style="position:relative;">
         <img class="modal-hero-img" src="https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?auto=format&fit=crop&q=80&w=900" alt="Dumaguete">
-        <div class="modal-header-custom"><button class="modal-close-btn" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button></div>
+        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
       </div>
-      <div class="modal-body">
-        <p class="modal-sub">Capital, Negros Oriental</p>
+      <div class="modal-body-inner">
+        <p class="modal-province">Capital, Negros Oriental</p>
         <h4>Dumaguete City</h4>
         <p>The "City of Gentle People" — a university city with a distinctly calm, intellectual, and unhurried character. Home to Silliman University (est. 1901), the oldest American-founded university in Asia.</p>
         <p>Rizal Boulevard is the city's soul: a 1.5-km seaside promenade lined with acacia trees, open-air restaurants, and views across the Tañon Strait to Cebu.</p>
-        <div class="modal-info-row">
-          <span class="modal-info-pill"><i class="bi bi-mortarboard"></i> Silliman University (1901)</span>
-          <span class="modal-info-pill"><i class="bi bi-geo-alt"></i> Rizal Boulevard</span>
-          <span class="modal-info-pill"><i class="bi bi-cup-hot"></i> Sans Rival Cakes</span>
+        <div class="modal-pills">
+          <span class="modal-pill"><i class="bi bi-mortarboard"></i> Silliman University 1901</span>
+          <span class="modal-pill"><i class="bi bi-geo-alt"></i> Rizal Boulevard</span>
+          <span class="modal-pill"><i class="bi bi-cup-hot"></i> Sans Rival Cakes</span>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Casaroro Falls -->
+<!-- Casaroro -->
 <div class="modal fade" id="modal-casaroro" tabindex="-1">
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
       <div style="position:relative;">
         <img class="modal-hero-img" src="https://images.unsplash.com/photo-1501854140801-50d01698950b?auto=format&fit=crop&q=80&w=900" alt="Casaroro Falls">
-        <div class="modal-header-custom"><button class="modal-close-btn" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button></div>
+        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
       </div>
-      <div class="modal-body">
-        <p class="modal-sub">Valencia, Negros Oriental</p>
+      <div class="modal-body-inner">
+        <p class="modal-province">Valencia, Negros Oriental</p>
         <h4>Casaroro Falls</h4>
-        <p>A dramatic 30-meter single-plunge waterfall hidden at the end of a canyon trail through bamboo forest. The hike is short but involves ladders and river crossings — proper footwear required.</p>
+        <p>A dramatic 30-meter single-plunge waterfall hidden at the end of a canyon trail through bamboo forest. The hike involves ladders and river crossings — proper footwear required.</p>
         <p>A natural swimming hole at the base of the falls offers a refreshing reward after the trek.</p>
-        <div class="modal-info-row">
-          <span class="modal-info-pill"><i class="bi bi-arrow-down"></i> 30-meter drop</span>
-          <span class="modal-info-pill"><i class="bi bi-person-walking"></i> ~1hr hike round trip</span>
-          <span class="modal-info-pill"><i class="bi bi-geo-alt"></i> Valencia, Negros Oriental</span>
+        <div class="modal-pills">
+          <span class="modal-pill"><i class="bi bi-arrow-down"></i> 30-meter drop</span>
+          <span class="modal-pill"><i class="bi bi-person-walking"></i> ~1hr hike</span>
+          <span class="modal-pill"><i class="bi bi-geo-alt"></i> Valencia</span>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-
-<!-- ═══════════════════════════════════════════════════════
-     MODALS — Products
-═══════════════════════════════════════════════════════ -->
 
 <!-- Silvanas -->
 <div class="modal fade" id="modal-silvanas" tabindex="-1">
@@ -722,16 +1504,15 @@
     <div class="modal-content">
       <div style="position:relative;">
         <img class="modal-hero-img" src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&q=80&w=900" alt="Silvanas">
-        <div class="modal-header-custom"><button class="modal-close-btn" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button></div>
+        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
       </div>
-      <div class="modal-body">
-        <p class="modal-sub">Negros Oriental · Delicacy</p>
+      <div class="modal-body-inner">
+        <p class="modal-province">Negros Oriental · Delicacy</p>
         <h4>Silvanas</h4>
         <p>Cashew meringue wafers sandwiched with French buttercream, then rolled in cookie crumbs. The definitive frozen souvenir of Dumaguete — best eaten straight from the freezer.</p>
-        <p>The most famous brands are from Sans Rival Cakes &amp; Pastries on Perdices Street, Dumaguete. Take home a box (or several) — they travel well frozen.</p>
-        <div class="modal-info-row">
-          <span class="modal-info-pill"><i class="bi bi-shop"></i> Sans Rival Café, Dumaguete</span>
-          <span class="modal-info-pill"><i class="bi bi-snow"></i> Keep frozen</span>
+        <div class="modal-pills">
+          <span class="modal-pill"><i class="bi bi-shop"></i> Sans Rival Café, Dumaguete</span>
+          <span class="modal-pill"><i class="bi bi-snow"></i> Keep frozen</span>
         </div>
       </div>
     </div>
@@ -744,16 +1525,16 @@
     <div class="modal-content">
       <div style="position:relative;">
         <img class="modal-hero-img" src="https://images.unsplash.com/photo-1530982011887-3cc11cc85693?auto=format&fit=crop&q=80&w=900" alt="Muscovado">
-        <div class="modal-header-custom"><button class="modal-close-btn" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button></div>
+        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
       </div>
-      <div class="modal-body">
-        <p class="modal-sub">Negros Occidental · Heritage Product</p>
+      <div class="modal-body-inner">
+        <p class="modal-province">Negros Occidental · Heritage Product</p>
         <h4>Muscovado Sugar</h4>
         <p>Unrefined raw cane sugar with a rich, deep molasses flavor — the soul of Negros' sugarcane heritage. Unlike refined white sugar, muscovado retains its natural minerals and color.</p>
-        <p>Used in traditional Negrense sweets like piaya and pastillas, and increasingly sought by artisanal bakers worldwide. Available in markets across Bacolod.</p>
-        <div class="modal-info-row">
-          <span class="modal-info-pill"><i class="bi bi-shop"></i> Bacolod public markets</span>
-          <span class="modal-info-pill"><i class="bi bi-star"></i> Best pasalubong from Occidental</span>
+        <p>Used in traditional Negrense sweets like piaya and pastillas, and increasingly sought by artisanal bakers worldwide.</p>
+        <div class="modal-pills">
+          <span class="modal-pill"><i class="bi bi-shop"></i> Bacolod public markets</span>
+          <span class="modal-pill"><i class="bi bi-star"></i> Best pasalubong from Occidental</span>
         </div>
       </div>
     </div>
@@ -766,16 +1547,15 @@
     <div class="modal-content">
       <div style="position:relative;">
         <img class="modal-hero-img" src="https://images.unsplash.com/photo-1563379091339-03b21bc4a4f8?auto=format&fit=crop&q=80&w=900" alt="Inasal">
-        <div class="modal-header-custom"><button class="modal-close-btn" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button></div>
+        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
       </div>
-      <div class="modal-body">
-        <p class="modal-sub">Negros Occidental · Food</p>
+      <div class="modal-body-inner">
+        <p class="modal-province">Negros Occidental · Food</p>
         <h4>Chicken Inasal</h4>
         <p>Bacolod's gift to Philippine cuisine. Chicken marinated in calamansi, vinegar, lemongrass, and annatto, then grilled slowly over charcoal. Eat it with garlic rice drizzled in chicken oil.</p>
-        <p>The authentic experience is at the Manokan Country in Bacolod's Reclamation Area — a strip of open-air stalls that have been grilling since the 1970s.</p>
-        <div class="modal-info-row">
-          <span class="modal-info-pill"><i class="bi bi-shop"></i> Manokan Country, Bacolod</span>
-          <span class="modal-info-pill"><i class="bi bi-fire"></i> Charcoal grilled</span>
+        <div class="modal-pills">
+          <span class="modal-pill"><i class="bi bi-shop"></i> Manokan Country, Bacolod</span>
+          <span class="modal-pill"><i class="bi bi-fire"></i> Charcoal grilled</span>
         </div>
       </div>
     </div>
@@ -788,16 +1568,15 @@
     <div class="modal-content">
       <div style="position:relative;">
         <img class="modal-hero-img" src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=900" alt="Piaya">
-        <div class="modal-header-custom"><button class="modal-close-btn" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button></div>
+        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
       </div>
-      <div class="modal-body">
-        <p class="modal-sub">Negros Occidental · Pasalubong</p>
+      <div class="modal-body-inner">
+        <p class="modal-province">Negros Occidental · Pasalubong</p>
         <h4>Piaya</h4>
         <p>A sweet, flaky flatbread filled with muscovado sugar — Bacolod's most beloved take-home snack. Baked on a flat griddle until golden, with a slightly chewy, caramelized center.</p>
-        <p>Pair it with Napoleones (the flaky cream-filled pastry from Silay) for the definitive Occidental pasalubong combo. Available at most bakeries and pasalubong centers in Bacolod.</p>
-        <div class="modal-info-row">
-          <span class="modal-info-pill"><i class="bi bi-box-seam"></i> Sold in packs</span>
-          <span class="modal-info-pill"><i class="bi bi-shop"></i> El Ideal Bakery, Silay</span>
+        <div class="modal-pills">
+          <span class="modal-pill"><i class="bi bi-box-seam"></i> Sold in packs</span>
+          <span class="modal-pill"><i class="bi bi-shop"></i> El Ideal Bakery, Silay</span>
         </div>
       </div>
     </div>
@@ -810,67 +1589,59 @@
     <div class="modal-content">
       <div style="position:relative;">
         <img class="modal-hero-img" src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&q=80&w=900" alt="Sans Rival">
-        <div class="modal-header-custom"><button class="modal-close-btn" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button></div>
+        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
       </div>
-      <div class="modal-body">
-        <p class="modal-sub">Negros Oriental · Delicacy</p>
+      <div class="modal-body-inner">
+        <p class="modal-province">Negros Oriental · Delicacy</p>
         <h4>Sans Rival Cake</h4>
-        <p>A decadent dessert of crispy cashew-studded meringue layered with rich French buttercream. The name means "without rival" in French — a claim the Dumaguete version fully earns.</p>
-        <p>The iconic Sans Rival Cakes &amp; Pastries on Perdices Street, Dumaguete has been serving this treasure for decades. Also a great place to pick up Silvanas.</p>
-        <div class="modal-info-row">
-          <span class="modal-info-pill"><i class="bi bi-shop"></i> Sans Rival Café, Perdices St.</span>
-          <span class="modal-info-pill"><i class="bi bi-gift"></i> Perfect gift</span>
+        <p>A decadent dessert of crispy cashew-studded meringue layered with rich French buttercream. The name means "without rival" — a claim the Dumaguete version fully earns.</p>
+        <div class="modal-pills">
+          <span class="modal-pill"><i class="bi bi-shop"></i> Sans Rival Café, Perdices St.</span>
+          <span class="modal-pill"><i class="bi bi-gift"></i> Perfect gift</span>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- MassKara Mask -->
+<!-- Mask -->
 <div class="modal fade" id="modal-mask" tabindex="-1">
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
       <div style="position:relative;">
-        <img class="modal-hero-img" src="https://images.unsplash.com/photo-1570913149827-d2ac84ab3f9a?auto=format&fit=crop&q=80&w=900" alt="MassKara Mask">
-        <div class="modal-header-custom"><button class="modal-close-btn" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button></div>
+        <img class="modal-hero-img" src="https://images.unsplash.com/photo-1570913149827-d2ac84ab3f9a?auto=format&fit=crop&q=80&w=900" alt="Mask">
+        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
       </div>
-      <div class="modal-body">
-        <p class="modal-sub">Negros Occidental · Craft Souvenir</p>
+      <div class="modal-body-inner">
+        <p class="modal-province">Negros Occidental · Craft</p>
         <h4>MassKara Festival Mask</h4>
-        <p>Hand-painted souvenir masks adorned with flowers, sequins, and glitter — a wearable symbol of Bacolod's defiant joy. Each mask is crafted by local artisans and is unique.</p>
-        <p>Available year-round at the Bacolod public market and SM Bacolod's souvenir section, with the widest selection during festival season in October.</p>
-        <div class="modal-info-row">
-          <span class="modal-info-pill"><i class="bi bi-palette"></i> Handcrafted</span>
-          <span class="modal-info-pill"><i class="bi bi-shop"></i> Bacolod public market</span>
-          <span class="modal-info-pill"><i class="bi bi-star"></i> Best souvenir from Bacolod</span>
+        <p>Hand-painted souvenir masks adorned with flowers, sequins, and glitter — each crafted by local artisans and unique. A wearable symbol of Bacolod's defiant joy.</p>
+        <div class="modal-pills">
+          <span class="modal-pill"><i class="bi bi-palette"></i> Handcrafted</span>
+          <span class="modal-pill"><i class="bi bi-shop"></i> Bacolod public market</span>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-
-<!-- ═══════════════════════════════════════════════════════
-     MODALS — Festivals
-═══════════════════════════════════════════════════════ -->
-
-<!-- MassKara Festival -->
+<!-- MassKara Fest -->
 <div class="modal fade" id="modal-masskara" tabindex="-1">
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
       <div style="position:relative;">
         <img class="modal-hero-img" src="https://images.unsplash.com/photo-1540324155974-7523202daa3f?auto=format&fit=crop&q=80&w=900" alt="MassKara">
-        <div class="modal-header-custom"><button class="modal-close-btn" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button></div>
+        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
       </div>
-      <div class="modal-body">
-        <p class="modal-sub">Bacolod City · October</p>
+      <div class="modal-body-inner">
+        <p class="modal-province">Bacolod City · October</p>
         <h4>MassKara Festival</h4>
         <p>Born in 1980 as a defiant act of joy after two tragedies — the sinking of MV Don Juan and the collapse of sugar prices — MassKara means "many faces" and celebrates the Negrense spirit of resilience.</p>
-        <p>The festival runs the entire month of October, climaxing on the weekend nearest the 19th. Elaborately painted smiling masks, street dancing competitions, and a city-wide party make this one of the Philippines' most celebrated festivals.</p>
-        <div class="modal-info-row">
-          <span class="modal-info-pill"><i class="bi bi-calendar"></i> October (peak: 3rd weekend)</span>
-          <span class="modal-info-pill"><i class="bi bi-geo-alt"></i> Bacolod City</span>
-          <span class="modal-info-pill"><i class="bi bi-exclamation-circle"></i> Book 2 months in advance</span>
+        <p>The festival runs the entire month of October, climaxing on the weekend nearest the 19th.</p>
+        <div class="modal-pills">
+          <span class="modal-pill"><i class="bi bi-calendar"></i> October (peak: 3rd weekend)</span>
+          <span class="modal-pill"><i class="bi bi-geo-alt"></i> Bacolod City</span>
+          <span class="modal-pill"><i class="bi bi-exclamation-circle"></i> Book 2 months ahead</span>
         </div>
       </div>
     </div>
@@ -883,16 +1654,15 @@
     <div class="modal-content">
       <div style="position:relative;">
         <img class="modal-hero-img" src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=80&w=900" alt="Panaad">
-        <div class="modal-header-custom"><button class="modal-close-btn" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button></div>
+        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
       </div>
-      <div class="modal-body">
-        <p class="modal-sub">Bacolod City · April</p>
+      <div class="modal-body-inner">
+        <p class="modal-province">Bacolod City · April</p>
         <h4>Panaad sa Sugbo</h4>
-        <p>A grand provincial showcase held at the Panaad Park and Stadium in Bacolod. Each municipality of Negros Occidental sets up pavilions featuring their local food, crafts, cultural performances, and tourism highlights.</p>
-        <p>It's the best single place to experience the breadth of Occidental's culture — from sugar industry exhibits to folk dance competitions — all in one sprawling venue.</p>
-        <div class="modal-info-row">
-          <span class="modal-info-pill"><i class="bi bi-calendar"></i> April</span>
-          <span class="modal-info-pill"><i class="bi bi-geo-alt"></i> Panaad Park, Bacolod</span>
+        <p>A grand provincial showcase held at the Panaad Park and Stadium in Bacolod. Each municipality sets up pavilions featuring local food, crafts, cultural performances, and tourism highlights.</p>
+        <div class="modal-pills">
+          <span class="modal-pill"><i class="bi bi-calendar"></i> April</span>
+          <span class="modal-pill"><i class="bi bi-geo-alt"></i> Panaad Park, Bacolod</span>
         </div>
       </div>
     </div>
@@ -905,16 +1675,15 @@
     <div class="modal-content">
       <div style="position:relative;">
         <img class="modal-hero-img" src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=900" alt="Buglasan">
-        <div class="modal-header-custom"><button class="modal-close-btn" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button></div>
+        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
       </div>
-      <div class="modal-body">
-        <p class="modal-sub">Dumaguete City · October</p>
+      <div class="modal-body-inner">
+        <p class="modal-province">Dumaguete City · October</p>
         <h4>Buglasan Festival</h4>
         <p>The "Festival of Festivals" — a week-long celebration in Dumaguete that gathers the mini-festivals of Negros Oriental's various municipalities into one grand showcase.</p>
-        <p>Each municipality competes with their own street dance and cultural performance, making Buglasan an extraordinary window into the diverse identities of Oriental.</p>
-        <div class="modal-info-row">
-          <span class="modal-info-pill"><i class="bi bi-calendar"></i> October</span>
-          <span class="modal-info-pill"><i class="bi bi-geo-alt"></i> Dumaguete City</span>
+        <div class="modal-pills">
+          <span class="modal-pill"><i class="bi bi-calendar"></i> October</span>
+          <span class="modal-pill"><i class="bi bi-geo-alt"></i> Dumaguete City</span>
         </div>
       </div>
     </div>
@@ -927,62 +1696,58 @@
     <div class="modal-content">
       <div style="position:relative;">
         <img class="modal-hero-img" src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&q=80&w=900" alt="Sandurot">
-        <div class="modal-header-custom"><button class="modal-close-btn" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button></div>
+        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
       </div>
-      <div class="modal-body">
-        <p class="modal-sub">Dumaguete City · November</p>
+      <div class="modal-body-inner">
+        <p class="modal-province">Dumaguete City · November</p>
         <h4>Sandurot Festival</h4>
-        <p>A celebration of friendship and cultural unity in Dumaguete. "Sandurot" is a Cebuano word meaning to gather together — perfectly capturing the spirit of this inclusive, community-centered festival.</p>
-        <p>Held to commemorate Dumaguete's foundation anniversary, the festival features music, street dancing, cultural shows, and the warm hospitality Dumaguete is known for.</p>
-        <div class="modal-info-row">
-          <span class="modal-info-pill"><i class="bi bi-calendar"></i> November</span>
-          <span class="modal-info-pill"><i class="bi bi-geo-alt"></i> Dumaguete City</span>
+        <p>"Sandurot" means to gather together — perfectly capturing the spirit of this inclusive, community-centered festival held to commemorate Dumaguete's foundation anniversary.</p>
+        <div class="modal-pills">
+          <span class="modal-pill"><i class="bi bi-calendar"></i> November</span>
+          <span class="modal-pill"><i class="bi bi-geo-alt"></i> Dumaguete City</span>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Inasal Festival -->
+<!-- Inasal Fest -->
 <div class="modal fade" id="modal-inasal-fest" tabindex="-1">
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
       <div style="position:relative;">
         <img class="modal-hero-img" src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&q=80&w=900" alt="Inasal Festival">
-        <div class="modal-header-custom"><button class="modal-close-btn" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button></div>
+        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
       </div>
-      <div class="modal-body">
-        <p class="modal-sub">Bacolod City · October</p>
+      <div class="modal-body-inner">
+        <p class="modal-province">Bacolod City · October</p>
         <h4>Inasal Festival</h4>
-        <p>Held alongside the MassKara celebrations in October, the Inasal Festival is a food-lovers' paradise dedicated entirely to Bacolod's iconic grilled chicken.</p>
-        <p>Cook-offs, grill competitions, and street feasts draw both locals and tourists. It's the perfect complement to MassKara — culture by day, inasal and rice by night.</p>
-        <div class="modal-info-row">
-          <span class="modal-info-pill"><i class="bi bi-calendar"></i> October</span>
-          <span class="modal-info-pill"><i class="bi bi-fire"></i> Grilling competitions</span>
-          <span class="modal-info-pill"><i class="bi bi-geo-alt"></i> Bacolod City</span>
+        <p>Held alongside the MassKara celebrations in October, the Inasal Festival is a food-lovers' paradise dedicated entirely to Bacolod's iconic grilled chicken. Cook-offs, grill competitions, and street feasts.</p>
+        <div class="modal-pills">
+          <span class="modal-pill"><i class="bi bi-calendar"></i> October</span>
+          <span class="modal-pill"><i class="bi bi-fire"></i> Grill competitions</span>
         </div>
       </div>
     </div>
   </div>
 </div>
 
-<!-- Apo Dive Fest -->
+<!-- Apo Dive -->
 <div class="modal fade" id="modal-apo-dive" tabindex="-1">
   <div class="modal-dialog modal-lg modal-dialog-centered">
     <div class="modal-content">
       <div style="position:relative;">
-        <img class="modal-hero-img" src="https://images.unsplash.com/photo-1582967788606-a171c1080cb0?auto=format&fit=crop&q=80&w=900" alt="Apo Dive Fest">
-        <div class="modal-header-custom"><button class="modal-close-btn" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button></div>
+        <img class="modal-hero-img" src="https://images.unsplash.com/photo-1582967788606-a171c1080cb0?auto=format&fit=crop&q=80&w=900" alt="Apo Dive">
+        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
       </div>
-      <div class="modal-body">
-        <p class="modal-sub">Dauin, Negros Oriental · July</p>
+      <div class="modal-body-inner">
+        <p class="modal-province">Dauin, Negros Oriental · July</p>
         <h4>Apo Island Dive Festival</h4>
-        <p>An annual celebration of marine conservation centered around Apo Island — one of Southeast Asia's finest diving destinations. The festival features underwater photography contests, reef cleanups, and guided dives with marine biologists.</p>
-        <p>A gathering of the region's diving community, conservationists, and ocean enthusiasts, all united by love for the sea.</p>
-        <div class="modal-info-row">
-          <span class="modal-info-pill"><i class="bi bi-calendar"></i> July</span>
-          <span class="modal-info-pill"><i class="bi bi-geo-alt"></i> Dauin / Apo Island</span>
-          <span class="modal-info-pill"><i class="bi bi-camera"></i> Photo contest</span>
+        <p>An annual celebration of marine conservation centered around Apo Island. Features underwater photography contests, reef cleanups, and guided dives with marine biologists.</p>
+        <div class="modal-pills">
+          <span class="modal-pill"><i class="bi bi-calendar"></i> July</span>
+          <span class="modal-pill"><i class="bi bi-geo-alt"></i> Dauin / Apo Island</span>
+          <span class="modal-pill"><i class="bi bi-camera"></i> Photo contest</span>
         </div>
       </div>
     </div>
@@ -990,74 +1755,53 @@
 </div>
 
 
-<!-- ─────────────────────────────────────
-     SCRIPTS
-───────────────────────────────────── -->
+<!-- ── SCRIPTS ── -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-/* ── Modal helper ── */
-function openModal(id) {
-  const modal = new bootstrap.Modal(document.getElementById(id));
-  modal.show();
-}
+/* navbar scroll */
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 60));
 
-/* ── Filter grids ── */
+/* modals */
+function openModal(id) { new bootstrap.Modal(document.getElementById(id)).show(); }
+
+/* filter grids */
 function filterGrid(type, value, btn) {
-  // Update active chip
-  const filterId = btn.closest('.filter-bar');
-  filterId.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+  const bar = btn.closest('.filter-strip');
+  bar.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
   btn.classList.add('active');
-
-  // Show/hide items
-  const prefixMap = { dest: 'dest-item', prod: 'prod-item', fest: 'fest-item' };
-  const attrMap   = { dest: 'province', prod: 'cat', fest: 'province' };
-  const className = prefixMap[type];
-  const attr      = attrMap[type];
-
-  document.querySelectorAll('.' + className).forEach(el => {
-    const match = value === 'all' || el.dataset[attr] === value;
-    el.style.display = match ? '' : 'none';
+  const prefixMap = { dest:'dest-item', prod:'prod-item', fest:'fest-item' };
+  const attrMap   = { dest:'province', prod:'cat', fest:'province' };
+  document.querySelectorAll('.' + prefixMap[type]).forEach(el => {
+    el.style.display = (value === 'all' || el.dataset[attrMap[type]] === value) ? '' : 'none';
   });
 }
 
-/* ── Province card → scroll + filter ── */
+/* province card → scroll + filter */
 function scrollToFilter(section, province) {
   const target = document.getElementById(section);
   if (target) {
-    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    // Trigger filter after scroll
+    target.scrollIntoView({ behavior:'smooth', block:'start' });
     setTimeout(() => {
-      const btn = target.querySelector(`.filter-chip[onclick*="'${province}'"]`);
+      const btn = target.querySelector(`.chip[onclick*="'${province}'"]`);
       if (btn) btn.click();
-    }, 600);
+    }, 650);
   }
 }
 
-/* ── Smooth scroll for nav links ── */
+/* smooth scroll */
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
-    const target = document.querySelector(a.getAttribute('href'));
-    if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+    const t = document.querySelector(a.getAttribute('href'));
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior:'smooth', block:'start' }); }
   });
 });
 
-/* ── Scroll reveal ── */
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.style.opacity = '1';
-      e.target.style.transform = 'translateY(0)';
-      observer.unobserve(e.target);
-    }
-  });
+/* scroll reveal */
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revealObs.unobserve(e.target); } });
 }, { threshold: 0.08 });
-
-document.querySelectorAll('.item-card, .province-card, .stat-pill, .bento-cell').forEach(el => {
-  el.style.opacity = '0';
-  el.style.transform = 'translateY(24px)';
-  el.style.transition = 'opacity 0.55s ease, transform 0.55s ease';
-  observer.observe(el);
-});
+document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 </script>
 </body>
 </html>
