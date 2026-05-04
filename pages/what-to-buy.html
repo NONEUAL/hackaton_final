@@ -1,517 +1,214 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>What to Buy | Negros Island Tourism</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="../css/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What to Buy | Negros Island Tourism</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="../css/styles.css">
 </head>
-<body>
 
-    <nav class="navbar navbar-expand-lg navbar-negros fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="../index.html">NEGROS</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="mainNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="where-to-go.html">Where to Go</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="what-to-buy.html">What to Buy</a></li>
-                    <li class="nav-item"><a class="nav-link" href="festivals.html">Festivals</a></li>
-                    <li class="nav-item"><a class="nav-link" href="developer.html">About Dev</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+<body data-page="what-to-buy" data-root="../">
 
-    <!-- Page Hero -->
-    <div class="page-hero" style="background-image: url('https://images.unsplash.com/photo-1530982011887-3cc11cc85693?auto=format&fit=crop&q=80&w=1920'); padding-top: 80px;">
-        <div class="hero-content text-center container">
-            <span class="d-block mb-3 text-uppercase letter-wide" style="font-size:0.75rem;opacity:0.8;">Flavors & Crafts</span>
-            <h1 class="display-3 fw-bold">What to Buy</h1>
-            <p class="lead opacity-75 mt-3">10 must-have products, delicacies &amp; souvenirs from Negros Island</p>
-        </div>
+
+<!-- ── PAGE HERO ── -->
+<div class="page-hero" style="background-image:url('https://images.unsplash.com/photo-1530982011887-3cc11cc85693?auto=format&fit=crop&q=80&w=1920');">
+  <div class="hero-content container">
+    <span class="section-eyebrow letter-wide">Flavors &amp; Crafts</span>
+    <h1 style="font-size:clamp(2.5rem,6vw,4rem);font-weight:900;color:#fff;margin-bottom:0.5rem;">What to Buy</h1>
+    <p style="color:rgba(255,255,255,0.75);font-family:var(--f-serif);font-style:italic;">10 must-have products, delicacies &amp; souvenirs from Negros Island</p>
+  </div>
+</div>
+
+
+<!-- ── FILTER ── -->
+<section class="py-4 bg-white shadow-sm sticky-top" style="top:72px;z-index:100;">
+  <div class="container">
+    <div class="d-flex gap-2 flex-wrap filter-row">
+      <button class="chip active" onclick="filterGrid('prod','all',this)">All Products</button>
+      <button class="chip"        onclick="filterGrid('prod','food',this)">Food &amp; Delicacies</button>
+      <button class="chip"        onclick="filterGrid('prod','craft',this)">Crafts &amp; Souvenirs</button>
     </div>
+  </div>
+</section>
 
-    <!-- Filter -->
-    <section class="py-4 bg-white shadow-sm sticky-top" style="top:72px;z-index:100;">
-        <div class="container">
-            <div class="d-flex gap-3 overflow-auto">
-                <button class="btn btn-sm rounded-pill fw-semibold filter-btn active" onclick="filterCards('all',this)" style="background:var(--kanlaon-green);color:#fff;white-space:nowrap;padding:8px 20px;">All Products</button>
-                <button class="btn btn-sm rounded-pill fw-semibold filter-btn" onclick="filterCards('food',this)" style="background:var(--sand-beige);color:#333;white-space:nowrap;padding:8px 20px;">Food & Delicacies</button>
-                <button class="btn btn-sm rounded-pill fw-semibold filter-btn" onclick="filterCards('craft',this)" style="background:var(--sand-beige);color:#333;white-space:nowrap;padding:8px 20px;">Crafts & Souvenirs</button>
+
+<!-- ── PRODUCT GRID ── -->
+<section class="section-pad" style="background:var(--bg-alt);">
+  <div class="container">
+    <div class="row g-4">
+
+      <div class="col-md-6 col-lg-4 prod-item reveal" data-cat="food">
+        <a href="../inner/products/silvanas.html" class="text-decoration-none text-dark">
+          <div class="dest-card">
+            <div class="dest-card-img">
+              <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&q=80&w=600" alt="Silvanas">
+              <div class="dest-card-badge">Oriental · Food</div>
             </div>
-        </div>
-    </section>
-
-    <!-- Product Grid -->
-    <section class="section-pad" style="background:var(--sand-beige);">
-        <div class="container">
-            <div class="row g-4" id="productGrid">
-
-                <!-- 1 -->
-                <div class="col-md-6 col-lg-4 prod-item" data-cat="food">
-                    <a href="../inner/products/silvanas.html" class="text-decoration-none text-dark">
-                        <div class="product-card">
-                            <div class="card-img-wrapper">
-                                <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Silvanas">
-                            </div>
-                            <div class="card-body">
-                                <span class="province-badge">Negros Oriental · Food</span>
-                                <h5 class="card-title">Silvanas</h5>
-                                <p class="card-text text-muted small">Dumaguete's iconic frozen treat — meringue wafers sandwiching cashew-scented buttercream, coated in cookie crumbs.</p>
-                                <span class="text-gold small fw-semibold">View Details <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- 2 -->
-                <div class="col-md-6 col-lg-4 prod-item" data-cat="food">
-                    <a href="../inner/products/inasal.html" class="text-decoration-none text-dark">
-                        <div class="product-card">
-                            <div class="card-img-wrapper">
-                                <img src="https://images.unsplash.com/photo-1563379091339-03b21bc4a4f8?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Inasal">
-                            </div>
-                            <div class="card-body">
-                                <span class="province-badge">Negros Occidental · Food</span>
-                                <h5 class="card-title">Chicken Inasal</h5>
-                                <p class="card-text text-muted small">Bacolod's gift to Philippine cuisine — lemongrass and vinegar-marinated chicken, grilled to smoky perfection.</p>
-                                <span class="text-gold small fw-semibold">View Details <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- 3 -->
-                <div class="col-md-6 col-lg-4 prod-item" data-cat="food">
-                    <a href="../inner/products/muscovado.html" class="text-decoration-none text-dark">
-                        <div class="product-card">
-                            <div class="card-img-wrapper">
-                                <img src="https://images.unsplash.com/photo-1530982011887-3cc11cc85693?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Muscovado">
-                            </div>
-                            <div class="card-body">
-                                <span class="province-badge">Negros Occidental · Food</span>
-                                <h5 class="card-title">Muscovado Sugar</h5>
-                                <p class="card-text text-muted small">Unrefined raw cane sugar with a rich molasses depth — the lifeblood of the Negrense sugar heritage.</p>
-                                <span class="text-gold small fw-semibold">View Details <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- 4 -->
-                <div class="col-md-6 col-lg-4 prod-item" data-cat="food">
-                    <a href="../inner/products/piaya.html" class="text-decoration-none text-dark">
-                        <div class="product-card">
-                            <div class="card-img-wrapper">
-                                <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Piaya">
-                            </div>
-                            <div class="card-body">
-                                <span class="province-badge">Negros Occidental · Food</span>
-                                <h5 class="card-title">Piaya</h5>
-                                <p class="card-text text-muted small">A sweet, flaky flatbread filled with muscovado sugar — Bacolod's most beloved take-home snack.</p>
-                                <span class="text-gold small fw-semibold">View Details <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- 5 -->
-                <div class="col-md-6 col-lg-4 prod-item" data-cat="food">
-                    <a href="../inner/products/tablea.html" class="text-decoration-none text-dark">
-                        <div class="product-card">
-                            <div class="card-img-wrapper">
-                                <img src="https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Tablea">
-                            </div>
-                            <div class="card-body">
-                                <span class="province-badge">Negros Occidental · Food</span>
-                                <h5 class="card-title">Tablea de Cacao</h5>
-                                <p class="card-text text-muted small">Pure cacao tablets made from locally grown cacao — the base of the traditional Filipino chocolate drink.</p>
-                                <span class="text-gold small fw-semibold">View Details <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- 6 -->
-                <div class="col-md-6 col-lg-4 prod-item" data-cat="food">
-                    <a href="../inner/products/baye-baye.html" class="text-decoration-none text-dark">
-                        <div class="product-card">
-                            <div class="card-img-wrapper">
-                                <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Baye-Baye">
-                            </div>
-                            <div class="card-body">
-                                <span class="province-badge">Negros Oriental · Food</span>
-                                <h5 class="card-title">Baye-Baye</h5>
-                                <p class="card-text text-muted small">A traditional rice cake made from young coconut and glutinous rice — chewy, sweet, and deeply local.</p>
-                                <span class="text-gold small fw-semibold">View Details <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- 7 -->
-                <div class="col-md-6 col-lg-4 prod-item" data-cat="craft">
-                    <a href="../inner/products/masskara-mask.html" class="text-decoration-none text-dark">
-                        <div class="product-card">
-                            <div class="card-img-wrapper">
-                                <img src="https://images.unsplash.com/photo-1570913149827-d2ac84ab3f9a?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="MassKara Mask">
-                            </div>
-                            <div class="card-body">
-                                <span class="province-badge">Negros Occidental · Craft</span>
-                                <h5 class="card-title">MassKara Festival Mask</h5>
-                                <p class="card-text text-muted small">Hand-painted souvenir masks adorned with flowers and glitter — a wearable symbol of Bacolod's joy.</p>
-                                <span class="text-gold small fw-semibold">View Details <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- 8 -->
-                <div class="col-md-6 col-lg-4 prod-item" data-cat="craft">
-                    <a href="../inner/products/rattan-craft.html" class="text-decoration-none text-dark">
-                        <div class="product-card">
-                            <div class="card-img-wrapper">
-                                <img src="https://images.unsplash.com/photo-1562113530-57ba467cea38?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Rattan">
-                            </div>
-                            <div class="card-body">
-                                <span class="province-badge">Negros Island · Craft</span>
-                                <h5 class="card-title">Rattan &amp; Bamboo Crafts</h5>
-                                <p class="card-text text-muted small">Expertly woven baskets, furniture, and decor — sustainable craftsmanship rooted in Negrense tradition.</p>
-                                <span class="text-gold small fw-semibold">View Details <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- 9 -->
-                <div class="col-md-6 col-lg-4 prod-item" data-cat="food">
-                    <a href="../inner/products/sans-rival.html" class="text-decoration-none text-dark">
-                        <div class="product-card">
-                            <div class="card-img-wrapper">
-                                <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Sans Rival">
-                            </div>
-                            <div class="card-body">
-                                <span class="province-badge">Negros Oriental · Food</span>
-                                <h5 class="card-title">Sans Rival Cake</h5>
-                                <p class="card-text text-muted small">A decadent Dumaguete dessert of crispy cashew meringue layered with rich French buttercream.</p>
-                                <span class="text-gold small fw-semibold">View Details <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- 10 -->
-                <div class="col-md-6 col-lg-4 prod-item" data-cat="craft">
-                    <a href="../inner/products/native-vinegar.html" class="text-decoration-none text-dark">
-                        <div class="product-card">
-                            <div class="card-img-wrapper">
-                                <img src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Vinegar">
-                            </div>
-                            <div class="card-body">
-                                <span class="province-badge">Negros Island · Product</span>
-                                <h5 class="card-title">Native Cane Vinegar</h5>
-                                <p class="card-text text-muted small">Traditionally fermented sugarcane vinegar — a tangy, artisanal condiment used in classic Negrense cooking.</p>
-                                <span class="text-gold small fw-semibold">View Details <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
+            <div class="dest-card-body">
+              <h5>Silvanas</h5>
+              <p>Dumaguete's iconic frozen treat — meringue wafers sandwiching cashew-scented buttercream, coated in cookie crumbs.</p>
+              <span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span>
             </div>
-        </div>
-    </section>
+          </div>
+        </a>
+      </div>
 
-    <footer class="footer-main">
-        <div class="container text-center py-4">
-            <h2 class="mb-3">NEGROS</h2>
-            <p class="opacity-50 small">Flavors that tell a story.</p>
-            <hr class="footer-divider w-25 mx-auto my-4">
-            <div class="d-flex gap-3 justify-content-center flex-wrap">
-                <a href="../index.html" class="btn-outline-gold">Back to Home</a>
-                <a href="festivals.html" class="btn-gold">Festivals &amp; Events</a>
+      <div class="col-md-6 col-lg-4 prod-item reveal reveal-d1" data-cat="food">
+        <a href="../inner/products/inasal.html" class="text-decoration-none text-dark">
+          <div class="dest-card">
+            <div class="dest-card-img">
+              <img src="https://images.unsplash.com/photo-1563379091339-03b21bc4a4f8?auto=format&fit=crop&q=80&w=600" alt="Inasal">
+              <div class="dest-card-badge">Occidental · Food</div>
             </div>
-            <p class="small opacity-25 mt-4 mb-0">© 2026 Explore Negros. IT 210 Final Project.</p>
-        </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        function filterCards(cat, btn) {
-            document.querySelectorAll('.filter-btn').forEach(b => {
-                b.style.background = 'var(--sand-beige)';
-                b.style.color = '#333';
-            });
-            btn.style.background = 'var(--kanlaon-green)';
-            btn.style.color = '#fff';
-            document.querySelectorAll('.prod-item').forEach(card => {
-                card.style.display = (cat === 'all' || card.dataset.cat === cat) ? '' : 'none';
-            });
-        }
-    </script>
-</body>
-</html><!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>What to Buy | Negros Island Tourism</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="../css/styles.css">
-</head>
-<body>
-
-    <nav class="navbar navbar-expand-lg navbar-negros fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="../index.html">NEGROS</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="mainNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="../index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="where-to-go.html">Where to Go</a></li>
-                    <li class="nav-item"><a class="nav-link active" href="what-to-buy.html">What to Buy</a></li>
-                    <li class="nav-item"><a class="nav-link" href="festivals.html">Festivals</a></li>
-                    <li class="nav-item"><a class="nav-link" href="developer.html">About Dev</a></li>
-                </ul>
+            <div class="dest-card-body">
+              <h5>Chicken Inasal</h5>
+              <p>Bacolod's gift to Philippine cuisine — lemongrass and vinegar-marinated chicken, grilled to smoky perfection.</p>
+              <span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span>
             </div>
-        </div>
-    </nav>
+          </div>
+        </a>
+      </div>
 
-    <!-- Page Hero -->
-    <div class="page-hero" style="background-image: url('https://images.unsplash.com/photo-1530982011887-3cc11cc85693?auto=format&fit=crop&q=80&w=1920'); padding-top: 80px;">
-        <div class="hero-content text-center container">
-            <span class="d-block mb-3 text-uppercase letter-wide" style="font-size:0.75rem;opacity:0.8;">Flavors & Crafts</span>
-            <h1 class="display-3 fw-bold">What to Buy</h1>
-            <p class="lead opacity-75 mt-3">10 must-have products, delicacies &amp; souvenirs from Negros Island</p>
-        </div>
+      <div class="col-md-6 col-lg-4 prod-item reveal reveal-d2" data-cat="food">
+        <a href="../inner/products/muscovado.html" class="text-decoration-none text-dark">
+          <div class="dest-card">
+            <div class="dest-card-img">
+              <img src="https://images.unsplash.com/photo-1530982011887-3cc11cc85693?auto=format&fit=crop&q=80&w=600" alt="Muscovado">
+              <div class="dest-card-badge">Occidental · Food</div>
+            </div>
+            <div class="dest-card-body">
+              <h5>Muscovado Sugar</h5>
+              <p>Unrefined raw cane sugar with a rich molasses depth — the lifeblood of the Negrense sugar heritage.</p>
+              <span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-6 col-lg-4 prod-item reveal" data-cat="food">
+        <a href="../inner/products/piaya.html" class="text-decoration-none text-dark">
+          <div class="dest-card">
+            <div class="dest-card-img">
+              <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=600" alt="Piaya">
+              <div class="dest-card-badge">Occidental · Food</div>
+            </div>
+            <div class="dest-card-body">
+              <h5>Piaya</h5>
+              <p>A sweet, flaky flatbread filled with muscovado sugar — Bacolod's most beloved take-home snack.</p>
+              <span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-6 col-lg-4 prod-item reveal reveal-d1" data-cat="food">
+        <a href="../inner/products/tablea.html" class="text-decoration-none text-dark">
+          <div class="dest-card">
+            <div class="dest-card-img">
+              <img src="https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&q=80&w=600" alt="Tablea">
+              <div class="dest-card-badge">Occidental · Food</div>
+            </div>
+            <div class="dest-card-body">
+              <h5>Tablea de Cacao</h5>
+              <p>Pure cacao tablets made from locally grown cacao — the base of the traditional Filipino chocolate drink.</p>
+              <span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-6 col-lg-4 prod-item reveal reveal-d2" data-cat="food">
+        <a href="../inner/products/baye-baye.html" class="text-decoration-none text-dark">
+          <div class="dest-card">
+            <div class="dest-card-img">
+              <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&q=80&w=600" alt="Baye-Baye">
+              <div class="dest-card-badge">Oriental · Food</div>
+            </div>
+            <div class="dest-card-body">
+              <h5>Baye-Baye</h5>
+              <p>A traditional rice cake made from young coconut and glutinous rice — chewy, sweet, and deeply local.</p>
+              <span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-6 col-lg-4 prod-item reveal" data-cat="craft">
+        <a href="../inner/products/masskara-mask.html" class="text-decoration-none text-dark">
+          <div class="dest-card">
+            <div class="dest-card-img">
+              <img src="https://images.unsplash.com/photo-1570913149827-d2ac84ab3f9a?auto=format&fit=crop&q=80&w=600" alt="MassKara Mask">
+              <div class="dest-card-badge">Occidental · Craft</div>
+            </div>
+            <div class="dest-card-body">
+              <h5>MassKara Festival Mask</h5>
+              <p>Hand-painted souvenir masks adorned with flowers and glitter — a wearable symbol of Bacolod's joy.</p>
+              <span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-6 col-lg-4 prod-item reveal reveal-d1" data-cat="craft">
+        <a href="../inner/products/rattan-craft.html" class="text-decoration-none text-dark">
+          <div class="dest-card">
+            <div class="dest-card-img">
+              <img src="https://images.unsplash.com/photo-1562113530-57ba467cea38?auto=format&fit=crop&q=80&w=600" alt="Rattan">
+              <div class="dest-card-badge">Negros Island · Craft</div>
+            </div>
+            <div class="dest-card-body">
+              <h5>Rattan &amp; Bamboo Crafts</h5>
+              <p>Expertly woven baskets, furniture, and decor — sustainable craftsmanship rooted in Negrense tradition.</p>
+              <span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-6 col-lg-4 prod-item reveal reveal-d2" data-cat="food">
+        <a href="../inner/products/sans-rival.html" class="text-decoration-none text-dark">
+          <div class="dest-card">
+            <div class="dest-card-img">
+              <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&q=80&w=600" alt="Sans Rival">
+              <div class="dest-card-badge">Oriental · Food</div>
+            </div>
+            <div class="dest-card-body">
+              <h5>Sans Rival Cake</h5>
+              <p>A decadent Dumaguete dessert of crispy cashew meringue layered with rich French buttercream.</p>
+              <span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-6 col-lg-4 prod-item reveal" data-cat="craft">
+        <a href="../inner/products/native-vinegar.html" class="text-decoration-none text-dark">
+          <div class="dest-card">
+            <div class="dest-card-img">
+              <img src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&q=80&w=600" alt="Vinegar">
+              <div class="dest-card-badge">Negros Island · Craft</div>
+            </div>
+            <div class="dest-card-body">
+              <h5>Native Cane Vinegar</h5>
+              <p>Traditionally fermented sugarcane vinegar — a tangy, artisanal condiment used in classic Negrense cooking.</p>
+              <span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span>
+            </div>
+          </div>
+        </a>
+      </div>
+
     </div>
+  </div>
+</section>
 
-    <!-- Filter -->
-    <section class="py-4 bg-white shadow-sm sticky-top" style="top:72px;z-index:100;">
-        <div class="container">
-            <div class="d-flex gap-3 overflow-auto">
-                <button class="btn btn-sm rounded-pill fw-semibold filter-btn active" onclick="filterCards('all',this)" style="background:var(--kanlaon-green);color:#fff;white-space:nowrap;padding:8px 20px;">All Products</button>
-                <button class="btn btn-sm rounded-pill fw-semibold filter-btn" onclick="filterCards('food',this)" style="background:var(--sand-beige);color:#333;white-space:nowrap;padding:8px 20px;">Food & Delicacies</button>
-                <button class="btn btn-sm rounded-pill fw-semibold filter-btn" onclick="filterCards('craft',this)" style="background:var(--sand-beige);color:#333;white-space:nowrap;padding:8px 20px;">Crafts & Souvenirs</button>
-            </div>
-        </div>
-    </section>
 
-    <!-- Product Grid -->
-    <section class="section-pad" style="background:var(--sand-beige);">
-        <div class="container">
-            <div class="row g-4" id="productGrid">
+<!-- ── SCRIPTS ── -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../js/components.js"></script>
+<script src="../js/main.js"></script>
 
-                <!-- 1 -->
-                <div class="col-md-6 col-lg-4 prod-item" data-cat="food">
-                    <a href="../inner/products/silvanas.html" class="text-decoration-none text-dark">
-                        <div class="product-card">
-                            <div class="card-img-wrapper">
-                                <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Silvanas">
-                            </div>
-                            <div class="card-body">
-                                <span class="province-badge">Negros Oriental · Food</span>
-                                <h5 class="card-title">Silvanas</h5>
-                                <p class="card-text text-muted small">Dumaguete's iconic frozen treat — meringue wafers sandwiching cashew-scented buttercream, coated in cookie crumbs.</p>
-                                <span class="text-gold small fw-semibold">View Details <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- 2 -->
-                <div class="col-md-6 col-lg-4 prod-item" data-cat="food">
-                    <a href="../inner/products/inasal.html" class="text-decoration-none text-dark">
-                        <div class="product-card">
-                            <div class="card-img-wrapper">
-                                <img src="https://images.unsplash.com/photo-1563379091339-03b21bc4a4f8?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Inasal">
-                            </div>
-                            <div class="card-body">
-                                <span class="province-badge">Negros Occidental · Food</span>
-                                <h5 class="card-title">Chicken Inasal</h5>
-                                <p class="card-text text-muted small">Bacolod's gift to Philippine cuisine — lemongrass and vinegar-marinated chicken, grilled to smoky perfection.</p>
-                                <span class="text-gold small fw-semibold">View Details <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- 3 -->
-                <div class="col-md-6 col-lg-4 prod-item" data-cat="food">
-                    <a href="../inner/products/muscovado.html" class="text-decoration-none text-dark">
-                        <div class="product-card">
-                            <div class="card-img-wrapper">
-                                <img src="https://images.unsplash.com/photo-1530982011887-3cc11cc85693?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Muscovado">
-                            </div>
-                            <div class="card-body">
-                                <span class="province-badge">Negros Occidental · Food</span>
-                                <h5 class="card-title">Muscovado Sugar</h5>
-                                <p class="card-text text-muted small">Unrefined raw cane sugar with a rich molasses depth — the lifeblood of the Negrense sugar heritage.</p>
-                                <span class="text-gold small fw-semibold">View Details <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- 4 -->
-                <div class="col-md-6 col-lg-4 prod-item" data-cat="food">
-                    <a href="../inner/products/piaya.html" class="text-decoration-none text-dark">
-                        <div class="product-card">
-                            <div class="card-img-wrapper">
-                                <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Piaya">
-                            </div>
-                            <div class="card-body">
-                                <span class="province-badge">Negros Occidental · Food</span>
-                                <h5 class="card-title">Piaya</h5>
-                                <p class="card-text text-muted small">A sweet, flaky flatbread filled with muscovado sugar — Bacolod's most beloved take-home snack.</p>
-                                <span class="text-gold small fw-semibold">View Details <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- 5 -->
-                <div class="col-md-6 col-lg-4 prod-item" data-cat="food">
-                    <a href="../inner/products/tablea.html" class="text-decoration-none text-dark">
-                        <div class="product-card">
-                            <div class="card-img-wrapper">
-                                <img src="https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Tablea">
-                            </div>
-                            <div class="card-body">
-                                <span class="province-badge">Negros Occidental · Food</span>
-                                <h5 class="card-title">Tablea de Cacao</h5>
-                                <p class="card-text text-muted small">Pure cacao tablets made from locally grown cacao — the base of the traditional Filipino chocolate drink.</p>
-                                <span class="text-gold small fw-semibold">View Details <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- 6 -->
-                <div class="col-md-6 col-lg-4 prod-item" data-cat="food">
-                    <a href="../inner/products/baye-baye.html" class="text-decoration-none text-dark">
-                        <div class="product-card">
-                            <div class="card-img-wrapper">
-                                <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Baye-Baye">
-                            </div>
-                            <div class="card-body">
-                                <span class="province-badge">Negros Oriental · Food</span>
-                                <h5 class="card-title">Baye-Baye</h5>
-                                <p class="card-text text-muted small">A traditional rice cake made from young coconut and glutinous rice — chewy, sweet, and deeply local.</p>
-                                <span class="text-gold small fw-semibold">View Details <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- 7 -->
-                <div class="col-md-6 col-lg-4 prod-item" data-cat="craft">
-                    <a href="../inner/products/masskara-mask.html" class="text-decoration-none text-dark">
-                        <div class="product-card">
-                            <div class="card-img-wrapper">
-                                <img src="https://images.unsplash.com/photo-1570913149827-d2ac84ab3f9a?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="MassKara Mask">
-                            </div>
-                            <div class="card-body">
-                                <span class="province-badge">Negros Occidental · Craft</span>
-                                <h5 class="card-title">MassKara Festival Mask</h5>
-                                <p class="card-text text-muted small">Hand-painted souvenir masks adorned with flowers and glitter — a wearable symbol of Bacolod's joy.</p>
-                                <span class="text-gold small fw-semibold">View Details <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- 8 -->
-                <div class="col-md-6 col-lg-4 prod-item" data-cat="craft">
-                    <a href="../inner/products/rattan-craft.html" class="text-decoration-none text-dark">
-                        <div class="product-card">
-                            <div class="card-img-wrapper">
-                                <img src="https://images.unsplash.com/photo-1562113530-57ba467cea38?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Rattan">
-                            </div>
-                            <div class="card-body">
-                                <span class="province-badge">Negros Island · Craft</span>
-                                <h5 class="card-title">Rattan &amp; Bamboo Crafts</h5>
-                                <p class="card-text text-muted small">Expertly woven baskets, furniture, and decor — sustainable craftsmanship rooted in Negrense tradition.</p>
-                                <span class="text-gold small fw-semibold">View Details <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- 9 -->
-                <div class="col-md-6 col-lg-4 prod-item" data-cat="food">
-                    <a href="../inner/products/sans-rival.html" class="text-decoration-none text-dark">
-                        <div class="product-card">
-                            <div class="card-img-wrapper">
-                                <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Sans Rival">
-                            </div>
-                            <div class="card-body">
-                                <span class="province-badge">Negros Oriental · Food</span>
-                                <h5 class="card-title">Sans Rival Cake</h5>
-                                <p class="card-text text-muted small">A decadent Dumaguete dessert of crispy cashew meringue layered with rich French buttercream.</p>
-                                <span class="text-gold small fw-semibold">View Details <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- 10 -->
-                <div class="col-md-6 col-lg-4 prod-item" data-cat="craft">
-                    <a href="../inner/products/native-vinegar.html" class="text-decoration-none text-dark">
-                        <div class="product-card">
-                            <div class="card-img-wrapper">
-                                <img src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&q=80&w=600" class="card-img-top" alt="Vinegar">
-                            </div>
-                            <div class="card-body">
-                                <span class="province-badge">Negros Island · Product</span>
-                                <h5 class="card-title">Native Cane Vinegar</h5>
-                                <p class="card-text text-muted small">Traditionally fermented sugarcane vinegar — a tangy, artisanal condiment used in classic Negrense cooking.</p>
-                                <span class="text-gold small fw-semibold">View Details <i class="bi bi-arrow-right"></i></span>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <footer class="footer-main">
-        <div class="container text-center py-4">
-            <h2 class="mb-3">NEGROS</h2>
-            <p class="opacity-50 small">Flavors that tell a story.</p>
-            <hr class="footer-divider w-25 mx-auto my-4">
-            <div class="d-flex gap-3 justify-content-center flex-wrap">
-                <a href="../index.html" class="btn-outline-gold">Back to Home</a>
-                <a href="festivals.html" class="btn-gold">Festivals &amp; Events</a>
-            </div>
-            <p class="small opacity-25 mt-4 mb-0">© 2026 Explore Negros. IT 210 Final Project.</p>
-        </div>
-    </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-        function filterCards(cat, btn) {
-            document.querySelectorAll('.filter-btn').forEach(b => {
-                b.style.background = 'var(--sand-beige)';
-                b.style.color = '#333';
-            });
-            btn.style.background = 'var(--kanlaon-green)';
-            btn.style.color = '#fff';
-            document.querySelectorAll('.prod-item').forEach(card => {
-                card.style.display = (cat === 'all' || card.dataset.cat === cat) ? '' : 'none';
-            });
-        }
-    </script>
 </body>
 </html>

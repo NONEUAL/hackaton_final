@@ -1,659 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Negros Oriental | Soul of the Sea</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css" rel="stylesheet">
-
-<style>
-/* ══════════════════════════════════════
-   TOKENS — Deep sea palette
-   Ink water, deep teal, bioluminescent
-   gold, dawn sand, fishing rope
-══════════════════════════════════════ */
-:root {
-  --ink:        #080e12;
-  --ink-soft:   #1a2830;
-  --deep:       #042233;
-  --deep-mid:   #0a3d56;
-  --teal:       #0e6b7c;
-  --teal-light: #1a9baf;
-  --bio:        #c8962a;       /* bioluminescent gold */
-  --bio-warm:   #e0b050;
-  --bio-pale:   #f5e4b8;
-  --seafoam:    #d4eef2;
-  --sand:       #f5f0e8;
-  --sand-dark:  #e8e0d0;
-  --rope:       #7a6040;
-  --muted:      #5a7080;
-  --white:      #fff;
-
-  --f-display: 'Playfair Display', Georgia, serif;
-  --f-serif:   'Libre Baskerville', Georgia, serif;
-  --f-sans:    'Jost', sans-serif;
-}
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: var(--f-sans);
-  background: var(--sand);
-  color: var(--ink);
-  overflow-x: hidden;
-}
-h1,h2,h3,h4,h5 { font-family: var(--f-display); }
-a { text-decoration: none; color: inherit; }
-img { display: block; max-width: 100%; }
-
-/* ── GRAIN (same as index + occidental) ── */
-body::before {
-  content: '';
-  position: fixed; inset: 0;
-  pointer-events: none; z-index: 9999;
-  opacity: 0.035;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 200px 200px;
-}
-
-/* ── FISHING NET texture ── */
-.net-bg {
-  background-color: var(--deep);
-  background-image:
-    repeating-linear-gradient(
-      0deg,
-      rgba(255,255,255,0.028) 0px, rgba(255,255,255,0.028) 1px,
-      transparent 1px, transparent 18px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      rgba(255,255,255,0.028) 0px, rgba(255,255,255,0.028) 1px,
-      transparent 1px, transparent 18px
-    ),
-    repeating-linear-gradient(
-      45deg,
-      rgba(255,255,255,0.012) 0px, rgba(255,255,255,0.012) 1px,
-      transparent 1px, transparent 18px
-    );
-}
-
-/* ── SAND GRAIN texture ── */
-.sand-grain-bg {
-  background-color: var(--sand-dark);
-  background-image:
-    repeating-linear-gradient(
-      -30deg,
-      rgba(14,107,124,0.03) 0px, rgba(14,107,124,0.03) 1px,
-      transparent 1px, transparent 22px
-    ),
-    repeating-linear-gradient(
-      60deg,
-      rgba(14,107,124,0.03) 0px, rgba(14,107,124,0.03) 1px,
-      transparent 1px, transparent 22px
-    );
-}
-
-/* ══════════════════════════════════════
-   NAVBAR
-══════════════════════════════════════ */
-.nav-ori {
-  position: fixed; top: 0; left: 0; right: 0;
-  z-index: 1000; padding: 1.2rem 0;
-  transition: background 0.5s, padding 0.4s;
-}
-.nav-ori.scrolled {
-  background: rgba(4,34,51,0.97);
-  backdrop-filter: blur(16px);
-  padding: 0.7rem 0;
-  border-bottom: 1px solid rgba(200,150,42,0.18);
-}
-.nav-brand {
-  font-family: var(--f-display);
-  font-size: 1.5rem; font-weight: 900;
-  color: var(--white); letter-spacing: 3px;
-}
-.nav-brand span { color: var(--bio-warm); }
-.nav-link-ori {
-  color: rgba(255,255,255,0.72);
-  font-size: 0.72rem; font-weight: 500;
-  letter-spacing: 2.5px; text-transform: uppercase;
-  padding: 0.3rem 0; transition: color 0.2s;
-  position: relative;
-}
-.nav-link-ori::after {
-  content: ''; position: absolute;
-  bottom: -2px; left: 0;
-  width: 0; height: 1px;
-  background: var(--bio-warm);
-  transition: width 0.3s;
-}
-.nav-link-ori:hover { color: var(--bio-warm); }
-.nav-link-ori:hover::after { width: 100%; }
-.nav-pill-ori {
-  font-family: var(--f-sans);
-  font-size: 0.68rem; font-weight: 600;
-  letter-spacing: 1.5px; text-transform: uppercase;
-  color: var(--bio-warm);
-  border: 1px solid rgba(224,176,80,0.4);
-  padding: 0.35rem 0.9rem; border-radius: 2px;
-  transition: all 0.25s;
-}
-.nav-pill-ori:hover { background: rgba(224,176,80,0.12); color: var(--bio-warm); }
-.navbar-toggler { border: 1px solid rgba(255,255,255,0.3); padding: 4px 8px; }
-.navbar-toggler-icon { filter: invert(1); }
-
-/* ══════════════════════════════════════
-   HERO — centred, full immersion
-══════════════════════════════════════ */
-.hero-ori {
-  min-height: 100vh;
-  position: relative;
-  display: flex; align-items: center; justify-content: center;
-  text-align: center;
-  overflow: hidden;
-}
-.hero-bg {
-  position: absolute; inset: 0;
-  background:
-    url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=1920')
-    no-repeat center center / cover;
-  transform-origin: center;
-  transition: transform 10s ease;
-}
-.hero-ori:hover .hero-bg { transform: scale(1.04); }
-.hero-tint {
-  position: absolute; inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(4,34,51,0.65) 0%,
-    rgba(4,34,51,0.3) 45%,
-    rgba(4,34,51,0.75) 100%
-  );
-}
-/* diagonal net overlay on hero */
-.hero-net {
-  position: absolute; inset: 0; opacity: 0.06;
-  background-image:
-    repeating-linear-gradient(
-      0deg,
-      rgba(255,255,255,0.6) 0px, rgba(255,255,255,0.6) 1px,
-      transparent 1px, transparent 22px
-    ),
-    repeating-linear-gradient(
-      90deg,
-      rgba(255,255,255,0.6) 0px, rgba(255,255,255,0.6) 1px,
-      transparent 1px, transparent 22px
-    );
-}
-.hero-vignette {
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse at center, transparent 40%, rgba(4,34,51,0.55) 100%);
-}
-.hero-fade {
-  position: absolute; bottom: 0; left: 0; right: 0;
-  height: 200px;
-  background: linear-gradient(transparent, var(--sand));
-}
-
-/* vertical province label — right side this time */
-.hero-province-label {
-  writing-mode: vertical-rl;
-  font-family: var(--f-sans);
-  font-size: 0.62rem; font-weight: 600;
-  letter-spacing: 5px; text-transform: uppercase;
-  color: rgba(224,176,80,0.6);
-  position: absolute;
-  right: 2rem; top: 50%; transform: translateY(-50%);
-  z-index: 2;
-}
-
-.hero-inner {
-  position: relative; z-index: 2;
-  max-width: 700px; padding: 0 1.5rem;
-}
-.hero-eyebrow {
-  display: inline-block;
-  font-family: var(--f-sans);
-  font-size: 0.65rem; font-weight: 600;
-  letter-spacing: 5px; text-transform: uppercase;
-  color: var(--bio-warm);
-  border: 1px solid rgba(224,176,80,0.35);
-  padding: 0.32rem 1rem; border-radius: 2px;
-  margin-bottom: 1.5rem;
-  background: rgba(224,176,80,0.07);
-  backdrop-filter: blur(6px);
-}
-.hero-h1 {
-  font-size: clamp(3.5rem, 9vw, 7.5rem);
-  font-weight: 900; font-style: italic;
-  line-height: 0.88; color: var(--white);
-  margin-bottom: 1.5rem; letter-spacing: -2px;
-}
-.hero-h1 span { color: var(--bio-warm); font-style: normal; }
-.hero-sub {
-  font-family: var(--f-serif); font-style: italic;
-  font-size: 1rem; color: rgba(255,255,255,0.65);
-  line-height: 1.8; max-width: 500px;
-  margin: 0 auto 2.5rem; font-weight: 400;
-}
-.hero-scroll {
-  display: flex; flex-direction: column;
-  align-items: center; gap: 6px;
-  color: rgba(255,255,255,0.32);
-  font-size: 0.58rem; letter-spacing: 3px; text-transform: uppercase;
-  position: absolute; bottom: 2.8rem; left: 50%;
-  transform: translateX(-50%);
-  animation: bob 2.8s ease-in-out infinite;
-}
-.hero-scroll-line {
-  width: 1px; height: 44px;
-  background: linear-gradient(to bottom, transparent, rgba(224,176,80,0.65));
-}
-@keyframes bob {
-  0%,100% { transform: translateX(-50%) translateY(0); }
-  50%      { transform: translateX(-50%) translateY(7px); }
-}
-
-/* ══════════════════════════════════════
-   SHARED UTILITIES
-══════════════════════════════════════ */
-.section-pad { padding: 96px 0; }
-.eyebrow {
-  font-family: var(--f-sans);
-  font-size: 0.63rem; font-weight: 600;
-  letter-spacing: 5px; text-transform: uppercase;
-  color: var(--teal); display: block; margin-bottom: 0.75rem;
-}
-.accent-rule {
-  width: 48px; height: 2px; border: none;
-  background: linear-gradient(to right, var(--teal), transparent);
-  margin-bottom: 1.25rem;
-}
-.section-h2 {
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 700; line-height: 1.05;
-}
-.section-h2 em { color: var(--teal); }
-
-/* buttons */
-.btn-sea {
-  background: var(--teal); color: var(--white);
-  padding: 13px 32px; border-radius: 2px; border: none;
-  font-family: var(--f-sans); font-size: 0.72rem;
-  font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase;
-  display: inline-block; transition: all 0.3s; cursor: pointer;
-}
-.btn-sea:hover { background: #0a5060; color: var(--white); transform: translateY(-2px); box-shadow: 0 10px 28px rgba(14,107,124,0.38); }
-
-.btn-ghost-light {
-  background: transparent; color: var(--white);
-  padding: 12px 30px; border-radius: 2px;
-  border: 1.5px solid rgba(255,255,255,0.4);
-  font-family: var(--f-sans); font-size: 0.72rem;
-  font-weight: 500; letter-spacing: 2.5px; text-transform: uppercase;
-  display: inline-block; transition: all 0.3s;
-}
-.btn-ghost-light:hover { border-color: var(--white); background: rgba(255,255,255,0.1); color: var(--white); }
-
-.btn-ghost-dark {
-  background: transparent; color: var(--deep-mid);
-  padding: 12px 30px; border-radius: 2px;
-  border: 1.5px solid var(--deep-mid);
-  font-family: var(--f-sans); font-size: 0.72rem;
-  font-weight: 600; letter-spacing: 2px; text-transform: uppercase;
-  display: inline-block; transition: all 0.3s;
-}
-.btn-ghost-dark:hover { background: var(--deep-mid); color: var(--white); }
-
-/* ══════════════════════════════════════
-   APO ISLAND — bubble composition
-══════════════════════════════════════ */
-.apo-section { background: var(--white); }
-
-.bubble-wrap { position: relative; display: flex; justify-content: center; padding: 2rem 0 3rem; }
-.bubble-main {
-  width: 340px; height: 340px; object-fit: cover;
-  border-radius: 50%;
-  border: 8px solid var(--white);
-  box-shadow: 0 20px 55px rgba(4,34,51,0.22);
-  transition: transform 0.55s ease;
-}
-.bubble-main:hover { transform: scale(1.04) rotate(2deg); }
-.bubble-small {
-  position: absolute;
-  bottom: 0; right: calc(50% - 200px);
-  width: 170px; height: 170px; object-fit: cover;
-  border-radius: 50%;
-  border: 5px solid var(--white);
-  box-shadow: 0 10px 30px rgba(4,34,51,0.18);
-}
-.turtle-fact {
-  background: linear-gradient(135deg, var(--seafoam), #e8f8fc);
-  border-radius: 3px; padding: 1.2rem 1.5rem; margin-bottom: 0.85rem;
-}
-.turtle-fact h6 {
-  font-family: var(--f-sans); font-size: 0.72rem;
-  font-weight: 700; letter-spacing: 2px; text-transform: uppercase;
-  color: var(--deep-mid); margin-bottom: 0.35rem;
-}
-.turtle-fact p {
-  font-size: 0.86rem; color: var(--teal);
-  line-height: 1.65; margin: 0; font-family: var(--f-serif);
-}
-.body-text {
-  font-family: var(--f-serif); font-size: 0.93rem;
-  color: var(--muted); line-height: 1.9; margin-bottom: 1rem;
-}
-.sea-pullquote {
-  font-family: var(--f-serif); font-style: italic;
-  font-size: 1.1rem; color: var(--ink-soft);
-  border-left: 3px solid var(--teal);
-  padding: 0.75rem 1.5rem; margin: 1.75rem 0;
-  line-height: 1.75;
-  background: linear-gradient(to right, rgba(14,107,124,0.06), transparent);
-  border-radius: 0 2px 2px 0;
-}
-
-/* ══════════════════════════════════════
-   DUMAGUETE — card grid
-══════════════════════════════════════ */
-.dumaguete-section { background: var(--sand); }
-
-.duma-card {
-  background: var(--white); border-radius: 3px;
-  padding: 1.75rem;
-  border: 1px solid rgba(4,34,51,0.07);
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
-  height: 100%;
-}
-.duma-card:hover { transform: translateY(-8px); box-shadow: 0 20px 45px rgba(4,34,51,0.1); }
-.duma-icon {
-  width: 46px; height: 46px;
-  background: var(--seafoam); border-radius: 2px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.3rem; margin-bottom: 1rem;
-}
-.duma-card h5 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.45rem; }
-.duma-card p {
-  font-size: 0.86rem; color: var(--muted);
-  line-height: 1.7; margin: 0; font-family: var(--f-serif);
-}
-
-/* ══════════════════════════════════════
-   RIZAL BOULEVARD — image mosaic
-══════════════════════════════════════ */
-.boulevard-section { background: var(--white); }
-
-.mosaic-wrap .row > div:nth-child(1) img { margin-top: 40px; }
-
-/* ══════════════════════════════════════
-   MANJUYOD — wide feature
-══════════════════════════════════════ */
-.manjuyod-section { background: var(--sand-dark); }
-
-.sandbar-img {
-  width: 100%; height: 480px; object-fit: cover;
-  border-radius: 3px;
-  box-shadow: 0 20px 50px rgba(4,34,51,0.18);
-}
-.info-card {
-  background: var(--white); border-radius: 3px;
-  padding: 1.4rem 1.6rem;
-  border: 1px solid rgba(4,34,51,0.07);
-  margin-bottom: 0.75rem;
-}
-.info-card h6 {
-  font-family: var(--f-sans); font-size: 0.65rem;
-  font-weight: 700; letter-spacing: 3px; text-transform: uppercase;
-  color: var(--teal); margin-bottom: 0.4rem;
-}
-.info-card p {
-  font-size: 0.87rem; color: var(--muted);
-  line-height: 1.7; margin: 0; font-family: var(--f-serif);
-}
-
-/* ══════════════════════════════════════
-   WHALE / STATS — deep net section
-══════════════════════════════════════ */
-.whale-section { background: var(--deep); color: var(--white); }
-.whale-section.net-bg {
-  background-image:
-    repeating-linear-gradient(0deg,
-      rgba(255,255,255,0.022) 0px, rgba(255,255,255,0.022) 1px,
-      transparent 1px, transparent 18px),
-    repeating-linear-gradient(90deg,
-      rgba(255,255,255,0.022) 0px, rgba(255,255,255,0.022) 1px,
-      transparent 1px, transparent 18px),
-    repeating-linear-gradient(45deg,
-      rgba(255,255,255,0.01) 0px, rgba(255,255,255,0.01) 1px,
-      transparent 1px, transparent 18px),
-    linear-gradient(160deg, var(--deep) 0%, #020f1a 100%);
-}
-.whale-stat { text-align: center; padding: 2.5rem 1rem; }
-.whale-num {
-  font-family: var(--f-display);
-  font-size: 3.5rem; font-weight: 700;
-  color: var(--bio-warm); line-height: 1;
-  margin-bottom: 0.5rem;
-}
-.whale-lbl {
-  font-size: 0.82rem; color: rgba(255,255,255,0.45);
-  line-height: 1.6; font-family: var(--f-sans);
-}
-.whale-divider { width: 1px; background: rgba(255,255,255,0.08); }
-.whale-img {
-  width: 100%; height: 360px; object-fit: cover;
-  border-radius: 3px;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.35);
-}
-
-/* ══════════════════════════════════════
-   WATERFALLS — dark teal section
-══════════════════════════════════════ */
-.waterfalls-section {
-  background: var(--teal);
-  position: relative; overflow: hidden;
-}
-.waterfalls-section::before {
-  content: ''; position: absolute; inset: 0; opacity: 0.05;
-  background-image:
-    repeating-linear-gradient(-45deg,
-      rgba(255,255,255,0.5) 0px, rgba(255,255,255,0.5) 1px,
-      transparent 1px, transparent 12px);
-}
-.fall-card {
-  border-radius: 3px; overflow: hidden;
-  position: relative; height: 420px; cursor: pointer;
-}
-.fall-card img {
-  width: 100%; height: 100%; object-fit: cover;
-  transition: transform 0.6s ease;
-}
-.fall-card:hover img { transform: scale(1.07); }
-.fall-shade {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(4,34,51,0.88) 0%, rgba(4,34,51,0.05) 55%);
-}
-.fall-label {
-  position: absolute; bottom: 1.75rem; left: 1.75rem; color: var(--white);
-}
-.fall-label h4 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.3rem; }
-.fall-label p { font-size: 0.82rem; opacity: 0.6; margin: 0; font-family: var(--f-serif); font-style: italic; }
-.twin-lakes-banner {
-  background: rgba(255,255,255,0.08);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 3px; padding: 2rem 2.5rem;
-}
-.twin-lakes-banner h4 { font-size: 1.6rem; color: var(--white); margin-bottom: 0.5rem; }
-.twin-lakes-banner p { font-size: 0.9rem; color: rgba(255,255,255,0.55); line-height: 1.75; margin: 0; font-family: var(--f-serif); }
-
-/* ══════════════════════════════════════
-   SILLIMAN
-══════════════════════════════════════ */
-.silliman-section { background: var(--sand); }
-
-.silliman-img {
-  width: 100%; height: 500px; object-fit: cover;
-  border-radius: 3px;
-  box-shadow: 0 20px 50px rgba(4,34,51,0.14);
-}
-.silliman-badge {
-  display: inline-block;
-  background: var(--seafoam); color: var(--deep-mid);
-  font-family: var(--f-sans); font-size: 0.75rem; font-weight: 700;
-  padding: 0.6rem 1rem; border-radius: 2px; text-align: center;
-}
-.silliman-badge .big {
-  font-family: var(--f-display); font-size: 1.6rem;
-  font-weight: 700; color: var(--deep); display: block; line-height: 1;
-}
-
-/* ══════════════════════════════════════
-   FOOD
-══════════════════════════════════════ */
-.food-section { background: var(--sand-dark); }
-
-.sea-food-card {
-  background: var(--white); border-radius: 3px;
-  overflow: hidden;
-  border: 1px solid rgba(4,34,51,0.07);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-.sea-food-card:hover { transform: translateY(-10px); box-shadow: 0 22px 50px rgba(4,34,51,0.12); }
-.sea-food-card img { width: 100%; height: 240px; object-fit: cover; }
-.sea-food-body { padding: 1.5rem; }
-.sea-food-body h4 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.4rem; }
-.sea-food-body p {
-  font-size: 0.87rem; color: var(--muted);
-  line-height: 1.7; margin: 0; font-family: var(--f-serif);
-}
-
-/* ══════════════════════════════════════
-   BRIDGE FOOTER
-══════════════════════════════════════ */
-.bridge {
-  background: var(--ink);
-  padding: 96px 0 42px;
-  position: relative; overflow: hidden;
-}
-.bridge::before {
-  content: ''; position: absolute; inset: 0; opacity: 0.05;
-  background-image:
-    repeating-linear-gradient(0deg,
-      rgba(255,255,255,0.5) 0px, rgba(255,255,255,0.5) 1px,
-      transparent 1px, transparent 18px),
-    repeating-linear-gradient(90deg,
-      rgba(255,255,255,0.5) 0px, rgba(255,255,255,0.5) 1px,
-      transparent 1px, transparent 18px),
-    repeating-linear-gradient(45deg,
-      rgba(255,255,255,0.3) 0px, rgba(255,255,255,0.3) 1px,
-      transparent 1px, transparent 18px);
-}
-.bridge-brand {
-  font-family: var(--f-display); font-size: 2.2rem;
-  font-weight: 900; color: var(--white); letter-spacing: 2px;
-}
-.bridge-brand span { color: var(--bio-warm); }
-.footer-label {
-  font-size: 0.62rem; font-weight: 700;
-  letter-spacing: 4px; text-transform: uppercase;
-  color: var(--teal-light); margin-bottom: 1rem; display: block;
-}
-.footer-link {
-  display: block; color: rgba(255,255,255,0.42);
-  font-size: 0.85rem; margin-bottom: 0.5rem;
-  transition: color 0.2s; font-family: var(--f-sans);
-}
-.footer-link:hover { color: var(--bio-warm); }
-.footer-divider { border-color: rgba(255,255,255,0.07); margin: 2.5rem 0 1.5rem; }
-
-/* ══════════════════════════════════════
-   ANIMATIONS
-══════════════════════════════════════ */
-.reveal {
-  opacity: 0; transform: translateY(26px);
-  transition: opacity 0.65s ease, transform 0.65s ease;
-}
-.reveal.visible { opacity: 1; transform: none; }
-.reveal-d1 { transition-delay: 0.12s; }
-.reveal-d2 { transition-delay: 0.24s; }
-.reveal-d3 { transition-delay: 0.36s; }
-
-/* ══════════════════════════════════════
-   RESPONSIVE
-══════════════════════════════════════ */
-@media (max-width: 768px) {
-  .bubble-main { width: 260px; height: 260px; }
-  .bubble-small { display: none; }
-  .hero-province-label { display: none; }
-  .sandbar-img { height: 280px; }
-  .whale-img { height: 240px; }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Negros Oriental | Soul of the Sea</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
 
-<!-- ── NAVBAR ── -->
-<nav class="nav-ori" id="mainNav">
-  <div class="container d-flex align-items-center justify-content-between">
-    <a class="nav-brand" href="index.html">NEG<span>ROS</span></a>
-    <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse d-lg-flex justify-content-end" id="navMenu">
-      <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center gap-3 gap-lg-4 mt-3 mt-lg-0">
-        <a class="nav-link-ori" href="index.html">Home</a>
-        <a class="nav-link-ori" href="occidental.html">← The North</a>
-        <a class="nav-link-ori" style="color:var(--bio-warm);" href="oriental.html">Oriental</a>
-        <a class="nav-pill-ori" href="occidental.html">← Explore Occidental</a>
-      </div>
-    </div>
-  </div>
-</nav>
+<body class="theme-oriental" data-page="oriental" data-theme="oriental" data-root="">
+
 
 <!-- ── HERO ── -->
 <section class="hero-ori" id="top">
-  <div class="hero-bg"></div>
-  <div class="hero-tint"></div>
+  <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=1920');"></div>
+  <div class="hero-tint" style="background:linear-gradient(to bottom,rgba(4,34,51,0.65) 0%,rgba(4,34,51,0.3) 45%,rgba(4,34,51,0.75) 100%);"></div>
   <div class="hero-net"></div>
   <div class="hero-vignette"></div>
   <div class="hero-fade"></div>
   <div class="hero-province-label">Negros Oriental</div>
+
   <div class="hero-inner reveal">
     <div class="hero-eyebrow">Welcome to the South</div>
     <h1 class="hero-h1">Soul of<br><span>the Sea.</span></h1>
     <p class="hero-sub">A place where time slows down, the people are gentle, and the ocean tells its oldest stories.</p>
     <div class="d-flex gap-3 justify-content-center flex-wrap">
-      <a href="#apo" class="btn-sea">Apo Island</a>
-      <a href="#manjuyod" class="btn-ghost-light">Manjuyod Sandbar</a>
+      <a href="#apo"      class="btn-gold">Apo Island</a>
+      <a href="#manjuyod" class="btn-outline-light-custom">Manjuyod Sandbar</a>
     </div>
   </div>
+
   <div class="hero-scroll">
     <div class="hero-scroll-line"></div>
     <span>Scroll</span>
   </div>
 </section>
 
+
 <!-- ── APO ISLAND ── -->
-<section id="apo" class="apo-section section-pad">
+<section id="apo" class="section-pad" style="background:#fff;">
   <div class="container">
     <div class="row align-items-center g-5">
+
       <div class="col-lg-5 reveal">
         <div class="bubble-wrap">
           <img class="bubble-main" src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&q=80&w=700" alt="Sea turtle Apo Island">
           <img class="bubble-small" src="https://images.unsplash.com/photo-1582967788606-a171c1080cb0?auto=format&fit=crop&q=80&w=400" alt="Coral reef">
         </div>
       </div>
+
       <div class="col-lg-6 offset-lg-1 reveal reveal-d2">
         <hr class="accent-rule">
         <span class="eyebrow">Dauin, Negros Oriental</span>
         <h2 class="section-h2" style="margin-bottom:0.85rem;">Apo Island<br><em>Marine Sanctuary</em></h2>
-        <p class="body-text">One of the world's most celebrated marine protected areas — home to over 650 species of fish and 400 species of coral. The sea turtles that have made this island their home for generations are near-guaranteed on every dive.</p>
-        <div class="sea-pullquote">"In 1982, local fishermen gave up fishing rights to protect these waters. That act of faith turned Apo Island into a global model for marine conservation."</div>
+        <p class="body-serif">One of the world's most celebrated marine protected areas — home to over 650 species of fish and 400 species of coral. The sea turtles that have made this island their home for generations are near-guaranteed on every dive.</p>
+        <blockquote class="sea-pullquote">"In 1982, local fishermen gave up fishing rights to protect these waters. That act of faith turned Apo Island into a global model for marine conservation."</blockquote>
         <div class="row g-3 mb-3">
           <div class="col-md-6">
             <div class="turtle-fact">
@@ -668,21 +71,25 @@ body::before {
             </div>
           </div>
         </div>
-        <a href="pages/where-to-go.html" class="btn-sea">View All Destinations</a>
+        <a href="pages/where-to-go.html" class="btn-gold">View All Destinations</a>
       </div>
+
     </div>
   </div>
 </section>
 
+
 <!-- ── DUMAGUETE ── -->
-<section class="dumaguete-section section-pad">
+<section class="section-pad" style="background:var(--bg);">
   <div class="container">
+
     <div class="text-center mb-5 reveal">
       <hr class="accent-rule mx-auto">
       <span class="eyebrow">Dumaguete City</span>
       <h2 class="section-h2">City of <em>Gentle People</em></h2>
-      <p style="color:var(--muted);max-width:520px;margin:0.75rem auto 0;font-family:var(--f-serif);font-style:italic;font-size:0.93rem;line-height:1.7;">A university city with a distinctly calm, intellectual, and unhurried character — the capital of Negros Oriental.</p>
+      <p class="body-serif text-center" style="font-style:italic;max-width:520px;margin:0.75rem auto 0;">A university city with a distinctly calm, intellectual, and unhurried character — the capital of Negros Oriental.</p>
     </div>
+
     <div class="row g-4">
       <div class="col-md-3 reveal">
         <div class="duma-card">
@@ -713,14 +120,17 @@ body::before {
         </div>
       </div>
     </div>
+
   </div>
 </section>
 
+
 <!-- ── RIZAL BOULEVARD ── -->
-<section class="boulevard-section section-pad">
+<section class="section-pad" style="background:#fff;">
   <div class="container">
     <div class="row align-items-center g-5">
-      <div class="col-lg-6 reveal mosaic-wrap">
+
+      <div class="col-lg-6 reveal">
         <div class="row g-3">
           <div class="col-6">
             <img src="https://images.unsplash.com/photo-1516690561799-46d8f74f9abf?auto=format&fit=crop&q=80&w=400"
@@ -736,27 +146,32 @@ body::before {
           </div>
         </div>
       </div>
+
       <div class="col-lg-5 offset-lg-1 reveal reveal-d2">
         <hr class="accent-rule">
         <span class="eyebrow">The Heart of the City</span>
         <h2 class="section-h2" style="margin-bottom:1.25rem;">Rizal <em>Boulevard</em></h2>
-        <p class="body-text">The soul of Dumaguete is a 1.5-kilometre seafront promenade lined with acacia trees, pensiones, and open-air restaurants. At any hour, the Boulevard is alive — joggers at dawn, students with laptops by midday, families at sunset.</p>
-        <p class="body-text">The view across the narrow Tañon Strait frames the silhouette of Cebu Island in the distance. On clear evenings, the sky turns amber and violet — and the taho vendors make their rounds one final time.</p>
-        <div class="sea-pullquote">"In Dumaguete, time does not move faster than a bicycle."</div>
+        <p class="body-serif">The soul of Dumaguete is a 1.5-kilometre seafront promenade lined with acacia trees, pensiones, and open-air restaurants. At any hour, the Boulevard is alive — joggers at dawn, students with laptops by midday, families at sunset.</p>
+        <p class="body-serif">The view across the narrow Tañon Strait frames the silhouette of Cebu Island in the distance. On clear evenings, the sky turns amber and violet — and the taho vendors make their rounds one final time.</p>
+        <blockquote class="sea-pullquote">"In Dumaguete, time does not move faster than a bicycle."</blockquote>
       </div>
+
     </div>
   </div>
 </section>
 
+
 <!-- ── MANJUYOD ── -->
-<section id="manjuyod" class="manjuyod-section section-pad">
+<section id="manjuyod" class="section-pad sand-grain-bg">
   <div class="container">
+
     <div class="text-center mb-5 reveal">
       <hr class="accent-rule mx-auto">
       <span class="eyebrow">Manjuyod, Negros Oriental</span>
       <h2 class="section-h2">Manjuyod <em>Sandbar</em></h2>
-      <p style="color:var(--muted);max-width:500px;margin:0.75rem auto 0;font-family:var(--f-serif);font-style:italic;font-size:0.93rem;line-height:1.7;">The Maldives of the Philippines — a 7-kilometre stretch of white sand that emerges from the sea at low tide.</p>
+      <p class="body-serif text-center" style="font-style:italic;max-width:500px;margin:0.75rem auto 0;">The Maldives of the Philippines — a 7-kilometre stretch of white sand that emerges from the sea at low tide.</p>
     </div>
+
     <div class="row g-4 align-items-start">
       <div class="col-lg-8 reveal">
         <img class="sandbar-img" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&q=80&w=1200" alt="Manjuyod Sandbar">
@@ -768,50 +183,53 @@ body::before {
         <div class="info-card"><h6>Dolphins on the Way</h6><p>The boat ride from Bais City passes a dolphin corridor — spinner and spotted dolphins frequently accompany the bangka.</p></div>
       </div>
     </div>
+
   </div>
 </section>
+
 
 <!-- ── WHALE & DOLPHIN ── -->
-<section class="whale-section net-bg section-pad">
+<section class="section-pad net-bg">
   <div class="container">
+
     <div class="text-center mb-5 reveal">
-      <hr class="accent-rule mx-auto" style="background:linear-gradient(to right, transparent, var(--teal-light), transparent);width:80px;">
-      <span class="eyebrow" style="color:var(--teal-light);">Bais City, Negros Oriental</span>
-      <h2 class="section-h2" style="color:var(--white);">Whale &amp; Dolphin <em style="color:var(--bio-warm);">Watching</em></h2>
-      <p style="color:rgba(255,255,255,0.45);max-width:500px;margin:0.75rem auto 0;font-family:var(--f-serif);font-style:italic;font-size:0.93rem;line-height:1.7;">The Tañon Strait is one of the longest and most biodiverse marine corridors in Southeast Asia.</p>
+      <hr class="accent-rule mx-auto" style="background:linear-gradient(to right,transparent,var(--accent-warm),transparent);width:80px;">
+      <span class="eyebrow" style="color:var(--accent-warm);">Bais City, Negros Oriental</span>
+      <h2 class="section-h2" style="color:#fff;">Whale &amp; Dolphin <em style="color:var(--accent-warm);">Watching</em></h2>
+      <p class="body-serif text-center" style="color:rgba(255,255,255,0.45);font-style:italic;max-width:500px;margin:0.75rem auto 0;">The Tañon Strait is one of the longest and most biodiverse marine corridors in Southeast Asia.</p>
     </div>
+
     <div class="row g-4 mb-5 align-items-center">
       <div class="col-md-8 reveal">
-        <img class="whale-img" src="https://images.unsplash.com/photo-1568430462989-44163eb1752f?auto=format&fit=crop&q=80&w=1000" alt="Dolphin watching">
+        <img class="whale-img" src="https://images.unsplash.com/photo-1568430462989-44163eb1752f?auto=format&fit=crop&q=80&w=1000"
+          style="width:100%;height:360px;object-fit:cover;border-radius:3px;box-shadow:0 20px 50px rgba(0,0,0,0.35);"
+          alt="Dolphin watching">
       </div>
       <div class="col-md-4 reveal reveal-d2">
-        <div class="whale-stat">
-          <div class="whale-num">13</div>
-          <div class="whale-lbl">species of cetaceans recorded in the Tañon Strait</div>
-        </div>
+        <div class="whale-stat"><div class="whale-num">13</div><div class="whale-lbl">species of cetaceans recorded in the Tañon Strait</div></div>
         <div style="height:1px;background:rgba(255,255,255,0.08);margin:0 1rem;"></div>
-        <div class="whale-stat">
-          <div class="whale-num" style="font-size:2rem;">Spinner</div>
-          <div class="whale-lbl">dolphins, most commonly sighted, live here year-round</div>
-        </div>
+        <div class="whale-stat"><div class="whale-num" style="font-size:2rem;">Spinner</div><div class="whale-lbl">dolphins, most commonly sighted, live here year-round</div></div>
         <div style="height:1px;background:rgba(255,255,255,0.08);margin:0 1rem;"></div>
-        <div class="whale-stat">
-          <div class="whale-num">6am</div>
-          <div class="whale-lbl">best departure — calmer seas, highest sighting probability</div>
-        </div>
+        <div class="whale-stat"><div class="whale-num">6am</div><div class="whale-lbl">best departure — calmer seas, highest sighting probability</div></div>
       </div>
     </div>
+
   </div>
 </section>
 
+
 <!-- ── WATERFALLS ── -->
-<section class="waterfalls-section section-pad">
-  <div class="container" style="position:relative;z-index:1;">
+<section class="section-pad" style="background:var(--accent);position:relative;overflow:hidden;">
+  <!-- Diagonal hatch overlay -->
+  <div style="position:absolute;inset:0;opacity:0.05;pointer-events:none;background-image:repeating-linear-gradient(-45deg,rgba(255,255,255,0.5) 0px,rgba(255,255,255,0.5) 1px,transparent 1px,transparent 12px);"></div>
+  <div class="container position-relative" style="z-index:1;">
+
     <div class="text-center mb-5 reveal">
-      <hr class="accent-rule mx-auto" style="background:linear-gradient(to right, transparent, rgba(255,255,255,0.5), transparent);width:80px;">
+      <hr class="accent-rule mx-auto" style="background:linear-gradient(to right,transparent,rgba(255,255,255,0.5),transparent);width:80px;">
       <span class="eyebrow" style="color:rgba(255,255,255,0.6);">Into the Interior</span>
-      <h2 class="section-h2" style="color:var(--white);">Forest <em style="color:var(--bio-pale);">Waterfalls</em></h2>
+      <h2 class="section-h2" style="color:#fff;">Forest <em style="color:var(--accent-pale);">Waterfalls</em></h2>
     </div>
+
     <div class="row g-4 mb-4">
       <div class="col-md-6 reveal">
         <div class="fall-card">
@@ -834,6 +252,7 @@ body::before {
         </div>
       </div>
     </div>
+
     <div class="reveal">
       <div class="twin-lakes-banner">
         <div class="row align-items-center">
@@ -842,50 +261,54 @@ body::before {
             <p>Two volcanic crater lakes — Balinsasayao and Danao — sit side by side in a protected natural park near Sibulan. Kayaks, forest trails, and morning mist over still water make this one of the most peaceful places in Oriental.</p>
           </div>
           <div class="col-md-4 text-md-end mt-3 mt-md-0">
-            <a href="pages/where-to-go.html" class="btn-ghost-light">Plan a Visit</a>
+            <a href="pages/where-to-go.html" class="btn-outline-light-custom">Plan a Visit</a>
           </div>
         </div>
       </div>
     </div>
+
   </div>
 </section>
 
-<!-- ── SILLIMAN ── -->
-<section class="silliman-section section-pad">
+
+<!-- ── SILLIMAN UNIVERSITY ── -->
+<section class="section-pad" style="background:var(--bg);">
   <div class="container">
     <div class="row align-items-center g-5">
+
       <div class="col-lg-5 reveal">
         <hr class="accent-rule">
         <span class="eyebrow">Est. 1901 · Dumaguete City</span>
         <h2 class="section-h2" style="margin-bottom:1.25rem;">Silliman <em>University</em></h2>
-        <p class="body-text">Founded by American Presbyterian missionaries, Silliman is the first American-founded university in Asia and the Philippines' first private university. More than a century later, its tree-canopied campus remains the intellectual and cultural nucleus of Dumaguete.</p>
-        <p class="body-text">The campus is worth visiting on its own — the Anthropology Museum, the landmark church, and the marine laboratory (one of the oldest in Southeast Asia) are all open to the public.</p>
+        <p class="body-serif">Founded by American Presbyterian missionaries, Silliman is the first American-founded university in Asia and the Philippines' first private university. More than a century later, its tree-canopied campus remains the intellectual and cultural nucleus of Dumaguete.</p>
+        <p class="body-serif">The campus is worth visiting on its own — the Anthropology Museum, the landmark church, and the marine laboratory (one of the oldest in Southeast Asia) are all open to the public.</p>
         <div class="d-flex gap-3 flex-wrap mt-4">
-          <div class="silliman-badge">
-            <span class="big">1901</span>
-            Year founded
-          </div>
-          <div class="silliman-badge">
-            <span class="big">1st</span>
-            American-founded<br>university in Asia
-          </div>
+          <div class="silliman-badge"><span class="big">1901</span>Year founded</div>
+          <div class="silliman-badge"><span class="big">1st</span>American-founded<br>university in Asia</div>
         </div>
       </div>
+
       <div class="col-lg-6 offset-lg-1 reveal reveal-d2">
-        <img class="silliman-img" src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&q=80&w=900" alt="University campus">
+        <img src="https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&q=80&w=900"
+          style="width:100%;height:500px;object-fit:cover;border-radius:3px;box-shadow:0 20px 50px rgba(4,34,51,0.14);"
+          alt="University campus">
       </div>
+
     </div>
   </div>
 </section>
 
+
 <!-- ── FOOD ── -->
-<section class="food-section section-pad">
+<section class="section-pad sand-grain-bg">
   <div class="container">
+
     <div class="text-center mb-5 reveal">
       <hr class="accent-rule mx-auto">
       <span class="eyebrow">The Taste of Oriental</span>
       <h2 class="section-h2">What to Eat <em>in the South</em></h2>
     </div>
+
     <div class="row g-4">
       <div class="col-md-4 reveal">
         <div class="sea-food-card">
@@ -915,55 +338,15 @@ body::before {
         </div>
       </div>
     </div>
+
   </div>
 </section>
 
-<!-- ── BRIDGE FOOTER ── -->
-<footer class="bridge" id="footer">
-  <div class="container" style="position:relative;z-index:1;">
-    <div class="row g-5 mb-4">
-      <div class="col-lg-4">
-        <div class="bridge-brand">NEG<span>ROS</span></div>
-        <p style="font-family:var(--f-serif);font-style:italic;font-size:0.85rem;color:rgba(255,255,255,0.35);margin-top:0.5rem;">One island. Two spirits.<br>Infinite memories.</p>
-      </div>
-      <div class="col-lg-2 col-6">
-        <span class="footer-label">Explore</span>
-        <a href="index.html#destinations" class="footer-link">Where to Go</a>
-        <a href="index.html#products" class="footer-link">What to Buy</a>
-        <a href="index.html#festivals" class="footer-link">Festivals</a>
-      </div>
-      <div class="col-lg-2 col-6">
-        <span class="footer-label">Region</span>
-        <a href="occidental.html" class="footer-link">Negros Occidental</a>
-        <a href="oriental.html" class="footer-link" style="color:var(--teal-light);">Negros Oriental</a>
-      </div>
-      <div class="col-lg-4">
-        <span class="footer-label">Explore the North</span>
-        <p style="font-family:var(--f-serif);font-style:italic;font-size:0.88rem;color:rgba(255,255,255,0.45);margin-bottom:1.25rem;line-height:1.65;">You've seen the sea. Now discover the haciendas, the sugarcane fields, and the city that smiles through everything.</p>
-        <a href="occidental.html" class="btn-sea">Explore Negros Occidental →</a>
-      </div>
-    </div>
-    <hr class="footer-divider">
-    <p style="font-size:0.76rem;opacity:0.2;text-align:center;">© 2026 Explore Negros. IT 210 Final Project. All Rights Reserved.</p>
-  </div>
-</footer>
 
+<!-- ── SCRIPTS ── -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script>
-const nav = document.getElementById('mainNav');
-window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 60));
+<script src="js/components.js"></script>
+<script src="js/main.js"></script>
 
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-}, { threshold: 0.08 });
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const t = document.querySelector(a.getAttribute('href'));
-    if (t) { e.preventDefault(); t.scrollIntoView({ behavior:'smooth', block:'start' }); }
-  });
-});
-</script>
 </body>
 </html>

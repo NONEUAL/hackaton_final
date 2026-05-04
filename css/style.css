@@ -1,0 +1,1677 @@
+/* ============================================================
+   NEGROS ISLAND TOURISM — Unified Stylesheet
+   styles.css · Used by: index.html, occidental.html,
+   oriental.html, pages/where-to-go.html,
+   pages/what-to-buy.html, pages/festivals.html
+   ============================================================ */
+
+
+/* ────────────────────────────────────────────────────────────
+   1. DESIGN TOKENS
+   Base palette (index / default). Page themes override via
+   body class: .theme-occidental  .theme-oriental
+   ──────────────────────────────────────────────────────────── */
+:root {
+  /* ── Core ink ── */
+  --ink:          #1c1710;
+  --ink-soft:     #3a2e1a;
+
+  /* ── Accent (gold / warm amber) ── */
+  --accent:       #c8722a;
+  --accent-warm:  #e8933e;
+  --accent-pale:  #f5ddb8;
+
+  /* ── Surface ── */
+  --bg:           #faf5ec;
+  --bg-alt:       #f0e8d8;
+  --parchment:    #e8dcc8;
+
+  /* ── Brand dark ── */
+  --brand:        #1a3d2b;
+  --brand-mid:    #2d5a3d;
+
+  /* ── Text muted ── */
+  --muted:        #7a6e5e;
+
+  /* ── Typography ── */
+  --f-display:    'Playfair Display', Georgia, serif;
+  --f-serif:      'Libre Baskerville', Georgia, serif;
+  --f-sans:       'Jost', sans-serif;
+
+  /* ── Motion ── */
+  --ease-out:     cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --transition:   0.35s var(--ease-out);
+}
+
+/* Negros Occidental theme — hacienda earth + cane gold */
+.theme-occidental {
+  --accent:       #c87c2a;
+  --accent-warm:  #e49a40;
+  --accent-pale:  #f5ddb0;
+  --bg:           #faf3e6;
+  --bg-alt:       #ede0c8;
+  --parchment:    #d8ccb4;
+  --brand:        #1e3d20;
+  --brand-mid:    #2e5c30;
+  --muted:        #7a6040;
+  --ink:          #1a1208;
+  --ink-soft:     #3a2e1a;
+}
+
+/* Negros Oriental theme — deep sea + bioluminescent gold */
+.theme-oriental {
+  --accent:       #0e6b7c;
+  --accent-warm:  #1a9baf;
+  --accent-pale:  #d4eef2;
+  --bg:           #f5f0e8;
+  --bg-alt:       #e8e0d0;
+  --parchment:    #d4eef2;
+  --brand:        #042233;
+  --brand-mid:    #0a3d56;
+  --muted:        #5a7080;
+  --ink:          #080e12;
+  --ink-soft:     #1a2830;
+}
+
+/* Fallback for sub-pages that use the older CSS variable names */
+:root {
+  --gold:             var(--accent);
+  --gold-warm:        var(--accent-warm);
+  --gold-pale:        var(--accent-pale);
+  --cream:            var(--bg);
+  --cream-dark:       var(--bg-alt);
+  --green-deep:       var(--brand);
+  --green-mid:        var(--brand-mid);
+  --kanlaon-green:    var(--brand);
+  --sand-beige:       var(--bg-alt);
+}
+
+
+/* ────────────────────────────────────────────────────────────
+   2. RESET & BASE
+   ──────────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--f-sans);
+  background: var(--bg);
+  color: var(--ink);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--f-display);
+  line-height: 1.1;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+button {
+  cursor: pointer;
+}
+
+
+/* ────────────────────────────────────────────────────────────
+   3. FILM GRAIN OVERLAY  (fixed, pointer-events: none)
+   ──────────────────────────────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 200px 200px;
+}
+
+
+/* ────────────────────────────────────────────────────────────
+   4. TEXTURE BACKGROUNDS
+   ──────────────────────────────────────────────────────────── */
+
+/* Woven / dark green — used in bento section on index */
+.woven-bg {
+  background-color: var(--brand);
+  background-image:
+    repeating-linear-gradient(
+       45deg,
+       rgba(255,255,255,0.018) 0px, rgba(255,255,255,0.018) 1px,
+       transparent 1px, transparent 10px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(255,255,255,0.018) 0px, rgba(255,255,255,0.018) 1px,
+      transparent 1px, transparent 10px
+    ),
+    linear-gradient(160deg, var(--brand) 0%, #0f2a1c 100%);
+}
+
+/* Abaca weave — occidental sugar section */
+.abaca-bg {
+  background-color: var(--brand);
+  background-image:
+    repeating-linear-gradient(
+       0deg,
+       rgba(255,255,255,0.022) 0px, rgba(255,255,255,0.022) 1px,
+       transparent 1px, transparent 6px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,0.022) 0px, rgba(255,255,255,0.022) 1px,
+      transparent 1px, transparent 6px
+    ),
+    linear-gradient(160deg, var(--brand) 0%, #0e2212 100%);
+}
+
+/* Fishing net — oriental deep sections */
+.net-bg {
+  background-color: var(--brand);
+  background-image:
+    repeating-linear-gradient(
+       0deg,
+       rgba(255,255,255,0.028) 0px, rgba(255,255,255,0.028) 1px,
+       transparent 1px, transparent 18px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,0.028) 0px, rgba(255,255,255,0.028) 1px,
+      transparent 1px, transparent 18px
+    ),
+    repeating-linear-gradient(
+      45deg,
+      rgba(255,255,255,0.012) 0px, rgba(255,255,255,0.012) 1px,
+      transparent 1px, transparent 18px
+    ),
+    linear-gradient(160deg, var(--brand) 0%, #020f1a 100%);
+}
+
+/* Stone grid — silay section */
+.stone-bg {
+  background-color: var(--bg-alt);
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      rgba(160,64,48,0.04) 0px, rgba(160,64,48,0.04) 1px,
+      transparent 1px, transparent 48px
+    ),
+    repeating-linear-gradient(
+       0deg,
+       rgba(160,64,48,0.04) 0px, rgba(160,64,48,0.04) 1px,
+       transparent 1px, transparent 48px
+    );
+}
+
+/* Grid dot — products section on index */
+.dot-grid-bg {
+  position: relative;
+}
+.dot-grid-bg::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    repeating-linear-gradient(
+       0deg,
+       rgba(200,114,42,0.04) 0px, rgba(200,114,42,0.04) 1px,
+       transparent 1px, transparent 28px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(200,114,42,0.04) 0px, rgba(200,114,42,0.04) 1px,
+      transparent 1px, transparent 28px
+    );
+}
+
+/* Parallax dark panel — highland section on occidental */
+.parallax-dark {
+  background-attachment: fixed;
+  background-position: center center;
+  background-size: cover;
+  color: #fff;
+  position: relative;
+}
+.parallax-dark::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.06;
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      rgba(255,255,255,0.5) 0px, rgba(255,255,255,0.5) 1px,
+      transparent 1px, transparent 10px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(255,255,255,0.5) 0px, rgba(255,255,255,0.5) 1px,
+      transparent 1px, transparent 10px
+    );
+}
+
+/* Sand grain — oriental lighter sections */
+.sand-grain-bg {
+  background-color: var(--bg-alt);
+  background-image:
+    repeating-linear-gradient(
+      -30deg,
+      rgba(14,107,124,0.03) 0px, rgba(14,107,124,0.03) 1px,
+      transparent 1px, transparent 22px
+    ),
+    repeating-linear-gradient(
+       60deg,
+       rgba(14,107,124,0.03) 0px, rgba(14,107,124,0.03) 1px,
+       transparent 1px, transparent 22px
+    );
+}
+
+
+/* ────────────────────────────────────────────────────────────
+   5. NAVBAR
+   ──────────────────────────────────────────────────────────── */
+.nav-neg,
+.nav-occ,
+.nav-ori,
+.navbar-negros {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 1.2rem 0;
+  transition: background 0.5s ease, padding 0.4s ease;
+}
+
+/* Scrolled state — same for all three navbars */
+.nav-neg.scrolled,
+.nav-occ.scrolled,
+.nav-ori.scrolled,
+.navbar-negros.scrolled {
+  background: rgba(26, 61, 43, 0.97) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  padding: 0.7rem 0;
+  border-bottom: 1px solid rgba(200, 114, 42, 0.18);
+}
+
+/* Oriental scrolled override */
+.theme-oriental .nav-ori.scrolled {
+  background: rgba(4, 34, 51, 0.97) !important;
+  border-bottom-color: rgba(200, 150, 42, 0.18);
+}
+
+.nav-brand {
+  font-family: var(--f-display);
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+.nav-brand span { color: var(--accent-warm); }
+
+/* Nav links — shared base */
+.nav-link-custom,
+.nav-link-occ,
+.nav-link-ori {
+  color: rgba(255, 255, 255, 0.75) !important;
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  padding: 0.3rem 0 !important;
+  transition: color 0.2s;
+  position: relative;
+}
+.nav-link-custom::after,
+.nav-link-occ::after,
+.nav-link-ori::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--accent-warm);
+  transition: width 0.3s;
+}
+.nav-link-custom:hover,
+.nav-link-occ:hover,
+.nav-link-ori:hover {
+  color: var(--accent-warm) !important;
+}
+.nav-link-custom:hover::after,
+.nav-link-occ:hover::after,
+.nav-link-ori:hover::after {
+  width: 100%;
+}
+
+/* Nav pill CTA button */
+.nav-pill,
+.nav-pill-ori {
+  font-family: var(--f-sans);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent-warm);
+  border: 1px solid rgba(232, 147, 62, 0.4);
+  padding: 0.35rem 0.9rem;
+  border-radius: 2px;
+  transition: background 0.25s, color 0.25s;
+}
+.nav-pill:hover,
+.nav-pill-ori:hover {
+  background: rgba(232, 147, 62, 0.15);
+  color: var(--accent-warm);
+}
+
+/* Bootstrap toggler */
+.navbar-toggler {
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 4px 8px;
+}
+.navbar-toggler-icon {
+  filter: invert(1);
+}
+
+/* Sub-pages Bootstrap navbar */
+.navbar-negros {
+  background: rgba(26, 61, 43, 0.97);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(200, 114, 42, 0.15);
+}
+.navbar-negros .navbar-brand {
+  font-family: var(--f-display);
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 3px;
+}
+.navbar-negros .nav-link {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+.navbar-negros .nav-link:hover,
+.navbar-negros .nav-link.active {
+  color: var(--accent-warm);
+}
+
+
+/* ────────────────────────────────────────────────────────────
+   6. HERO  (shared base + per-page layers)
+   ──────────────────────────────────────────────────────────── */
+
+/* Shared structural shell */
+.hero-base,
+.hero-occ,
+.hero-ori {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  overflow: hidden;
+}
+
+/* Index: centred content */
+.hero-base {
+  align-items: center;
+  justify-content: center;
+}
+
+/* Occidental: content at bottom-left */
+.hero-occ {
+  align-items: flex-end;
+}
+
+/* Oriental: centred */
+.hero-ori {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+/* Layer: background image */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  transform-origin: center;
+  transition: transform 8s ease;
+}
+.hero-occ:hover .hero-bg,
+.hero-ori:hover .hero-bg {
+  transform: scale(1.04);
+}
+
+/* Layer: colour tint */
+.hero-tint {
+  position: absolute;
+  inset: 0;
+}
+
+/* Layer: diagonal texture lines */
+.hero-texture {
+  position: absolute;
+  inset: 0;
+  opacity: 0.06;
+  background-image: repeating-linear-gradient(
+    -55deg,
+    rgba(255,255,255,0.6) 0px, rgba(255,255,255,0.6) 1px,
+    transparent 1px, transparent 18px
+  );
+}
+
+/* Layer: net overlay (oriental) */
+.hero-net {
+  position: absolute;
+  inset: 0;
+  opacity: 0.06;
+  background-image:
+    repeating-linear-gradient(
+       0deg,
+       rgba(255,255,255,0.6) 0px, rgba(255,255,255,0.6) 1px,
+       transparent 1px, transparent 22px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,0.6) 0px, rgba(255,255,255,0.6) 1px,
+      transparent 1px, transparent 22px
+    );
+}
+
+/* Layer: radial vignette */
+.hero-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.45) 100%);
+}
+
+/* Layer: bottom fade into page bg */
+.hero-fade {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 180px;
+  background: linear-gradient(transparent, var(--bg));
+}
+
+/* Vertical province label (rotated) */
+.hero-province-label {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-family: var(--f-sans);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: rgba(232, 154, 64, 0.7);
+  position: absolute;
+  z-index: 2;
+}
+/* Occidental: left side, rotated */
+.hero-occ .hero-province-label {
+  transform: rotate(180deg);
+  left: 2rem;
+  bottom: 6rem;
+}
+/* Oriental: right side */
+.hero-ori .hero-province-label {
+  right: 2rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+/* Eyebrow pill */
+.hero-eyebrow {
+  display: inline-block;
+  font-family: var(--f-sans);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--accent-warm);
+  border: 1px solid rgba(232, 147, 62, 0.35);
+  padding: 0.32rem 1rem;
+  border-radius: 2px;
+  margin-bottom: 1.5rem;
+  background: rgba(232, 147, 62, 0.08);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* H1 */
+.hero-h1 {
+  font-size: clamp(3.2rem, 8vw, 6.5rem);
+  font-weight: 900;
+  font-style: italic;
+  line-height: 0.9;
+  color: #fff;
+  margin-bottom: 1.5rem;
+  letter-spacing: -1px;
+}
+.hero-h1 span { color: var(--accent-warm); font-style: normal; }
+.hero-h1 em  { color: var(--accent-warm); font-style: italic; }
+
+/* Index large hero h1 */
+.hero-index h1 {
+  font-size: clamp(3rem, 8vw, 6.5rem);
+  font-weight: 900;
+  line-height: 0.92;
+  color: #fff;
+  margin-bottom: 1.5rem;
+  letter-spacing: -1px;
+}
+.hero-index h1 em { font-style: italic; color: var(--accent-warm); }
+
+/* Sub-text */
+.hero-sub {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.65);
+  line-height: 1.8;
+  max-width: 480px;
+  margin-bottom: 2.5rem;
+  font-weight: 400;
+}
+.hero-index .hero-sub {
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+  font-weight: 300;
+  color: rgba(255,255,255,0.72);
+}
+
+/* Occidental hero content block */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  padding: 0 0 5rem;
+}
+.hero-main-text { max-width: 640px; }
+
+/* Oriental hero inner */
+.hero-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 700px;
+  padding: 0 1.5rem;
+}
+
+/* Scroll indicator */
+.hero-scroll {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  color: rgba(255, 255, 255, 0.35);
+  font-size: 0.58rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-family: var(--f-sans);
+  position: absolute;
+  z-index: 2;
+  animation: heroScrollBob 2.8s ease-in-out infinite;
+}
+/* Index: centred scroll */
+.hero-index .hero-scroll,
+.hero-ori .hero-scroll {
+  bottom: 2.8rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+/* Occidental: right side */
+.hero-occ .hero-scroll {
+  right: 2.5rem;
+  bottom: 3rem;
+}
+
+.hero-scroll-line {
+  width: 1px;
+  height: 44px;
+  background: linear-gradient(to bottom, transparent, rgba(232, 147, 62, 0.65));
+}
+
+@keyframes heroScrollBob {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(7px); }
+}
+.hero-occ .hero-scroll {
+  animation-name: heroScrollBobRight;
+}
+@keyframes heroScrollBobRight {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(7px); }
+}
+
+/* Page hero (sub-pages: where-to-go, festivals, what-to-buy) */
+.page-hero {
+  min-height: 420px;
+  display: flex;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  color: #fff;
+}
+.page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    160deg,
+    rgba(26, 61, 43, 0.82) 0%,
+    rgba(26, 61, 43, 0.55) 45%,
+    rgba(28, 23, 16, 0.7) 100%
+  );
+}
+.page-hero .hero-content {
+  position: relative;
+  z-index: 1;
+  padding: 4rem 0 3rem;
+}
+
+
+/* ────────────────────────────────────────────────────────────
+   7. SECTION UTILITIES
+   ──────────────────────────────────────────────────────────── */
+.section-pad { padding: 90px 0; }
+
+/* Eyebrow label above headings */
+.section-eyebrow,
+.eyebrow {
+  display: block;
+  font-family: var(--f-sans);
+  font-size: 0.63rem;
+  font-weight: 600;
+  letter-spacing: 5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.75rem;
+}
+
+/* Accent rule (short coloured line) */
+.accent-rule {
+  width: 48px;
+  height: 2px;
+  border: none;
+  background: linear-gradient(to right, var(--accent), transparent);
+  margin-bottom: 1.25rem;
+}
+
+/* Section heading */
+.section-heading,
+.section-h2 {
+  font-size: clamp(2rem, 4vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.05;
+  margin-bottom: 1rem;
+}
+.section-heading em,
+.section-h2 em { color: var(--accent); }
+
+/* Pull-quote */
+.pullquote,
+.sea-pullquote,
+.ruins-pullquote {
+  font-family: var(--f-serif);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--ink-soft);
+  border-left: 3px solid var(--accent);
+  padding: 0.75rem 1.5rem;
+  margin: 1.75rem 0;
+  line-height: 1.75;
+  background: linear-gradient(to right, rgba(200,114,42,0.06), transparent);
+  border-radius: 0 2px 2px 0;
+}
+
+/* Body serif paragraphs */
+.body-serif,
+.ruins-body-text,
+.body-text,
+.sugar-body {
+  font-family: var(--f-serif);
+  font-size: 0.93rem;
+  color: var(--muted);
+  line-height: 1.9;
+  margin-bottom: 1rem;
+}
+/* Dark section variant */
+.sugar-body {
+  color: rgba(255, 255, 255, 0.65);
+  font-style: italic;
+}
+
+/* Stat block */
+.stat-block,
+.sugar-stat {
+  border-left: 2px solid var(--accent);
+  padding: 0.6rem 1.25rem;
+  margin-bottom: 1.75rem;
+}
+.stat-block .num,
+.sugar-stat-num {
+  font-family: var(--f-display);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--brand);
+  line-height: 1;
+}
+.sugar-stat-num { font-size: 2.6rem; color: var(--accent-warm); }
+.stat-block .lbl,
+.sugar-stat-lbl {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-top: 4px;
+  line-height: 1.5;
+}
+.sugar-stat-lbl { color: rgba(255, 255, 255, 0.5); font-family: var(--f-sans); }
+
+/* Letter-wide utility (sub-pages) */
+.letter-wide { letter-spacing: 4px; }
+
+
+/* ────────────────────────────────────────────────────────────
+   8. BUTTONS
+   ──────────────────────────────────────────────────────────── */
+
+/* Primary gold / accent */
+.btn-gold,
+.btn-cane,
+.btn-sea {
+  display: inline-block;
+  background: var(--accent);
+  color: #fff;
+  padding: 13px 32px;
+  border-radius: 2px;
+  border: none;
+  font-family: var(--f-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+.btn-gold:hover,
+.btn-cane:hover,
+.btn-sea:hover {
+  background: color-mix(in srgb, var(--accent) 80%, #000);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px rgba(200, 114, 42, 0.38);
+}
+
+/* Light ghost (on dark bg) */
+.btn-outline-light-custom,
+.btn-ghost-light {
+  display: inline-block;
+  background: transparent;
+  color: #fff;
+  padding: 12px 30px;
+  border-radius: 2px;
+  border: 1.5px solid rgba(255, 255, 255, 0.4);
+  font-family: var(--f-sans);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  transition: border-color 0.3s, background 0.3s;
+}
+.btn-outline-light-custom:hover,
+.btn-ghost-light:hover {
+  border-color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+}
+
+/* Dark ghost (on light bg) */
+.btn-ghost-dark,
+.btn-outline-gold {
+  display: inline-block;
+  background: transparent;
+  color: var(--brand);
+  padding: 12px 30px;
+  border-radius: 2px;
+  border: 1.5px solid var(--brand);
+  font-family: var(--f-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: background 0.3s, color 0.3s;
+}
+.btn-ghost-dark:hover,
+.btn-outline-gold:hover {
+  background: var(--brand);
+  color: #fff;
+}
+
+
+/* ────────────────────────────────────────────────────────────
+   9. FILTER CHIPS
+   ──────────────────────────────────────────────────────────── */
+.chip,
+.filter-btn {
+  padding: 0.38rem 1rem;
+  border-radius: 2px;
+  border: 1.5px solid var(--parchment);
+  background: transparent;
+  font-family: var(--f-sans);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  transition: background 0.25s, border-color 0.25s, color 0.25s;
+  white-space: nowrap;
+}
+.chip:hover,
+.chip.active,
+.filter-btn:hover,
+.filter-btn.active {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: #fff;
+}
+
+
+/* ────────────────────────────────────────────────────────────
+   10. DESTINATION / PRODUCT / FESTIVAL CARDS
+   ──────────────────────────────────────────────────────────── */
+
+/* Shared card shell */
+.dest-card,
+.product-card,
+.festival-card,
+.destination-card {
+  background: #fff;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition);
+  height: 100%;
+}
+.dest-card:hover,
+.product-card:hover,
+.festival-card:hover,
+.destination-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+}
+
+/* Image wrapper */
+.dest-card-img,
+.card-img-wrapper {
+  height: 220px;
+  overflow: hidden;
+  position: relative;
+}
+.dest-card-img img,
+.card-img-wrapper img,
+.card-img-top {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-out);
+}
+.dest-card:hover .dest-card-img img,
+.product-card:hover .card-img-wrapper img,
+.festival-card:hover .card-img-wrapper img,
+.destination-card:hover .card-img-wrapper img {
+  transform: scale(1.08);
+}
+
+/* Province badge overlay */
+.dest-card-badge,
+.province-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font-family: var(--f-sans);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 0.25rem 0.7rem;
+  border-radius: 2px;
+  background: rgba(26, 61, 43, 0.85);
+  color: var(--accent-pale);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+/* Sub-page province badge is inline, not absolute */
+.card-body .province-badge {
+  position: static;
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  background: var(--bg-alt);
+  color: var(--brand);
+}
+
+/* Card body */
+.dest-card-body,
+.card-body {
+  padding: 1.25rem 1.5rem 1.75rem;
+}
+.dest-card-body h5,
+.card-body .card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+.dest-card-body p,
+.card-body .card-text {
+  font-size: 0.85rem;
+  color: var(--muted);
+  line-height: 1.65;
+  margin-bottom: 1rem;
+  font-family: var(--f-serif);
+}
+
+/* Card CTA link */
+.dest-card-link,
+.text-gold {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: gap 0.2s;
+}
+.dest-card:hover .dest-card-link { gap: 9px; }
+
+
+/* ────────────────────────────────────────────────────────────
+   11. PROVINCE CARDS  (large clickable panels on index)
+   ──────────────────────────────────────────────────────────── */
+.province-card {
+  position: relative;
+  height: 520px;
+  overflow: hidden;
+  border-radius: 4px;
+  cursor: pointer;
+  display: block;
+}
+.province-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.7s var(--ease-out);
+}
+.province-card:hover img { transform: scale(1.08); }
+
+.province-card-tint {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(26,23,16,0.88) 0%, rgba(26,23,16,0.1) 55%);
+  transition: opacity 0.4s;
+}
+.province-card:hover .province-card-tint { opacity: 0.85; }
+
+.province-card-body {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2.5rem;
+  color: #fff;
+}
+.province-tag {
+  display: inline-block;
+  font-family: var(--f-sans);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background: rgba(232, 147, 62, 0.2);
+  border: 1px solid rgba(232, 147, 62, 0.45);
+  padding: 0.3rem 0.8rem;
+  border-radius: 2px;
+  margin-bottom: 0.85rem;
+  color: var(--accent-warm);
+}
+.province-card-body h3 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+.province-card-body p {
+  font-size: 0.9rem;
+  opacity: 0.72;
+  line-height: 1.65;
+  font-family: var(--f-serif);
+  font-style: italic;
+  margin-bottom: 1.25rem;
+}
+.province-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent-warm);
+  transition: gap 0.2s;
+}
+.province-card:hover .province-arrow { gap: 10px; }
+
+
+/* ────────────────────────────────────────────────────────────
+   12. BENTO GRID  (experience section on index)
+   ──────────────────────────────────────────────────────────── */
+.bento-cell {
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+}
+.bento-cell img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease;
+}
+.bento-cell:hover img { transform: scale(1.05); }
+
+.bento-glass {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(26,23,16,0.85) 0%, rgba(26,23,16,0.05) 50%);
+}
+.bento-label {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  right: 1.5rem;
+  color: #fff;
+}
+.bento-tag {
+  display: inline-block;
+  font-family: var(--f-sans);
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background: var(--accent);
+  padding: 0.22rem 0.65rem;
+  border-radius: 2px;
+  margin-bottom: 0.5rem;
+}
+.bento-label h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+  line-height: 1.2;
+}
+.bento-label p {
+  font-size: 0.82rem;
+  opacity: 0.65;
+  margin: 0;
+  font-family: var(--f-serif);
+  font-style: italic;
+}
+
+
+/* ────────────────────────────────────────────────────────────
+   13. MODAL
+   ──────────────────────────────────────────────────────────── */
+.modal-content {
+  border: none;
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--bg);
+}
+.modal-hero-img {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+.modal-body-inner { padding: 2rem; }
+.modal-province {
+  font-family: var(--f-sans);
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+.modal-body-inner h4 {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+}
+.modal-body-inner p {
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  line-height: 1.8;
+  margin-bottom: 0.9rem;
+  font-family: var(--f-serif);
+}
+.modal-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-top: 1.25rem;
+}
+.modal-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: var(--parchment);
+  color: var(--brand);
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 0.4rem 0.9rem;
+  border-radius: 2px;
+  font-family: var(--f-sans);
+}
+.modal-close-x {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.4);
+  border: none;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  z-index: 10;
+}
+.modal-close-x:hover { background: rgba(0,0,0,0.65); }
+
+
+/* ────────────────────────────────────────────────────────────
+   14. OCCIDENTAL-SPECIFIC COMPONENTS
+   ──────────────────────────────────────────────────────────── */
+
+/* The Ruins image stack */
+.ruins-img-wrap { position: relative; padding-bottom: 50px; }
+.ruins-img-main {
+  width: 100%;
+  height: 520px;
+  object-fit: cover;
+  border-radius: 3px;
+  box-shadow: 16px 20px 50px rgba(26,18,8,0.22);
+}
+.ruins-img-float {
+  position: absolute;
+  bottom: 0;
+  right: -24px;
+  width: 220px;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 3px;
+  border: 6px solid var(--bg);
+  box-shadow: 8px 12px 32px rgba(26,18,8,0.2);
+}
+
+/* Silay mansion card */
+.mansion-card {
+  border-radius: 3px;
+  overflow: hidden;
+  position: relative;
+  height: 340px;
+  cursor: pointer;
+}
+.mansion-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s var(--ease-out);
+}
+.mansion-card:hover img { transform: scale(1.07); }
+.mansion-card-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(26,18,8,0.88) 0%, rgba(26,18,8,0.05) 55%);
+}
+.mansion-card-body {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  color: #fff;
+}
+.mansion-card-body h5 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.25rem; }
+.mansion-card-body small { font-size: 0.78rem; opacity: 0.55; font-family: var(--f-serif); font-style: italic; }
+
+/* Glass card (highland section) */
+.glass-card {
+  background: rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 3px;
+  padding: 2.5rem;
+  height: 100%;
+}
+.highland-feat {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.highland-icon {
+  width: 42px;
+  height: 42px;
+  flex-shrink: 0;
+  background: rgba(200, 124, 42, 0.18);
+  border: 1px solid rgba(200, 124, 42, 0.35);
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+}
+.highland-feat h6 { font-family: var(--f-sans); font-size: 0.9rem; font-weight: 600; margin-bottom: 0.2rem; color: #fff; }
+.highland-feat p  { font-size: 0.83rem; color: rgba(255,255,255,0.5); line-height: 1.65; margin: 0; font-family: var(--f-serif); }
+
+/* MassKara timeline */
+.timeline { position: relative; padding-left: 1.75rem; }
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 8px; bottom: 0; width: 1px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+}
+.timeline-item { position: relative; margin-bottom: 2.5rem; }
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -1.75rem; top: 6px;
+  width: 9px; height: 9px;
+  background: var(--accent); border-radius: 50%;
+  border: 2px solid var(--bg);
+}
+.timeline-yr {
+  font-family: var(--f-sans);
+  font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 0.3rem;
+}
+.timeline-item h5 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.35rem; }
+.timeline-item p  { font-size: 0.88rem; color: var(--muted); line-height: 1.72; margin: 0; font-family: var(--f-serif); }
+
+/* Bacolod city spots */
+.city-spot {
+  display: flex;
+  gap: 1.25rem;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid rgba(106,80,48,0.1);
+  align-items: flex-start;
+}
+.city-spot:last-child { border-bottom: none; }
+.spot-num {
+  font-family: var(--f-display);
+  font-size: 2.4rem; font-weight: 700;
+  color: var(--accent); opacity: 0.35;
+  line-height: 1; min-width: 48px;
+}
+.city-spot h5 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.3rem; }
+.city-spot p  { font-size: 0.86rem; color: var(--muted); line-height: 1.7; margin: 0; font-family: var(--f-serif); }
+
+/* Food cards (occidental gastronomy) */
+.food-card {
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid rgba(26,18,8,0.07);
+  transition: transform var(--transition), box-shadow var(--transition);
+  background: var(--bg);
+}
+.food-card:hover { transform: translateY(-10px); box-shadow: 0 22px 50px rgba(26,18,8,0.12); }
+.food-card img    { width: 100%; height: 260px; object-fit: cover; }
+.food-card-body   { padding: 1.5rem; }
+.food-card-body h4 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.4rem; }
+.food-card-body p  { font-size: 0.87rem; color: var(--muted); line-height: 1.7; margin: 0; font-family: var(--f-serif); }
+
+
+/* ────────────────────────────────────────────────────────────
+   15. ORIENTAL-SPECIFIC COMPONENTS
+   ──────────────────────────────────────────────────────────── */
+
+/* Apo bubble images */
+.bubble-wrap { position: relative; display: flex; justify-content: center; padding: 2rem 0 3rem; }
+.bubble-main {
+  width: 340px; height: 340px; object-fit: cover;
+  border-radius: 50%;
+  border: 8px solid #fff;
+  box-shadow: 0 20px 55px rgba(4,34,51,0.22);
+  transition: transform 0.55s ease;
+}
+.bubble-main:hover { transform: scale(1.04) rotate(2deg); }
+.bubble-small {
+  position: absolute;
+  bottom: 0; right: calc(50% - 200px);
+  width: 170px; height: 170px; object-fit: cover;
+  border-radius: 50%;
+  border: 5px solid #fff;
+  box-shadow: 0 10px 30px rgba(4,34,51,0.18);
+}
+
+/* Turtle fact boxes */
+.turtle-fact {
+  background: linear-gradient(135deg, var(--accent-pale), #e8f8fc);
+  border-radius: 3px; padding: 1.2rem 1.5rem; margin-bottom: 0.85rem;
+}
+.turtle-fact h6 {
+  font-family: var(--f-sans); font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--brand-mid); margin-bottom: 0.35rem;
+}
+.turtle-fact p { font-size: 0.86rem; color: var(--accent); line-height: 1.65; margin: 0; font-family: var(--f-serif); }
+
+/* Dumaguete duma cards */
+.duma-card {
+  background: #fff; border-radius: 3px; padding: 1.75rem;
+  border: 1px solid rgba(4,34,51,0.07);
+  transition: transform var(--transition), box-shadow var(--transition);
+  height: 100%;
+}
+.duma-card:hover { transform: translateY(-8px); box-shadow: 0 20px 45px rgba(4,34,51,0.1); }
+.duma-icon {
+  width: 46px; height: 46px;
+  background: var(--accent-pale); border-radius: 2px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem; margin-bottom: 1rem;
+}
+.duma-card h5 { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.45rem; }
+.duma-card p  { font-size: 0.86rem; color: var(--muted); line-height: 1.7; margin: 0; font-family: var(--f-serif); }
+
+/* Manjuyod info cards */
+.info-card {
+  background: #fff; border-radius: 3px; padding: 1.4rem 1.6rem;
+  border: 1px solid rgba(4,34,51,0.07); margin-bottom: 0.75rem;
+}
+.info-card h6 {
+  font-family: var(--f-sans); font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 0.4rem;
+}
+.info-card p { font-size: 0.87rem; color: var(--muted); line-height: 1.7; margin: 0; font-family: var(--f-serif); }
+
+/* Whale stats */
+.whale-stat { text-align: center; padding: 2.5rem 1rem; }
+.whale-num {
+  font-family: var(--f-display); font-size: 3.5rem; font-weight: 700;
+  color: var(--accent-warm); line-height: 1; margin-bottom: 0.5rem;
+}
+.whale-lbl { font-size: 0.82rem; color: rgba(255,255,255,0.45); line-height: 1.6; font-family: var(--f-sans); }
+
+/* Waterfall cards */
+.fall-card {
+  border-radius: 3px; overflow: hidden;
+  position: relative; height: 420px; cursor: pointer;
+}
+.fall-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+.fall-card:hover img { transform: scale(1.07); }
+.fall-shade {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(4,34,51,0.88) 0%, rgba(4,34,51,0.05) 55%);
+}
+.fall-label { position: absolute; bottom: 1.75rem; left: 1.75rem; color: #fff; }
+.fall-label h4 { font-size: 1.5rem; font-weight: 700; margin-bottom: 0.3rem; }
+.fall-label p  { font-size: 0.82rem; opacity: 0.6; margin: 0; font-family: var(--f-serif); font-style: italic; }
+
+/* Twin lakes banner */
+.twin-lakes-banner {
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 3px; padding: 2rem 2.5rem;
+}
+.twin-lakes-banner h4 { font-size: 1.6rem; color: #fff; margin-bottom: 0.5rem; }
+.twin-lakes-banner p  { font-size: 0.9rem; color: rgba(255,255,255,0.55); line-height: 1.75; margin: 0; font-family: var(--f-serif); }
+
+/* Silliman badge chips */
+.silliman-badge {
+  display: inline-block;
+  background: var(--accent-pale); color: var(--brand-mid);
+  font-family: var(--f-sans); font-size: 0.75rem; font-weight: 700;
+  padding: 0.6rem 1rem; border-radius: 2px; text-align: center;
+}
+.silliman-badge .big {
+  font-family: var(--f-display); font-size: 1.6rem; font-weight: 700;
+  color: var(--brand); display: block; line-height: 1;
+}
+
+/* Oriental seafood food cards */
+.sea-food-card {
+  background: #fff; border-radius: 3px; overflow: hidden;
+  border: 1px solid rgba(4,34,51,0.07);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.sea-food-card:hover { transform: translateY(-10px); box-shadow: 0 22px 50px rgba(4,34,51,0.12); }
+.sea-food-card img { width: 100%; height: 240px; object-fit: cover; }
+.sea-food-body { padding: 1.5rem; }
+.sea-food-body h4 { font-size: 1.4rem; font-weight: 700; margin-bottom: 0.4rem; }
+.sea-food-body p  { font-size: 0.87rem; color: var(--muted); line-height: 1.7; margin: 0; font-family: var(--f-serif); }
+
+
+/* ────────────────────────────────────────────────────────────
+   16. ABOUT PAGE — IMAGE STACK
+   ──────────────────────────────────────────────────────────── */
+.img-stack { position: relative; }
+.img-main-r {
+  width: 100%; height: 380px; object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 12px 16px 40px rgba(0,0,0,0.18);
+}
+.img-float-r {
+  position: absolute; bottom: -36px; right: -20px;
+  width: 200px; height: 250px; object-fit: cover;
+  border-radius: 4px;
+  border: 6px solid var(--bg);
+  box-shadow: 8px 12px 30px rgba(0,0,0,0.18);
+}
+
+
+/* ────────────────────────────────────────────────────────────
+   17. FOOTER
+   ──────────────────────────────────────────────────────────── */
+.footer,
+.bridge,
+.footer-main {
+  background: var(--ink);
+  color: rgba(255, 255, 255, 0.7);
+  padding: 72px 0 28px;
+  position: relative;
+  overflow: hidden;
+}
+.footer::before,
+.bridge::before,
+.footer-main::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.04;
+  background-image:
+    repeating-linear-gradient(
+       45deg,
+       rgba(255,255,255,0.5) 0px, rgba(255,255,255,0.5) 1px,
+       transparent 1px, transparent 8px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(255,255,255,0.5) 0px, rgba(255,255,255,0.5) 1px,
+      transparent 1px, transparent 8px
+    );
+}
+
+.footer-brand,
+.bridge-brand {
+  font-family: var(--f-display);
+  font-size: 2rem;
+  font-weight: 900;
+  color: #fff;
+  letter-spacing: 2px;
+}
+.footer-brand span,
+.bridge-brand span { color: var(--accent-warm); }
+
+.footer-tagline {
+  font-size: 0.83rem;
+  font-family: var(--f-serif);
+  font-style: italic;
+  opacity: 0.45;
+  margin-top: 0.4rem;
+}
+
+.footer-label {
+  display: block;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.footer-link {
+  display: block;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.85rem;
+  margin-bottom: 0.5rem;
+  transition: color 0.2s;
+  font-family: var(--f-sans);
+}
+.footer-link:hover { color: var(--accent-warm); }
+
+.social-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 1rem;
+  transition: background 0.25s, border-color 0.25s, color 0.25s, transform 0.25s;
+  margin-right: 0.4rem;
+}
+.social-btn:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+.footer-divider {
+  border-color: rgba(255, 255, 255, 0.08);
+  margin: 2.5rem 0 1.5rem;
+}
+.footer-copy {
+  font-size: 0.76rem;
+  opacity: 0.2;
+  text-align: center;
+}
+
+
+/* ────────────────────────────────────────────────────────────
+   18. SCROLL REVEAL ANIMATION
+   ──────────────────────────────────────────────────────────── */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: none;
+}
+.reveal-d1 { transition-delay: 0.10s; }
+.reveal-d2 { transition-delay: 0.20s; }
+.reveal-d3 { transition-delay: 0.32s; }
+
+
+/* ────────────────────────────────────────────────────────────
+   19. RESPONSIVE
+   ──────────────────────────────────────────────────────────── */
+@media (max-width: 991px) {
+  .section-pad { padding: 64px 0; }
+}
+
+@media (max-width: 767px) {
+  /* Hide decorative floating images */
+  .img-float-r,
+  .ruins-img-float,
+  .bubble-small { display: none; }
+
+  /* Province cards shorter on mobile */
+  .province-card { height: 360px; }
+
+  /* Hero adjustments */
+  .hero-province-label { display: none; }
+  .hero-occ .hero-scroll { right: 1rem; }
+
+  /* Parallax disabled on mobile (choppy on iOS) */
+  .parallax-dark { background-attachment: scroll; }
+
+  /* Ruins image shorter */
+  .ruins-img-main { height: 320px; }
+
+  /* Sandbar image shorter */
+  .sandbar-img { height: 280px; }
+
+  /* Whale image shorter */
+  .whale-img  { height: 240px; }
+
+  /* Bubble smaller */
+  .bubble-main { width: 260px; height: 260px; }
+
+  /* Page hero shorter */
+  .page-hero { min-height: 300px; }
+}
+
+@media (max-width: 575px) {
+  .hero-h1,
+  .hero-index h1 { letter-spacing: -0.5px; }
+  .province-card-body h3 { font-size: 1.75rem; }
+  .bento-label h3 { font-size: 1.1rem; }
+}
