@@ -19,8 +19,6 @@
     .detail-body { padding: 2rem 2rem 2.25rem; }
     .detail-body p { font-family: var(--f-sans); font-size: 0.9rem; color: var(--ink-2); line-height: 1.85; margin-bottom: 0.85rem; font-weight: 300; }
     .detail-body h6 { font-family: var(--f-sans); font-size: 0.65rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin: 1.4rem 0 0.65rem; }
-    .detail-imgs { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin: 1.25rem 0; }
-    .detail-imgs img { width: 100%; height: 160px; object-fit: cover; border-radius: var(--radius); filter: saturate(0.88); }
     .detail-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 1.25rem; }
     .detail-info-cell { background: var(--paper-2); border: 1px solid var(--paper-3); border-radius: var(--radius); padding: 0.75rem 1rem; }
     .detail-info-cell .lbl { font-family: var(--f-sans); font-size: 0.58rem; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 0.2rem; }
@@ -31,7 +29,7 @@
     .highlight-list li:last-child { border-bottom: none; }
     .highlight-list li i { color: var(--accent); margin-top: 2px; flex-shrink: 0; }
     @media (max-width: 575px) {
-      .detail-imgs, .detail-info-grid { grid-template-columns: 1fr; }
+      .detail-info-grid { grid-template-columns: 1fr; }
       .detail-hero { height: 240px; }
       .detail-hero-label h4 { font-size: 1.5rem; }
       .detail-body { padding: 1.25rem; }
@@ -42,11 +40,11 @@
 <body data-page="what-to-buy" data-root="../">
 
 <!-- ── PAGE HERO ── -->
-<div class="page-hero" style="background-image:url('https://images.unsplash.com/photo-1530982011887-3cc11cc85693?auto=format&fit=crop&q=80&w=1920');">
+<div class="page-hero" style="background-image:url('../img/buy/Muscovado Sugar.png');">
   <div class="hero-content container">
     <span class="section-eyebrow letter-wide">Flavors &amp; Crafts</span>
     <h1 style="font-size:clamp(2.5rem,6vw,4rem);font-weight:900;color:#fff;margin-bottom:0.5rem;">What to Buy</h1>
-    <p style="color:rgba(255,255,255,0.75);font-family:var(--f-serif);font-style:italic;">10 must-have products, delicacies &amp; souvenirs from Negros Island</p>
+    <p style="color:rgba(255,255,255,0.75);font-family:var(--f-serif);font-style:italic;">Must-have products, delicacies &amp; souvenirs from Negros Island</p>
   </div>
 </div>
 
@@ -68,71 +66,43 @@
 
       <div class="col-md-6 col-lg-4 prod-item reveal" data-cat="food">
         <div class="dest-card" onclick="openModal('pm-silvanas')" style="cursor:pointer;">
-          <div class="dest-card-img"><img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&q=80&w=600" alt="Silvanas"><div class="dest-card-badge">Oriental · Food</div></div>
+          <div class="dest-card-img"><img src="../img/buy/Silvanas.png" alt="Silvanas"><div class="dest-card-badge">Oriental · Food</div></div>
           <div class="dest-card-body"><h5>Silvanas</h5><p>Dumaguete's iconic frozen treat — meringue wafers sandwiching cashew-scented buttercream, coated in cookie crumbs.</p><span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span></div>
         </div>
       </div>
 
       <div class="col-md-6 col-lg-4 prod-item reveal reveal-d1" data-cat="food">
         <div class="dest-card" onclick="openModal('pm-inasal')" style="cursor:pointer;">
-          <div class="dest-card-img"><img src="https://images.unsplash.com/photo-1563379091339-03b21bc4a4f8?auto=format&fit=crop&q=80&w=600" alt="Inasal"><div class="dest-card-badge">Occidental · Food</div></div>
+          <div class="dest-card-img"><img src="../img/buy/Chicken Inasal.png" alt="Inasal"><div class="dest-card-badge">Occidental · Food</div></div>
           <div class="dest-card-body"><h5>Chicken Inasal</h5><p>Bacolod's gift to Philippine cuisine — lemongrass and vinegar-marinated chicken, grilled to smoky perfection.</p><span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span></div>
         </div>
       </div>
 
       <div class="col-md-6 col-lg-4 prod-item reveal reveal-d2" data-cat="food">
         <div class="dest-card" onclick="openModal('pm-muscovado')" style="cursor:pointer;">
-          <div class="dest-card-img"><img src="https://images.unsplash.com/photo-1530982011887-3cc11cc85693?auto=format&fit=crop&q=80&w=600" alt="Muscovado"><div class="dest-card-badge">Occidental · Food</div></div>
+          <div class="dest-card-img"><img src="../img/buy/Muscovado Sugar.png" alt="Muscovado"><div class="dest-card-badge">Occidental · Food</div></div>
           <div class="dest-card-body"><h5>Muscovado Sugar</h5><p>Unrefined raw cane sugar with a rich molasses depth — the lifeblood of the Negrense sugar heritage.</p><span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span></div>
         </div>
       </div>
 
       <div class="col-md-6 col-lg-4 prod-item reveal" data-cat="food">
         <div class="dest-card" onclick="openModal('pm-piaya')" style="cursor:pointer;">
-          <div class="dest-card-img"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=600" alt="Piaya"><div class="dest-card-badge">Occidental · Food</div></div>
+          <div class="dest-card-img"><img src="../img/buy/Piaya.png" alt="Piaya"><div class="dest-card-badge">Occidental · Food</div></div>
           <div class="dest-card-body"><h5>Piaya</h5><p>A sweet, flaky flatbread filled with muscovado sugar — Bacolod's most beloved take-home snack.</p><span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span></div>
         </div>
       </div>
 
       <div class="col-md-6 col-lg-4 prod-item reveal reveal-d1" data-cat="food">
-        <div class="dest-card" onclick="openModal('pm-tablea')" style="cursor:pointer;">
-          <div class="dest-card-img"><img src="https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&q=80&w=600" alt="Tablea"><div class="dest-card-badge">Occidental · Food</div></div>
-          <div class="dest-card-body"><h5>Tablea de Cacao</h5><p>Pure cacao tablets made from locally grown cacao — the base of the traditional Filipino chocolate drink.</p><span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span></div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4 prod-item reveal reveal-d2" data-cat="food">
-        <div class="dest-card" onclick="openModal('pm-bayebaye')" style="cursor:pointer;">
-          <div class="dest-card-img"><img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&q=80&w=600" alt="Baye-Baye"><div class="dest-card-badge">Oriental · Food</div></div>
-          <div class="dest-card-body"><h5>Baye-Baye</h5><p>A traditional rice cake made from young coconut and glutinous rice — chewy, sweet, and deeply local.</p><span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span></div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4 prod-item reveal" data-cat="craft">
-        <div class="dest-card" onclick="openModal('pm-mask')" style="cursor:pointer;">
-          <div class="dest-card-img"><img src="https://images.unsplash.com/photo-1570913149827-d2ac84ab3f9a?auto=format&fit=crop&q=80&w=600" alt="MassKara Mask"><div class="dest-card-badge">Occidental · Craft</div></div>
-          <div class="dest-card-body"><h5>MassKara Festival Mask</h5><p>Hand-painted souvenir masks adorned with flowers and glitter — a wearable symbol of Bacolod's joy.</p><span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span></div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4 prod-item reveal reveal-d1" data-cat="craft">
-        <div class="dest-card" onclick="openModal('pm-rattan')" style="cursor:pointer;">
-          <div class="dest-card-img"><img src="https://images.unsplash.com/photo-1562113530-57ba467cea38?auto=format&fit=crop&q=80&w=600" alt="Rattan"><div class="dest-card-badge">Negros Island · Craft</div></div>
-          <div class="dest-card-body"><h5>Rattan &amp; Bamboo Crafts</h5><p>Expertly woven baskets, furniture, and decor — sustainable craftsmanship rooted in Negrense tradition.</p><span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span></div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4 prod-item reveal reveal-d2" data-cat="food">
         <div class="dest-card" onclick="openModal('pm-sansrival')" style="cursor:pointer;">
-          <div class="dest-card-img"><img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&q=80&w=600" alt="Sans Rival"><div class="dest-card-badge">Oriental · Food</div></div>
+          <div class="dest-card-img"><img src="../img/buy/Sans Rival Cake.png" alt="Sans Rival"><div class="dest-card-badge">Oriental · Food</div></div>
           <div class="dest-card-body"><h5>Sans Rival Cake</h5><p>A decadent Dumaguete dessert of crispy cashew meringue layered with rich French buttercream.</p><span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span></div>
         </div>
       </div>
 
-      <div class="col-md-6 col-lg-4 prod-item reveal" data-cat="craft">
-        <div class="dest-card" onclick="openModal('pm-vinegar')" style="cursor:pointer;">
-          <div class="dest-card-img"><img src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&q=80&w=600" alt="Vinegar"><div class="dest-card-badge">Negros Island · Craft</div></div>
-          <div class="dest-card-body"><h5>Native Cane Vinegar</h5><p>Traditionally fermented sugarcane vinegar — a tangy, artisanal condiment used in classic Negrense cooking.</p><span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span></div>
+      <div class="col-md-6 col-lg-4 prod-item reveal reveal-d2" data-cat="craft">
+        <div class="dest-card" onclick="openModal('pm-mask')" style="cursor:pointer;">
+          <div class="dest-card-img"><img src="../img/buy/Masskara1.png" alt="MassKara Mask"><div class="dest-card-badge">Occidental · Craft</div></div>
+          <div class="dest-card-body"><h5>MassKara Festival Mask</h5><p>Hand-painted souvenir masks adorned with flowers and glitter — a wearable symbol of Bacolod's joy.</p><span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span></div>
         </div>
       </div>
 
@@ -141,32 +111,23 @@
 </section>
 
 
-<!-- ══════════════════════════════════════════════════════════
-     PRODUCT DETAIL MODALS (10)
-══════════════════════════════════════════════════════════ -->
+<!-- ══ MODALS ══ -->
 
 <!-- 1. SILVANAS -->
 <div class="modal fade detail-modal" id="pm-silvanas" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="detail-hero">
-        <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?auto=format&fit=crop&q=80&w=900" alt="Silvanas">
+        <img src="../img/buy/Silvanas.png" alt="Silvanas">
         <div class="detail-hero-tint"></div>
         <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
         <div class="detail-hero-label"><span class="eyebrow-sm">Negros Oriental · Signature Delicacy</span><h4>Silvanas</h4></div>
       </div>
       <div class="detail-body">
-        <p>Silvanas are the undisputed signature pasalubong of Dumaguete — a frozen dessert-cookie hybrid that has been delighting visitors since it was first perfected at Sans Rival Cakes and Pastries on Perdices Street. The name is said to derive from the Spanish word for "forest" or "wild," though the connection to nature is entirely in the imagination of whoever is eating one.</p>
-        <p>What makes Silvanas distinctive is the combination of textures: two crisp cashew meringue wafers sandwich a generous layer of French-style buttercream, and the entire confection is rolled in fine cookie crumbs until evenly coated. They are best eaten straight from the freezer — the buttercream firms to a consistency somewhere between ice cream and frosting, and the wafers stay perfectly crisp.</p>
+        <p>Silvanas are the undisputed signature pasalubong of Dumaguete — a frozen dessert-cookie hybrid perfected at Sans Rival Cakes and Pastries on Perdices Street. Two crisp cashew meringue wafers sandwich a generous layer of French-style buttercream, rolled in fine cookie crumbs.</p>
+        <p>They are best eaten straight from the freezer — the buttercream firms to a consistency somewhere between ice cream and frosting, and the wafers stay perfectly crisp.</p>
         <h6>Ingredients</h6>
-        <div><span class="ingredient-tag">Cashew nuts</span><span class="ingredient-tag">Egg whites</span><span class="ingredient-tag">Sugar</span><span class="ingredient-tag">Butter</span><span class="ingredient-tag">All-purpose flour</span><span class="ingredient-tag">Vanilla</span><span class="ingredient-tag">Cookie crumbs</span></div>
-        <h6>Cultural Significance &amp; Usage</h6>
-        <ul class="highlight-list">
-          <li><i class="bi bi-geo-alt"></i> The definitive pasalubong of Dumaguete — no visit is complete without a box</li>
-          <li><i class="bi bi-snow"></i> Always served frozen — never at room temperature</li>
-          <li><i class="bi bi-shop"></i> Originally created by Sans Rival Café, now available across Dumaguete</li>
-          <li><i class="bi bi-gift"></i> Sold in boxes of 10–20 pieces; travels well in a cooler</li>
-        </ul>
+        <div><span class="ingredient-tag">Cashew nuts</span><span class="ingredient-tag">Egg whites</span><span class="ingredient-tag">Sugar</span><span class="ingredient-tag">Butter</span><span class="ingredient-tag">Vanilla</span><span class="ingredient-tag">Cookie crumbs</span></div>
         <div class="detail-info-grid">
           <div class="detail-info-cell"><span class="lbl">Origin</span><span class="val">Dumaguete City, Negros Oriental</span></div>
           <div class="detail-info-cell"><span class="lbl">Best Bought At</span><span class="val">Sans Rival Café, Perdices St.</span></div>
@@ -183,23 +144,16 @@
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="detail-hero">
-        <img src="https://images.unsplash.com/photo-1563379091339-03b21bc4a4f8?auto=format&fit=crop&q=80&w=900" alt="Inasal">
+        <img src="../img/buy/Chicken Inasal.png" alt="Inasal">
         <div class="detail-hero-tint"></div>
         <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
         <div class="detail-hero-label"><span class="eyebrow-sm">Negros Occidental · Iconic Dish</span><h4>Chicken Inasal</h4></div>
       </div>
       <div class="detail-body">
-        <p>Chicken Inasal is Bacolod's most celebrated contribution to Philippine cuisine — and arguably the most imitated dish in the country that has never been fully replicated outside its place of origin. The dish is deceptively simple: chicken marinated in a blend of calamansi juice, vinegar, lemongrass, ginger, and annatto oil, then grilled slowly over charcoal.</p>
-        <p>What makes the Bacolod version irreplaceable is the combination of the specific marinade ratios developed over decades at Manokan Country, the charcoal grill technique, and the serving ritual: garlic rice drizzled with chicken oil rendered from the annatto-infused marinade, alongside a small bowl of sinamak (spiced vinegar) and fresh tomatoes. The experience of eating it in an open-air stall at Manokan Country while the smoke rises around you is the authentic version — everything else is a reference.</p>
+        <p>Chicken Inasal is Bacolod's most celebrated contribution to Philippine cuisine. The dish is marinated in a blend of calamansi juice, vinegar, lemongrass, ginger, and annatto oil, then grilled slowly over charcoal.</p>
+        <p>Served with garlic rice drizzled with chicken oil and sinamak (spiced vinegar), eating it at Manokan Country is the authentic experience — everything else is a reference.</p>
         <h6>Key Ingredients</h6>
-        <div><span class="ingredient-tag">Chicken</span><span class="ingredient-tag">Calamansi</span><span class="ingredient-tag">Sukang Iloco (cane vinegar)</span><span class="ingredient-tag">Lemongrass</span><span class="ingredient-tag">Ginger</span><span class="ingredient-tag">Annatto / Achuete</span><span class="ingredient-tag">Salt &amp; pepper</span></div>
-        <h6>Cultural Significance</h6>
-        <ul class="highlight-list">
-          <li><i class="bi bi-fire"></i> Born in Bacolod in the 1970s at Manokan Country food strip</li>
-          <li><i class="bi bi-trophy"></i> Named one of the 10 greatest Filipino dishes by food critics</li>
-          <li><i class="bi bi-shop"></i> Spawned a national fast-food chain (Mang Inasal) with 500+ branches</li>
-          <li><i class="bi bi-star-fill"></i> Served paa (leg), pecho (breast), or batikulon (gizzard)</li>
-        </ul>
+        <div><span class="ingredient-tag">Chicken</span><span class="ingredient-tag">Calamansi</span><span class="ingredient-tag">Cane vinegar</span><span class="ingredient-tag">Lemongrass</span><span class="ingredient-tag">Annatto</span></div>
         <div class="detail-info-grid">
           <div class="detail-info-cell"><span class="lbl">Origin</span><span class="val">Bacolod City, Negros Occidental</span></div>
           <div class="detail-info-cell"><span class="lbl">Must Try At</span><span class="val">Manokan Country, Bacolod</span></div>
@@ -211,26 +165,19 @@
   </div>
 </div>
 
-<!-- 3. MUSCOVADO SUGAR -->
+<!-- 3. MUSCOVADO -->
 <div class="modal fade detail-modal" id="pm-muscovado" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="detail-hero">
-        <img src="https://images.unsplash.com/photo-1530982011887-3cc11cc85693?auto=format&fit=crop&q=80&w=900" alt="Muscovado">
+        <img src="../img/buy/Muscovado Sugar.png" alt="Muscovado">
         <div class="detail-hero-tint"></div>
         <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
         <div class="detail-hero-label"><span class="eyebrow-sm">Negros Occidental · Heritage Product</span><h4>Muscovado Sugar</h4></div>
       </div>
       <div class="detail-body">
-        <p>Muscovado is unrefined raw cane sugar from which the molasses has not been separated — the result is a dark, moist, deeply flavored sugar with a caramel-toffee richness that refined white sugar can never replicate. Negros Occidental produces the majority of the Philippines' sugar output, and muscovado is its most prized artisanal product: a direct expression of the island's centuries-old sugarcane heritage.</p>
-        <p>Unlike industrial sugar refining, muscovado production involves pressing the cane juice, boiling it in open kettles, and allowing it to partially dry without centrifugation — preserving the molasses naturally present in the cane. The resulting sugar is darker, more nutritious, and more complex in flavor. It is the essential ingredient in piaya, pastillas, and many traditional Negrense sweets, and has recently found an international market as a premium baking ingredient.</p>
-        <h6>Uses</h6>
-        <ul class="highlight-list">
-          <li><i class="bi bi-star-fill"></i> Key ingredient in piaya, pastillas, and Negrense kalamay</li>
-          <li><i class="bi bi-star-fill"></i> Used as a premium baking sweetener worldwide</li>
-          <li><i class="bi bi-star-fill"></i> Stirred into coffee and hot chocolate for depth</li>
-          <li><i class="bi bi-star-fill"></i> Marinade ingredient in adobo and BBQ glazes</li>
-        </ul>
+        <p>Muscovado is unrefined raw cane sugar from which the molasses has not been separated — the result is a dark, moist, deeply flavored sugar with a caramel-toffee richness. Negros Occidental produces the majority of the Philippines' sugar output.</p>
+        <p>It is the essential ingredient in piaya, pastillas, and many traditional Negrense sweets, and has recently found an international market as a premium baking ingredient.</p>
         <div class="detail-info-grid">
           <div class="detail-info-cell"><span class="lbl">Origin</span><span class="val">Negros Occidental province</span></div>
           <div class="detail-info-cell"><span class="lbl">Where to Buy</span><span class="val">Bacolod public markets, pasalubong centers</span></div>
@@ -247,23 +194,15 @@
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="detail-hero">
-        <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=900" alt="Piaya">
+        <img src="../img/buy/Piaya.png" alt="Piaya">
         <div class="detail-hero-tint"></div>
         <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
         <div class="detail-hero-label"><span class="eyebrow-sm">Negros Occidental · Pasalubong</span><h4>Piaya</h4></div>
       </div>
       <div class="detail-body">
-        <p>Piaya is a thin, round, flaky flatbread stuffed generously with muscovado sugar — baked on a hot griddle until the surface is golden and slightly charred, and the filling has caramelized into a chewy, molasses-rich center. It is the single most popular pasalubong from Bacolod, and the one product that most completely captures the identity of Negros Occidental in a single bite: sugarcane, craft, and sweetness.</p>
-        <p>The dough is made from flour, shortening, and water, kneaded and rolled to a near-paper thinness before being wrapped around a generous portion of muscovado. The finished piaya should be slightly crisp on the outside, yielding and sticky within, with a bittersweet molasses depth from the unrefined sugar. Variations include ube (purple yam), pandan, and cheese fillings, though purists insist the original muscovado version is the only one that matters.</p>
+        <p>Piaya is a thin, round, flaky flatbread stuffed generously with muscovado sugar — baked on a hot griddle until the surface is golden and the filling has caramelized into a chewy, molasses-rich center. It is the single most popular pasalubong from Bacolod.</p>
         <h6>Ingredients</h6>
         <div><span class="ingredient-tag">All-purpose flour</span><span class="ingredient-tag">Muscovado sugar</span><span class="ingredient-tag">Shortening</span><span class="ingredient-tag">Water</span><span class="ingredient-tag">Salt</span></div>
-        <h6>Cultural Significance</h6>
-        <ul class="highlight-list">
-          <li><i class="bi bi-star-fill"></i> The No.1 pasalubong from Bacolod — sold by the millions annually</li>
-          <li><i class="bi bi-geo-alt"></i> Best version: El Ideal Bakery, Silay (since 1920)</li>
-          <li><i class="bi bi-gift"></i> Sold in packs of 10, 20, or large celebration tins</li>
-          <li><i class="bi bi-star-fill"></i> Pairs perfectly with hot coffee or sikwate (native hot chocolate)</li>
-        </ul>
         <div class="detail-info-grid">
           <div class="detail-info-cell"><span class="lbl">Origin</span><span class="val">Bacolod City, Negros Occidental</span></div>
           <div class="detail-info-cell"><span class="lbl">Best Bought At</span><span class="val">El Ideal Bakery, Silay City</span></div>
@@ -275,154 +214,20 @@
   </div>
 </div>
 
-<!-- 5. TABLEA -->
-<div class="modal fade detail-modal" id="pm-tablea" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="detail-hero">
-        <img src="https://images.unsplash.com/photo-1511381939415-e44015466834?auto=format&fit=crop&q=80&w=900" alt="Tablea">
-        <div class="detail-hero-tint"></div>
-        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
-        <div class="detail-hero-label"><span class="eyebrow-sm">Negros Occidental · Heritage Drink</span><h4>Tablea de Cacao</h4></div>
-      </div>
-      <div class="detail-body">
-        <p>Tablea are pure, unsweetened cacao tablets made from locally grown and fermented cacao beans. They are the base ingredient of sikwate — the traditional Filipino hot chocolate that has been consumed on these islands since long before Spanish colonization introduced the concept of sweetened cocoa to European kitchens.</p>
-        <p>Making tablea is labor-intensive: ripe cacao pods are harvested, the beans are fermented in banana leaves for several days to develop their flavor, then sun-dried, roasted, and ground by hand or stone mill into a thick paste. The paste is then formed into small discs or balls and dried again. The resulting tablets are intensely aromatic, slightly bitter, and carry the unmistakable terroir of Negros soil. When dissolved in hot water with a pinch of salt and optionally sweetened with muscovado, the result is something completely unlike commercial hot chocolate.</p>
-        <h6>How to Use</h6>
-        <ul class="highlight-list">
-          <li><i class="bi bi-cup-hot"></i> Dissolve 2–3 tablets in hot water, whisk until frothy (sikwate)</li>
-          <li><i class="bi bi-star-fill"></i> Add muscovado sugar to taste — never white sugar for authenticity</li>
-          <li><i class="bi bi-star-fill"></i> Pair with puto maya (sticky rice cake) for the traditional Visayan breakfast</li>
-          <li><i class="bi bi-star-fill"></i> Used in baking brownies, cakes, and champorado (chocolate rice porridge)</li>
-        </ul>
-        <div class="detail-info-grid">
-          <div class="detail-info-cell"><span class="lbl">Origin</span><span class="val">Negros Occidental cacao farms</span></div>
-          <div class="detail-info-cell"><span class="lbl">Ingredients</span><span class="val">100% pure cacao — no additives</span></div>
-          <div class="detail-info-cell"><span class="lbl">Where to Buy</span><span class="val">Bacolod pasalubong shops, markets</span></div>
-          <div class="detail-info-cell"><span class="lbl">Price Range</span><span class="val">₱60–₱120 per pack</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- 6. BAYE-BAYE -->
-<div class="modal fade detail-modal" id="pm-bayebaye" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="detail-hero">
-        <img src="https://images.unsplash.com/photo-1558961363-fa8fdf82db35?auto=format&fit=crop&q=80&w=900" alt="Baye-Baye">
-        <div class="detail-hero-tint"></div>
-        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
-        <div class="detail-hero-label"><span class="eyebrow-sm">Negros Oriental · Traditional Kakanin</span><h4>Baye-Baye</h4></div>
-      </div>
-      <div class="detail-body">
-        <p>Baye-Baye is a traditional kakanin (rice cake) native to Negros Oriental, made from young coconut (buko) meat, glutinous rice flour, and coconut milk — cooked together until thick and sticky, then shaped by hand into small cylinders or wrapped in coconut leaves for gifting. It is a deeply local delicacy that rarely travels beyond the province, making it one of the most authentic food souvenirs a visitor can bring home.</p>
-        <p>The texture is chewy and dense in a thoroughly satisfying way — the young coconut adding a subtle fresh sweetness and a slight fibrous quality that distinguishes it from other sticky rice cakes. It is typically sold at local markets and roadside stalls rather than tourist shops, which makes finding it part of the experience of exploring Negros Oriental off the beaten path.</p>
-        <h6>Ingredients</h6>
-        <div><span class="ingredient-tag">Young coconut (buko)</span><span class="ingredient-tag">Glutinous rice flour</span><span class="ingredient-tag">Coconut milk</span><span class="ingredient-tag">Sugar</span><span class="ingredient-tag">Salt</span></div>
-        <h6>Cultural Notes</h6>
-        <ul class="highlight-list">
-          <li><i class="bi bi-geo-alt"></i> A Negros Oriental original — rarely found elsewhere in the Philippines</li>
-          <li><i class="bi bi-shop"></i> Sold at local markets, not typically in tourist stores</li>
-          <li><i class="bi bi-clock"></i> Best eaten fresh on the day of purchase</li>
-          <li><i class="bi bi-star-fill"></i> Often wrapped in coconut or banana leaves for an artisanal presentation</li>
-        </ul>
-        <div class="detail-info-grid">
-          <div class="detail-info-cell"><span class="lbl">Origin</span><span class="val">Negros Oriental province</span></div>
-          <div class="detail-info-cell"><span class="lbl">Where to Buy</span><span class="val">Dumaguete public market, local tiangge</span></div>
-          <div class="detail-info-cell"><span class="lbl">Shelf Life</span><span class="val">Best eaten same day; 2 days max</span></div>
-          <div class="detail-info-cell"><span class="lbl">Price Range</span><span class="val">₱15–₱30 per piece</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- 7. MASSKARA MASK -->
-<div class="modal fade detail-modal" id="pm-mask" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="detail-hero">
-        <img src="https://images.unsplash.com/photo-1570913149827-d2ac84ab3f9a?auto=format&fit=crop&q=80&w=900" alt="MassKara Mask">
-        <div class="detail-hero-tint"></div>
-        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
-        <div class="detail-hero-label"><span class="eyebrow-sm">Negros Occidental · Festival Craft</span><h4>MassKara Festival Mask</h4></div>
-      </div>
-      <div class="detail-body">
-        <p>The MassKara mask is the most iconic symbol of Bacolod City — a perpetually smiling face adorned with bright flowers, sequins, mirrors, and colorful embellishments that represent the Negrense spirit of resilience and joy. Born from the 1980 MassKara Festival as a symbol of defiance against hardship, the mask has since become a cultural artifact recognized far beyond the Philippines.</p>
-        <p>Festival-grade masks are wearable works of art: hand-painted, hand-decorated, and often incorporating real dried or silk flowers, rhinestones, and intricate filigree patterns unique to each maker. Souvenir versions range from simple painted plaster to elaborately decorated collector pieces. The best masks are made by artisan families in Barangay Mandalagan, Bacolod, where mask-making has been a livelihood for generations.</p>
-        <h6>Features &amp; Unique Qualities</h6>
-        <ul class="highlight-list">
-          <li><i class="bi bi-palette"></i> Each mask is hand-painted and entirely unique — no two are identical</li>
-          <li><i class="bi bi-star-fill"></i> Decorated with dried/silk flowers, sequins, mirrors, and rhinestones</li>
-          <li><i class="bi bi-award"></i> Festival-grade masks are judged competitively during MassKara</li>
-          <li><i class="bi bi-gift"></i> Available as wall art, wearable masks, or miniature souvenirs</li>
-        </ul>
-        <div class="detail-info-grid">
-          <div class="detail-info-cell"><span class="lbl">Origin</span><span class="val">Bacolod City, Negros Occidental</span></div>
-          <div class="detail-info-cell"><span class="lbl">Where to Buy</span><span class="val">Bacolod public market, SM Bacolod</span></div>
-          <div class="detail-info-cell"><span class="lbl">Material</span><span class="val">Papier-mâché, plaster, or fiber</span></div>
-          <div class="detail-info-cell"><span class="lbl">Price Range</span><span class="val">₱150 (souvenir) to ₱2,000+ (artisan)</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- 8. RATTAN CRAFTS -->
-<div class="modal fade detail-modal" id="pm-rattan" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="detail-hero">
-        <img src="https://images.unsplash.com/photo-1562113530-57ba467cea38?auto=format&fit=crop&q=80&w=900" alt="Rattan">
-        <div class="detail-hero-tint"></div>
-        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
-        <div class="detail-hero-label"><span class="eyebrow-sm">Negros Island · Traditional Craft</span><h4>Rattan &amp; Bamboo Crafts</h4></div>
-      </div>
-      <div class="detail-body">
-        <p>Rattan and bamboo weaving is one of the oldest craft traditions in Negros Island — practiced by indigenous and lowland communities across both provinces for centuries. The abundant rattan forests and bamboo groves of the Negros highlands have long supplied raw materials for functional objects: baskets, trays, storage containers, furniture frames, and decorative pieces that combine utility with artisanal beauty.</p>
-        <p>Contemporary Negrense rattan craft has evolved considerably — local artisans now produce export-quality furniture, home décor, and fashion accessories that compete in international markets. The town of Isabela in Negros Occidental is particularly known for its weaving cooperatives, where multiple generations of families continue refining techniques passed down through oral tradition. Buying these items directly from cooperatives or local markets supports these communities directly.</p>
-        <h6>What to Look For</h6>
-        <ul class="highlight-list">
-          <li><i class="bi bi-star-fill"></i> Palayok baskets (traditional round baskets with lids)</li>
-          <li><i class="bi bi-star-fill"></i> Woven table mats and placemats — lightweight for travel</li>
-          <li><i class="bi bi-star-fill"></i> Rattan handbags and fashion accessories</li>
-          <li><i class="bi bi-star-fill"></i> Bamboo furniture and decorative items for home use</li>
-        </ul>
-        <div class="detail-info-grid">
-          <div class="detail-info-cell"><span class="lbl">Origin</span><span class="val">Across Negros Island</span></div>
-          <div class="detail-info-cell"><span class="lbl">Where to Buy</span><span class="val">Local markets, cooperative shops</span></div>
-          <div class="detail-info-cell"><span class="lbl">Best For</span><span class="val">Home décor, unique gifts, fashion</span></div>
-          <div class="detail-info-cell"><span class="lbl">Price Range</span><span class="val">₱100 (small items) to ₱3,000+ (furniture)</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- 9. SANS RIVAL CAKE -->
+<!-- 5. SANS RIVAL -->
 <div class="modal fade detail-modal" id="pm-sansrival" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="detail-hero">
-        <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?auto=format&fit=crop&q=80&w=900" alt="Sans Rival">
+        <img src="../img/buy/Sans Rival Cake.png" alt="Sans Rival">
         <div class="detail-hero-tint"></div>
         <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
         <div class="detail-hero-label"><span class="eyebrow-sm">Negros Oriental · Signature Dessert</span><h4>Sans Rival Cake</h4></div>
       </div>
       <div class="detail-body">
-        <p>Sans Rival — French for "without rival" — is a layered Filipino dessert cake of Philippine-French heritage that found its most celebrated expression in Dumaguete. The cake consists of multiple layers of crisp cashew-studded dacquoise meringue (a French-style nut meringue) sandwiched with rich French-style buttercream, assembled and refrigerated until the layers meld into a single dense, intensely flavored confection.</p>
-        <p>The origins of Sans Rival in the Philippines are traced to Filipino chefs who trained in Paris in the early 20th century and brought French pâtisserie techniques home. The Dumaguete version — most famously made by Sans Rival Cakes and Pastries, established on Perdices Street — is considered the gold standard: its cashew layer is thicker, its buttercream richer, and its assembly tighter than any imitation.</p>
+        <p>Sans Rival — French for "without rival" — is a layered Filipino dessert cake consisting of multiple layers of crisp cashew-studded dacquoise meringue sandwiched with rich French-style buttercream. The Dumaguete version, made by Sans Rival Cakes and Pastries, is considered the gold standard.</p>
         <h6>Ingredients</h6>
         <div><span class="ingredient-tag">Cashew nuts</span><span class="ingredient-tag">Egg whites</span><span class="ingredient-tag">Sugar</span><span class="ingredient-tag">Butter</span><span class="ingredient-tag">Egg yolks</span><span class="ingredient-tag">Vanilla extract</span></div>
-        <h6>Cultural Significance</h6>
-        <ul class="highlight-list">
-          <li><i class="bi bi-award"></i> Named one of the best cakes in the Philippines by multiple food publications</li>
-          <li><i class="bi bi-shop"></i> The original café on Perdices St. has been operating for decades</li>
-          <li><i class="bi bi-gift"></i> A go-to celebration and gift cake throughout the Visayas</li>
-          <li><i class="bi bi-star-fill"></i> Pairs perfectly with hot coffee or barako brew</li>
-        </ul>
         <div class="detail-info-grid">
           <div class="detail-info-cell"><span class="lbl">Origin</span><span class="val">Dumaguete City, Negros Oriental</span></div>
           <div class="detail-info-cell"><span class="lbl">Best Bought At</span><span class="val">Sans Rival Café, Perdices St.</span></div>
@@ -434,31 +239,24 @@
   </div>
 </div>
 
-<!-- 10. NATIVE CANE VINEGAR -->
-<div class="modal fade detail-modal" id="pm-vinegar" tabindex="-1">
+<!-- 6. MASSKARA MASK -->
+<div class="modal fade detail-modal" id="pm-mask" tabindex="-1">
   <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
     <div class="modal-content">
       <div class="detail-hero">
-        <img src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?auto=format&fit=crop&q=80&w=900" alt="Vinegar">
+        <img src="../img/buy/Masskara1.png" alt="MassKara Mask">
         <div class="detail-hero-tint"></div>
         <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
-        <div class="detail-hero-label"><span class="eyebrow-sm">Negros Island · Artisanal Condiment</span><h4>Native Cane Vinegar</h4></div>
+        <div class="detail-hero-label"><span class="eyebrow-sm">Negros Occidental · Festival Craft</span><h4>MassKara Festival Mask</h4></div>
       </div>
       <div class="detail-body">
-        <p>Sugarcane vinegar — known locally as sukang tubó — is one of the most important condiments in Negrense cooking, and arguably the most underappreciated artisanal product the island produces. Made by fermenting fresh sugarcane juice through a two-stage fermentation process (first alcoholic, then acetic), the result is a mild, slightly sweet, straw-colored vinegar with a complexity that commercial white vinegar cannot approach.</p>
-        <p>The most famous version is sinamak — sukang tubó infused with bird's eye chili, garlic, ginger, and black pepper — which is served alongside every plate of Chicken Inasal in Bacolod and used as a dipping sauce, marinade, and condiment throughout both provinces. Artisanal producers still ferment their vinegar in clay jars or wooden barrels, aging it for months before bottling.</p>
-        <h6>Key Uses</h6>
-        <ul class="highlight-list">
-          <li><i class="bi bi-star-fill"></i> Essential dipping sauce alongside Chicken Inasal (as sinamak)</li>
-          <li><i class="bi bi-star-fill"></i> Base for kinilaw (Filipino ceviche) — especially with fresh tuna</li>
-          <li><i class="bi bi-star-fill"></i> Marinade for pork and chicken dishes</li>
-          <li><i class="bi bi-star-fill"></i> Salad dressing with garlic and native pepper</li>
-        </ul>
+        <p>The MassKara mask is the most iconic symbol of Bacolod City — a perpetually smiling face adorned with bright flowers, sequins, mirrors, and colorful embellishments representing the Negrense spirit of resilience and joy.</p>
+        <p>Festival-grade masks are wearable works of art: hand-painted, hand-decorated, and often incorporating real dried or silk flowers, rhinestones, and intricate filigree patterns unique to each maker.</p>
         <div class="detail-info-grid">
-          <div class="detail-info-cell"><span class="lbl">Origin</span><span class="val">Negros Island sugarcane farms</span></div>
-          <div class="detail-info-cell"><span class="lbl">Where to Buy</span><span class="val">Public markets, pasalubong centers</span></div>
-          <div class="detail-info-cell"><span class="lbl">Best Version</span><span class="val">Sinamak (spiced) — ask for homemade</span></div>
-          <div class="detail-info-cell"><span class="lbl">Price Range</span><span class="val">₱40–₱100 per bottle</span></div>
+          <div class="detail-info-cell"><span class="lbl">Origin</span><span class="val">Bacolod City, Negros Occidental</span></div>
+          <div class="detail-info-cell"><span class="lbl">Where to Buy</span><span class="val">Bacolod public market, SM Bacolod</span></div>
+          <div class="detail-info-cell"><span class="lbl">Material</span><span class="val">Papier-mâché, plaster, or fiber</span></div>
+          <div class="detail-info-cell"><span class="lbl">Price Range</span><span class="val">₱150 (souvenir) to ₱2,000+ (artisan)</span></div>
         </div>
       </div>
     </div>
