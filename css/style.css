@@ -22,7 +22,6 @@
   --accent-warm: #d4814a;
   --accent-pale: rgba(212,129,74,0.4);
 
-  /* bg aliases used throughout HTML */
   --bg:          #f7f3ee;
   --bg-alt:      #ede8e0;
 
@@ -124,7 +123,8 @@ body::after {
   transition: width 0.3s;
 }
 .nav-link-custom:hover, .nav-link-occ:hover, .nav-link-ori:hover { color: #fff !important; }
-.nav-link-custom:hover::after, .nav-link-occ::after:hover, .nav-link-ori:hover::after { width: 100%; }
+/* FIX: was .nav-link-occ::after:hover (invalid) — corrected to :hover::after */
+.nav-link-custom:hover::after, .nav-link-occ:hover::after, .nav-link-ori:hover::after { width: 100%; }
 
 .scrolled .nav-link-custom,
 .scrolled .nav-link-occ,
@@ -292,7 +292,7 @@ body::after {
   background-size: cover; background-position: center;
   position: relative; color: #fff;
   padding-bottom: 3.5rem;
-  padding-top: 80px; /* clear navbar */
+  padding-top: 80px;
 }
 .page-hero::before {
   content: ''; position: absolute; inset: 0;
