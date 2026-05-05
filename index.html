@@ -2,19 +2,83 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
     <title>Negros Island | Sweetness Beyond Sugar</title>
-    <!-- Only keep what's needed -->
+    
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap 5 + Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css" rel="stylesheet" />
-    <!-- Our minimal, optimized CSS -->
+    
+    <!-- Leaflet (interactive map) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <!-- Our editorial minimal styles -->
     <link rel="stylesheet" href="css/style.css" />
+    
+    <style>
+        /* fine-tuning for map container */
+        .negros-interactive-map {
+            width: 100%;
+            height: 420px;
+            border-radius: var(--radius, 2px);
+            overflow: hidden;
+            border: 1px solid var(--paper-3, #e0d8cc);
+            background: #ede8e0;
+            box-shadow: 0 8px 24px rgba(15, 15, 13, 0.06);
+            transition: box-shadow 0.3s ease;
+        }
+        .negros-interactive-map:hover {
+            box-shadow: 0 20px 32px rgba(15, 15, 13, 0.12);
+        }
+        /* custom leaflet marker popup styling */
+        .custom-map-popup .leaflet-popup-content-wrapper {
+            background: var(--paper, #f7f3ee);
+            color: var(--ink, #0f0f0d);
+            border-radius: var(--radius);
+            border-left: 3px solid var(--accent, #b8621a);
+            font-family: var(--f-sans, 'DM Sans', sans-serif);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        .custom-map-popup .leaflet-popup-tip {
+            background: var(--paper);
+        }
+        .map-attribution {
+            font-size: 0.6rem;
+            text-align: right;
+            margin-top: 0.4rem;
+            color: var(--ink-3, #7a756a);
+            letter-spacing: 0.3px;
+        }
+        .map-attribution a {
+            color: var(--accent);
+            text-decoration: none;
+            border-bottom: 1px dotted var(--accent);
+        }
+        @media (max-width: 767px) {
+            .negros-interactive-map {
+                height: 340px;
+            }
+        }
+        /* refine leaflet default controls to match minimal style */
+        .leaflet-control-zoom a {
+            background: var(--paper) !important;
+            color: var(--ink) !important;
+            border: 1px solid var(--paper-3) !important;
+            font-family: var(--f-sans);
+        }
+        .leaflet-control-zoom a:hover {
+            background: var(--paper-2) !important;
+        }
+    </style>
 </head>
 
 <body data-page="home" data-root="">
 
-    <!-- === HERO === -->
+    <!-- === HERO SECTION === -->
     <section class="hero-base hero-index">
         <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1518509562904-e7ef99cdcc86?auto=format&fit=crop&q=80&w=1920');"></div>
         <div class="hero-tint" style="background:linear-gradient(165deg,rgba(26,61,43,0.82) 0%,rgba(26,61,43,0.55) 45%,rgba(28,23,16,0.7) 100%);"></div>
@@ -37,7 +101,7 @@
         </div>
     </section>
 
-    <!-- === ABOUT === -->
+    <!-- === ABOUT section with INTERACTIVE MAP (NEGROS ISLAND) === -->
     <section id="about" class="section-pad" style="background:var(--bg);">
         <div class="container">
             <div class="row align-items-center g-5">
@@ -54,14 +118,19 @@
                         <div class="stat-block"><div class="num">4M+</div><div class="lbl">People</div></div>
                     </div>
                 </div>
+                
+                <!-- INTERACTIVE MAP COLUMN: REPLACED iframe with Leaflet map of Negros Island -->
                 <div class="col-lg-6 offset-lg-1 reveal reveal-d2">
-                    <img src="img/destinnations/The_Ruins.png" alt="The Ruins, Talisay" style="width:100%;height:420px;object-fit:cover;border-radius:var(--radius);box-shadow:0 20px 50px rgba(15,15,13,0.14);" />
+                    <div id="negrosIslandMap" class="negros-interactive-map"></div>
+                    <div class="map-attribution">
+                        <i class="bi bi-geo-alt-fill" style="font-size: 0.7rem;"></i> Interactive map — Negros Island | <a href="#" id="mapResetLink" style="cursor:pointer;">reset view</a> • Data © OpenStreetMap
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- === PROVINCE SPLIT === -->
+    <!-- === PROVINCE SPLIT (Occidental / Oriental) === -->
     <section id="destinations" class="section-pad" style="background:var(--bg-alt);">
         <div class="container">
             <div class="text-center mb-5 reveal">
@@ -272,12 +341,188 @@
         </div>
     </section>
 
-    <!-- === SCRIPTS === -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
-    </script>
-    <script src="js/components.js">
-    </script>
-    <script src="js/main.js">
+
+    <!-- Bootstrap JS + custom scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/main.js"></script>
+    
+    <!-- INTERACTIVE MAP INITIALIZATION - NEGROS ISLAND -->
+    <script>
+        (function() {
+            // Wait until whole page loads to ensure map container exists
+            window.addEventListener('DOMContentLoaded', function() {
+                const mapContainer = document.getElementById('negrosIslandMap');
+                if (!mapContainer) return;
+
+                // Center coordinates for Negros Island: approx 10.15°N, 123.0°E
+                const negrosCenter = [10.2, 123.0];
+                const defaultZoom = 9;
+                
+                // Initialize map with minimal aesthetic
+                const map = L.map(mapContainer).setView(negrosCenter, defaultZoom);
+                
+                // Use CartoDB Voyager (light, minimal, elegant) to match editorial style
+                L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; CartoDB',
+                    subdomains: 'abcd',
+                    maxZoom: 13,
+                    minZoom: 7,
+                    className: 'map-tiles'
+                }).addTo(map);
+                
+                // Optional subtle ocean label
+                // === Custom marker icons (golden / sea accents) ===
+                const goldIcon = L.divIcon({
+                    html: '<div style="background-color: var(--gold, #b8621a); width: 12px; height: 12px; border-radius: 50%; border: 2px solid white; box-shadow: 0 1px 4px rgba(0,0,0,0.2);"></div>',
+                    iconSize: [14, 14],
+                    className: 'custom-marker-gold'
+                });
+                
+                const seaIcon = L.divIcon({
+                    html: '<div style="background-color: var(--sea, #0d5c6e); width: 12px; height: 12px; border-radius: 50%; border: 2px solid white; box-shadow: 0 1px 4px rgba(0,0,0,0.2);"></div>',
+                    iconSize: [14, 14],
+                    className: 'custom-marker-sea'
+                });
+                
+                // Major cities / key locations in Negros
+                // 1. Bacolod City (Occidental)
+                L.marker([10.667, 122.950], { icon: goldIcon })
+                    .bindPopup(`
+                        <strong style="font-family: 'DM Serif Display';">Bacolod City</strong><br>
+                        <span style="font-size:0.75rem;">"City of Smiles" | MassKara Festival hub<br>Gateway to Sugarlandia.</span>
+                    `, { className: 'custom-map-popup' })
+                    .addTo(map);
+                
+                // 2. Dumaguete City (Oriental)
+                L.marker([9.307, 123.307], { icon: seaIcon })
+                    .bindPopup(`
+                        <strong style="font-family: 'DM Serif Display';">Dumaguete City</strong><br>
+                        <span style="font-size:0.75rem;">"City of Gentle People" | Silliman University, boulevard & silvanas.</span>
+                    `, { className: 'custom-map-popup' })
+                    .addTo(map);
+                
+                // 3. San Carlos City (between both provinces on the east coast)
+                L.marker([10.495, 123.409], { icon: goldIcon })
+                    .bindPopup(`
+                        <strong>San Carlos City</strong><br>
+                        <span style="font-size:0.75rem;">Negros Occidental's eastern gateway, ferry to Cebu.</span>
+                    `, { className: 'custom-map-popup' })
+                    .addTo(map);
+                
+                // 4. Bais City (Oriental, known for dolphin watching)
+                L.marker([9.591, 123.121], { icon: seaIcon })
+                    .bindPopup(`
+                        <strong>Bais City</strong><br>
+                        <span style="font-size:0.75rem;">Dolphin & whale watching capital of Negros Oriental.</span>
+                    `, { className: 'custom-map-popup' })
+                    .addTo(map);
+                
+                // 5. Apo Island (marine sanctuary - small island, approximate coordinates)
+                L.marker([9.078, 123.271], { icon: seaIcon })
+                    .bindPopup(`
+                        <strong>Apo Island</strong><br>
+                        <span style="font-size:0.75rem;">World-class marine reserve, sea turtles & vibrant corals.</span>
+                    `, { className: 'custom-map-popup' })
+                    .addTo(map);
+                
+                // 6. The Ruins (Talisay) — a landmark
+                L.marker([10.737, 122.967], { icon: goldIcon })
+                    .bindPopup(`
+                        <strong>The Ruins (Talisay)</strong><br>
+                        <span style="font-size:0.75rem;">Iconic "Taj Mahal of Negros" — hacienda heritage.</span>
+                    `, { className: 'custom-map-popup' })
+                    .addTo(map);
+                
+                // 7. Mt. Kanlaon (volcano, natural landmark)
+                L.marker([10.411, 123.132], { icon: goldIcon })
+                    .bindPopup(`
+                        <strong>Mt. Kanlaon</strong><br>
+                        <span style="font-size:0.75rem;">Active stratovolcano, highest peak in Negros. Hiking & crater views.</span>
+                    `, { className: 'custom-map-popup' })
+                    .addTo(map);
+                
+                // 8. Manjuyod Sandbar (Oriental)
+                L.marker([9.707, 123.475], { icon: seaIcon })
+                    .bindPopup(`
+                        <strong>Manjuyod Sandbar</strong><br>
+                        <span style="font-size:0.75rem;">"Maldives of the Philippines" – 7km white sandbar at low tide.</span>
+                    `, { className: 'custom-map-popup' })
+                    .addTo(map);
+                
+                // Optional: add a subtle boundary hint: draw a semi-transparent circle around Negros? not needed.
+                // For extra elegance, add a small control label: "Negros Island"
+                // We'll add a floating attribution but no overlays
+                
+                // Add a legend / reset control on the map (reset view button)
+                const resetControl = L.Control.extend({
+                    options: { position: 'topright' },
+                    onAdd: function(map) {
+                        const container = L.DomUtil.create('div', 'leaflet-bar leaflet-control leaflet-control-custom');
+                        container.innerHTML = '<a href="#" title="Reset view" style="background: var(--paper); display: flex; align-items: center; justify-content: center; width: 28px; height: 28px; font-size: 18px; border-radius: 2px; border:1px solid var(--paper-3);"><i class="bi bi-arrow-repeat"></i></a>';
+                        container.onclick = function(e) {
+                            e.preventDefault();
+                            map.setView(negrosCenter, defaultZoom);
+                        };
+                        return container;
+                    }
+                });
+                map.addControl(new resetControl());
+                
+                // Additional: add note for province division via tooltip on map? Add simple line? not needed.
+                // To better differentiate Occidental vs Oriental, we can add a custom legend at bottom left
+                const legendControl = L.Control.extend({
+                    options: { position: 'bottomleft' },
+                    onAdd: function() {
+                        const div = L.DomUtil.create('div', 'info legend');
+                        div.style.backgroundColor = 'var(--paper)';
+                        div.style.padding = '6px 12px';
+                        div.style.borderRadius = '2px';
+                        div.style.fontSize = '11px';
+                        div.style.fontFamily = "var(--f-sans)";
+                        div.style.border = '1px solid var(--paper-3)';
+                        div.style.color = 'var(--ink-2)';
+                        div.style.letterSpacing = '0.5px';
+                        div.style.backdropFilter = 'blur(4px)';
+                        div.innerHTML = '<strong style="font-size:0.7rem;">⚜ NEGROS ISLAND</strong><br><span style="color:#b8621a;">●</span> Occidental &nbsp; | &nbsp; <span style="color:#0d5c6e;">●</span> Oriental';
+                        return div;
+                    }
+                });
+                map.addControl(new legendControl());
+                
+                // Fix for container resize when reveal animations finish (Leaflet map sometimes has glitches)
+                const resizeObserver = new ResizeObserver(() => {
+                    setTimeout(() => { map.invalidateSize(); }, 80);
+                });
+                if (mapContainer) resizeObserver.observe(mapContainer);
+                // Also on window resize
+                window.addEventListener('resize', function() {
+                    setTimeout(() => { map.invalidateSize(); }, 100);
+                });
+                
+                // Ensure that after any scroll reveal or lazy loading, map corrects
+                document.querySelectorAll('.reveal').forEach(el => {
+                    const observer = new IntersectionObserver((entries) => {
+                        entries.forEach(entry => {
+                            if (entry.isIntersecting) {
+                                map.invalidateSize();
+                                observer.unobserve(entry.target);
+                            }
+                        });
+                    }, { threshold: 0.1 });
+                    observer.observe(el);
+                });
+                
+                // manual reset via link outside
+                const resetLink = document.getElementById('mapResetLink');
+                if (resetLink) {
+                    resetLink.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        map.setView(negrosCenter, defaultZoom);
+                    });
+                }
+            });
+        })();
     </script>
 </body>
 </html>
