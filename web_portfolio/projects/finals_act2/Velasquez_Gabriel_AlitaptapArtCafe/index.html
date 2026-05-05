@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alitaptap Art Cafe | Order System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <main class="shop-card">
+    <header class="shop-header">
+      <span class="subtitle">Alitaptap Art Cafe</span>
+    </header>
+
+    <div class="container">
+      <div class="form-content">
+        <div class="input-group">
+          <label for="flavor">Flavor:</label>
+          <select id="flavor">
+            <option value="80">Classic - ₱80</option>
+            <option value="90">Wintermelon - ₱90</option>
+            <option value="95">Okinawa - ₱95</option>
+            <option value="100">Matcha - ₱100</option>
+          </select>
+        </div>
+
+        <div class="input-group">
+          <label>Size:</label>
+          <div class="radio-group">
+            <label><input type="radio" name="size" value="0" checked> Tall (₱0)</label>
+            <label><input type="radio" name="size" value="10"> Grande (+₱10)</label>
+            <label><input type="radio" name="size" value="20"> Venti (+₱20)</label>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <label>Add-ons:</label>
+          <div class="check-group">
+            <label><input type="checkbox" value="10" class="addon"> Pearls (+₱10)</label>
+            <label><input type="checkbox" value="15" class="addon"> Pudding (+₱15)</label>
+            <label><input type="checkbox" value="20" class="addon"> Cream Cheese (+₱20)</label>
+          </div>
+        </div>
+
+        <button onclick="placeOrder()" class="order-btn">Place Order</button>
+
+        <div id="result" class="result-box hidden"></div>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  background: #f0faf2;
+  color: #1a2e1a;
+}
+
+header {
+  background: #1b4332;
+  color: #fff;
+  padding: 40px;
+}
+
+header h1 {
+  font-size: 1.8rem;
+  margin-bottom: 6px;
+}
+
+header p { color: #74c69d; }
+
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 32px 40px 80px;
+}
+
+section {
+  background: #fff;
+  border: 1px solid #d8eede;
+  border-radius: 8px;
+  padding: 24px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  color: #fff;
+  background: #2d6a4f;
+  display: inline-block;
+  padding: 5px 12px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+h4 {
+  color: #2d6a4f;
+  margin: 18px 0 12px;
+}
+
+.row {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.col-2 { grid-template-columns: 1fr 1fr; }
+.col-3 { grid-template-columns: 1fr 1fr 1fr; }
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+label {
+  color: #52b788;
+  font-size: 12px;
+}
+
+.req { color: #e63946; }
+
+input, select, textarea {
+  width: 100%;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: #1a2e1a;
+  background: #f6fbf7;
+  border: 1px solid #d8eede;
+  border-radius: 4px;
+  padding: 9px 12px;
+  outline: none;
+}
+
+.jobs { columns: 3; }
+
+.jobs label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border: 1px solid #d8eede;
+  border-radius: 4px;
+  color: #1a2e1a;
+  font-size: 13px;
+}
+
+.radios {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.radios label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 14px;
+  border: 1px solid #d8eede;
+  border-radius: 4px;
+  color: #1a2e1a;
+  font-size: 13px;
+}
+
+button {
+  background: #fff;
+  color: #2d6a4f;
+  border: 1px solid #2d6a4f;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  padding: 8px 20px;
+  border-radius: 4px;
+  margin-top: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #2d6a4f;
+  color: #fff;
+}

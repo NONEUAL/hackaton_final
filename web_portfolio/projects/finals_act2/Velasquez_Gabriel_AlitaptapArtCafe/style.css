@@ -1,0 +1,72 @@
+:root {
+  --logo-brown: #331A12; 
+  --logo-gold: #D09A3E;
+  --form-bg: rgba(255, 255, 255, 0.88);
+}
+
+body {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--logo-brown);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.shop-card {
+  width: 360px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.shop-header {
+  background: var(--logo-brown);
+  padding: 20px;
+  text-align: center;
+  border-bottom: 2px solid var(--logo-gold);
+}
+
+.subtitle {
+  display: block;
+  color: var(--logo-gold);
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.form-content {
+  padding: 25px;
+  background-color: var(--form-bg);
+}
+
+.input-group { margin-bottom: 15px; }
+
+label {
+  display: block;
+  font-weight: bold;
+  color: var(--logo-brown);
+  margin-bottom: 5px;
+}
+
+.order-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--logo-brown);
+  color: white;
+  border: 1px solid var(--logo-gold);
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.result-box {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px dashed var(--logo-brown);
+  background: white;
+  font-size: 14px;
+}
+
+.hidden { display: none; }

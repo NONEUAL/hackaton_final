@@ -947,7 +947,34 @@ body[data-page="festivals"]   .nav-pill {
   border-radius: var(--radius);
   box-shadow: 0 20px 50px rgba(15,15,13,0.12); filter: saturate(0.9);
 }
+/* ────────────────────────────────────────────────────────────
+   IMAGE FALLBACK
+   ──────────────────────────────────────────────────────────── */
+  img {
+      position: relative;
+  }
 
+  img::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--paper-2);
+      border-radius: inherit;
+  }
+
+  img::after {
+      content: '📷 ' attr(alt);
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--f-sans);
+      font-size: 0.9rem;
+      color: var(--ink-3);
+      background: var(--paper-2);
+      border-radius: inherit;
+  }
 /* ────────────────────────────────────────────────────────────
    FOOTER
    ──────────────────────────────────────────────────────────── */

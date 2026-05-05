@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Job Application Form</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+  <h1>Job Application Form</h1>
+  <p>Gabriel Velasquez | BSIT 212-A | 10/03/2026</p>
+</header>
+
+<main>
+<form action="#" method="post" enctype="multipart/form-data">
+
+  <section>
+    <h2>01. Available Positions</h2>
+    <div class="jobs">
+      <label><input type="checkbox" value="frontend"> Front-end Developer</label>
+      <label><input type="checkbox" value="backend"> Back-end Developer</label>
+      <label><input type="checkbox" value="fullstack"> Full Stack Developer</label>
+      <label><input type="checkbox" value="web-designer"> Web Designer</label>
+      <label><input type="checkbox" value="js"> JavaScript Developer</label>
+      <label><input type="checkbox" value="php"> PHP Developer</label>
+      <label><input type="checkbox" value="wordpress"> WordPress Developer</label>
+      <label><input type="checkbox" value="ios"> iOS Developer</label>
+      <label><input type="checkbox" value="angular"> Angular JS Developer</label>
+      <label><input type="checkbox" value="java"> Java Programmer</label>
+      <label><input type="checkbox" value="software-eng"> Software Engineer</label>
+      <label><input type="checkbox" value="app-dev"> Application Developer</label>
+      <label><input type="checkbox" value="mobile"> Mobile Developer</label>
+      <label><input type="checkbox" value="sql"> SQL Developer</label>
+      <label><input type="checkbox" value="data-sci"> Data Scientist</label>
+      <label><input type="checkbox" value="dba"> Database Administrator</label>
+      <label><input type="checkbox" value="it-admin"> IT Administrator</label>
+      <label><input type="checkbox" value="qa"> QA Engineer</label>
+      <label><input type="checkbox" value="sales"> Sales Representative</label>
+      <label><input type="checkbox" value="seo"> SEO Specialist</label>
+      <label><input type="checkbox" value="proj-coord"> Project Coordinator</label>
+      <label><input type="checkbox" value="proj-mgr"> Project Manager</label>
+      <label><input type="checkbox" value="web-consult"> Web Consultant</label>
+      <label><input type="checkbox" value="art-dir"> Art Director</label>
+      <label><input type="checkbox" value="crm"> Client Relations Manager</label>
+      <label><input type="checkbox" value="ops-mgr"> Operations Manager</label>
+      <label><input type="checkbox" value="sre"> Site Reliability Engineer</label>
+    </div>
+  </section>
+
+  <section>
+    <h2>02. Cover Letter</h2>
+    <div class="field">
+      <label>Write a minimum of 600 words <span class="req">*</span></label>
+      <textarea rows="14" required></textarea>
+    </div>
+  </section>
+
+  <section>
+    <h2>03. Personal Information</h2>
+    <div class="row col-3">
+      <div class="field"><label>Last Name <span class="req">*</span></label><input type="text" required></div>
+      <div class="field"><label>First Name <span class="req">*</span></label><input type="text" required></div>
+      <div class="field"><label>Middle Name</label><input type="text"></div>
+    </div>
+    <div class="row col-3">
+      <div class="field"><label>Birthdate <span class="req">*</span></label><input type="date" required></div>
+      <div class="field">
+        <label>Gender <span class="req">*</span></label>
+        <select required>
+          <option value="" disabled selected>Select</option>
+          <option>Male</option>
+          <option>Female</option>
+          <option>Non-binary</option>
+          <option>Prefer not to say</option>
+        </select>
+      </div>
+      <div class="field"><label>Nationality <span class="req">*</span></label><input type="text" required></div>
+    </div>
+
+    <h4>Address</h4>
+    <div class="row col-2">
+      <div class="field"><label>Street Number <span class="req">*</span></label><input type="text" required></div>
+      <div class="field"><label>Street Name <span class="req">*</span></label><input type="text" required></div>
+    </div>
+    <div class="row col-3">
+      <div class="field"><label>Barangay <span class="req">*</span></label><input type="text" required></div>
+      <div class="field"><label>City <span class="req">*</span></label><input type="text" required></div>
+      <div class="field"><label>Province <span class="req">*</span></label><input type="text" required></div>
+    </div>
+    <div class="row col-3">
+      <div class="field"><label>ZIP Code <span class="req">*</span></label><input type="text" required></div>
+      <div class="field"><label>Mobile Number <span class="req">*</span></label><input type="tel" required></div>
+      <div class="field"><label>Email Address <span class="req">*</span></label><input type="email" required></div>
+    </div>
+
+    <h4>Government IDs</h4>
+    <div class="row col-2">
+      <div class="field"><label>Passport Number</label><input type="text"></div>
+      <div class="field"><label>SSS Number</label><input type="text"></div>
+    </div>
+    <div class="row col-3">
+      <div class="field"><label>PhilHealth Number</label><input type="text"></div>
+      <div class="field"><label>Pag-IBIG Number</label><input type="text"></div>
+      <div class="field"><label>TIN Number</label><input type="text"></div>
+    </div>
+
+    <h4>Civil Status</h4>
+    <div class="radios">
+      <label><input type="radio" name="civil_status" value="single" required> Single</label>
+      <label><input type="radio" name="civil_status" value="married"> Married</label>
+      <label><input type="radio" name="civil_status" value="widowed"> Widowed</label>
+      <label><input type="radio" name="civil_status" value="separated"> Separated</label>
+      <label><input type="radio" name="civil_status" value="divorced"> Divorced</label>
+    </div>
+  </section>
+
+  <section>
+    <h2>04. Education</h2>
+    <h4>Primary</h4>
+    <div class="row col-2">
+      <div class="field"><label>School Name <span class="req">*</span></label><input type="text" required></div>
+      <div class="field"><label>School Address <span class="req">*</span></label><input type="text" required></div>
+    </div>
+    <div class="row col-2">
+      <div class="field"><label>Years Attended <span class="req">*</span></label><input type="text" required></div>
+      <div class="field"><label>Awards</label><input type="text"></div>
+    </div>
+
+    <h4>Secondary</h4>
+    <div class="row col-2">
+      <div class="field"><label>School Name <span class="req">*</span></label><input type="text" required></div>
+      <div class="field"><label>School Address <span class="req">*</span></label><input type="text" required></div>
+    </div>
+    <div class="row col-2">
+      <div class="field"><label>Years Attended <span class="req">*</span></label><input type="text" required></div>
+      <div class="field"><label>Awards</label><input type="text"></div>
+    </div>
+
+    <h4>Senior High School</h4>
+    <div class="row col-2">
+      <div class="field"><label>School Name <span class="req">*</span></label><input type="text" required></div>
+      <div class="field"><label>School Address <span class="req">*</span></label><input type="text" required></div>
+    </div>
+    <div class="row col-2">
+      <div class="field"><label>Years Attended <span class="req">*</span></label><input type="text" required></div>
+      <div class="field"><label>Awards</label><input type="text"></div>
+    </div>
+
+    <h4>Tertiary</h4>
+    <div class="row col-2">
+      <div class="field"><label>School Name <span class="req">*</span></label><input type="text" required></div>
+      <div class="field"><label>School Address <span class="req">*</span></label><input type="text" required></div>
+    </div>
+    <div class="row col-2">
+      <div class="field"><label>Years Attended <span class="req">*</span></label><input type="text" required></div>
+      <div class="field"><label>Awards / Latin Honors</label><input type="text"></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>05. Employment History</h2>
+    <h4>Employment 01</h4>
+    <div class="row col-2">
+      <div class="field"><label>Company Name <span class="req">*</span></label><input type="text" required></div>
+      <div class="field"><label>Company Address <span class="req">*</span></label><input type="text" required></div>
+    </div>
+    <div class="row col-2">
+      <div class="field"><label>Years of Service <span class="req">*</span></label><input type="text" required></div>
+      <div class="field"><label>Position <span class="req">*</span></label><input type="text" required></div>
+    </div>
+    <div class="row col-2">
+      <div class="field"><label>Awards</label><input type="text"></div>
+      <div class="field"><label>Roles & Responsibilities <span class="req">*</span></label><textarea rows="3" required></textarea></div>
+    </div>
+
+    <h4>Employment 02</h4>
+    <div class="row col-2">
+      <div class="field"><label>Company Name <span class="req">*</span></label><input type="text" required></div>
+      <div class="field"><label>Company Address <span class="req">*</span></label><input type="text" required></div>
+    </div>
+    <div class="row col-2">
+      <div class="field"><label>Years of Service <span class="req">*</span></label><input type="text" required></div>
+      <div class="field"><label>Position <span class="req">*</span></label><input type="text" required></div>
+    </div>
+    <div class="row col-2">
+      <div class="field"><label>Awards</label><input type="text"></div>
+      <div class="field"><label>Roles & Responsibilities <span class="req">*</span></label><textarea rows="3" required></textarea></div>
+    </div>
+
+    <h4>Employment 03</h4>
+    <div class="row col-2">
+      <div class="field"><label>Company Name <span class="req">*</span></label><input type="text" required></div>
+      <div class="field"><label>Company Address <span class="req">*</span></label><input type="text" required></div>
+    </div>
+    <div class="row col-2">
+      <div class="field"><label>Years of Service <span class="req">*</span></label><input type="text" required></div>
+      <div class="field"><label>Position <span class="req">*</span></label><input type="text" required></div>
+    </div>
+    <div class="row col-2">
+      <div class="field"><label>Awards</label><input type="text"></div>
+      <div class="field"><label>Roles & Responsibilities <span class="req">*</span></label><textarea rows="3" required></textarea></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>06. Technical Skills</h2>
+    <div class="row col-2">
+      <div class="field"><label>Skill 1 <span class="req">*</span></label><input type="text" required></div>
+      <div class="field"><label>Skill 2 <span class="req">*</span></label><input type="text" required></div>
+      <div class="field"><label>Skill 3 <span class="req">*</span></label><input type="text" required></div>
+      <div class="field"><label>Skill 4 <span class="req">*</span></label><input type="text" required></div>
+      <div class="field"><label>Skill 5 <span class="req">*</span></label><input type="text" required></div>
+      <div class="field"><label>Skill 6</label><input type="text"></div>
+      <div class="field"><label>Skill 7</label><input type="text"></div>
+      <div class="field"><label>Skill 8</label><input type="text"></div>
+      <div class="field"><label>Skill 9</label><input type="text"></div>
+      <div class="field"><label>Skill 10</label><input type="text"></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>07. Languages</h2>
+    <div class="row col-3">
+      <div class="field"><label>Language 1 <span class="req">*</span></label><input type="text" required></div>
+      <div class="field"><label>Language 2 <span class="req">*</span></label><input type="text" required></div>
+      <div class="field"><label>Language 3</label><input type="text"></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>08. Character References</h2>
+    <h4>Reference 01</h4>
+    <div class="row col-3">
+      <div class="field"><label>Full Name <span class="req">*</span></label><input type="text" required></div>
+      <div class="field"><label>Position <span class="req">*</span></label><input type="text" required></div>
+      <div class="field"><label>Company <span class="req">*</span></label><input type="text" required></div>
+    </div>
+    <div class="row col-2">
+      <div class="field"><label>Mobile Number <span class="req">*</span></label><input type="tel" required></div>
+      <div class="field"><label>Email Address <span class="req">*</span></label><input type="email" required></div>
+    </div>
+
+    <h4>Reference 02</h4>
+    <div class="row col-3">
+      <div class="field"><label>Full Name <span class="req">*</span></label><input type="text" required></div>
+      <div class="field"><label>Position <span class="req">*</span></label><input type="text" required></div>
+      <div class="field"><label>Company <span class="req">*</span></label><input type="text" required></div>
+    </div>
+    <div class="row col-2">
+      <div class="field"><label>Mobile Number <span class="req">*</span></label><input type="tel" required></div>
+      <div class="field"><label>Email Address <span class="req">*</span></label><input type="email" required></div>
+    </div>
+
+    <h4>Reference 03</h4>
+    <div class="row col-3">
+      <div class="field"><label>Full Name <span class="req">*</span></label><input type="text" required></div>
+      <div class="field"><label>Position <span class="req">*</span></label><input type="text" required></div>
+      <div class="field"><label>Company <span class="req">*</span></label><input type="text" required></div>
+    </div>
+    <div class="row col-2">
+      <div class="field"><label>Mobile Number <span class="req">*</span></label><input type="tel" required></div>
+      <div class="field"><label>Email Address <span class="req">*</span></label><input type="email" required></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>09. Resume Upload</h2>
+    <div class="field">
+      <label>Upload Resume (PDF, DOC, DOCX) <span class="req">*</span></label>
+      <input type="file" id="resume" accept=".pdf,.doc,.docx" required>
+    </div>
+  </section>
+
+  <button type="submit">Submit Application</button>
+
+</form>
+</main>
+
+<script>
+  document.querySelector('form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert('Gabriel Velasquez\nBSIT 212-A\nJob Application Submitted Successfully!');
+    this.reset();
+  });
+</script>
+
+</body>
+</html>

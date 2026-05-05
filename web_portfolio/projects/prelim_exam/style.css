@@ -1,0 +1,72 @@
+:root {
+  --border: #e2e8f0;
+  --text-muted: #718096;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+.input {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-family: inherit;
+}
+
+.textarea {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  font-family: inherit;
+}
+
+.card-header {
+  background: #f7fafc;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-body {
+  padding: 20px;
+  font-family: sans-serif;
+}
+
+.btn-blue {
+  background-color: lightblue;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+table {
+  width: 100%;
+  font-size: 13px;
+}
+
+th, td {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  text-align: left;
+}
+
+select {
+  padding: 8px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  width: 100%;
+}

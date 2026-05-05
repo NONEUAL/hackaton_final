@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scholarship Application Form</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <table class="table">
+    <tr><th>Name</th><th>Score: /100</th></tr>
+    <tr><th>Course</th><th>Prelim Exam: IT210 - Web Programming</th></tr>
+    <tr><td colspan="2">Hackathon 3: Scholarship Application Form</td></tr>
+  </table>
+
+  <div class="card-header"><h2>School Application Form</h2></div>
+  <div class="card-body">
+    <input class="input" type="text" placeholder="Enter full name" required>
+    <input class="input" type="email" placeholder="Enter email" required>
+  </div>
+
+  <div class="container">
+
+    <h3 class="card-header">Birthdate</h3>
+    <div class="card-body">
+      <input type="date">
+    </div>
+
+    <h3 class="card-header">Course</h3>
+    <select class="card-body">
+      <option value="" disabled selected>Select Course</option>
+      <option>BSIT</option>
+      <option>BSCRIM</option>
+      <option>BSED</option>
+      <option>BSBA</option>
+    </select>
+
+    <h3 class="card-header">Scholarship Type</h3>
+    <div class="card-body">
+      <label><input type="radio" name="scholarship"> Academic</label><br>
+      <label><input type="radio" name="scholarship"> Athletic</label><br>
+      <label><input type="radio" name="scholarship"> Financial Assistance</label><br>
+    </div>
+
+    <h3 class="card-header">Required Documents</h3>
+    <div class="card-body">
+      <label><input type="checkbox"> Transcript of Records</label><br>
+      <label><input type="checkbox"> Certificate of Enrollment</label><br>
+      <label><input type="checkbox"> Recommendation Letter</label><br>
+    </div>
+
+    <div class="Message">
+      <h3 class="card-header">Why should we grant you this scholarship?</h3>
+      <textarea class="textarea" rows="4" placeholder="Message"></textarea>
+      <div style="display:flex; gap:10px;">
+        <button class="btn-blue">Submit Application</button>
+      </div>
+    </div>
+
+  </div>
+
+</body>
+</html>
