@@ -910,3 +910,18 @@ body[data-page="festivals"] .nav-pill {
   .province-card-body h3 { font-size: 1.9rem; }
   .bento-label h3 { font-size: 1.1rem; }
 }
+
+body::after {
+  pointer-events: none !important;
+}
+.footer {
+  position: relative;
+  z-index: 10000 !important;
+  pointer-events: auto !important;
+}
+.footer-link, .social-btn {
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  position: relative;
+  z-index: 10001;
+}
