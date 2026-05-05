@@ -270,6 +270,10 @@ body.light .resume-link-card { background: linear-gradient(135deg, #fff 0%, #e8f
 /* ── Mini Project List ───────────────────────────────────────── */
 .mini-project-list { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
 
+.mini-project-item-link {
+  text-decoration: none;
+}
+
 .mini-project-item {
   background: rgba(255,255,255,0.025);
   border: 1px solid var(--border);
