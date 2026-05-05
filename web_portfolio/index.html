@@ -7,14 +7,83 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="style.css">
+    <style>
+        .contact-inline .form-control {
+            background: var(--card-item);
+            border: 1px solid var(--border);
+            color: var(--text);
+            font-size: 0.8rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: var(--radius-sm);
+        }
+        .contact-inline .form-control:focus {
+            background: var(--card);
+            border-color: var(--accent);
+            box-shadow: 0 0 0 2px rgba(71,191,189,0.2);
+            outline: none;
+        }
+        .contact-inline .btn-send {
+            background: var(--accent);
+            border: none;
+            padding: 0.4rem 0.8rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border-radius: var(--radius-sm);
+            color: var(--paper);
+            width: 100%;
+            transition: all 0.2s;
+        }
+        .contact-inline .btn-send:hover {
+            background: var(--accent-green);
+            transform: translateY(-2px);
+        }
+        .contact-inline .form-message {
+            font-size: 0.7rem;
+            margin-top: 0.5rem;
+            text-align: center;
+        }
+        .skills-achievements-card {
+            background: var(--card);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            border: 1px solid var(--border);
+            transition: transform 0.35s var(--ease), background 0.3s;
+        }
+        .skills-achievements-card:hover {
+            background: var(--card-hover);
+            transform: translateY(-6px);
+        }
+        .skill-badge {
+            display: inline-block;
+            background: var(--card-item);
+            border: 1px solid var(--border);
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.7rem;
+            color: var(--text-sub);
+            margin: 0.2rem;
+        }
+        .achievement-item {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .achievement-item i {
+            color: var(--accent);
+            font-size: 0.8rem;
+        }
+    </style>
 </head>
 <body>
 
-    <!-- Background atmosphere orbs -->
     <div class="bg-orb bg-orb-1"></div>
     <div class="bg-orb bg-orb-2"></div>
 
-    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark py-3">
         <div class="container">
             <a class="navbar-brand" href="index.html">gab/.</a>
@@ -25,12 +94,9 @@
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link active" href="index.html"><i class="bi bi-house-door me-1"></i> Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="project.html"><i class="bi bi-folder me-1"></i> Projects</a></li>
-                    <li class="nav-item"><a class="nav-link" href="Resume.pdf" target="_blank" rel="noopener"><i class="bi bi-file-earmark-person me-1"></i> Resume</a></li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../../index.html" target="_blank" rel="noopener">
-                            <i class="bi bi-sunrise"></i> Negros Tourism
-                        </a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html"><i class="bi bi-pencil-square me-1"></i> Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Resume.pdf" target="_blank"><i class="bi bi-file-earmark-person me-1"></i> Resume</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../index.html" target="_blank"><i class="bi bi-sunrise"></i> Negros Tourism</a></li>
                 </ul>
                 <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">
                     <i class="bi bi-sun-fill" id="themeIcon"></i>
@@ -41,133 +107,149 @@
 
     <div class="container my-5">
         <div class="row g-4">
-
-            <!-- Left Column: Personal & About -->
+            <!-- Left Column: Personal & Skills & Achievements (replaces resume link) -->
             <div class="col-lg-3 d-flex flex-column gap-4">
                 <div class="bento-card">
-                    <p class="text-accent mb-1" style="font-size:0.75rem;font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:1.5px;text-transform:uppercase;">Personal</p>
+                    <p class="text-accent mb-1" style="font-size:0.75rem;">Personal</p>
                     <h3 class="mb-0" style="font-size:1.3rem;">Portfolio</h3>
                 </div>
-
                 <div class="bento-card flex-grow-1">
-                    <p class="text-accent mb-2" style="font-size:0.75rem;font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:1.5px;text-transform:uppercase;">About Me</p>
+                    <p class="text-accent mb-2" style="font-size:0.75rem;">About Me</p>
                     <p>19 years old, from Amadeo, Cavite. Currently a 2nd-year BSIT student at Olivarez College Tagaytay.</p>
-                    <p class="mb-0" style="font-size:0.8rem;color:var(--text-muted);">Hobbies: Gaming, Travel, Music</p>
+                    <p class="mb-0" style="font-size:0.8rem; color:var(--text-muted);">Hobbies: Gaming, Travel, Music</p>
                 </div>
 
-                <!-- Resume card -->
-                <a href="Resume.pdf" target="_blank" rel="noopener" class="bento-card resume-link-card py-4">
-                    <p class="text-accent mb-0" style="font-size:0.75rem;font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:1.5px;text-transform:uppercase;">My Resume</p>
-                    <div class="resume-dl-icon">
-                        <i class="bi bi-file-earmark-text"></i>
+                <!-- Skills & Achievements Card (replaces Resume PDF link) -->
+                <div class="skills-achievements-card">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <i class="bi bi-trophy-fill text-accent" style="font-size:1.2rem;"></i>
+                        <p class="text-accent mb-0" style="font-size:0.75rem; letter-spacing:1.5px;">Skills & Achievements</p>
                     </div>
-                    <p class="mb-0 mt-1" style="font-size:0.8rem;color:var(--text-muted);">View PDF</p>
-                </a>
+                    <div class="mb-3">
+                        <h6 style="font-size:0.7rem; letter-spacing:1px; margin-bottom:0.5rem;">Technical Skills</h6>
+                        <div>
+                            <span class="skill-badge">HTML5</span>
+                            <span class="skill-badge">CSS3</span>                            
+                            <span class="skill-badge">Bootstrap 5</span>
+                            <span class="skill-badge">JavaScript (ES6)</span>
+                            <span class="skill-badge">Git/GitHub</span>
+                        </div>
+                    </div>
+                    <div>
+                        <h6 style="font-size:0.7rem; letter-spacing:1px; margin-bottom:0.5rem;">Achievements</h6>
+                        <div class="achievement-item"><i class="bi bi-award-fill"></i> Dean's List Award </div>
+                        <div class="achievement-item"><i class="bi bi-people-fill"></i> Community Leadership Award</div>
+                        <div class="achievement-item"><i class="bi bi-star-fill"></i> Rising Tech Star</div>
+                    </div>
+                </div>
             </div>
 
-            <!-- Middle Column: Profile + Social -->
+            <!-- Middle Column: Profile + Contact Form -->
             <div class="col-lg-3 d-flex flex-column gap-4">
                 <div class="bento-card text-center d-flex flex-column align-items-center justify-content-center py-5">
                     <img src="img/portfolio-img/profile.png" alt="Profile" class="profile-img">
-                    <h3 style="font-size:1.2rem;margin-bottom:8px;">Gabriel Velasquez</h3>
+                    <h3 style="font-size:1.2rem;">Gabriel Velasquez</h3>
                     <div class="student-tag">Student</div>
                 </div>
 
-                <div class="bento-card social-card">
-                    <p class="text-accent mb-2 text-center" style="font-size:0.75rem;font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:1.5px;text-transform:uppercase;">Find Me On</p>
-                    <div class="d-flex justify-content-center">
-                        <a href="https://github.com/gabriel" target="_blank" class="social-icon"><i class="bi bi-github"></i></a>
-                        <a href="#" class="social-icon"><i class="bi bi-facebook"></i></a>
-                        <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+                <!-- Contact Form Card -->
+                <div class="bento-card contact-inline">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                        <i class="bi bi-envelope-paper-fill text-accent" style="font-size:1.2rem;"></i>
+                        <p class="text-accent mb-0" style="font-size:0.75rem; letter-spacing:1.5px;">Send a Message</p>
+                    </div>
+                    <form id="contactSidebarForm" onsubmit="return false;">
+                        <div class="mb-2">
+                            <input type="text" class="form-control" placeholder="Your name" required>
+                        </div>
+                        <div class="mb-2">
+                            <input type="email" class="form-control" placeholder="Email address" required>
+                        </div>
+                        <div class="mb-2">
+                            <textarea rows="2" class="form-control" placeholder="Your message..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-send">Send <i class="bi bi-send ms-1"></i></button>
+                        <div class="form-message"></div>
+                    </form>
+                    <hr class="my-3" style="border-color: var(--border);">
+                    <div class="d-flex justify-content-center gap-3">
+                        <a href="https://github.com/" target="_blank" class="social-icon"><i class="bi bi-github"></i></a>
+                        <a href="https://facebook.com/" target="_blank" class="social-icon"><i class="bi bi-facebook"></i></a>
+                        <a href="https://instagram.com/" target="_blank" class="social-icon"><i class="bi bi-instagram"></i></a>
                     </div>
                 </div>
             </div>
 
-            <!-- School Projects Preview Box -->
+            <!-- School Projects Preview -->
             <div class="col-lg-3">
-                <div class="bento-card h-100" style="display: flex; flex-direction: column;">
+                <div class="bento-card h-100">
                     <div class="d-flex justify-content-between align-items-center mb-1">
-                        <p class="text-accent mb-0" style="font-size:0.75rem;font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:1.5px;text-transform:uppercase;">School</p>
-                        <i class="bi bi-folder-fill text-accent" style="font-size:0.85rem;"></i>
+                        <p class="text-accent mb-0" style="font-size:0.75rem;">School</p>
+                        <i class="bi bi-folder-fill text-accent"></i>
                     </div>
                     <h5 class="mb-3">Projects</h5>
-
                     <div class="mini-project-list">
                         <a href="projects/prelim_exam/index.html" class="mini-project-item-link">
                             <div class="mini-project-item">
                                 <div class="mini-project-icon"><i class="bi bi-journal-code"></i></div>
-                                <div class="mini-project-info">
-                                    <h6>Prelim Exam</h6>
-                                </div>
+                                <div class="mini-project-info"><h6>Prelim Exam</h6></div>
                             </div>
                         </a>
                         <a href="projects/finals_act1/homepage.html" class="mini-project-item-link">
                             <div class="mini-project-item">
                                 <div class="mini-project-icon"><i class="bi bi-journal-code"></i></div>
-                                <div class="mini-project-info">
-                                    <h6>Finals Act 1</h6>
-                                </div>
+                                <div class="mini-project-info"><h6>Finals Act 1</h6></div>
                             </div>
                         </a>
                         <a href="projects/finals_act2/index.html" class="mini-project-item-link">
                             <div class="mini-project-item">
                                 <div class="mini-project-icon"><i class="bi bi-journal-code"></i></div>
-                                <div class="mini-project-info">
-                                    <h6>Finals Act 2</h6>
-                                </div>
+                                <div class="mini-project-info"><h6>Finals Act 2</h6></div>
                             </div>
                         </a>
                         <a href="projects/midterm_act1/index.html" class="mini-project-item-link">
                             <div class="mini-project-item">
                                 <div class="mini-project-icon"><i class="bi bi-journal-code"></i></div>
-                                <div class="mini-project-info">
-                                    <h6>Midterm Act 1</h6>
-                                </div>
+                                <div class="mini-project-info"><h6>Midterm Act 1</h6></div>
                             </div>
                         </a>
                         <a href="projects/midterm_act2/index.html" class="mini-project-item-link">
                             <div class="mini-project-item">
                                 <div class="mini-project-icon"><i class="bi bi-journal-code"></i></div>
-                                <div class="mini-project-info">
-                                    <h6>Midterm Act 2</h6>
-                                </div>
+                                <div class="mini-project-info"><h6>Midterm Act 2</h6></div>
                             </div>
                         </a>
-                        <a href="../../index.html../../index.html" target="_blank" class="mini-project-item-link">
+                        <a href="../index.html" target="_blank" class="mini-project-item-link">
                             <div class="mini-project-item">
                                 <div class="mini-project-icon"><i class="bi bi-sunrise"></i></div>
-                                <div class="mini-project-info">
-                                    <h6>Final Exam</h6>
-                                </div>
+                                <div class="mini-project-info"><h6>Final Exam</h6></div>
                             </div>
                         </a>
                     </div>
-
                     <div class="mt-auto pt-3">
-                        <a href="project.html" class="small text-accent mb-0" style="font-size:0.8rem; text-decoration:none;">View all projects <i class="bi bi-chevron-right"></i></a>
+                        <a href="project.html" class="small text-accent">View all projects <i class="bi bi-chevron-right"></i></a>
                     </div>
                 </div>
             </div>
 
-            <!-- Right Column: Education -->
+            <!-- Right Column: Education (only) -->
             <div class="col-lg-3">
                 <div class="bento-card h-100">
                     <div class="d-flex justify-content-between align-items-center mb-4">
                         <div>
-                            <p class="text-accent mb-0" style="font-size:0.75rem;font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:1.5px;text-transform:uppercase;">Background</p>
+                            <p class="text-accent mb-0" style="font-size:0.75rem;">Background</p>
                             <h5 class="mb-0 mt-1">Education</h5>
                         </div>
                         <i class="bi bi-mortarboard-fill text-accent"></i>
                     </div>
-
                     <div class="edu-item">
                         <h6>Olivarez College</h6>
-                        <p>Bachelor of Science in Information Technology</p>
+                        <p>BS in Information Technology</p>
                         <div class="edu-date">2024 – Present</div>
                     </div>
                     <div class="edu-item">
                         <h6>Halang Banaybanay Integrated School</h6>
-                        <p>Accountancy, Business and Management</p>
+                        <p>ABM Strand</p>
                         <div class="edu-date">2021 – 2024</div>
                     </div>
                     <div class="edu-item">
@@ -190,6 +272,16 @@
             const isLight = document.body.classList.contains('light');
             icon.className = isLight ? 'bi bi-moon-fill' : 'bi bi-sun-fill';
             localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        });
+
+        const contactForm = document.getElementById('contactSidebarForm');
+        const msgDiv = contactForm.querySelector('.form-message');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            msgDiv.innerHTML = '<i class="bi bi-check-circle-fill"></i> Message sent! (demo)';
+            msgDiv.style.color = 'var(--accent-green)';
+            contactForm.reset();
+            setTimeout(() => { msgDiv.innerHTML = ''; }, 3000);
         });
     </script>
 </body>

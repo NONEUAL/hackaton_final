@@ -482,3 +482,99 @@ body.light .resume-link-card { background: linear-gradient(135deg, #fff 0%, #e8f
   .bento-card { min-height: unset; }
   .theme-toggle { margin-left: 0; margin-top: 8px; }
 }
+
+
+/* ── Enhanced Footer (bento style) ── */
+.footer-bento {
+  background: var(--card);
+  border-top: 1px solid var(--border);
+  padding: 3rem 0 2rem;
+  margin-top: 3rem;
+  border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+.footer-bento .footer-heading {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+.footer-bento .footer-sub {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.footer-bento .social-icon {
+  background: var(--card-item);
+  border: 1px solid var(--border);
+  width: 38px;
+  height: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  transition: all 0.2s ease;
+  margin-right: 0.5rem;
+}
+
+.footer-bento .social-icon:hover {
+  background: var(--accent);
+  color: var(--paper);
+  border-color: var(--accent);
+  transform: translateY(-3px);
+}
+
+.footer-bento .footer-form .form-control,
+.footer-bento .footer-form .form-select {
+  background: var(--card-item);
+  border: 1px solid var(--border);
+  color: var(--text);
+  font-size: 0.8rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-sm);
+  transition: all 0.2s;
+}
+
+.footer-bento .footer-form .form-control:focus {
+  background: var(--card);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px rgba(71,191,189,0.2);
+  outline: none;
+}
+
+.footer-bento .footer-form .btn-submit {
+  background: var(--accent);
+  border: none;
+  padding: 0.5rem 1rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  border-radius: var(--radius-sm);
+  color: var(--paper);
+  width: 100%;
+  transition: all 0.2s;
+}
+
+.footer-bento .footer-form .btn-submit:hover {
+  background: var(--accent-green);
+  transform: translateY(-2px);
+}
+
+.footer-bento hr {
+  border-color: var(--border);
+  opacity: 0.4;
+  margin: 2rem 0 1rem;
+}
+
+.footer-bento .copyright {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  text-align: center;
+  letter-spacing: 0.5px;
+}

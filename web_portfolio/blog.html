@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabriel | Blog</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .blog-full-card {
+            background: var(--card);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border);
+            padding: 1.8rem;
+            margin-bottom: 1.5rem;
+            transition: transform 0.2s ease;
+        }
+        .blog-full-card:hover {
+            transform: translateY(-4px);
+            background: var(--card-hover);
+        }
+        .blog-full-title {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        .blog-date {
+            font-size: 0.7rem;
+            color: var(--accent);
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        .blog-full-content {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-orb bg-orb-1"></div>
+    <div class="bg-orb bg-orb-2"></div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark py-3">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">gab/.</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="index.html"><i class="bi bi-house-door me-1"></i> Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="project.html"><i class="bi bi-folder me-1"></i> Projects</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="blog.html"><i class="bi bi-pencil-square me-1"></i> Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Resume.pdf" target="_blank"><i class="bi bi-file-earmark-person me-1"></i> Resume</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../index.html" target="_blank"><i class="bi bi-sunrise"></i> Negros Tourism</a></li>
+                </ul>
+                <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">
+                    <i class="bi bi-sun-fill" id="themeIcon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-lg-8 mx-auto">
+                <div class="text-center mb-5">
+                    <span class="text-accent" style="font-size:0.7rem; letter-spacing:3px;">THOUGHTS & STORIES</span>
+                    <h1 class="mt-2" style="font-family:'Plus Jakarta Sans'; font-weight:800;">Blog</h1>
+                    <p class="text-muted">Musings on dev, travel, and student life</p>
+                </div>
+
+                <div class="blog-full-card">
+                    <span class="blog-date">April 12, 2026</span>
+                    <div class="blog-full-title">Building my first Bootstrap site</div>
+                    <div class="blog-full-content">
+                        I never knew responsiveness could be this easy. The grid system is a lifesaver — my Negros tourism site adapts to every screen size without custom media queries everywhere. 
+                        The components like navbar, cards, and modals saved me hours of manual CSS. I'm definitely using Bootstrap for future projects.
+                    </div>
+                </div>
+
+                <div class="blog-full-card">
+                    <span class="blog-date">March 28, 2026</span>
+                    <div class="blog-full-title">Why I chose IT over CS</div>
+                    <div class="blog-full-content">
+                        Both are great, but I love the blend of business and tech. IT lets me solve real-world problems without getting lost in pure theory. 
+                        I enjoy building practical applications that people actually use — websites, databases, and systems that improve workflows. CS is fascinating, but IT is my path.
+                    </div>
+                </div>
+
+                <div class="blog-full-card">
+                    <span class="blog-date">March 5, 2026</span>
+                    <div class="blog-full-title">Travel diaries: Negros Island</div>
+                    <div class="blog-full-content">
+                        From the Ruins in Talisay to the sandbar in Manjuyod — this island has so much soul. The MassKara masks alone are worth the trip. 
+                        I also discovered the best chicken inasal of my life at Manokan Country. If you ever visit the Philippines, put Negros on your list.
+                    </div>
+                </div>
+
+                <div class="blog-full-card">
+                    <span class="blog-date">February 20, 2026</span>
+                    <div class="blog-full-title">What's next after graduation?</div>
+                    <div class="blog-full-content">
+                        Probably a junior dev role, but I'd love to freelance for tourism boards. Combining coding with travel? Yes please. 
+                        I'm also considering building my own startup — maybe a travel tech platform. For now, I'm just enjoying the learning process.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const toggle = document.getElementById('themeToggle');
+        const icon = document.getElementById('themeIcon');
+        const saved = localStorage.getItem('theme');
+        if (saved === 'light') { document.body.classList.add('light'); icon.className = 'bi bi-moon-fill'; }
+        toggle.addEventListener('click', () => {
+            document.body.classList.toggle('light');
+            const isLight = document.body.classList.contains('light');
+            icon.className = isLight ? 'bi bi-moon-fill' : 'bi bi-sun-fill';
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        });
+
+        const footerForm = document.getElementById('footerContactForm');
+        const msgDiv = footerForm.querySelector('.footer-form-message');
+        footerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            msgDiv.innerHTML = '<i class="bi bi-check-circle-fill"></i> Message sent! (demo)';
+            msgDiv.style.color = 'var(--accent-green)';
+            footerForm.reset();
+            setTimeout(() => { msgDiv.innerHTML = ''; }, 3000);
+        });
+    </script>
+</body>
+</html>
