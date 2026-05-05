@@ -14,7 +14,7 @@
             border: 1px solid var(--border);
             padding: 1.8rem;
             margin-bottom: 1.5rem;
-            transition: transform 0.2s ease;
+            transition: transform 0.2s ease, background 0.2s ease;
         }
         .blog-full-card:hover {
             transform: translateY(-4px);
@@ -79,7 +79,7 @@
                     <span class="blog-date">April 12, 2026</span>
                     <div class="blog-full-title">Building my first Bootstrap site</div>
                     <div class="blog-full-content">
-                        I never knew responsiveness could be this easy. The grid system is a lifesaver — my Negros tourism site adapts to every screen size without custom media queries everywhere. 
+                        I never knew responsiveness could be this easy. The grid system is a lifesaver — my Negros tourism site adapts to every screen size without custom media queries everywhere.
                         The components like navbar, cards, and modals saved me hours of manual CSS. I'm definitely using Bootstrap for future projects.
                     </div>
                 </div>
@@ -88,7 +88,7 @@
                     <span class="blog-date">March 28, 2026</span>
                     <div class="blog-full-title">Why I chose IT over CS</div>
                     <div class="blog-full-content">
-                        Both are great, but I love the blend of business and tech. IT lets me solve real-world problems without getting lost in pure theory. 
+                        Both are great, but I love the blend of business and tech. IT lets me solve real-world problems without getting lost in pure theory.
                         I enjoy building practical applications that people actually use — websites, databases, and systems that improve workflows. CS is fascinating, but IT is my path.
                     </div>
                 </div>
@@ -97,7 +97,7 @@
                     <span class="blog-date">March 5, 2026</span>
                     <div class="blog-full-title">Travel diaries: Negros Island</div>
                     <div class="blog-full-content">
-                        From the Ruins in Talisay to the sandbar in Manjuyod — this island has so much soul. The MassKara masks alone are worth the trip. 
+                        From the Ruins in Talisay to the sandbar in Manjuyod — this island has so much soul. The MassKara masks alone are worth the trip.
                         I also discovered the best chicken inasal of my life at Manokan Country. If you ever visit the Philippines, put Negros on your list.
                     </div>
                 </div>
@@ -106,13 +106,15 @@
                     <span class="blog-date">February 20, 2026</span>
                     <div class="blog-full-title">What's next after graduation?</div>
                     <div class="blog-full-content">
-                        Probably a junior dev role, but I'd love to freelance for tourism boards. Combining coding with travel? Yes please. 
+                        Probably a junior dev role, but I'd love to freelance for tourism boards. Combining coding with travel? Yes please.
                         I'm also considering building my own startup — maybe a travel tech platform. For now, I'm just enjoying the learning process.
                     </div>
                 </div>
+
             </div>
         </div>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
         const toggle = document.getElementById('themeToggle');
@@ -124,16 +126,6 @@
             const isLight = document.body.classList.contains('light');
             icon.className = isLight ? 'bi bi-moon-fill' : 'bi bi-sun-fill';
             localStorage.setItem('theme', isLight ? 'light' : 'dark');
-        });
-
-        const footerForm = document.getElementById('footerContactForm');
-        const msgDiv = footerForm.querySelector('.footer-form-message');
-        footerForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            msgDiv.innerHTML = '<i class="bi bi-check-circle-fill"></i> Message sent! (demo)';
-            msgDiv.style.color = 'var(--accent-green)';
-            footerForm.reset();
-            setTimeout(() => { msgDiv.innerHTML = ''; }, 3000);
         });
     </script>
 </body>

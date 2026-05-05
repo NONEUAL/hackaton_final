@@ -31,9 +31,10 @@
             letter-spacing: 1.5px;
             text-transform: uppercase;
             border-radius: var(--radius-sm);
-            color: var(--paper);
+            color: #090E13;
             width: 100%;
             transition: all 0.2s;
+            cursor: pointer;
         }
         .contact-inline .btn-send:hover {
             background: var(--accent-green);
@@ -107,7 +108,7 @@
 
     <div class="container my-5">
         <div class="row g-4">
-            <!-- Left Column: Personal & Skills & Achievements (replaces resume link) -->
+            <!-- Left Column: Personal & Skills & Achievements -->
             <div class="col-lg-3 d-flex flex-column gap-4">
                 <div class="bento-card">
                     <p class="text-accent mb-1" style="font-size:0.75rem;">Personal</p>
@@ -119,7 +120,7 @@
                     <p class="mb-0" style="font-size:0.8rem; color:var(--text-muted);">Hobbies: Gaming, Travel, Music</p>
                 </div>
 
-                <!-- Skills & Achievements Card (replaces Resume PDF link) -->
+                <!-- Skills & Achievements Card -->
                 <div class="skills-achievements-card">
                     <div class="d-flex align-items-center gap-2 mb-3">
                         <i class="bi bi-trophy-fill text-accent" style="font-size:1.2rem;"></i>
@@ -129,15 +130,15 @@
                         <h6 style="font-size:0.7rem; letter-spacing:1px; margin-bottom:0.5rem;">Technical Skills</h6>
                         <div>
                             <span class="skill-badge">HTML5</span>
-                            <span class="skill-badge">CSS3</span>                            
-                            <span class="skill-badge">Bootstrap 5</span>
-                            <span class="skill-badge">JavaScript (ES6)</span>
-                            <span class="skill-badge">Git/GitHub</span>
+                            <span class="skill-badge">CSS3</span>
+                            <span class="skill-badge">Bootstrap</span>
+                            <span class="skill-badge">JavaScript</span>
+                            <span class="skill-badge">Github</span>
                         </div>
                     </div>
                     <div>
                         <h6 style="font-size:0.7rem; letter-spacing:1px; margin-bottom:0.5rem;">Achievements</h6>
-                        <div class="achievement-item"><i class="bi bi-award-fill"></i> Dean's List Award </div>
+                        <div class="achievement-item"><i class="bi bi-award-fill"></i> Dean's List Award</div>
                         <div class="achievement-item"><i class="bi bi-people-fill"></i> Community Leadership Award</div>
                         <div class="achievement-item"><i class="bi bi-star-fill"></i> Rising Tech Star</div>
                     </div>
@@ -147,7 +148,8 @@
             <!-- Middle Column: Profile + Contact Form -->
             <div class="col-lg-3 d-flex flex-column gap-4">
                 <div class="bento-card text-center d-flex flex-column align-items-center justify-content-center py-5">
-                    <img src="img/portfolio-img/profile.png" alt="Profile" class="profile-img">
+                    <img src="portfolio-img/profile.png" alt="Profile" class="profile-img"
+                         onerror="this.src='https://placehold.co/110x110/111C28/47BFBD?text=GV'">
                     <h3 style="font-size:1.2rem;">Gabriel Velasquez</h3>
                     <div class="student-tag">Student</div>
                 </div>
@@ -232,7 +234,7 @@
                 </div>
             </div>
 
-            <!-- Right Column: Education (only) -->
+            <!-- Right Column: Education -->
             <div class="col-lg-3">
                 <div class="bento-card h-100">
                     <div class="d-flex justify-content-between align-items-center mb-4">
@@ -243,17 +245,17 @@
                         <i class="bi bi-mortarboard-fill text-accent"></i>
                     </div>
                     <div class="edu-item">
-                        <h6>Olivarez College Tataytay</h6>
+                        <h6>Olivarez College Tagaytay</h6>
                         <p>Bachelor of Science in Information Technology</p>
                         <div class="edu-date">2024 – Present</div>
                     </div>
                     <div class="edu-item">
                         <h6>Halang Banaybanay Integrated School</h6>
-                        <p>Acountancy, Business and Management</p>
+                        <p>Accountancy, Business and Management</p>
                         <div class="edu-date">2021 – 2024</div>
                     </div>
                     <div class="edu-item">
-                        <h6>E.B Magalona National High School</h6>
+                        <h6>E.B. Magalona National High School</h6>
                         <div class="edu-date">2016 – 2021</div>
                     </div>
                 </div>
