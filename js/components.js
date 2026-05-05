@@ -63,7 +63,7 @@
           </div>
         </div>
         <hr class="footer-divider">
-        <p class="footer-copy">© 2026 Gabriel Velasquez. IT 210 Final Project.</p>
+        <p class="footer-copy">© Gabriel Velasquez. IT 210 Final Project.</p>
       </div>
     </footer>`;
     document.body.insertAdjacentHTML('beforeend', footerHTML);
@@ -95,10 +95,10 @@
   function buildFooterCTA() {
     return `<span class="footer-label">Connect</span>
             <div>
-              <a href="#" class="social-btn" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-              <a href="#" class="social-btn" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-              <a href="#" class="social-btn" aria-label="Twitter / X"><i class="bi bi-twitter-x"></i></a>
-              <a href="#" class="social-btn" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+              <a href="https://www.facebook.com/negrosdailybulletin/" class="social-btn" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+              <a href="https://www.instagram.com/explore/locations/1031636215/negros-island/?hl=es" class="social-btn" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+              <a href="https://x.com/negrosislandr18?lang=en" class="social-btn" aria-label="Twitter / X"><i class="bi bi-twitter-x"></i></a>
+              <a href="https://www.youtube.com/watch?v=7d8VVc1fN-8" class="social-btn" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
             </div>`;
   }
 
