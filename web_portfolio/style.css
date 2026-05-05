@@ -1,0 +1,457 @@
+/* ============================================================
+   Gabriel Portfolio — Stylesheet
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Nunito:wght@400;500;600;700&display=swap');
+
+/* ── Variables ─────────────────────────────────────────────── */
+:root {
+  --bg:           #090E13;
+  --bg-alt:       #0D1520;
+  --card:         #111C28;
+  --card-hover:   #172133;
+  --card-item:    #1E2D3E;
+  --border:       rgba(255,255,255,0.07);
+
+  --text:         #EEF1F5;
+  --text-sub:     #C4CBD6;
+  --text-muted:   #8A96A8;
+  --text-dim:     #546070;
+
+  --accent:       #47BFBD;
+  --accent-green: #3ACCA4;
+  --accent-glow:  rgba(71,191,189,0.18);
+
+  --radius-lg: 24px;
+  --radius-md: 14px;
+  --radius-sm: 8px;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Light mode */
+body.light {
+  --bg:         #F0F4F8;
+  --bg-alt:     #E4ECF4;
+  --card:       #FFFFFF;
+  --card-hover: #F5F9FF;
+  --card-item:  #E8F0F9;
+  --border:     rgba(0,0,0,0.08);
+  --text:       #1A2535;
+  --text-sub:   #3A4D63;
+  --text-muted: #607080;
+  --text-dim:   #9AAABB;
+}
+
+/* ── Reset & Base ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Nunito', sans-serif;
+  font-size: 15px;
+  line-height: 1.65;
+  min-height: 100vh;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.25;
+}
+
+p { color: var(--text-muted); font-size: 0.9rem; }
+a { text-decoration: none; }
+
+/* ── Scrollbar ─────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--card-item); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+
+/* ── Background Orbs ───────────────────────────────────────── */
+.bg-orb {
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.bg-orb-1 {
+  width: 600px;
+  height: 600px;
+  top: -180px;
+  right: -120px;
+  background: radial-gradient(circle, rgba(71,191,189,0.35) 0%, transparent 65%);
+  filter: blur(60px);
+  animation: orbFloat 12s ease-in-out infinite alternate;
+}
+
+.bg-orb-2 {
+  width: 450px;
+  height: 450px;
+  bottom: -100px;
+  left: -100px;
+  background: radial-gradient(circle, rgba(58,204,164,0.28) 0%, transparent 65%);
+  filter: blur(60px);
+  animation: orbFloat 16s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes orbFloat {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(35px, 25px) scale(1.08); }
+}
+
+.navbar, .container { position: relative; z-index: 1; }
+
+/* ── Navbar ─────────────────────────────────────────────────── */
+.navbar {
+  background: rgba(9,14,19,0.85) !important;
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+body.light .navbar {
+  background: rgba(240,244,248,0.88) !important;
+}
+
+.navbar-brand {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 800;
+  font-size: 1.35rem;
+  color: var(--accent) !important;
+}
+
+.nav-link {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-muted) !important;
+  margin-left: 20px;
+  padding: 0.3rem 0 !important;
+  transition: color 0.2s;
+}
+
+.nav-link:hover, .nav-link.active { color: var(--accent) !important; }
+
+/* Theme toggle button */
+.theme-toggle {
+  background: var(--card-item);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  border-radius: var(--radius-sm);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-left: 16px;
+  transition: color 0.2s, background 0.2s, border-color 0.2s;
+  flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+  color: var(--accent);
+  border-color: rgba(71,191,189,0.3);
+}
+
+/* ── Bento Card ─────────────────────────────────────────────── */
+.bento-card {
+  background: var(--card);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--border);
+  transition: transform 0.35s var(--ease), background 0.3s, box-shadow 0.3s;
+  color: inherit;
+  opacity: 0;
+  animation: fadeUp 0.55s var(--ease) forwards;
+}
+
+.bento-card:hover {
+  background: var(--card-hover);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.3), 0 0 0 1px rgba(71,191,189,0.12);
+}
+
+.col-lg-3:nth-child(1) .bento-card { animation-delay: 0.05s; }
+.col-lg-3:nth-child(2) .bento-card { animation-delay: 0.12s; }
+.col-lg-3:nth-child(3) .bento-card { animation-delay: 0.19s; }
+.col-lg-3:nth-child(4) .bento-card { animation-delay: 0.26s; }
+
+/* Resume card */
+.resume-link-card {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+  background: linear-gradient(135deg, var(--card) 0%, #152030 100%);
+}
+
+body.light .resume-link-card { background: linear-gradient(135deg, #fff 0%, #e8f4f4 100%); }
+
+.resume-dl-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-md);
+  background: var(--accent-glow);
+  border: 1px solid rgba(71,191,189,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: var(--accent);
+  margin: 0.75rem 0;
+  transition: transform 0.3s var(--ease), background 0.3s;
+}
+
+.resume-link-card:hover .resume-dl-icon {
+  transform: scale(1.1);
+  background: rgba(71,191,189,0.25);
+}
+
+/* ── Profile ─────────────────────────────────────────────────── */
+.profile-img {
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid var(--card-item);
+  box-shadow: 0 0 0 1px var(--border), 0 0 28px rgba(71,191,189,0.12);
+  margin-bottom: 0.85rem;
+}
+
+.student-tag {
+  display: inline-block;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-glow);
+  border: 1px solid rgba(71,191,189,0.25);
+  border-radius: 99px;
+  padding: 4px 14px;
+}
+
+/* ── Social Icons (inline, compact) ─────────────────────────── */
+.social-icon {
+  font-size: 1.4rem;
+  color: var(--text-muted);
+  margin: 0 8px;
+  transition: color 0.2s, transform 0.2s var(--ease);
+  display: inline-flex;
+  align-items: center;
+}
+
+.social-icon:hover {
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* Compact social card — auto-height, no grow */
+.social-card {
+  flex-grow: 0 !important;
+  height: auto !important;
+  padding: 1rem 1.5rem !important;
+}
+
+/* ── Mini Project List ───────────────────────────────────────── */
+.mini-project-list { display: flex; flex-direction: column; gap: 8px; margin-top: 12px; }
+
+.mini-project-item {
+  background: rgba(255,255,255,0.025);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 10px 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.mini-project-item:hover {
+  background: rgba(71,191,189,0.06);
+  border-color: rgba(71,191,189,0.2);
+}
+
+.mini-project-icon {
+  width: 34px; height: 34px; min-width: 34px;
+  background: var(--card-item);
+  border-radius: var(--radius-sm);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--accent);
+  font-size: 0.95rem;
+}
+
+.mini-project-info h6 {
+  margin: 0 0 2px;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.82rem;
+  color: var(--text);
+}
+
+.mini-project-info span { font-size: 0.7rem; color: var(--text-dim); }
+
+/* ── Education ───────────────────────────────────────────────── */
+.edu-item {
+  background: var(--card-item);
+  border-radius: var(--radius-md);
+  padding: 1rem 1.1rem;
+  margin-bottom: 0.85rem;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  transition: border-color 0.25s;
+}
+
+.edu-item:last-child { margin-bottom: 0; }
+.edu-item:hover { border-left-color: var(--accent-green); }
+
+.edu-item h6 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.88rem;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+
+.edu-item p { font-size: 0.8rem; margin-bottom: 4px; color: var(--text-sub); }
+.edu-date { font-size: 0.72rem; color: var(--text-dim); }
+
+/* ── Accent helpers ──────────────────────────────────────────── */
+.text-accent { color: var(--accent) !important; }
+
+/* ── Projects Page ───────────────────────────────────────────── */
+.page-title {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  animation: fadeUp 0.5s var(--ease) 0.05s forwards;
+}
+
+.project-card {
+  background: var(--card);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  border: 1px solid var(--border);
+  height: 100%;
+  opacity: 0;
+  animation: fadeUp 0.55s var(--ease) forwards;
+  transition: transform 0.35s var(--ease), box-shadow 0.35s, border-color 0.3s;
+}
+
+.col-md-4:nth-child(1) .project-card { animation-delay: 0.08s; }
+.col-md-4:nth-child(2) .project-card { animation-delay: 0.15s; }
+.col-md-4:nth-child(3) .project-card { animation-delay: 0.22s; }
+.col-md-4:nth-child(4) .project-card { animation-delay: 0.29s; }
+.col-md-4:nth-child(5) .project-card { animation-delay: 0.36s; }
+.col-md-4:nth-child(6) .project-card { animation-delay: 0.43s; }
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.35), 0 0 0 1px rgba(71,191,189,0.12);
+  border-color: rgba(71,191,189,0.15);
+}
+
+.project-img-container {
+  width: 100%; height: 190px; overflow: hidden; position: relative;
+}
+
+.project-img-container::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent 50%, rgba(9,14,19,0.65) 100%);
+}
+
+.project-img-container img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  filter: brightness(0.82) saturate(0.85);
+  transition: transform 0.6s var(--ease), filter 0.4s;
+}
+
+.project-card:hover .project-img-container img {
+  transform: scale(1.06);
+  filter: brightness(0.92) saturate(1);
+}
+
+.project-body { padding: 1.3rem; }
+
+.project-body h5 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1rem;
+  margin-bottom: 6px;
+}
+
+.project-body p { font-size: 0.82rem; margin-bottom: 1rem; }
+
+.btn-view {
+  background: var(--accent);
+  color: #090E13;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700;
+  font-size: 0.82rem;
+  border-radius: var(--radius-sm);
+  border: none;
+  padding: 8px 0;
+  width: 100%;
+  transition: background 0.25s, transform 0.2s var(--ease), box-shadow 0.25s;
+}
+
+.btn-view:hover {
+  background: var(--accent-green);
+  transform: translateY(-1px);
+  box-shadow: 0 6px 20px rgba(71,191,189,0.3);
+}
+
+/* ── Certifications ──────────────────────────────────────────── */
+.cert-carousel {
+  background: var(--card);
+  border-radius: var(--radius-lg);
+  padding: 3rem;
+  margin-top: 4rem;
+  border: 1px solid var(--border);
+}
+
+.cert-carousel h4 {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 2rem;
+}
+
+.carousel-item img {
+  max-height: 380px;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+}
+
+.carousel-item p { color: var(--text-sub); font-size: 0.85rem; margin-top: 1rem; }
+
+/* ── Keyframes ───────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Responsive ──────────────────────────────────────────────── */
+@media (max-width: 991px) {
+  .nav-link { margin-left: 0; padding: 0.5rem 0 !important; }
+  .bento-card { min-height: unset; }
+  .theme-toggle { margin-left: 0; margin-top: 8px; }
+}

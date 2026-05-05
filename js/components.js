@@ -99,7 +99,7 @@
       { href: `${root}pages/where-to-go.html`,    label: 'Destinations', key: 'where-to-go' },
       { href: `${root}pages/what-to-buy.html`,    label: 'What to Buy',  key: 'what-to-buy' },
       { href: `${root}pages/festivals.html`,      label: 'Festivals',    key: 'festivals' },
-      { href: `${root}pages/developer.html`,      label: 'Developer',    key: 'developer' },
+      { href: `${root}web_portfolio`,      label: 'Developer',    key: 'developer' },
     ];
 
     const mainLinks = links.map(({ href, label, key }) => {

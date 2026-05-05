@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gabriel | Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Background atmosphere orbs -->
+    <div class="bg-orb bg-orb-1"></div>
+    <div class="bg-orb bg-orb-2"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark py-3">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">gab/.</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end align-items-center" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link active" href="index.html"><i class="bi bi-house-door me-1"></i> Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="project.html"><i class="bi bi-folder me-1"></i> Projects</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Resume.pdf" target="_blank" rel="noopener"><i class="bi bi-file-earmark-person me-1"></i> Resume</a></li>
+                </ul>
+                <button class="theme-toggle" id="themeToggle" title="Toggle light/dark mode">
+                    <i class="bi bi-sun-fill" id="themeIcon"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <div class="row g-4">
+
+            <!-- Left Column -->
+            <div class="col-lg-3 d-flex flex-column gap-4">
+                <div class="bento-card">
+                    <p class="text-accent mb-1" style="font-size:0.75rem;font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:1.5px;text-transform:uppercase;">Personal</p>
+                    <h3 class="mb-0" style="font-size:1.3rem;">Portfolio</h3>
+                </div>
+
+                <div class="bento-card flex-grow-1">
+                    <p class="text-accent mb-2" style="font-size:0.75rem;font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:1.5px;text-transform:uppercase;">About Me</p>
+                    <p>19 years old, from Amadeo, Cavite. Currently a 2nd-year BSIT student at Olivarez College Tagaytay.</p>
+                    <p class="mb-0" style="font-size:0.8rem;color:var(--text-muted);">Hobbies: Gaming, Travel, Music</p>
+                </div>
+
+                <!-- Resume card -->
+                <a href="Resume.pdf" target="_blank" rel="noopener" class="bento-card resume-link-card py-4">
+                    <p class="text-accent mb-0" style="font-size:0.75rem;font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:1.5px;text-transform:uppercase;">My Resume</p>
+                    <div class="resume-dl-icon">
+                        <i class="bi bi-file-earmark-text"></i>
+                    </div>
+                    <p class="mb-0 mt-1" style="font-size:0.8rem;color:var(--text-muted);">View PDF</p>
+                </a>
+            </div>
+
+            <!-- Middle Column -->
+            <div class="col-lg-3 d-flex flex-column gap-4">
+                <div class="bento-card text-center d-flex flex-column align-items-center justify-content-center py-5">
+                    <img src="https://via.placeholder.com/150" alt="Profile" class="profile-img">
+                    <h3 style="font-size:1.2rem;margin-bottom:8px;">Gabriel Velasquez</h3>
+                    <div class="student-tag">Student</div>
+                </div>
+
+                <!-- Compact social card -->
+                <div class="bento-card social-card">
+                    <p class="text-accent mb-2 text-center" style="font-size:0.75rem;font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:1.5px;text-transform:uppercase;">Find Me On</p>
+                    <div class="d-flex justify-content-center">
+                        <a href="#" class="social-icon"><i class="bi bi-github"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Projects Preview Column -->
+            <div class="col-lg-3">
+                <a href="project.html" class="bento-card h-100">
+                    <div class="d-flex justify-content-between align-items-center mb-1">
+                        <p class="text-accent mb-0" style="font-size:0.75rem;font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:1.5px;text-transform:uppercase;">School</p>
+                        <i class="bi bi-arrow-up-right text-accent" style="font-size:0.85rem;"></i>
+                    </div>
+                    <h5 class="mb-3">Projects</h5>
+
+                    <div class="mini-project-list">
+                        <div class="mini-project-item">
+                            <div class="mini-project-icon"><i class="bi bi-code-slash"></i></div>
+                            <div class="mini-project-info">
+                                <h6>N/A</h6>
+                                <span>Final Hackathon Exam</span>
+                            </div>
+                        </div>
+                        <div class="mini-project-item">
+                            <div class="mini-project-icon"><i class="bi bi-layers"></i></div>
+                            <div class="mini-project-info">
+                                <h6>N/A</h6>
+                                <span>Final Hackathon 1</span>
+                            </div>
+                        </div>
+                        <div class="mini-project-item">
+                            <div class="mini-project-icon"><i class="bi bi-terminal"></i></div>
+                            <div class="mini-project-info">
+                                <h6>N/A</h6>
+                                <span>Final Hackathon 2</span>
+                            </div>
+                        </div>
+                        <div class="mini-project-item">
+                            <div class="mini-project-icon"><i class="bi bi-puzzle"></i></div>
+                            <div class="mini-project-info">
+                                <h6>N/A</h6>
+                                <span>Midterm Hackathon 1</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-auto pt-3">
+                        <p class="small text-accent mb-0" style="font-size:0.8rem;">View all projects <i class="bi bi-chevron-right"></i></p>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Right Column: Education -->
+            <div class="col-lg-3">
+                <div class="bento-card h-100">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <div>
+                            <p class="text-accent mb-0" style="font-size:0.75rem;font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:1.5px;text-transform:uppercase;">Background</p>
+                            <h5 class="mb-0 mt-1">Education</h5>
+                        </div>
+                        <i class="bi bi-mortarboard-fill text-accent"></i>
+                    </div>
+
+                    <div class="edu-item">
+                        <h6>Olivarez College</h6>
+                        <p>Bachelor of Science in Information Technology</p>
+                        <div class="edu-date">2024 – Present</div>
+                    </div>
+                    <div class="edu-item">
+                        <h6>Halang Banaybanay Integrated School</h6>
+                        <p>Accountancy, Business and Management</p>
+                        <div class="edu-date">2021 – 2024</div>
+                    </div>
+                    <div class="edu-item">
+                        <h6>E.B Magalona National High School</h6>
+                        <div class="edu-date">2016 – 2021</div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Light/dark toggle
+        const toggle = document.getElementById('themeToggle');
+        const icon = document.getElementById('themeIcon');
+        const saved = localStorage.getItem('theme');
+        if (saved === 'light') { document.body.classList.add('light'); icon.className = 'bi bi-moon-fill'; }
+
+        toggle.addEventListener('click', () => {
+            document.body.classList.toggle('light');
+            const isLight = document.body.classList.contains('light');
+            icon.className = isLight ? 'bi bi-moon-fill' : 'bi bi-sun-fill';
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        });
+    </script>
+</body>
+</html>
