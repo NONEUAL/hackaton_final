@@ -95,10 +95,11 @@
                     : 'nav-link-custom';
 
     const links = [
-      { href: `${root}index.html`,             label: 'Home',         key: 'home' },
-      { href: `${root}pages/where-to-go.html`, label: 'Destinations', key: 'where-to-go' },
-      { href: `${root}pages/what-to-buy.html`, label: 'What to Buy',  key: 'what-to-buy' },
-      { href: `${root}pages/festivals.html`,   label: 'Festivals',    key: 'festivals' },
+      { href: `${root}index.html`,                label: 'Home',         key: 'home' },
+      { href: `${root}pages/where-to-go.html`,    label: 'Destinations', key: 'where-to-go' },
+      { href: `${root}pages/what-to-buy.html`,    label: 'What to Buy',  key: 'what-to-buy' },
+      { href: `${root}pages/festivals.html`,      label: 'Festivals',    key: 'festivals' },
+      { href: `${root}pages/developer.html`,      label: 'Developer',    key: 'developer' },
     ];
 
     const mainLinks = links.map(({ href, label, key }) => {
@@ -111,6 +112,8 @@
       pill = `<a href="${root}oriental.html" class="nav-pill">Oriental →</a>`;
     } else if (currentPage === 'oriental') {
       pill = `<a href="${root}occidental.html" class="nav-pill">← Occidental</a>`;
+    } else if (currentPage === 'developer') {
+      pill = `<a href="${root}index.html" class="nav-pill">← Back Home</a>`;
     } else {
       pill = `<a href="${root}occidental.html" class="nav-pill">Explore ↗</a>`;
     }
