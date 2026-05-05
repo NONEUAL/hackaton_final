@@ -8,10 +8,37 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
+  <style>
+    .detail-modal .modal-dialog { max-width: 780px; }
+    .detail-hero { position: relative; height: 320px; overflow: hidden; }
+    .detail-hero img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.9); }
+    .detail-hero-tint { position: absolute; inset: 0; background: linear-gradient(to top, rgba(15,15,13,0.72) 0%, transparent 55%); }
+    .detail-hero-label { position: absolute; bottom: 1.5rem; left: 2rem; right: 2rem; color: #fff; }
+    .detail-hero-label .eyebrow-sm { font-family: var(--f-sans); font-size: 0.58rem; font-weight: 600; letter-spacing: 3.5px; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 0.35rem; display: block; }
+    .detail-hero-label h4 { font-family: var(--f-display); font-size: 1.9rem; font-weight: 400; margin: 0; line-height: 1.05; }
+    .detail-body { padding: 2rem 2rem 2.25rem; }
+    .detail-body p { font-family: var(--f-sans); font-size: 0.9rem; color: var(--ink-2); line-height: 1.85; margin-bottom: 0.85rem; font-weight: 300; }
+    .detail-body h6 { font-family: var(--f-sans); font-size: 0.65rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin: 1.4rem 0 0.65rem; }
+    .detail-imgs { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin: 1.25rem 0; }
+    .detail-imgs img { width: 100%; height: 160px; object-fit: cover; border-radius: var(--radius); filter: saturate(0.88); }
+    .detail-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 1.25rem; }
+    .detail-info-cell { background: var(--paper-2); border: 1px solid var(--paper-3); border-radius: var(--radius); padding: 0.75rem 1rem; }
+    .detail-info-cell .lbl { font-family: var(--f-sans); font-size: 0.58rem; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 0.2rem; }
+    .detail-info-cell .val { font-family: var(--f-sans); font-size: 0.84rem; color: var(--ink-2); font-weight: 400; }
+    .highlight-list { list-style: none; padding: 0; margin: 0.5rem 0; }
+    .highlight-list li { font-family: var(--f-sans); font-size: 0.88rem; color: var(--ink-2); font-weight: 300; padding: 0.45rem 0; border-bottom: 1px solid var(--paper-3); display: flex; align-items: flex-start; gap: 0.65rem; line-height: 1.5; }
+    .highlight-list li:last-child { border-bottom: none; }
+    .highlight-list li i { color: var(--accent); margin-top: 2px; flex-shrink: 0; }
+    @media (max-width: 575px) {
+      .detail-imgs, .detail-info-grid { grid-template-columns: 1fr; }
+      .detail-hero { height: 240px; }
+      .detail-hero-label h4 { font-size: 1.5rem; }
+      .detail-body { padding: 1.25rem; }
+    }
+  </style>
 </head>
 
 <body data-page="festivals" data-root="../">
-
 
 <!-- ── PAGE HERO ── -->
 <div class="page-hero" style="background-image:url('https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=80&w=1920');">
@@ -21,7 +48,6 @@
     <p style="color:rgba(255,255,255,0.75);font-family:var(--f-serif);font-style:italic;">10 vibrant celebrations that define the Negrense spirit</p>
   </div>
 </div>
-
 
 <!-- ── FILTER ── -->
 <section class="py-4 bg-white shadow-sm sticky-top" style="top:72px;z-index:100;">
@@ -34,175 +60,407 @@
   </div>
 </section>
 
-
 <!-- ── FESTIVAL GRID ── -->
 <section class="section-pad" style="background:var(--bg-alt);">
   <div class="container">
     <div class="row g-4">
 
       <div class="col-md-6 col-lg-4 fest-item reveal" data-province="occidental">
-        <a href="../inner/festivals/masskara.html" class="text-decoration-none text-dark">
-          <div class="dest-card">
-            <div class="dest-card-img">
-              <img src="https://images.unsplash.com/photo-1540324155974-7523202daa3f?auto=format&fit=crop&q=80&w=600" alt="MassKara">
-              <div class="dest-card-badge">Bacolod City · October</div>
-            </div>
-            <div class="dest-card-body">
-              <h5>MassKara Festival</h5>
-              <p>Bacolod's iconic festival of smiling masks, street dancing, and joyful celebration every third week of October.</p>
-              <span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span>
-            </div>
-          </div>
-        </a>
+        <div class="dest-card" onclick="openModal('fm-masskara')" style="cursor:pointer;">
+          <div class="dest-card-img"><img src="https://images.unsplash.com/photo-1540324155974-7523202daa3f?auto=format&fit=crop&q=80&w=600" alt="MassKara"><div class="dest-card-badge">Bacolod City · October</div></div>
+          <div class="dest-card-body"><h5>MassKara Festival</h5><p>Bacolod's iconic festival of smiling masks, street dancing, and joyful celebration every third week of October.</p><span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span></div>
+        </div>
       </div>
 
       <div class="col-md-6 col-lg-4 fest-item reveal reveal-d1" data-province="occidental">
-        <a href="../inner/festivals/panaad.html" class="text-decoration-none text-dark">
-          <div class="dest-card">
-            <div class="dest-card-img">
-              <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=80&w=600" alt="Panaad">
-              <div class="dest-card-badge">Bacolod City · April</div>
-            </div>
-            <div class="dest-card-body">
-              <h5>Panaad sa Sugbo</h5>
-              <p>A grand provincial showcase at Panaad Park featuring cultural performances, food, crafts, and tourism exhibits.</p>
-              <span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span>
-            </div>
-          </div>
-        </a>
+        <div class="dest-card" onclick="openModal('fm-panaad')" style="cursor:pointer;">
+          <div class="dest-card-img"><img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=80&w=600" alt="Panaad"><div class="dest-card-badge">Bacolod City · April</div></div>
+          <div class="dest-card-body"><h5>Panaad sa Sugbo</h5><p>A grand provincial showcase at Panaad Park featuring cultural performances, food, crafts, and tourism exhibits.</p><span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span></div>
+        </div>
       </div>
 
       <div class="col-md-6 col-lg-4 fest-item reveal reveal-d2" data-province="occidental">
-        <a href="../inner/festivals/sinulog-sa-kanlaon.html" class="text-decoration-none text-dark">
-          <div class="dest-card">
-            <div class="dest-card-img">
-              <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=600" alt="Sinulog">
-              <div class="dest-card-badge">La Castellana · January</div>
-            </div>
-            <div class="dest-card-body">
-              <h5>Sinulog sa Kanlaon</h5>
-              <p>A vibrant devotional festival honoring the Santo Niño with colorful street dances and religious processions.</p>
-              <span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span>
-            </div>
-          </div>
-        </a>
+        <div class="dest-card" onclick="openModal('fm-sinulog')" style="cursor:pointer;">
+          <div class="dest-card-img"><img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=600" alt="Sinulog"><div class="dest-card-badge">La Castellana · January</div></div>
+          <div class="dest-card-body"><h5>Sinulog sa Kanlaon</h5><p>A vibrant devotional festival honoring the Santo Niño with colorful street dances and religious processions.</p><span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span></div>
+        </div>
       </div>
 
       <div class="col-md-6 col-lg-4 fest-item reveal" data-province="occidental">
-        <a href="../inner/festivals/aug-festival.html" class="text-decoration-none text-dark">
-          <div class="dest-card">
-            <div class="dest-card-img">
-              <img src="https://images.unsplash.com/photo-1574391884720-bbc3740c59d1?auto=format&fit=crop&q=80&w=600" alt="Sugarcane Festival">
-              <div class="dest-card-badge">Negros Occidental · August</div>
-            </div>
-            <div class="dest-card-body">
-              <h5>Sugarcane Industry Week</h5>
-              <p>An annual event celebrating the province's sugarcane legacy with trade fairs, exhibits, and sweet promotions.</p>
-              <span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span>
-            </div>
-          </div>
-        </a>
+        <div class="dest-card" onclick="openModal('fm-sugarcane')" style="cursor:pointer;">
+          <div class="dest-card-img"><img src="https://images.unsplash.com/photo-1574391884720-bbc3740c59d1?auto=format&fit=crop&q=80&w=600" alt="Sugarcane"><div class="dest-card-badge">Negros Occidental · August</div></div>
+          <div class="dest-card-body"><h5>Sugarcane Industry Week</h5><p>An annual event celebrating the province's sugarcane legacy with trade fairs, exhibits, and sweet promotions.</p><span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span></div>
+        </div>
       </div>
 
       <div class="col-md-6 col-lg-4 fest-item reveal reveal-d1" data-province="occidental">
-        <a href="../inner/festivals/inasal-festival.html" class="text-decoration-none text-dark">
-          <div class="dest-card">
-            <div class="dest-card-img">
-              <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&q=80&w=600" alt="Inasal Festival">
-              <div class="dest-card-badge">Bacolod City · October</div>
-            </div>
-            <div class="dest-card-body">
-              <h5>Inasal Festival</h5>
-              <p>A food-lovers' paradise celebrating the legendary Chicken Inasal with cook-offs, grill-offs, and street feasts.</p>
-              <span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span>
-            </div>
-          </div>
-        </a>
+        <div class="dest-card" onclick="openModal('fm-inasal')" style="cursor:pointer;">
+          <div class="dest-card-img"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&q=80&w=600" alt="Inasal Festival"><div class="dest-card-badge">Bacolod City · October</div></div>
+          <div class="dest-card-body"><h5>Inasal Festival</h5><p>A food-lovers' paradise celebrating the legendary Chicken Inasal with cook-offs, grill-offs, and street feasts.</p><span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span></div>
+        </div>
       </div>
 
       <div class="col-md-6 col-lg-4 fest-item reveal reveal-d2" data-province="oriental">
-        <a href="../inner/festivals/buglasan.html" class="text-decoration-none text-dark">
-          <div class="dest-card">
-            <div class="dest-card-img">
-              <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=600" alt="Buglasan">
-              <div class="dest-card-badge">Dumaguete City · October</div>
-            </div>
-            <div class="dest-card-body">
-              <h5>Buglasan Festival</h5>
-              <p>The "Festival of Festivals" — a week-long cultural showcase of the many festivals of Negros Oriental's municipalities.</p>
-              <span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span>
-            </div>
-          </div>
-        </a>
+        <div class="dest-card" onclick="openModal('fm-buglasan')" style="cursor:pointer;">
+          <div class="dest-card-img"><img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=600" alt="Buglasan"><div class="dest-card-badge">Dumaguete City · October</div></div>
+          <div class="dest-card-body"><h5>Buglasan Festival</h5><p>The "Festival of Festivals" — a week-long cultural showcase of the many festivals of Negros Oriental's municipalities.</p><span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span></div>
+        </div>
       </div>
 
       <div class="col-md-6 col-lg-4 fest-item reveal" data-province="oriental">
-        <a href="../inner/festivals/sandurot.html" class="text-decoration-none text-dark">
-          <div class="dest-card">
-            <div class="dest-card-img">
-              <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&q=80&w=600" alt="Sandurot">
-              <div class="dest-card-badge">Dumaguete City · November</div>
-            </div>
-            <div class="dest-card-body">
-              <h5>Sandurot Festival</h5>
-              <p>A celebration of friendship and cultural unity, commemorating Dumaguete's foundation anniversary with music and dance.</p>
-              <span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span>
-            </div>
-          </div>
-        </a>
+        <div class="dest-card" onclick="openModal('fm-sandurot')" style="cursor:pointer;">
+          <div class="dest-card-img"><img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&q=80&w=600" alt="Sandurot"><div class="dest-card-badge">Dumaguete City · November</div></div>
+          <div class="dest-card-body"><h5>Sandurot Festival</h5><p>A celebration of friendship and cultural unity, commemorating Dumaguete's foundation anniversary with music and dance.</p><span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span></div>
+        </div>
       </div>
 
       <div class="col-md-6 col-lg-4 fest-item reveal reveal-d1" data-province="oriental">
-        <a href="../inner/festivals/tambayon.html" class="text-decoration-none text-dark">
-          <div class="dest-card">
-            <div class="dest-card-img">
-              <img src="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?auto=format&fit=crop&q=80&w=600" alt="Tambayon">
-              <div class="dest-card-badge">Tanjay City · December</div>
-            </div>
-            <div class="dest-card-body">
-              <h5>Tambayon Festival</h5>
-              <p>Tanjay City's annual festival celebrating its fishing and farming heritage with street dances and folk arts.</p>
-              <span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span>
-            </div>
-          </div>
-        </a>
+        <div class="dest-card" onclick="openModal('fm-tambayon')" style="cursor:pointer;">
+          <div class="dest-card-img"><img src="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?auto=format&fit=crop&q=80&w=600" alt="Tambayon"><div class="dest-card-badge">Tanjay City · December</div></div>
+          <div class="dest-card-body"><h5>Tambayon Festival</h5><p>Tanjay City's annual festival celebrating its fishing and farming heritage with street dances and folk arts.</p><span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span></div>
+        </div>
       </div>
 
       <div class="col-md-6 col-lg-4 fest-item reveal reveal-d2" data-province="oriental">
-        <a href="../inner/festivals/daing-festival.html" class="text-decoration-none text-dark">
-          <div class="dest-card">
-            <div class="dest-card-img">
-              <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&q=80&w=600" alt="Daing Festival">
-              <div class="dest-card-badge">Bindoy · March</div>
-            </div>
-            <div class="dest-card-body">
-              <h5>Daing Festival</h5>
-              <p>Celebrating Bindoy's dried fish industry — a unique coastal food festival filled with local flavor and community pride.</p>
-              <span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span>
-            </div>
-          </div>
-        </a>
+        <div class="dest-card" onclick="openModal('fm-daing')" style="cursor:pointer;">
+          <div class="dest-card-img"><img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&q=80&w=600" alt="Daing Festival"><div class="dest-card-badge">Bindoy · March</div></div>
+          <div class="dest-card-body"><h5>Daing Festival</h5><p>Celebrating Bindoy's dried fish industry — a unique coastal food festival filled with local flavor and community pride.</p><span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span></div>
+        </div>
       </div>
 
       <div class="col-md-6 col-lg-4 fest-item reveal" data-province="oriental">
-        <a href="../inner/festivals/apo-dive-fest.html" class="text-decoration-none text-dark">
-          <div class="dest-card">
-            <div class="dest-card-img">
-              <img src="https://images.unsplash.com/photo-1582967788606-a171c1080cb0?auto=format&fit=crop&q=80&w=600" alt="Apo Dive Fest">
-              <div class="dest-card-badge">Dauin · July</div>
-            </div>
-            <div class="dest-card-body">
-              <h5>Apo Island Dive Festival</h5>
-              <p>Annual celebration of marine conservation at Apo Island — with underwater photo contests, reef cleanups, and dives.</p>
-              <span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span>
-            </div>
-          </div>
-        </a>
+        <div class="dest-card" onclick="openModal('fm-apodive')" style="cursor:pointer;">
+          <div class="dest-card-img"><img src="https://images.unsplash.com/photo-1582967788606-a171c1080cb0?auto=format&fit=crop&q=80&w=600" alt="Apo Dive Fest"><div class="dest-card-badge">Dauin · July</div></div>
+          <div class="dest-card-body"><h5>Apo Island Dive Festival</h5><p>Annual celebration of marine conservation at Apo Island with underwater photo contests and reef cleanups.</p><span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span></div>
+        </div>
       </div>
 
     </div>
   </div>
 </section>
+
+
+<!-- ══════════════════════════════════════════════════════════
+     FESTIVAL DETAIL MODALS (10)
+══════════════════════════════════════════════════════════ -->
+
+<!-- 1. MASSKARA -->
+<div class="modal fade detail-modal" id="fm-masskara" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="detail-hero">
+        <img src="https://images.unsplash.com/photo-1540324155974-7523202daa3f?auto=format&fit=crop&q=80&w=900" alt="MassKara">
+        <div class="detail-hero-tint"></div>
+        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
+        <div class="detail-hero-label"><span class="eyebrow-sm">Bacolod City · October</span><h4>MassKara Festival</h4></div>
+      </div>
+      <div class="detail-body">
+        <p>MassKara was born in 1980 as a conscious, defiant act of collective joy. Two devastating events struck Negros Occidental that year: the sinking of the passenger ferry MV Don Juan in the Tablas Strait, which killed hundreds of Negrenses, and the collapse of global sugar prices, which devastated the province's entire economy. City leaders responded not with mourning but with a festival — "MassKara," meaning "many faces," as a declaration that the people of Bacolod would smile through everything.</p>
+        <p>The festival has grown from that defiant origin into one of the Philippines' most celebrated annual events. The centerpiece is the street dancing competition: thousands of performers in elaborate smiling-mask costumes and vibrant costumes fill the streets of Bacolod in synchronized choreography, competing for provincial and national titles. The masks themselves — each hand-painted and decorated — are judged separately in mask-making competitions that run alongside the dancing.</p>
+        <div class="detail-imgs">
+          <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=80&w=400" alt="Street dancing">
+          <img src="https://images.unsplash.com/photo-1570913149827-d2ac84ab3f9a?auto=format&fit=crop&q=80&w=400" alt="MassKara masks">
+        </div>
+        <h6>Highlights &amp; Schedule</h6>
+        <ul class="highlight-list">
+          <li><i class="bi bi-star-fill"></i> Street dancing competitions — the main event, 3rd weekend of October</li>
+          <li><i class="bi bi-star-fill"></i> Mask-making competition — judged separately from dancing</li>
+          <li><i class="bi bi-star-fill"></i> Trade fair, food festival, and concerts throughout October</li>
+          <li><i class="bi bi-star-fill"></i> Electric MassKara — an evening street party and rave event</li>
+        </ul>
+        <div class="detail-info-grid">
+          <div class="detail-info-cell"><span class="lbl">When</span><span class="val">October (peak: 3rd weekend)</span></div>
+          <div class="detail-info-cell"><span class="lbl">Where</span><span class="val">Bacolod City proper, city plaza</span></div>
+          <div class="detail-info-cell"><span class="lbl">Origin Year</span><span class="val">1980 — 45+ years of celebration</span></div>
+          <div class="detail-info-cell"><span class="lbl">Tip</span><span class="val">Book accommodation 2 months ahead</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 2. PANAAD SA SUGBO -->
+<div class="modal fade detail-modal" id="fm-panaad" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="detail-hero">
+        <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=80&w=900" alt="Panaad">
+        <div class="detail-hero-tint"></div>
+        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
+        <div class="detail-hero-label"><span class="eyebrow-sm">Bacolod City · April</span><h4>Panaad sa Sugbo</h4></div>
+      </div>
+      <div class="detail-body">
+        <p>Panaad sa Sugbo — literally "vow on the island" in Hiligaynon — is Negros Occidental's grand annual provincial festival, held at the Panaad Park and Stadium complex in Bacolod City every April. Each of the province's 31 municipalities and 13 cities sets up an individual pavilion showcasing its own local identity: unique food products, traditional crafts, cultural performances, and tourism attractions.</p>
+        <p>For visitors, Panaad is essentially a one-stop tour of the entire province in a single park. In the space of a few hours, you can taste kakanin from Kabankalan, watch a bamboo-weaving demonstration from Himamaylan, see folk dances from Cadiz, and sample the muscovado products of La Carlota. The agricultural exhibits, cultural shows, and trade fairs run simultaneously throughout the week-long event, making every day a different experience.</p>
+        <h6>Highlights</h6>
+        <ul class="highlight-list">
+          <li><i class="bi bi-star-fill"></i> 31 municipal pavilions — a complete tour of Negros Occidental</li>
+          <li><i class="bi bi-star-fill"></i> Agricultural exhibits and food product showcases</li>
+          <li><i class="bi bi-star-fill"></i> Cultural dance competitions and live performances</li>
+          <li><i class="bi bi-star-fill"></i> Trade fair with local artisans and entrepreneurs</li>
+        </ul>
+        <div class="detail-info-grid">
+          <div class="detail-info-cell"><span class="lbl">When</span><span class="val">Holy Week / April annually</span></div>
+          <div class="detail-info-cell"><span class="lbl">Where</span><span class="val">Panaad Park &amp; Stadium, Bacolod</span></div>
+          <div class="detail-info-cell"><span class="lbl">Duration</span><span class="val">One week</span></div>
+          <div class="detail-info-cell"><span class="lbl">Entrance</span><span class="val">Free or minimal gate fee</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 3. SINULOG SA KANLAON -->
+<div class="modal fade detail-modal" id="fm-sinulog" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="detail-hero">
+        <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=900" alt="Sinulog">
+        <div class="detail-hero-tint"></div>
+        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
+        <div class="detail-hero-label"><span class="eyebrow-sm">La Castellana · January</span><h4>Sinulog sa Kanlaon</h4></div>
+      </div>
+      <div class="detail-body">
+        <p>Sinulog sa Kanlaon is Negros Occidental's own celebration of the Feast of the Santo Niño — a devotional festival held in January in the municipality of La Castellana, at the foot of Mt. Kanlaon. The festival takes its name from the sinulog dance: a rhythmic two-steps-forward, one-step-back movement that mimics the flow of river water and is traditionally performed as an act of devotion to the Child Jesus.</p>
+        <p>While the Cebu Sinulog is far more famous, the Kanlaon version carries a distinctly Negrense character — smaller in scale, more community-driven, and set against the backdrop of one of the Philippines' most dramatic volcanoes. Religious processions wind through the town's streets in the early morning hours, followed by street dancing competitions, cultural presentations, and the traditional fluvial parade along local waterways.</p>
+        <h6>Highlights</h6>
+        <ul class="highlight-list">
+          <li><i class="bi bi-star-fill"></i> Sinulog street dancing — two-steps-forward devotional movement</li>
+          <li><i class="bi bi-star-fill"></i> Religious procession honoring the Santo Niño</li>
+          <li><i class="bi bi-star-fill"></i> Mt. Kanlaon as the dramatic natural backdrop</li>
+          <li><i class="bi bi-star-fill"></i> Community-scale festival — intimate and authentic</li>
+        </ul>
+        <div class="detail-info-grid">
+          <div class="detail-info-cell"><span class="lbl">When</span><span class="val">Third Sunday of January</span></div>
+          <div class="detail-info-cell"><span class="lbl">Where</span><span class="val">La Castellana, Negros Occidental</span></div>
+          <div class="detail-info-cell"><span class="lbl">Significance</span><span class="val">Devotion to the Santo Niño</span></div>
+          <div class="detail-info-cell"><span class="lbl">Vibe</span><span class="val">Intimate, community-driven, devout</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 4. SUGARCANE INDUSTRY WEEK -->
+<div class="modal fade detail-modal" id="fm-sugarcane" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="detail-hero">
+        <img src="https://images.unsplash.com/photo-1574391884720-bbc3740c59d1?auto=format&fit=crop&q=80&w=900" alt="Sugarcane">
+        <div class="detail-hero-tint"></div>
+        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
+        <div class="detail-hero-label"><span class="eyebrow-sm">Negros Occidental · August</span><h4>Sugarcane Industry Week</h4></div>
+      </div>
+      <div class="detail-body">
+        <p>Sugarcane Industry Week is an annual celebration of the industry that has defined Negros Occidental for over four centuries — held every August to coincide with the peak of the harvest season. The event is organized by the Sugar Regulatory Administration alongside the provincial government and the major sugar planters' associations, and brings together farmers, millers, researchers, traders, and consumers in a week-long acknowledgment of sugar's central role in the province's economy and identity.</p>
+        <p>The public-facing components of the event include product exhibitions where muscovado, tablea, piaya, and other sugar-derived products are showcased and sold, agricultural trade fairs where new sugarcane varieties and farming technologies are demonstrated, and cultural programs celebrating the hacienda heritage and the lives of sugarcane workers — the sacadas — who have been the backbone of this industry for generations.</p>
+        <h6>Highlights</h6>
+        <ul class="highlight-list">
+          <li><i class="bi bi-star-fill"></i> Muscovado and specialty sugar product exhibitions</li>
+          <li><i class="bi bi-star-fill"></i> Agricultural trade fair and new variety demonstrations</li>
+          <li><i class="bi bi-star-fill"></i> Cultural programs honoring the sacada workers</li>
+          <li><i class="bi bi-star-fill"></i> Sugar mill tours and hacienda open days</li>
+        </ul>
+        <div class="detail-info-grid">
+          <div class="detail-info-cell"><span class="lbl">When</span><span class="val">August annually</span></div>
+          <div class="detail-info-cell"><span class="lbl">Where</span><span class="val">Bacolod City &amp; provincial venues</span></div>
+          <div class="detail-info-cell"><span class="lbl">Focus</span><span class="val">Industry, heritage, and agri-tourism</span></div>
+          <div class="detail-info-cell"><span class="lbl">Best For</span><span class="val">Buying artisanal sugar products</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 5. INASAL FESTIVAL -->
+<div class="modal fade detail-modal" id="fm-inasal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="detail-hero">
+        <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&q=80&w=900" alt="Inasal Festival">
+        <div class="detail-hero-tint"></div>
+        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
+        <div class="detail-hero-label"><span class="eyebrow-sm">Bacolod City · October</span><h4>Inasal Festival</h4></div>
+      </div>
+      <div class="detail-body">
+        <p>The Inasal Festival is Bacolod's dedicated celebration of its most famous culinary export — Chicken Inasal — held annually in October alongside the MassKara festivities. While MassKara celebrates the Negrense spirit through dance and art, the Inasal Festival celebrates it through food: the smoky, charcoal-grilled chicken that has become the most recognized dish in the Philippines after the adobo.</p>
+        <p>The festival centers on Manokan Country — the legendary strip of open-air inasal stalls in Bacolod — which transforms during the event into a cook-off arena and street feast venue. Professional and amateur grill masters compete in timed inasal cooking competitions judged on marinade, grill technique, and presentation. The public component is a street feast where thousands of visitors eat inasal, garlic rice, and chicken oil at long communal tables along the city's main streets.</p>
+        <h6>Highlights</h6>
+        <ul class="highlight-list">
+          <li><i class="bi bi-fire"></i> Inasal cook-off competition — open to professional and amateur grillers</li>
+          <li><i class="bi bi-star-fill"></i> Street feast at Manokan Country — communal dining at its best</li>
+          <li><i class="bi bi-star-fill"></i> Chicken oil and sinamak-making demonstrations</li>
+          <li><i class="bi bi-star-fill"></i> Held alongside MassKara — combine both for the full Bacolod October experience</li>
+        </ul>
+        <div class="detail-info-grid">
+          <div class="detail-info-cell"><span class="lbl">When</span><span class="val">October (MassKara week)</span></div>
+          <div class="detail-info-cell"><span class="lbl">Where</span><span class="val">Manokan Country, Bacolod City</span></div>
+          <div class="detail-info-cell"><span class="lbl">Don't Miss</span><span class="val">The cook-off finals on the main stage</span></div>
+          <div class="detail-info-cell"><span class="lbl">Pairs With</span><span class="val">MassKara Festival (same week)</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 6. BUGLASAN -->
+<div class="modal fade detail-modal" id="fm-buglasan" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="detail-hero">
+        <img src="https://images.unsplash.com/photo-1516450360452-9312f5e86fc7?auto=format&fit=crop&q=80&w=900" alt="Buglasan">
+        <div class="detail-hero-tint"></div>
+        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
+        <div class="detail-hero-label"><span class="eyebrow-sm">Dumaguete City · October</span><h4>Buglasan Festival</h4></div>
+      </div>
+      <div class="detail-body">
+        <p>The Buglasan Festival is Negros Oriental's answer to MassKara — and its own kind of masterpiece. Known as the "Festival of Festivals," Buglasan gathers the distinctive mini-festivals of Negros Oriental's many municipalities into one grand week-long showcase held in Dumaguete every October. Each participating municipality brings its own festival identity — its own costumes, dances, music, and cultural story — and performs before judges and spectators in the provincial capital.</p>
+        <p>The effect is extraordinary: in a single week, you witness the Tambayon Festival of Tanjay, the Kasadyaan Festival of Canlaon, the Pintaflores of San Carlos, and dozens more — a living atlas of Negros Oriental's cultural diversity. The street dancing competitions are the centerpiece, but Buglasan also encompasses food exhibitions, product showcases, and cultural forums that explore the province's history and heritage in depth.</p>
+        <div class="detail-imgs">
+          <img src="https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&q=80&w=400" alt="Festival parade">
+          <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&q=80&w=400" alt="Street dancing">
+        </div>
+        <h6>Highlights</h6>
+        <ul class="highlight-list">
+          <li><i class="bi bi-star-fill"></i> Street dancing competition — all municipalities competing simultaneously</li>
+          <li><i class="bi bi-star-fill"></i> A living showcase of every distinct mini-festival in the province</li>
+          <li><i class="bi bi-star-fill"></i> Food and product exhibitions from each municipality</li>
+          <li><i class="bi bi-star-fill"></i> Cultural forums, heritage talks, and museum events</li>
+        </ul>
+        <div class="detail-info-grid">
+          <div class="detail-info-cell"><span class="lbl">When</span><span class="val">October (3rd week)</span></div>
+          <div class="detail-info-cell"><span class="lbl">Where</span><span class="val">Dumaguete City, Negros Oriental</span></div>
+          <div class="detail-info-cell"><span class="lbl">Duration</span><span class="val">One week</span></div>
+          <div class="detail-info-cell"><span class="lbl">Meaning</span><span class="val">"Buglasan" = to converge / come together</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 7. SANDUROT -->
+<div class="modal fade detail-modal" id="fm-sandurot" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="detail-hero">
+        <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&q=80&w=900" alt="Sandurot">
+        <div class="detail-hero-tint"></div>
+        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
+        <div class="detail-hero-label"><span class="eyebrow-sm">Dumaguete City · November</span><h4>Sandurot Festival</h4></div>
+      </div>
+      <div class="detail-body">
+        <p>The Sandurot Festival commemorates the founding anniversary of Dumaguete City and celebrates the city's identity as a place of friendship, openness, and cultural exchange. "Sandurot" comes from the Visayan word meaning "to gather together" or "to meet" — a fitting name for a city that has historically welcomed students, scholars, expats, and travelers with remarkable warmth.</p>
+        <p>The festival's character reflects the city it celebrates: more cultural and intellectual than purely spectacular, with as much emphasis on heritage exhibitions, academic symposia, and community gatherings as on the street parade and dancing competitions. The Rizal Boulevard — the soul of Dumaguete — becomes the stage for the main parade, with the Visayan Sea as backdrop and the old bell tower as the anchor of the procession route.</p>
+        <h6>Highlights</h6>
+        <ul class="highlight-list">
+          <li><i class="bi bi-star-fill"></i> Foundation Day parade along Rizal Boulevard</li>
+          <li><i class="bi bi-star-fill"></i> Cultural performances and heritage exhibitions</li>
+          <li><i class="bi bi-star-fill"></i> Silliman University events and academic forums</li>
+          <li><i class="bi bi-star-fill"></i> Community gatherings celebrating Dumaguete's welcoming identity</li>
+        </ul>
+        <div class="detail-info-grid">
+          <div class="detail-info-cell"><span class="lbl">When</span><span class="val">November (Foundation Anniversary)</span></div>
+          <div class="detail-info-cell"><span class="lbl">Where</span><span class="val">Dumaguete City, Rizal Boulevard</span></div>
+          <div class="detail-info-cell"><span class="lbl">Meaning</span><span class="val">"Sandurot" = to gather together</span></div>
+          <div class="detail-info-cell"><span class="lbl">Vibe</span><span class="val">Cultural, community, intellectual</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 8. TAMBAYON -->
+<div class="modal fade detail-modal" id="fm-tambayon" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="detail-hero">
+        <img src="https://images.unsplash.com/photo-1429962714451-bb934ecdc4ec?auto=format&fit=crop&q=80&w=900" alt="Tambayon">
+        <div class="detail-hero-tint"></div>
+        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
+        <div class="detail-hero-label"><span class="eyebrow-sm">Tanjay City · December</span><h4>Tambayon Festival</h4></div>
+      </div>
+      <div class="detail-body">
+        <p>The Tambayon Festival is Tanjay City's annual celebration of its identity as a fishing and agricultural community on the shores of the Tañon Strait. "Tambayon" refers to a traditional fishing vessel used by local fishermen in the strait — the humble bangka that has fed the community and connected it to the sea for generations. The festival honors this maritime heritage through street dances, folk art displays, and coastal ceremonies.</p>
+        <p>Held every December to coincide with Tanjay City's foundation anniversary, the Tambayon Festival has grown into one of Negros Oriental's most anticipated provincial celebrations. The street dancing performances feature elaborate sea-themed costumes — fish, waves, coral, and bangka motifs — choreographed to music that incorporates traditional Visayan instruments alongside contemporary arrangements.</p>
+        <h6>Highlights</h6>
+        <ul class="highlight-list">
+          <li><i class="bi bi-star-fill"></i> Sea-themed street dancing with intricate bangka-inspired costumes</li>
+          <li><i class="bi bi-star-fill"></i> Coastal ceremonies honoring the fishing heritage of Tanjay</li>
+          <li><i class="bi bi-star-fill"></i> Folk art exhibition featuring traditional fishing implements</li>
+          <li><i class="bi bi-star-fill"></i> Fresh seafood feast and local product showcase</li>
+        </ul>
+        <div class="detail-info-grid">
+          <div class="detail-info-cell"><span class="lbl">When</span><span class="val">December (Foundation Anniversary)</span></div>
+          <div class="detail-info-cell"><span class="lbl">Where</span><span class="val">Tanjay City, Negros Oriental</span></div>
+          <div class="detail-info-cell"><span class="lbl">Theme</span><span class="val">Fishing heritage and maritime culture</span></div>
+          <div class="detail-info-cell"><span class="lbl">Named After</span><span class="val">The traditional tambayon fishing vessel</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 9. DAING FESTIVAL -->
+<div class="modal fade detail-modal" id="fm-daing" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="detail-hero">
+        <img src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&q=80&w=900" alt="Daing Festival">
+        <div class="detail-hero-tint"></div>
+        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
+        <div class="detail-hero-label"><span class="eyebrow-sm">Bindoy · March</span><h4>Daing Festival</h4></div>
+      </div>
+      <div class="detail-body">
+        <p>The Daing Festival of Bindoy is one of the most charmingly specific festivals in the Philippines — a celebration built entirely around daing, the traditional Filipino dried and salted fish that is a staple of every Filipino breakfast table. Bindoy, a coastal municipality on the eastern shore of Negros Oriental, has been one of the leading producers of artisanal daing in the Visayas for generations, and its annual festival celebrates that identity with pride and considerable humor.</p>
+        <p>The festival takes place every March and features a street dancing competition where dancers perform in costumes made from or inspired by dried fish — silver sequins, fish-scale patterns, and sun-drying racks feature prominently in the choreography. Beyond the dancing, the festival is a true food event: daing cooking competitions, product exhibits, and a community feast where Bindoy's finest dried fish products are available for tasting and purchase.</p>
+        <h6>Highlights</h6>
+        <ul class="highlight-list">
+          <li><i class="bi bi-star-fill"></i> Daing-themed street dancing — one of the Philippines' most unique costumes</li>
+          <li><i class="bi bi-star-fill"></i> Dried fish cooking competition with traditional and modern recipes</li>
+          <li><i class="bi bi-star-fill"></i> Community feast — the freshest daing you'll ever eat</li>
+          <li><i class="bi bi-star-fill"></i> Product exhibit and direct sales from local producers</li>
+        </ul>
+        <div class="detail-info-grid">
+          <div class="detail-info-cell"><span class="lbl">When</span><span class="val">March annually</span></div>
+          <div class="detail-info-cell"><span class="lbl">Where</span><span class="val">Bindoy, Negros Oriental</span></div>
+          <div class="detail-info-cell"><span class="lbl">Theme</span><span class="val">Dried fish industry and coastal identity</span></div>
+          <div class="detail-info-cell"><span class="lbl">Best For</span><span class="val">Authentic local culture + great seafood</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 10. APO ISLAND DIVE FESTIVAL -->
+<div class="modal fade detail-modal" id="fm-apodive" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="detail-hero">
+        <img src="https://images.unsplash.com/photo-1582967788606-a171c1080cb0?auto=format&fit=crop&q=80&w=900" alt="Apo Dive Fest">
+        <div class="detail-hero-tint"></div>
+        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
+        <div class="detail-hero-label"><span class="eyebrow-sm">Dauin · July</span><h4>Apo Island Dive Festival</h4></div>
+      </div>
+      <div class="detail-body">
+        <p>The Apo Island Dive Festival is an annual celebration of marine conservation held every July in Dauin, the jumping-off point for Apo Island. Founded as a partnership between the local dive industry, the Apo Island community, and Silliman University's Institute of Environmental and Marine Sciences, the festival combines competitive events with genuine conservation work — making it one of the few festivals in the Philippines where attending is also an act of environmental stewardship.</p>
+        <p>The centerpiece events are an underwater photography competition — attracting professional and amateur underwater photographers from across Southeast Asia — and a reef cleanup dive organized by dive operators, conservation organizations, and volunteers. Educational forums on marine biology, reef conservation, and sustainable tourism round out the program, often featuring scientists from Silliman University's marine laboratory who have been studying the Apo Island ecosystem for decades.</p>
+        <h6>Highlights</h6>
+        <ul class="highlight-list">
+          <li><i class="bi bi-camera"></i> Underwater photography competition — open to all skill levels</li>
+          <li><i class="bi bi-star-fill"></i> Reef cleanup dive — organized and supported by local dive shops</li>
+          <li><i class="bi bi-star-fill"></i> Marine biology forums with Silliman University researchers</li>
+          <li><i class="bi bi-star-fill"></i> Guided conservation dives with briefings on reef ecology</li>
+        </ul>
+        <div class="detail-info-grid">
+          <div class="detail-info-cell"><span class="lbl">When</span><span class="val">July annually</span></div>
+          <div class="detail-info-cell"><span class="lbl">Where</span><span class="val">Dauin &amp; Apo Island, Negros Oriental</span></div>
+          <div class="detail-info-cell"><span class="lbl">Best For</span><span class="val">Divers, photographers, conservationists</span></div>
+          <div class="detail-info-cell"><span class="lbl">Register</span><span class="val">Via local Dauin dive operators</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <!-- ── SCRIPTS ── -->
