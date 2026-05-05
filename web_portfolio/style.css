@@ -401,23 +401,46 @@ body.light .resume-link-card { background: linear-gradient(135deg, #fff 0%, #e8f
 
 .project-body p { font-size: 0.82rem; margin-bottom: 1rem; }
 
+/* Improved "View Project →" button styling */
 .btn-view {
-  background: var(--accent);
-  color: #090E13;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: transparent;
+  color: var(--accent);
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-weight: 700;
-  font-size: 0.82rem;
-  border-radius: var(--radius-sm);
-  border: none;
-  padding: 8px 0;
-  width: 100%;
-  transition: background 0.25s, transform 0.2s var(--ease), box-shadow 0.25s;
+  font-weight: 600;
+  font-size: 0.85rem;
+  border-radius: 60px;
+  border: 1px solid rgba(71, 191, 189, 0.35);
+  padding: 8px 16px;
+  width: auto;
+  transition: all 0.25s ease;
+  text-decoration: none;
+  margin-top: 8px;
+  letter-spacing: 0.3px;
 }
 
 .btn-view:hover {
-  background: var(--accent-green);
-  transform: translateY(-1px);
-  box-shadow: 0 6px 20px rgba(71,191,189,0.3);
+  background: rgba(71, 191, 189, 0.12);
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(71, 191, 189, 0.2);
+}
+
+/* Adjust project card body to better accommodate the button */
+.project-body {
+  padding: 1.3rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.project-body p {
+  flex: 1;
+  margin-bottom: 1.2rem;
 }
 
 /* ── Certifications ──────────────────────────────────────────── */
