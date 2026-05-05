@@ -90,9 +90,7 @@ body::after {
 }
 
 .nav-neg.scrolled, .nav-occ.scrolled, .nav-ori.scrolled {
-  background: rgba(247,243,238,0.97) !important;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: var(--paper) !important;   /* solid, no transparency */
   padding: 0.9rem 0;
   border-bottom-color: var(--paper-3);
 }
@@ -1061,13 +1059,11 @@ body[data-page="festivals"]   .nav-pill {
    NAVBAR MOBILE FIXES
    ──────────────────────────────────────────────────────────── */
 
-/* Mobile menu always gets a solid background when open —
-   prevents it bleeding over page content */
+/* Mobile menu always gets a solid background when open */
 #navMenu.show,
 #navMenu.collapsing {
-  background: rgba(15, 15, 13, 0.97) !important;
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(15, 15, 13, 0.97);
+  /* backdrop-filter removed to prevent double blur */
   padding: 1rem 1.5rem 1.5rem !important;
   border-top: 1px solid rgba(255,255,255,0.08);
   margin-top: 0.75rem;
@@ -1077,11 +1073,11 @@ body[data-page="festivals"]   .nav-pill {
 /* When scrolled, mobile menu uses the light paper colour */
 .scrolled #navMenu.show,
 .scrolled #navMenu.collapsing {
-  background: rgba(247,243,238,0.98) !important;
+  background: rgba(247,243,238, 1);   /* fully opaque – no doubling */
   border-top-color: var(--paper-3);
 }
 
-/* Mobile links — always visible white on dark menu */
+/* Mobile links – white on dark menu */
 #navMenu.show .nav-link-custom,
 #navMenu.show .nav-link-occ,
 #navMenu.show .nav-link-ori {
@@ -1116,11 +1112,4 @@ body[data-page="festivals"]   .nav-pill {
 .scrolled #navMenu.show .nav-pill-ori {
   color: var(--ink-2) !important;
   border-color: var(--paper-3);
-}
-
-/* Active nav link indicator */
-.nav-link-custom.nav-active,
-.nav-link-occ.nav-active,
-.nav-link-ori.nav-active {
-  color: var(--accent-warm) !important;
 }
