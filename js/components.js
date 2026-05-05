@@ -6,16 +6,13 @@
   const body = document.body;
   const page = body.dataset.page || '';
 
-  // Auto-detect root path from script's own location
   const scriptPath = document.currentScript?.src || '';
   const rootPath = scriptPath.includes('/pages/') || scriptPath.includes('\\pages\\')
     ? '../'
     : './';
 
-  // Fallback to data-root if set (explicit override)
   const root = body.dataset.root || rootPath;
 
-  // Determine theme
   const theme = body.dataset.theme || body.classList.contains('theme-oriental') ? 'oriental'
     : body.classList.contains('theme-occidental') ? 'occidental' : '';
   const navClass = theme === 'oriental' ? 'nav-ori' : theme === 'occidental' ? 'nav-occ' : 'nav-neg';
@@ -52,17 +49,17 @@
           </div>
           <div class="col-lg-2 col-6">
             <span class="footer-label">Explore</span>
-            <a href="${root}pages/where-to-go.html" class="footer-link">Where to Go</a>
-            <a href="${root}pages/what-to-buy.html" class="footer-link">What to Buy</a>
-            <a href="${root}pages/festivals.html"   class="footer-link">Festivals</a>
+            <a href="${root}pages/where-to-go.html" class="footer-link" target="_top">Where to Go</a>
+            <a href="${root}pages/what-to-buy.html" class="footer-link" target="_top">What to Buy</a>
+            <a href="${root}pages/festivals.html"   class="footer-link" target="_top">Festivals</a>
           </div>
           <div class="col-lg-2 col-6">
             <span class="footer-label">Region</span>
-            <a href="${root}occidental.html" class="footer-link">Negros Occidental</a>
-            <a href="${root}oriental.html" class="footer-link">Negros Oriental</a>
+            <a href="${root}occidental.html" class="footer-link" target="_top">Negros Occidental</a>
+            <a href="${root}oriental.html" class="footer-link" target="_top">Negros Oriental</a>
           </div>
           <div class="col-lg-4">
-            ${buildFooterCTA(theme, root)}
+            ${buildFooterCTA()}
           </div>
         </div>
         <hr class="footer-divider">
@@ -95,13 +92,14 @@
     return html + pill;
   }
 
-  function buildFooterCTA(currentTheme, root) {
-    }
+  function buildFooterCTA() {
     return `<span class="footer-label">Connect</span>
             <div>
-              <a href="#" class="social-btn" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
-              <a href="#" class="social-btn" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-              <a href="#" class="social-btn" aria-label="Twitter / X"><i class="bi bi-twitter-x"></i></a>
-              <a href="#" class="social-btn" aria-label="YouTube"><i class="bi bi-youtube"></i></a>
+              <a href="#" class="social-btn" aria-label="Facebook" target="_top"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="social-btn" aria-label="Instagram" target="_top"><i class="bi bi-instagram"></i></a>
+              <a href="#" class="social-btn" aria-label="Twitter / X" target="_top"><i class="bi bi-twitter-x"></i></a>
+              <a href="#" class="social-btn" aria-label="YouTube" target="_top"><i class="bi bi-youtube"></i></a>
             </div>`;
+  }
+
 })();
