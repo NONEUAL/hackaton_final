@@ -76,7 +76,9 @@ body::after {
 }
 
 /* ────────────────────────────────────────────────────────────
-   NAVBAR
+   NAVBAR — FIXED COLOR SYSTEM
+   Default (transparent over hero): white text
+   .scrolled (opaque): dark ink text
    ──────────────────────────────────────────────────────────── */
 .nav-neg, .nav-occ, .nav-ori, .navbar-negros {
   position: fixed; top: 0; left: 0; right: 0;
@@ -84,6 +86,7 @@ body::after {
   padding: 1.5rem 0;
   transition: background 0.5s, padding 0.4s, border-color 0.5s;
   border-bottom: 1px solid transparent;
+  background: transparent;
 }
 
 .nav-neg.scrolled, .nav-occ.scrolled, .nav-ori.scrolled {
@@ -94,79 +97,103 @@ body::after {
   border-bottom-color: var(--paper-3);
 }
 
-/* brand */
+/* ── brand ── */
 .nav-brand {
   font-family: var(--f-display);
   font-size: 1.35rem; font-weight: 400;
-  color: #fff;
+  color: #fff !important;           /* always white before scroll */
   letter-spacing: 6px; text-transform: uppercase;
   transition: color 0.3s;
 }
-.nav-brand span { color: var(--gold-lt); }
-.scrolled .nav-brand { color: var(--ink); }
-.scrolled .nav-brand span { color: var(--accent); }
+.nav-brand span { color: var(--gold-lt) !important; }
 
-/* links */
-.nav-link-custom, .nav-link-occ, .nav-link-ori {
-  color: rgba(255,255,255,0.7) !important;
+.scrolled .nav-brand { color: var(--ink) !important; }
+.scrolled .nav-brand span { color: var(--accent) !important; }
+
+/* ── nav links — DEFAULT (over dark hero) ── */
+.nav-link-custom,
+.nav-link-occ,
+.nav-link-ori {
+  color: rgba(255,255,255,0.82) !important;   /* ← was 0.7, now more visible */
   font-size: 0.68rem; font-weight: 500;
   letter-spacing: 2.5px; text-transform: uppercase;
   padding: 0.3rem 0 !important;
   transition: color 0.2s;
   position: relative;
+  /* Neutralise any Bootstrap .navbar-dark / .navbar-light overrides */
+  text-decoration: none !important;
 }
-.nav-link-custom::after, .nav-link-occ::after, .nav-link-ori::after {
+
+/* underline indicator */
+.nav-link-custom::after,
+.nav-link-occ::after,
+.nav-link-ori::after {
   content: ''; position: absolute;
   bottom: -2px; left: 0;
   width: 0; height: 1px;
   background: var(--gold-lt);
   transition: width 0.3s;
 }
-.nav-link-custom:hover, .nav-link-occ:hover, .nav-link-ori:hover { color: #fff !important; }
-/* FIX: was .nav-link-occ::after:hover (invalid) — corrected to :hover::after */
-.nav-link-custom:hover::after, .nav-link-occ:hover::after, .nav-link-ori:hover::after { width: 100%; }
 
+.nav-link-custom:hover,
+.nav-link-occ:hover,
+.nav-link-ori:hover {
+  color: #fff !important;
+}
+.nav-link-custom:hover::after,
+.nav-link-occ:hover::after,
+.nav-link-ori:hover::after { width: 100%; }
+
+/* ── nav links — SCROLLED state ── */
 .scrolled .nav-link-custom,
 .scrolled .nav-link-occ,
-.scrolled .nav-link-ori { color: var(--ink-2) !important; }
+.scrolled .nav-link-ori {
+  color: var(--ink-2) !important;
+}
 .scrolled .nav-link-custom:hover,
 .scrolled .nav-link-occ:hover,
-.scrolled .nav-link-ori:hover { color: var(--ink) !important; }
+.scrolled .nav-link-ori:hover {
+  color: var(--ink) !important;
+}
 
-/* pill */
+/* ── pill CTA ── */
 .nav-pill, .nav-pill-ori {
   font-size: 0.65rem; font-weight: 600;
   letter-spacing: 2px; text-transform: uppercase;
-  color: rgba(255,255,255,0.9);
-  border: 1px solid rgba(255,255,255,0.25);
+  color: rgba(255,255,255,0.9) !important;
+  border: 1px solid rgba(255,255,255,0.3);
   padding: 0.38rem 1rem;
   border-radius: var(--radius);
-  transition: background 0.25s, border-color 0.25s;
+  transition: background 0.25s, border-color 0.25s, color 0.25s;
   white-space: nowrap;
 }
 .nav-pill:hover, .nav-pill-ori:hover {
   background: rgba(255,255,255,0.12);
-  border-color: rgba(255,255,255,0.5);
-  color: #fff;
-}
-.scrolled .nav-pill, .scrolled .nav-pill-ori {
-  color: var(--ink-2);
-  border-color: var(--paper-3);
-}
-.scrolled .nav-pill:hover, .scrolled .nav-pill-ori:hover {
-  background: var(--paper-2); color: var(--ink);
+  border-color: rgba(255,255,255,0.55);
+  color: #fff !important;
 }
 
-/* mobile toggler */
+.scrolled .nav-pill,
+.scrolled .nav-pill-ori {
+  color: var(--ink-2) !important;
+  border-color: var(--paper-3);
+}
+.scrolled .nav-pill:hover,
+.scrolled .nav-pill-ori:hover {
+  background: var(--paper-2);
+  color: var(--ink) !important;
+}
+
+/* ── mobile toggler ── */
 .navbar-toggler {
-  border: 1px solid rgba(255,255,255,0.3);
+  border: 1px solid rgba(255,255,255,0.35);
   padding: 4px 8px; background: transparent;
 }
 .navbar-toggler-icon { filter: invert(1); }
 .scrolled .navbar-toggler { border-color: var(--paper-3); }
 .scrolled .navbar-toggler-icon { filter: none; }
 
-/* mobile dropdown */
+/* ── mobile dropdown ── */
 #navMenu {
   background: transparent;
 }
@@ -176,6 +203,33 @@ body::after {
   padding: 1rem 1.25rem;
   border-top: 1px solid var(--paper-3);
   margin-top: 0.5rem;
+}
+
+/* Sub-pages: navbar is always over a light hero so force scrolled look immediately */
+body[data-page="where-to-go"] .nav-neg,
+body[data-page="what-to-buy"] .nav-neg,
+body[data-page="festivals"]   .nav-neg {
+  background: rgba(247,243,238,0.97) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 0.9rem 0;
+  border-bottom-color: var(--paper-3);
+}
+body[data-page="where-to-go"] .nav-link-custom,
+body[data-page="what-to-buy"] .nav-link-custom,
+body[data-page="festivals"]   .nav-link-custom {
+  color: var(--ink-2) !important;
+}
+body[data-page="where-to-go"] .nav-brand,
+body[data-page="what-to-buy"] .nav-brand,
+body[data-page="festivals"]   .nav-brand {
+  color: var(--ink) !important;
+}
+body[data-page="where-to-go"] .nav-pill,
+body[data-page="what-to-buy"] .nav-pill,
+body[data-page="festivals"]   .nav-pill {
+  color: var(--ink-2) !important;
+  border-color: var(--paper-3);
 }
 
 /* ────────────────────────────────────────────────────────────
@@ -974,4 +1028,72 @@ body::after {
   .hero-h1, .hero-index h1 { letter-spacing: -0.5px; }
   .province-card-body h3 { font-size: 1.9rem; }
   .bento-label h3 { font-size: 1.1rem; }
+}
+
+/* ────────────────────────────────────────────────────────────
+   NAVBAR MOBILE FIXES
+   ──────────────────────────────────────────────────────────── */
+
+/* Mobile menu always gets a solid background when open —
+   prevents it bleeding over page content */
+#navMenu.show,
+#navMenu.collapsing {
+  background: rgba(15, 15, 13, 0.97) !important;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 1rem 1.5rem 1.5rem !important;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  margin-top: 0.75rem;
+  border-radius: 0 0 4px 4px;
+}
+
+/* When scrolled, mobile menu uses the light paper colour */
+.scrolled #navMenu.show,
+.scrolled #navMenu.collapsing {
+  background: rgba(247,243,238,0.98) !important;
+  border-top-color: var(--paper-3);
+}
+
+/* Mobile links — always visible white on dark menu */
+#navMenu.show .nav-link-custom,
+#navMenu.show .nav-link-occ,
+#navMenu.show .nav-link-ori {
+  color: rgba(255,255,255,0.85) !important;
+  padding: 0.55rem 0 !important;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  font-size: 0.75rem;
+}
+#navMenu.show .nav-link-custom:last-of-type,
+#navMenu.show .nav-link-occ:last-of-type,
+#navMenu.show .nav-link-ori:last-of-type {
+  border-bottom: none;
+}
+
+/* Mobile links on scrolled (light) navbar */
+.scrolled #navMenu.show .nav-link-custom,
+.scrolled #navMenu.show .nav-link-occ,
+.scrolled #navMenu.show .nav-link-ori {
+  color: var(--ink-2) !important;
+  border-bottom-color: var(--paper-3);
+}
+
+/* Pill button inside mobile menu */
+#navMenu.show .nav-pill,
+#navMenu.show .nav-pill-ori {
+  margin-top: 0.75rem;
+  color: rgba(255,255,255,0.9) !important;
+  border-color: rgba(255,255,255,0.25);
+  display: inline-block;
+}
+.scrolled #navMenu.show .nav-pill,
+.scrolled #navMenu.show .nav-pill-ori {
+  color: var(--ink-2) !important;
+  border-color: var(--paper-3);
+}
+
+/* Active nav link indicator */
+.nav-link-custom.nav-active,
+.nav-link-occ.nav-active,
+.nav-link-ori.nav-active {
+  color: var(--accent-warm) !important;
 }
