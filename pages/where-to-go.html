@@ -4,545 +4,372 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Where to Go | Negros Island Tourism</title>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700;1,900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.min.css" rel="stylesheet">
+  <!-- Site styles (includes Google Fonts import) -->
   <link rel="stylesheet" href="../css/style.css">
-  <style>
-    .detail-modal .modal-dialog { max-width: 780px; }
-    .detail-hero { position: relative; height: 320px; overflow: hidden; }
-    .detail-hero img { width: 100%; height: 100%; object-fit: cover; filter: saturate(0.9); }
-    .detail-hero-tint { position: absolute; inset: 0; background: linear-gradient(to top, rgba(15,15,13,0.72) 0%, transparent 55%); }
-    .detail-hero-label { position: absolute; bottom: 1.5rem; left: 2rem; right: 2rem; color: #fff; }
-    .detail-hero-label .eyebrow-sm { font-family: var(--f-sans); font-size: 0.58rem; font-weight: 600; letter-spacing: 3.5px; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 0.35rem; display: block; }
-    .detail-hero-label h4 { font-family: var(--f-display); font-size: 1.9rem; font-weight: 400; margin: 0; line-height: 1.05; }
-    .detail-body { padding: 2rem 2rem 2.25rem; }
-    .detail-body p { font-family: var(--f-sans); font-size: 0.9rem; color: var(--ink-2); line-height: 1.85; margin-bottom: 0.85rem; font-weight: 300; }
-    .detail-body h6 { font-family: var(--f-sans); font-size: 0.65rem; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--accent); margin: 1.4rem 0 0.65rem; }
-    .detail-imgs { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin: 1.25rem 0; }
-    .detail-imgs img { width: 100%; height: 160px; object-fit: cover; border-radius: var(--radius); filter: saturate(0.88); }
-    .detail-info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 1.25rem; }
-    .detail-info-cell { background: var(--paper-2); border: 1px solid var(--paper-3); border-radius: var(--radius); padding: 0.75rem 1rem; }
-    .detail-info-cell .lbl { font-family: var(--f-sans); font-size: 0.58rem; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; color: var(--accent); display: block; margin-bottom: 0.2rem; }
-    .detail-info-cell .val { font-family: var(--f-sans); font-size: 0.84rem; color: var(--ink-2); font-weight: 400; }
-    .highlight-list { list-style: none; padding: 0; margin: 0.5rem 0; }
-    .highlight-list li { font-family: var(--f-sans); font-size: 0.88rem; color: var(--ink-2); font-weight: 300; padding: 0.45rem 0; border-bottom: 1px solid var(--paper-3); display: flex; align-items: flex-start; gap: 0.65rem; line-height: 1.5; }
-    .highlight-list li:last-child { border-bottom: none; }
-    .highlight-list li i { color: var(--accent); margin-top: 2px; flex-shrink: 0; }
-    @media (max-width: 575px) {
-      .detail-imgs, .detail-info-grid { grid-template-columns: 1fr; }
-      .detail-hero { height: 240px; }
-      .detail-hero-label h4 { font-size: 1.5rem; }
-      .detail-body { padding: 1.25rem; }
-    }
-  </style>
+  <!-- Shared detail-modal styles (used across all three sub-pages) -->
+  <link rel="stylesheet" href="../css/detail-modal.css">
 </head>
 
 <body data-page="where-to-go" data-root="../">
 
-<!-- ── PAGE HERO ── -->
-<div class="page-hero" style="background-image:url('../img/destinnations/The_Ruins.png');">
-  <div class="hero-content container">
-    <span class="section-eyebrow letter-wide">Explore the Island</span>
-    <h1 style="font-size:clamp(2.5rem,6vw,4rem);font-weight:900;color:#fff;margin-bottom:0.5rem;">Where to Go</h1>
-    <p style="color:rgba(255,255,255,0.75);font-family:var(--f-serif);font-style:italic;">10 incredible destinations across Negros Occidental &amp; Oriental</p>
-  </div>
-</div>
-
-<!-- ── FILTER ── -->
-<section class="py-4 bg-white shadow-sm sticky-top" style="top:72px;z-index:100;">
-  <div class="container">
-    <div class="d-flex gap-2 flex-wrap filter-row">
-      <button class="chip active" onclick="filterGrid('dest','all',this)">All Destinations</button>
-      <button class="chip"        onclick="filterGrid('dest','occidental',this)">Negros Occidental</button>
-      <button class="chip"        onclick="filterGrid('dest','oriental',this)">Negros Oriental</button>
+  <!-- ── PAGE HERO ── -->
+  <div class="page-hero" style="background-image:url('../img/destinnations/The_Ruins.png');">
+    <div class="hero-content container">
+      <span class="section-eyebrow letter-wide">Explore the Island</span>
+      <h1 style="font-size:clamp(2.5rem,6vw,4rem);color:#fff;margin-bottom:0.5rem;">Where to Go</h1>
+      <p style="color:rgba(255,255,255,0.75);font-family:var(--f-serif);font-style:italic;">10 incredible destinations across Negros Occidental &amp; Oriental</p>
     </div>
   </div>
-</section>
 
-<!-- ── DESTINATION GRID ── -->
-<section class="section-pad" style="background:var(--bg-alt);">
-  <div class="container">
-    <div class="row g-4">
-
-      <div class="col-md-6 col-lg-4 dest-item reveal" data-province="occidental">
-        <div class="dest-card" onclick="openModal('dm-ruins')" style="cursor:pointer;">
-          <div class="dest-card-img">
-            <img src="../img/destinnations/The_Ruins.png" alt="The Ruins">
-            <div class="dest-card-badge">Negros Occidental</div>
-          </div>
-          <div class="dest-card-body">
-            <h5>The Ruins, Talisay</h5>
-            <p>The "Taj Mahal of Negros" — a hauntingly beautiful early 20th-century mansion, now an iconic landmark.</p>
-            <span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span>
-          </div>
-        </div>
+  <!-- ── FILTER ── -->
+  <section class="py-4 bg-white shadow-sm sticky-top" style="top:72px;z-index:100;">
+    <div class="container">
+      <div class="d-flex gap-2 filter-row">
+        <button class="chip active" onclick="filterGrid('dest','all',this)">All Destinations</button>
+        <button class="chip"        onclick="filterGrid('dest','occidental',this)">Negros Occidental</button>
+        <button class="chip"        onclick="filterGrid('dest','oriental',this)">Negros Oriental</button>
       </div>
-
-      <div class="col-md-6 col-lg-4 dest-item reveal reveal-d1" data-province="occidental">
-        <div class="dest-card" onclick="openModal('dm-mambukal')" style="cursor:pointer;">
-          <div class="dest-card-img">
-            <img src="../img/destinnations/Mambukal Mountain Resort.png" alt="Mambukal">
-            <div class="dest-card-badge">Negros Occidental</div>
-          </div>
-          <div class="dest-card-body">
-            <h5>Mambukal Mountain Resort</h5>
-            <p>Seven cascading waterfalls, sulfur springs, and lush forests at the foot of Mt. Kanlaon.</p>
-            <span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4 dest-item reveal reveal-d2" data-province="occidental">
-        <div class="dest-card" onclick="openModal('dm-silay')" style="cursor:pointer;">
-          <div class="dest-card-img">
-            <img src="../img/destinnations/Silay Heritage City.png" alt="Silay">
-            <div class="dest-card-badge">Negros Occidental</div>
-          </div>
-          <div class="dest-card-body">
-            <h5>Silay Heritage City</h5>
-            <p>Walk through preserved ancestral houses and absorb the colonial elegance of Negros' cultural capital.</p>
-            <span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4 dest-item reveal" data-province="occidental">
-        <div class="dest-card" onclick="openModal('dm-kanlaon')" style="cursor:pointer;">
-          <div class="dest-card-img">
-            <img src="../img/destinnations/Mt. Kanlaon Natural Park.png" alt="Mt Kanlaon">
-            <div class="dest-card-badge">Negros Occidental</div>
-          </div>
-          <div class="dest-card-body">
-            <h5>Mt. Kanlaon Natural Park</h5>
-            <p>The highest peak in the Visayas — an active stratovolcano cloaked in biodiversity and adventure.</p>
-            <span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4 dest-item reveal reveal-d1" data-province="occidental">
-        <div class="dest-card" onclick="openModal('dm-mtkanlaon2')" style="cursor:pointer;">
-          <div class="dest-card-img">
-            <img src="../img/destinnations/Mt. Kanlaon.png" alt="Mt Kanlaon 2">
-            <div class="dest-card-badge">Negros Occidental</div>
-          </div>
-          <div class="dest-card-body">
-            <h5>Mt. Kanlaon Summit Trail</h5>
-            <p>The two-day summit climb through mossy cloud forests — one of the Philippines' most dramatic volcano treks.</p>
-            <span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4 dest-item reveal reveal-d2" data-province="oriental">
-        <div class="dest-card" onclick="openModal('dm-apo')" style="cursor:pointer;">
-          <div class="dest-card-img">
-            <img src="../img/destinnations/Apo Island Marine Sanctuary.png" alt="Apo Island">
-            <div class="dest-card-badge">Negros Oriental</div>
-          </div>
-          <div class="dest-card-body">
-            <h5>Apo Island Marine Sanctuary</h5>
-            <p>World-renowned diving and snorkeling with sea turtles in a thriving marine protected area.</p>
-            <span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4 dest-item reveal" data-province="oriental">
-        <div class="dest-card" onclick="openModal('dm-manjuyod')" style="cursor:pointer;">
-          <div class="dest-card-img">
-            <img src="../img/destinnations/Manjuyod Sandbar.png" alt="Manjuyod">
-            <div class="dest-card-badge">Negros Oriental</div>
-          </div>
-          <div class="dest-card-body">
-            <h5>Manjuyod Sandbar</h5>
-            <p>A stunning white-sand peninsula stretching 7 km — the "Maldives of the Philippines."</p>
-            <span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4 dest-item reveal reveal-d1" data-province="oriental">
-        <div class="dest-card" onclick="openModal('dm-casaroro')" style="cursor:pointer;">
-          <div class="dest-card-img">
-            <img src="../img/destinnations/Casaroro Falls.png" alt="Casaroro Falls">
-            <div class="dest-card-badge">Negros Oriental</div>
-          </div>
-          <div class="dest-card-body">
-            <h5>Casaroro Falls</h5>
-            <p>A dramatic 30-meter waterfall hidden in a canyon — reward for a short but thrilling hike in Valencia.</p>
-            <span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4 dest-item reveal reveal-d2" data-province="oriental">
-        <div class="dest-card" onclick="openModal('dm-casaroro2')" style="cursor:pointer;">
-          <div class="dest-card-img">
-            <img src="../img/destinnations/Casaroro Falls1.png" alt="Casaroro Falls 2">
-            <div class="dest-card-badge">Negros Oriental</div>
-          </div>
-          <div class="dest-card-body">
-            <h5>Casaroro Falls Trail</h5>
-            <p>The bamboo canyon approach — 300 steps down into one of the most atmospheric gorges in the Visayas.</p>
-            <span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4 dest-item reveal" data-province="oriental">
-        <div class="dest-card" onclick="openModal('dm-manjuyod2')" style="cursor:pointer;">
-          <div class="dest-card-img">
-            <img src="../img/destinnations/Manjuyod Sandbar-1.png" alt="Manjuyod 2">
-            <div class="dest-card-badge">Negros Oriental</div>
-          </div>
-          <div class="dest-card-body">
-            <h5>Manjuyod Stilt Cottages</h5>
-            <p>Wake up on the water — bamboo cottages built over the sandbar for an unforgettable overnight stay.</p>
-            <span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span>
-          </div>
-        </div>
-      </div>
-
     </div>
-  </div>
-</section>
+  </section>
 
+  <!-- ── DESTINATION GRID ── -->
+  <section class="section-pad" style="background:var(--bg-alt);">
+    <div class="container">
+      <div class="row g-4">
 
-<!-- ══ MODALS ══ -->
+        <div class="col-md-6 col-lg-4 dest-item reveal" data-province="occidental">
+          <div class="dest-card" onclick="openModal('dm-ruins')">
+            <div class="dest-card-img"><img src="../img/destinnations/The_Ruins.png" alt="The Ruins"><div class="dest-card-badge">Negros Occidental</div></div>
+            <div class="dest-card-body"><h5>The Ruins, Talisay</h5><p>The "Taj Mahal of Negros" — a hauntingly beautiful early 20th-century mansion, now an iconic landmark.</p><span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span></div>
+          </div>
+        </div>
 
-<!-- 1. THE RUINS -->
-<div class="modal fade detail-modal" id="dm-ruins" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="detail-hero">
-        <img src="../img/destinnations/The_Ruins.png" alt="The Ruins">
-        <div class="detail-hero-tint"></div>
-        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
-        <div class="detail-hero-label"><span class="eyebrow-sm">Talisay City · Negros Occidental</span><h4>The Ruins of Talisay</h4></div>
+        <div class="col-md-6 col-lg-4 dest-item reveal reveal-d1" data-province="occidental">
+          <div class="dest-card" onclick="openModal('dm-mambukal')">
+            <div class="dest-card-img"><img src="../img/destinnations/Mambukal Mountain Resort.png" alt="Mambukal"><div class="dest-card-badge">Negros Occidental</div></div>
+            <div class="dest-card-body"><h5>Mambukal Mountain Resort</h5><p>Seven cascading waterfalls, sulfur springs, and lush forests at the foot of Mt. Kanlaon.</p><span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span></div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 dest-item reveal reveal-d2" data-province="occidental">
+          <div class="dest-card" onclick="openModal('dm-silay')">
+            <div class="dest-card-img"><img src="../img/destinnations/Silay Heritage City.png" alt="Silay"><div class="dest-card-badge">Negros Occidental</div></div>
+            <div class="dest-card-body"><h5>Silay Heritage City</h5><p>Walk through preserved ancestral houses and absorb the colonial elegance of Negros' cultural capital.</p><span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span></div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 dest-item reveal" data-province="occidental">
+          <div class="dest-card" onclick="openModal('dm-kanlaon')">
+            <div class="dest-card-img"><img src="../img/destinnations/Mt. Kanlaon Natural Park.png" alt="Mt Kanlaon"><div class="dest-card-badge">Negros Occidental</div></div>
+            <div class="dest-card-body"><h5>Mt. Kanlaon Natural Park</h5><p>The highest peak in the Visayas — an active stratovolcano cloaked in biodiversity and adventure.</p><span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span></div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 dest-item reveal reveal-d1" data-province="occidental">
+          <div class="dest-card" onclick="openModal('dm-mtkanlaon2')">
+            <div class="dest-card-img"><img src="../img/destinnations/Mt. Kanlaon.png" alt="Mt Kanlaon Summit"><div class="dest-card-badge">Negros Occidental</div></div>
+            <div class="dest-card-body"><h5>Mt. Kanlaon Summit Trail</h5><p>The two-day summit climb through mossy cloud forests — one of the Philippines' most dramatic volcano treks.</p><span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span></div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 dest-item reveal reveal-d2" data-province="oriental">
+          <div class="dest-card" onclick="openModal('dm-apo')">
+            <div class="dest-card-img"><img src="../img/destinnations/Apo Island Marine Sanctuary.png" alt="Apo Island"><div class="dest-card-badge">Negros Oriental</div></div>
+            <div class="dest-card-body"><h5>Apo Island Marine Sanctuary</h5><p>World-renowned diving and snorkeling with sea turtles in a thriving marine protected area.</p><span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span></div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 dest-item reveal" data-province="oriental">
+          <div class="dest-card" onclick="openModal('dm-manjuyod')">
+            <div class="dest-card-img"><img src="../img/destinnations/Manjuyod Sandbar.png" alt="Manjuyod"><div class="dest-card-badge">Negros Oriental</div></div>
+            <div class="dest-card-body"><h5>Manjuyod Sandbar</h5><p>A stunning white-sand peninsula stretching 7 km — the "Maldives of the Philippines."</p><span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span></div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 dest-item reveal reveal-d1" data-province="oriental">
+          <div class="dest-card" onclick="openModal('dm-casaroro')">
+            <div class="dest-card-img"><img src="../img/destinnations/Casaroro Falls.png" alt="Casaroro Falls"><div class="dest-card-badge">Negros Oriental</div></div>
+            <div class="dest-card-body"><h5>Casaroro Falls</h5><p>A dramatic 30-meter waterfall hidden in a canyon — reward for a short but thrilling hike in Valencia.</p><span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span></div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 dest-item reveal reveal-d2" data-province="oriental">
+          <div class="dest-card" onclick="openModal('dm-casaroro2')">
+            <div class="dest-card-img"><img src="../img/destinnations/Casaroro Falls1.png" alt="Casaroro Trail"><div class="dest-card-badge">Negros Oriental</div></div>
+            <div class="dest-card-body"><h5>Casaroro Falls Trail</h5><p>The bamboo canyon approach — 300 steps down into one of the most atmospheric gorges in the Visayas.</p><span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span></div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4 dest-item reveal" data-province="oriental">
+          <div class="dest-card" onclick="openModal('dm-manjuyod2')">
+            <div class="dest-card-img"><img src="../img/destinnations/Manjuyod Sandbar-1.png" alt="Manjuyod Stilt Cottages"><div class="dest-card-badge">Negros Oriental</div></div>
+            <div class="dest-card-body"><h5>Manjuyod Stilt Cottages</h5><p>Wake up on the water — bamboo cottages built over the sandbar for an unforgettable overnight stay.</p><span class="dest-card-link">View Details <i class="bi bi-arrow-right"></i></span></div>
+          </div>
+        </div>
+
       </div>
-      <div class="detail-body">
-        <p>Standing amid the sugarcane fields of Talisay, the Ruins is the skeletal remains of the early 20th-century mansion of Don Mariano Ledesma Lacson — built as a monument of love for his Portuguese wife, Maria Braga, who died in childbirth.</p>
-        <p>During World War II, retreating Filipino guerrillas torched the mansion rather than surrender it to Japanese forces. The coral-and-egg-white walls survived, earning it the nickname <em>"Taj Mahal of Negros."</em></p>
-        <h6>Highlights</h6>
-        <ul class="highlight-list">
-          <li><i class="bi bi-star-fill"></i> Sunset viewing — the golden hour turns the ruins amber and orange</li>
-          <li><i class="bi bi-star-fill"></i> Italian Renaissance–inspired architecture and surviving columns</li>
-          <li><i class="bi bi-star-fill"></i> Surrounding sugarcane gardens and lily pond</li>
-          <li><i class="bi bi-star-fill"></i> On-site restaurant and souvenir shop</li>
-        </ul>
-        <div class="detail-info-grid">
-          <div class="detail-info-cell"><span class="lbl">Location</span><span class="val">Talisay City, Negros Occidental</span></div>
-          <div class="detail-info-cell"><span class="lbl">Hours</span><span class="val">Daily, 8:00 AM – 10:00 PM</span></div>
-          <div class="detail-info-cell"><span class="lbl">Entrance Fee</span><span class="val">₱100 adults / ₱50 children</span></div>
-          <div class="detail-info-cell"><span class="lbl">From Bacolod</span><span class="val">~15 minutes by tricycle or car</span></div>
+    </div>
+  </section>
+
+
+  <!-- ══ DETAIL MODALS ══ -->
+
+  <div class="modal fade detail-modal" id="dm-ruins" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="detail-hero"><img src="../img/destinnations/The_Ruins.png" alt="The Ruins"><div class="detail-hero-tint"></div><button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button><div class="detail-hero-label"><span class="eyebrow-sm">Talisay City · Negros Occidental</span><h4>The Ruins of Talisay</h4></div></div>
+        <div class="detail-body">
+          <p>Standing amid the sugarcane fields of Talisay, the Ruins is the skeletal remains of the early 20th-century mansion of Don Mariano Ledesma Lacson — built as a monument of love for his Portuguese wife, Maria Braga, who died in childbirth.</p>
+          <p>During World War II, retreating Filipino guerrillas torched the mansion rather than surrender it to Japanese forces. The coral-and-egg-white walls survived, earning it the nickname <em>"Taj Mahal of Negros."</em></p>
+          <h6>Highlights</h6>
+          <ul class="highlight-list">
+            <li><i class="bi bi-star-fill"></i> Sunset viewing — the golden hour turns the ruins amber and orange</li>
+            <li><i class="bi bi-star-fill"></i> Italian Renaissance–inspired architecture and surviving columns</li>
+            <li><i class="bi bi-star-fill"></i> Surrounding sugarcane gardens and lily pond</li>
+            <li><i class="bi bi-star-fill"></i> On-site restaurant and souvenir shop</li>
+          </ul>
+          <div class="detail-info-grid">
+            <div class="detail-info-cell"><span class="lbl">Location</span><span class="val">Talisay City, Negros Occidental</span></div>
+            <div class="detail-info-cell"><span class="lbl">Hours</span><span class="val">Daily, 8:00 AM – 10:00 PM</span></div>
+            <div class="detail-info-cell"><span class="lbl">Entrance Fee</span><span class="val">₱100 adults / ₱50 children</span></div>
+            <div class="detail-info-cell"><span class="lbl">From Bacolod</span><span class="val">~15 minutes by tricycle or car</span></div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- 2. MAMBUKAL -->
-<div class="modal fade detail-modal" id="dm-mambukal" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="detail-hero">
-        <img src="../img/destinnations/Mambukal Mountain Resort.png" alt="Mambukal">
-        <div class="detail-hero-tint"></div>
-        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
-        <div class="detail-hero-label"><span class="eyebrow-sm">Murcia · Negros Occidental</span><h4>Mambukal Mountain Resort</h4></div>
-      </div>
-      <div class="detail-body">
-        <p>Nestled at the foot of Mt. Kanlaon, Mambukal is a government-run mountain resort spanning over 24 hectares of primary forest with seven named waterfalls and natural hot and cold sulfur pools.</p>
-        <p>At dusk, thousands of giant fruit bats emerge from their roosts in a sweeping, darkening sky — one of the most dramatic natural spectacles in Occidental.</p>
-        <h6>Highlights</h6>
-        <ul class="highlight-list">
-          <li><i class="bi bi-star-fill"></i> Seven waterfalls — each with a distinct character and trail difficulty</li>
-          <li><i class="bi bi-star-fill"></i> Natural hot and cold sulfur spring pools</li>
-          <li><i class="bi bi-star-fill"></i> Giant fruit bat colony — spectacular evening flight at dusk</li>
-          <li><i class="bi bi-star-fill"></i> Camping grounds, cottages, and zip line</li>
-        </ul>
-        <div class="detail-info-grid">
-          <div class="detail-info-cell"><span class="lbl">Location</span><span class="val">Murcia, Negros Occidental</span></div>
-          <div class="detail-info-cell"><span class="lbl">Hours</span><span class="val">Daily, 6:00 AM – 6:00 PM</span></div>
-          <div class="detail-info-cell"><span class="lbl">Entrance Fee</span><span class="val">₱50 adults / ₱30 children</span></div>
-          <div class="detail-info-cell"><span class="lbl">From Bacolod</span><span class="val">~1 hour by jeepney via Murcia</span></div>
+  <div class="modal fade detail-modal" id="dm-mambukal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="detail-hero"><img src="../img/destinnations/Mambukal Mountain Resort.png" alt="Mambukal"><div class="detail-hero-tint"></div><button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button><div class="detail-hero-label"><span class="eyebrow-sm">Murcia · Negros Occidental</span><h4>Mambukal Mountain Resort</h4></div></div>
+        <div class="detail-body">
+          <p>Nestled at the foot of Mt. Kanlaon, Mambukal is a government-run mountain resort spanning over 24 hectares of primary forest with seven named waterfalls and natural hot and cold sulfur pools.</p>
+          <p>At dusk, thousands of giant fruit bats emerge from their roosts in a sweeping, darkening sky — one of the most dramatic natural spectacles in Occidental.</p>
+          <h6>Highlights</h6>
+          <ul class="highlight-list">
+            <li><i class="bi bi-star-fill"></i> Seven waterfalls — each with a distinct character and trail difficulty</li>
+            <li><i class="bi bi-star-fill"></i> Natural hot and cold sulfur spring pools</li>
+            <li><i class="bi bi-star-fill"></i> Giant fruit bat colony — spectacular evening flight at dusk</li>
+            <li><i class="bi bi-star-fill"></i> Camping grounds, cottages, and zip line</li>
+          </ul>
+          <div class="detail-info-grid">
+            <div class="detail-info-cell"><span class="lbl">Location</span><span class="val">Murcia, Negros Occidental</span></div>
+            <div class="detail-info-cell"><span class="lbl">Hours</span><span class="val">Daily, 6:00 AM – 6:00 PM</span></div>
+            <div class="detail-info-cell"><span class="lbl">Entrance Fee</span><span class="val">₱50 adults / ₱30 children</span></div>
+            <div class="detail-info-cell"><span class="lbl">From Bacolod</span><span class="val">~1 hour by jeepney via Murcia</span></div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- 3. SILAY -->
-<div class="modal fade detail-modal" id="dm-silay" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="detail-hero">
-        <img src="../img/destinnations/Silay Heritage City.png" alt="Silay">
-        <div class="detail-hero-tint"></div>
-        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
-        <div class="detail-hero-label"><span class="eyebrow-sm">Silay City · Negros Occidental</span><h4>Silay Heritage City</h4></div>
-      </div>
-      <div class="detail-body">
-        <p>Known as the "Paris of Negros," Silay City is home to over 30 ancestral houses from the Spanish and American colonial eras — the finest and most concentrated collection of heritage architecture in the Philippines.</p>
-        <div class="detail-imgs">
-          <img src="../img/destinnations/Silay Heritage City-1.png" alt="Silay 1">
-          <img src="../img/destinnations/Silay Heritage City-2.png" alt="Silay 2">
-        </div>
-        <h6>Highlights</h6>
-        <ul class="highlight-list">
-          <li><i class="bi bi-star-fill"></i> Balay Negrense Museum — most visited heritage house in Negros</li>
-          <li><i class="bi bi-star-fill"></i> 30+ ancestral houses within walking distance</li>
-          <li><i class="bi bi-star-fill"></i> San Diego Pro-Cathedral (1934)</li>
-          <li><i class="bi bi-star-fill"></i> El Ideal Bakery — serving Napoleones since 1920</li>
-        </ul>
-        <div class="detail-info-grid">
-          <div class="detail-info-cell"><span class="lbl">Location</span><span class="val">Silay City, Negros Occidental</span></div>
-          <div class="detail-info-cell"><span class="lbl">Best For</span><span class="val">Heritage walking tours, photography</span></div>
-          <div class="detail-info-cell"><span class="lbl">Museum Fee</span><span class="val">₱50–₱100 per heritage house</span></div>
-          <div class="detail-info-cell"><span class="lbl">From Bacolod</span><span class="val">~30 min north by bus or car</span></div>
+  <div class="modal fade detail-modal" id="dm-silay" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="detail-hero"><img src="../img/destinnations/Silay Heritage City.png" alt="Silay"><div class="detail-hero-tint"></div><button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button><div class="detail-hero-label"><span class="eyebrow-sm">Silay City · Negros Occidental</span><h4>Silay Heritage City</h4></div></div>
+        <div class="detail-body">
+          <p>Known as the "Paris of Negros," Silay City is home to over 30 ancestral houses from the Spanish and American colonial eras — the finest and most concentrated collection of heritage architecture in the Philippines.</p>
+          <div class="detail-imgs"><img src="../img/destinnations/Silay Heritage City-1.png" alt="Silay 1"><img src="../img/destinnations/Silay Heritage City-2.png" alt="Silay 2"></div>
+          <h6>Highlights</h6>
+          <ul class="highlight-list">
+            <li><i class="bi bi-star-fill"></i> Balay Negrense Museum — most visited heritage house in Negros</li>
+            <li><i class="bi bi-star-fill"></i> 30+ ancestral houses within walking distance</li>
+            <li><i class="bi bi-star-fill"></i> San Diego Pro-Cathedral (1934)</li>
+            <li><i class="bi bi-star-fill"></i> El Ideal Bakery — serving Napoleones since 1920</li>
+          </ul>
+          <div class="detail-info-grid">
+            <div class="detail-info-cell"><span class="lbl">Location</span><span class="val">Silay City, Negros Occidental</span></div>
+            <div class="detail-info-cell"><span class="lbl">Best For</span><span class="val">Heritage walking tours, photography</span></div>
+            <div class="detail-info-cell"><span class="lbl">Museum Fee</span><span class="val">₱50–₱100 per heritage house</span></div>
+            <div class="detail-info-cell"><span class="lbl">From Bacolod</span><span class="val">~30 min north by bus or car</span></div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- 4. MT. KANLAON -->
-<div class="modal fade detail-modal" id="dm-kanlaon" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="detail-hero">
-        <img src="../img/destinnations/Mt. Kanlaon Natural Park.png" alt="Mt Kanlaon">
-        <div class="detail-hero-tint"></div>
-        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
-        <div class="detail-hero-label"><span class="eyebrow-sm">Canlaon City · Negros Occidental</span><h4>Mt. Kanlaon Natural Park</h4></div>
-      </div>
-      <div class="detail-body">
-        <p>At 2,465 meters above sea level, Mt. Kanlaon is the highest peak in the Visayas and one of the Philippines' most active stratovolcanoes, sheltering dozens of endemic species.</p>
-        <div class="detail-imgs">
-          <img src="../img/destinnations/Mt. Kanlaon.png" alt="Mt Kanlaon trail">
-          <img src="../img/destinnations/Mt._Kanlaon.png" alt="Mt Kanlaon view">
-        </div>
-        <h6>Highlights</h6>
-        <ul class="highlight-list">
-          <li><i class="bi bi-star-fill"></i> Highest summit in the Visayas at 2,465 meters</li>
-          <li><i class="bi bi-star-fill"></i> Endemic species: Negros bleeding-heart pigeon, Philippine cockatoo</li>
-          <li><i class="bi bi-star-fill"></i> Ancient mossy cloud forests above 1,800m elevation</li>
-          <li><i class="bi bi-star-fill"></i> Three summit trails of varying difficulty</li>
-        </ul>
-        <div class="detail-info-grid">
-          <div class="detail-info-cell"><span class="lbl">Location</span><span class="val">Canlaon City, Negros Occidental</span></div>
-          <div class="detail-info-cell"><span class="lbl">Permit</span><span class="val">Required — apply via DENR</span></div>
-          <div class="detail-info-cell"><span class="lbl">Difficulty</span><span class="val">Strenuous — experienced hikers only</span></div>
-          <div class="detail-info-cell"><span class="lbl">Duration</span><span class="val">2 days / 1 night summit climb</span></div>
+  <div class="modal fade detail-modal" id="dm-kanlaon" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="detail-hero"><img src="../img/destinnations/Mt. Kanlaon Natural Park.png" alt="Mt Kanlaon"><div class="detail-hero-tint"></div><button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button><div class="detail-hero-label"><span class="eyebrow-sm">Canlaon City · Negros Occidental</span><h4>Mt. Kanlaon Natural Park</h4></div></div>
+        <div class="detail-body">
+          <p>At 2,465 meters above sea level, Mt. Kanlaon is the highest peak in the Visayas and one of the Philippines' most active stratovolcanoes, sheltering dozens of endemic species.</p>
+          <div class="detail-imgs"><img src="../img/destinnations/Mt. Kanlaon.png" alt="Kanlaon trail"><img src="../img/destinnations/Mt._Kanlaon.png" alt="Kanlaon view"></div>
+          <h6>Highlights</h6>
+          <ul class="highlight-list">
+            <li><i class="bi bi-star-fill"></i> Highest summit in the Visayas at 2,465 meters</li>
+            <li><i class="bi bi-star-fill"></i> Endemic species: Negros bleeding-heart pigeon, Philippine cockatoo</li>
+            <li><i class="bi bi-star-fill"></i> Ancient mossy cloud forests above 1,800m elevation</li>
+            <li><i class="bi bi-star-fill"></i> Three summit trails of varying difficulty</li>
+          </ul>
+          <div class="detail-info-grid">
+            <div class="detail-info-cell"><span class="lbl">Location</span><span class="val">Canlaon City, Negros Occidental</span></div>
+            <div class="detail-info-cell"><span class="lbl">Permit</span><span class="val">Required — apply via DENR</span></div>
+            <div class="detail-info-cell"><span class="lbl">Difficulty</span><span class="val">Strenuous — experienced hikers only</span></div>
+            <div class="detail-info-cell"><span class="lbl">Duration</span><span class="val">2 days / 1 night summit climb</span></div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- 5. MT. KANLAON TRAIL -->
-<div class="modal fade detail-modal" id="dm-mtkanlaon2" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="detail-hero">
-        <img src="../img/destinnations/Mt. Kanlaon.png" alt="Mt Kanlaon Trail">
-        <div class="detail-hero-tint"></div>
-        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
-        <div class="detail-hero-label"><span class="eyebrow-sm">Canlaon City · Negros Occidental</span><h4>Mt. Kanlaon Summit Trail</h4></div>
-      </div>
-      <div class="detail-body">
-        <p>The summit trails of Mt. Kanlaon pass through some of the most extraordinary landscapes in the Philippines — from lowland forest through mossy cloud forest to the stark, windswept crater ridge.</p>
-        <div class="detail-imgs">
-          <img src="../img/destinnations/Mt._Kanlaon.png" alt="Kanlaon view 1">
-          <img src="../img/destinnations/Mt._Kanlaon1.png" alt="Kanlaon view 2">
-        </div>
-        <h6>Highlights</h6>
-        <ul class="highlight-list">
-          <li><i class="bi bi-star-fill"></i> Three established trails: Guintubdan, Mapot, and Wasay</li>
-          <li><i class="bi bi-star-fill"></i> Views across both the Visayan Sea and Sulu Sea on clear days</li>
-          <li><i class="bi bi-star-fill"></i> Makawiwili Ridge — the active crater area</li>
-          <li><i class="bi bi-star-fill"></i> Giant tree ferns and ancient mossy forest at mid-elevation</li>
-        </ul>
-        <div class="detail-info-grid">
-          <div class="detail-info-cell"><span class="lbl">Best Trail</span><span class="val">Guintubdan — most established route</span></div>
-          <div class="detail-info-cell"><span class="lbl">Permit</span><span class="val">Required — apply via DENR</span></div>
-          <div class="detail-info-cell"><span class="lbl">Guide</span><span class="val">Mandatory — arrange in Canlaon City</span></div>
-          <div class="detail-info-cell"><span class="lbl">Season</span><span class="val">March–May best; avoid typhoon season</span></div>
+  <div class="modal fade detail-modal" id="dm-mtkanlaon2" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="detail-hero"><img src="../img/destinnations/Mt. Kanlaon.png" alt="Kanlaon Trail"><div class="detail-hero-tint"></div><button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button><div class="detail-hero-label"><span class="eyebrow-sm">Canlaon City · Negros Occidental</span><h4>Mt. Kanlaon Summit Trail</h4></div></div>
+        <div class="detail-body">
+          <p>The summit trails of Mt. Kanlaon pass through some of the most extraordinary landscapes in the Philippines — from lowland forest through mossy cloud forest to the stark, windswept crater ridge.</p>
+          <div class="detail-imgs"><img src="../img/destinnations/Mt._Kanlaon.png" alt="Kanlaon view 1"><img src="../img/destinnations/Mt._Kanlaon1.png" alt="Kanlaon view 2"></div>
+          <h6>Highlights</h6>
+          <ul class="highlight-list">
+            <li><i class="bi bi-star-fill"></i> Three established trails: Guintubdan, Mapot, and Wasay</li>
+            <li><i class="bi bi-star-fill"></i> Views across both the Visayan Sea and Sulu Sea on clear days</li>
+            <li><i class="bi bi-star-fill"></i> Makawiwili Ridge — the active crater area</li>
+            <li><i class="bi bi-star-fill"></i> Giant tree ferns and ancient mossy forest at mid-elevation</li>
+          </ul>
+          <div class="detail-info-grid">
+            <div class="detail-info-cell"><span class="lbl">Best Trail</span><span class="val">Guintubdan — most established route</span></div>
+            <div class="detail-info-cell"><span class="lbl">Permit</span><span class="val">Required — apply via DENR</span></div>
+            <div class="detail-info-cell"><span class="lbl">Guide</span><span class="val">Mandatory — arrange in Canlaon City</span></div>
+            <div class="detail-info-cell"><span class="lbl">Season</span><span class="val">March–May best; avoid typhoon season</span></div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- 6. APO ISLAND -->
-<div class="modal fade detail-modal" id="dm-apo" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="detail-hero">
-        <img src="../img/destinnations/Apo Island Marine Sanctuary.png" alt="Apo Island">
-        <div class="detail-hero-tint"></div>
-        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
-        <div class="detail-hero-label"><span class="eyebrow-sm">Dauin · Negros Oriental</span><h4>Apo Island Marine Sanctuary</h4></div>
-      </div>
-      <div class="detail-body">
-        <p>In 1982, the local fishing community gave up fishing rights around one-third of the island's reef — creating a no-take zone that became a global model for grassroots marine conservation.</p>
-        <div class="detail-imgs">
-          <img src="../img/destinnations/Apo Island Marine Sanctuary-1.png" alt="Apo Island 2">
-          <img src="../img/destinnations/Apo Island Marine Sanctuary.png" alt="Apo Island reef">
-        </div>
-        <h6>Highlights</h6>
-        <ul class="highlight-list">
-          <li><i class="bi bi-star-fill"></i> Sea turtle encounters — near-guaranteed year-round</li>
-          <li><i class="bi bi-star-fill"></i> 650+ fish species and 400+ coral species</li>
-          <li><i class="bi bi-star-fill"></i> Pristine wall dives and snorkel spots</li>
-          <li><i class="bi bi-star-fill"></i> Community-run homestays and local dining</li>
-        </ul>
-        <div class="detail-info-grid">
-          <div class="detail-info-cell"><span class="lbl">Location</span><span class="val">Dauin, Negros Oriental</span></div>
-          <div class="detail-info-cell"><span class="lbl">Getting There</span><span class="val">45-min bangka from Malatapay Beach</span></div>
-          <div class="detail-info-cell"><span class="lbl">Best Season</span><span class="val">Year-round; calmest March–June</span></div>
-          <div class="detail-info-cell"><span class="lbl">Stay</span><span class="val">Homestays available on the island</span></div>
+  <div class="modal fade detail-modal" id="dm-apo" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="detail-hero"><img src="../img/destinnations/Apo Island Marine Sanctuary.png" alt="Apo Island"><div class="detail-hero-tint"></div><button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button><div class="detail-hero-label"><span class="eyebrow-sm">Dauin · Negros Oriental</span><h4>Apo Island Marine Sanctuary</h4></div></div>
+        <div class="detail-body">
+          <p>In 1982, the local fishing community gave up fishing rights around one-third of the island's reef — creating a no-take zone that became a global model for grassroots marine conservation.</p>
+          <div class="detail-imgs"><img src="../img/destinnations/Apo Island Marine Sanctuary-1.png" alt="Apo Island 2"><img src="../img/destinnations/Apo Island Marine Sanctuary.png" alt="Apo reef"></div>
+          <h6>Highlights</h6>
+          <ul class="highlight-list">
+            <li><i class="bi bi-star-fill"></i> Sea turtle encounters — near-guaranteed year-round</li>
+            <li><i class="bi bi-star-fill"></i> 650+ fish species and 400+ coral species</li>
+            <li><i class="bi bi-star-fill"></i> Pristine wall dives and snorkel spots</li>
+            <li><i class="bi bi-star-fill"></i> Community-run homestays and local dining</li>
+          </ul>
+          <div class="detail-info-grid">
+            <div class="detail-info-cell"><span class="lbl">Location</span><span class="val">Dauin, Negros Oriental</span></div>
+            <div class="detail-info-cell"><span class="lbl">Getting There</span><span class="val">45-min bangka from Malatapay Beach</span></div>
+            <div class="detail-info-cell"><span class="lbl">Best Season</span><span class="val">Year-round; calmest March–June</span></div>
+            <div class="detail-info-cell"><span class="lbl">Stay</span><span class="val">Homestays available on the island</span></div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- 7. MANJUYOD SANDBAR -->
-<div class="modal fade detail-modal" id="dm-manjuyod" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="detail-hero">
-        <img src="../img/destinnations/Manjuyod Sandbar.png" alt="Manjuyod Sandbar">
-        <div class="detail-hero-tint"></div>
-        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
-        <div class="detail-hero-label"><span class="eyebrow-sm">Manjuyod · Negros Oriental</span><h4>Manjuyod Sandbar</h4></div>
-      </div>
-      <div class="detail-body">
-        <p>A 7-kilometre stretch of pristine white sand that lies submerged at high tide, then slowly emerges as the waters recede — a glowing ribbon of pale sand against impossible turquoise.</p>
-        <div class="detail-imgs">
-          <img src="../img/destinnations/Manjuyod Sandbar-1.png" alt="Manjuyod 2">
-          <img src="../img/destinnations/Manjuyod Sandbar.png" alt="Manjuyod wide">
-        </div>
-        <h6>Highlights</h6>
-        <ul class="highlight-list">
-          <li><i class="bi bi-star-fill"></i> 7-km white sandbar — widest at low tide (March–June)</li>
-          <li><i class="bi bi-star-fill"></i> Dolphin-watching on the boat ride from Bais City</li>
-          <li><i class="bi bi-star-fill"></i> Stilt cottages for overnight stays on the sandbar</li>
-          <li><i class="bi bi-star-fill"></i> Snorkeling, kayaking, and sandbar picnics</li>
-        </ul>
-        <div class="detail-info-grid">
-          <div class="detail-info-cell"><span class="lbl">Location</span><span class="val">Manjuyod, Negros Oriental</span></div>
-          <div class="detail-info-cell"><span class="lbl">Getting There</span><span class="val">Boat from Bais City port</span></div>
-          <div class="detail-info-cell"><span class="lbl">Best Time</span><span class="val">March–June (lowest tides)</span></div>
-          <div class="detail-info-cell"><span class="lbl">Tip</span><span class="val">Check tide charts before booking</span></div>
+  <div class="modal fade detail-modal" id="dm-manjuyod" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="detail-hero"><img src="../img/destinnations/Manjuyod Sandbar.png" alt="Manjuyod"><div class="detail-hero-tint"></div><button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button><div class="detail-hero-label"><span class="eyebrow-sm">Manjuyod · Negros Oriental</span><h4>Manjuyod Sandbar</h4></div></div>
+        <div class="detail-body">
+          <p>A 7-kilometre stretch of pristine white sand that lies submerged at high tide, then slowly emerges as the waters recede — a glowing ribbon of pale sand against impossible turquoise.</p>
+          <div class="detail-imgs"><img src="../img/destinnations/Manjuyod Sandbar-1.png" alt="Manjuyod 2"><img src="../img/destinnations/Manjuyod Sandbar.png" alt="Manjuyod wide"></div>
+          <h6>Highlights</h6>
+          <ul class="highlight-list">
+            <li><i class="bi bi-star-fill"></i> 7-km white sandbar — widest at low tide (March–June)</li>
+            <li><i class="bi bi-star-fill"></i> Dolphin-watching on the boat ride from Bais City</li>
+            <li><i class="bi bi-star-fill"></i> Stilt cottages for overnight stays on the sandbar</li>
+            <li><i class="bi bi-star-fill"></i> Snorkeling, kayaking, and sandbar picnics</li>
+          </ul>
+          <div class="detail-info-grid">
+            <div class="detail-info-cell"><span class="lbl">Location</span><span class="val">Manjuyod, Negros Oriental</span></div>
+            <div class="detail-info-cell"><span class="lbl">Getting There</span><span class="val">Boat from Bais City port</span></div>
+            <div class="detail-info-cell"><span class="lbl">Best Time</span><span class="val">March–June (lowest tides)</span></div>
+            <div class="detail-info-cell"><span class="lbl">Tip</span><span class="val">Check tide charts before booking</span></div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- 8. CASARORO FALLS -->
-<div class="modal fade detail-modal" id="dm-casaroro" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="detail-hero">
-        <img src="../img/destinnations/Casaroro Falls.png" alt="Casaroro Falls">
-        <div class="detail-hero-tint"></div>
-        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
-        <div class="detail-hero-label"><span class="eyebrow-sm">Valencia · Negros Oriental</span><h4>Casaroro Falls</h4></div>
-      </div>
-      <div class="detail-body">
-        <p>A 30-meter single-plunge waterfall hidden at the bottom of a narrow canyon in the mountains above Valencia. The trail involves descending more than 300 steps and crossing a rocky stream several times.</p>
-        <div class="detail-imgs">
-          <img src="../img/destinnations/Casaroro Falls1.png" alt="Casaroro 2">
-          <img src="../img/destinnations/Casaroro Falls.png" alt="Casaroro base">
-        </div>
-        <h6>Highlights</h6>
-        <ul class="highlight-list">
-          <li><i class="bi bi-star-fill"></i> 30-meter single-drop waterfall in a narrow canyon</li>
-          <li><i class="bi bi-star-fill"></i> Cathedral-like acoustics and atmosphere at the base</li>
-          <li><i class="bi bi-star-fill"></i> Bamboo forest trail with river crossings</li>
-          <li><i class="bi bi-star-fill"></i> Cold, deep plunge pool for swimming</li>
-        </ul>
-        <div class="detail-info-grid">
-          <div class="detail-info-cell"><span class="lbl">Location</span><span class="val">Valencia, Negros Oriental</span></div>
-          <div class="detail-info-cell"><span class="lbl">From Dumaguete</span><span class="val">~25 min by habal-habal to trailhead</span></div>
-          <div class="detail-info-cell"><span class="lbl">Hike Duration</span><span class="val">~45 min round trip</span></div>
-          <div class="detail-info-cell"><span class="lbl">Gear</span><span class="val">Water shoes / sturdy sandals essential</span></div>
+  <div class="modal fade detail-modal" id="dm-casaroro" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="detail-hero"><img src="../img/destinnations/Casaroro Falls.png" alt="Casaroro Falls"><div class="detail-hero-tint"></div><button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button><div class="detail-hero-label"><span class="eyebrow-sm">Valencia · Negros Oriental</span><h4>Casaroro Falls</h4></div></div>
+        <div class="detail-body">
+          <p>A 30-meter single-plunge waterfall hidden at the bottom of a narrow canyon in the mountains above Valencia. The trail involves descending more than 300 steps and crossing a rocky stream several times.</p>
+          <div class="detail-imgs"><img src="../img/destinnations/Casaroro Falls1.png" alt="Casaroro 2"><img src="../img/destinnations/Casaroro Falls.png" alt="Casaroro base"></div>
+          <h6>Highlights</h6>
+          <ul class="highlight-list">
+            <li><i class="bi bi-star-fill"></i> 30-meter single-drop waterfall in a narrow canyon</li>
+            <li><i class="bi bi-star-fill"></i> Cathedral-like acoustics and atmosphere at the base</li>
+            <li><i class="bi bi-star-fill"></i> Bamboo forest trail with river crossings</li>
+            <li><i class="bi bi-star-fill"></i> Cold, deep plunge pool for swimming</li>
+          </ul>
+          <div class="detail-info-grid">
+            <div class="detail-info-cell"><span class="lbl">Location</span><span class="val">Valencia, Negros Oriental</span></div>
+            <div class="detail-info-cell"><span class="lbl">From Dumaguete</span><span class="val">~25 min by habal-habal to trailhead</span></div>
+            <div class="detail-info-cell"><span class="lbl">Hike Duration</span><span class="val">~45 min round trip</span></div>
+            <div class="detail-info-cell"><span class="lbl">Gear</span><span class="val">Water shoes / sturdy sandals essential</span></div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- 9. CASARORO TRAIL -->
-<div class="modal fade detail-modal" id="dm-casaroro2" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="detail-hero">
-        <img src="../img/destinnations/Casaroro Falls1.png" alt="Casaroro Trail">
-        <div class="detail-hero-tint"></div>
-        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
-        <div class="detail-hero-label"><span class="eyebrow-sm">Valencia · Negros Oriental</span><h4>Casaroro Falls Trail</h4></div>
-      </div>
-      <div class="detail-body">
-        <p>The bamboo canyon trail to Casaroro Falls is an adventure in itself — a descent through dense forest, over stepping stones and rope bridges, before the roar of the falls announces your arrival.</p>
-        <h6>Trail Info</h6>
-        <ul class="highlight-list">
-          <li><i class="bi bi-star-fill"></i> Over 300 steps cut into the canyon walls</li>
-          <li><i class="bi bi-star-fill"></i> Multiple stream crossings — expect wet feet</li>
-          <li><i class="bi bi-star-fill"></i> Bamboo groves and hanging bridges along the route</li>
-          <li><i class="bi bi-star-fill"></i> Short but steep — allow extra time for the return climb</li>
-        </ul>
-        <div class="detail-info-grid">
-          <div class="detail-info-cell"><span class="lbl">Difficulty</span><span class="val">Moderate — steps are slippery when wet</span></div>
-          <div class="detail-info-cell"><span class="lbl">Duration</span><span class="val">45 min–1 hour round trip</span></div>
-          <div class="detail-info-cell"><span class="lbl">Best Time</span><span class="val">Dry season (Dec–May)</span></div>
-          <div class="detail-info-cell"><span class="lbl">Entrance</span><span class="val">Small fee collected at trailhead</span></div>
+  <div class="modal fade detail-modal" id="dm-casaroro2" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="detail-hero"><img src="../img/destinnations/Casaroro Falls1.png" alt="Casaroro Trail"><div class="detail-hero-tint"></div><button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button><div class="detail-hero-label"><span class="eyebrow-sm">Valencia · Negros Oriental</span><h4>Casaroro Falls Trail</h4></div></div>
+        <div class="detail-body">
+          <p>The bamboo canyon trail to Casaroro Falls is an adventure in itself — a descent through dense forest, over stepping stones and rope bridges, before the roar of the falls announces your arrival.</p>
+          <h6>Trail Info</h6>
+          <ul class="highlight-list">
+            <li><i class="bi bi-star-fill"></i> Over 300 steps cut into the canyon walls</li>
+            <li><i class="bi bi-star-fill"></i> Multiple stream crossings — expect wet feet</li>
+            <li><i class="bi bi-star-fill"></i> Bamboo groves and hanging bridges along the route</li>
+            <li><i class="bi bi-star-fill"></i> Short but steep — allow extra time for the return climb</li>
+          </ul>
+          <div class="detail-info-grid">
+            <div class="detail-info-cell"><span class="lbl">Difficulty</span><span class="val">Moderate — steps are slippery when wet</span></div>
+            <div class="detail-info-cell"><span class="lbl">Duration</span><span class="val">45 min–1 hour round trip</span></div>
+            <div class="detail-info-cell"><span class="lbl">Best Time</span><span class="val">Dry season (Dec–May)</span></div>
+            <div class="detail-info-cell"><span class="lbl">Entrance</span><span class="val">Small fee collected at trailhead</span></div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- 10. MANJUYOD STILT COTTAGES -->
-<div class="modal fade detail-modal" id="dm-manjuyod2" tabindex="-1">
-  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="detail-hero">
-        <img src="../img/destinnations/Manjuyod Sandbar-1.png" alt="Manjuyod Cottages">
-        <div class="detail-hero-tint"></div>
-        <button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button>
-        <div class="detail-hero-label"><span class="eyebrow-sm">Manjuyod · Negros Oriental</span><h4>Manjuyod Stilt Cottages</h4></div>
-      </div>
-      <div class="detail-body">
-        <p>Rustic bamboo stilt cottages built directly over the sandbar — you fall asleep to the sound of the sea and wake up surrounded by water, with the sandbar slowly reappearing beneath your feet as the tide retreats.</p>
-        <h6>Overnight Experience</h6>
-        <ul class="highlight-list">
-          <li><i class="bi bi-star-fill"></i> Cottages sit directly over the water at high tide</li>
-          <li><i class="bi bi-star-fill"></i> Sunrise views over the Bohol Sea — completely unobstructed</li>
-          <li><i class="bi bi-star-fill"></i> Fresh seafood meals prepared by the caretakers</li>
-          <li><i class="bi bi-star-fill"></i> No electricity — bring a power bank and embrace the stars</li>
-        </ul>
-        <div class="detail-info-grid">
-          <div class="detail-info-cell"><span class="lbl">Book Via</span><span class="val">Bais City tourism office</span></div>
-          <div class="detail-info-cell"><span class="lbl">Capacity</span><span class="val">Limited cottages — book ahead</span></div>
-          <div class="detail-info-cell"><span class="lbl">Includes</span><span class="val">Boat transfer + meals (usually)</span></div>
-          <div class="detail-info-cell"><span class="lbl">Best Time</span><span class="val">March–June for widest sandbar</span></div>
+  <div class="modal fade detail-modal" id="dm-manjuyod2" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="detail-hero"><img src="../img/destinnations/Manjuyod Sandbar-1.png" alt="Manjuyod Cottages"><div class="detail-hero-tint"></div><button class="modal-close-x" data-bs-dismiss="modal"><i class="bi bi-x-lg"></i></button><div class="detail-hero-label"><span class="eyebrow-sm">Manjuyod · Negros Oriental</span><h4>Manjuyod Stilt Cottages</h4></div></div>
+        <div class="detail-body">
+          <p>Rustic bamboo stilt cottages built directly over the sandbar — you fall asleep to the sound of the sea and wake up surrounded by water, with the sandbar slowly reappearing beneath your feet as the tide retreats.</p>
+          <h6>Overnight Experience</h6>
+          <ul class="highlight-list">
+            <li><i class="bi bi-star-fill"></i> Cottages sit directly over the water at high tide</li>
+            <li><i class="bi bi-star-fill"></i> Sunrise views over the Bohol Sea — completely unobstructed</li>
+            <li><i class="bi bi-star-fill"></i> Fresh seafood meals prepared by the caretakers</li>
+            <li><i class="bi bi-star-fill"></i> No electricity — bring a power bank and embrace the stars</li>
+          </ul>
+          <div class="detail-info-grid">
+            <div class="detail-info-cell"><span class="lbl">Book Via</span><span class="val">Bais City tourism office</span></div>
+            <div class="detail-info-cell"><span class="lbl">Capacity</span><span class="val">Limited cottages — book ahead</span></div>
+            <div class="detail-info-cell"><span class="lbl">Includes</span><span class="val">Boat transfer + meals (usually)</span></div>
+            <div class="detail-info-cell"><span class="lbl">Best Time</span><span class="val">March–June for widest sandbar</span></div>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 
 
-<!-- ── SCRIPTS ── -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-<script src="../js/components.js"></script>
-<script src="../js/main.js"></script>
+  <!-- ── SCRIPTS ── -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/components.js"></script>
+  <script src="../js/main.js"></script>
 
 </body>
 </html>

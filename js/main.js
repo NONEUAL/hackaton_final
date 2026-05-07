@@ -1,25 +1,16 @@
-/* ============================================================
-   NEGROS ISLAND TOURISM — Shared JavaScript
-   js/main.js · Used by all pages
-   ============================================================ */
-
 'use strict';
 
-/* ────────────────────────────────────────────────────────────
-   1. NAV SCROLL EFFECT
-   ──────────────────────────────────────────────────────────── */
+/* ── 1. NAV SCROLL EFFECT ── */
 (function initNav() {
   const nav = document.getElementById('mainNav');
   if (!nav) return;
   const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 60);
   window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
+  onScroll(); // run once on load so refreshing mid-page is correct
 })();
 
 
-/* ────────────────────────────────────────────────────────────
-   2. SMOOTH SCROLL (anchor links)
-   ──────────────────────────────────────────────────────────── */
+/* ── 2. SMOOTH SCROLL (anchor links only) ── */
 (function initSmoothScroll() {
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', e => {
@@ -32,16 +23,13 @@
 })();
 
 
-/* ────────────────────────────────────────────────────────────
-   3. SCROLL REVEAL
-   ──────────────────────────────────────────────────────────── */
+/* ── 3. SCROLL REVEAL ── */
 (function initReveal() {
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
     });
   }, { threshold: 0.08 });
 
@@ -49,10 +37,10 @@
 })();
 
 
-/* ────────────────────────────────────────────────────────────
-   4. FILTER GRID
-   Supports: destinations (dest), products (prod), festivals (fest)
-   ──────────────────────────────────────────────────────────── */
+/* ── 4. FILTER GRID ──
+   type  : 'dest' | 'prod' | 'fest'
+   value : 'all' | province/category string
+   btn   : the clicked chip element                    */
 window.filterGrid = function (type, value, btn) {
   // Deactivate sibling chips
   const chipRow = btn.closest('.filter-row, .d-flex');
@@ -61,29 +49,23 @@ window.filterGrid = function (type, value, btn) {
   }
   btn.classList.add('active');
 
-  // Map type → [itemClass, dataAttribute]
-  const map = {
-    dest: ['dest-item', 'province'],
-    prod: ['prod-item', 'cat'],
-    fest: ['fest-item', 'province'],
+  const config = {
+    dest: { itemClass: 'dest-item', dataAttr: 'province' },
+    prod: { itemClass: 'prod-item', dataAttr: 'cat'      },
+    fest: { itemClass: 'fest-item', dataAttr: 'province' },
   };
 
-  const [itemClass, dataAttr] = map[type] || [];
+  const { itemClass, dataAttr } = config[type] || {};
   if (!itemClass) return;
 
   document.querySelectorAll(`.${itemClass}`).forEach(el => {
-    const match = value === 'all' || el.dataset[dataAttr] === value;
-    el.style.display = match ? '' : 'none';
+    el.style.display = (value === 'all' || el.dataset[dataAttr] === value) ? '' : 'none';
   });
 };
 
 
-/* ────────────────────────────────────────────────────────────
-   5. MODAL OPENER (Bootstrap 5)
-   ──────────────────────────────────────────────────────────── */
+/* ── 5. MODAL OPENER (Bootstrap 5) ── */
 window.openModal = function (id) {
   const el = document.getElementById(id);
-  if (!el) return;
-  const modal = new bootstrap.Modal(el);
-  modal.show();
+  if (el) bootstrap.Modal.getOrCreateInstance(el).show();
 };

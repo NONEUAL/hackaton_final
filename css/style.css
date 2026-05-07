@@ -24,7 +24,6 @@
 
   --bg:          #f7f3ee;
   --bg-alt:      #ede8e0;
-
   --brand:       #1a3320;
 
   --f-display:   'DM Serif Display', Georgia, serif;
@@ -60,22 +59,25 @@ body {
   line-height: 1.6;
   font-size: 15px;
 }
-h1,h2,h3,h4,h5,h6 { font-family: var(--f-display); line-height: 1.08; }
+h1, h2, h3, h4, h5, h6 { font-family: var(--f-display); line-height: 1.08; }
 a { text-decoration: none; color: inherit; }
 img { display: block; max-width: 100%; height: auto; }
 button { cursor: pointer; font-family: inherit; }
 
-/* ── GRAIN ── */
+/* ── GRAIN OVERLAY ── */
+/* pointer-events: none ensures this never blocks clicks on any element below */
 body::after {
   content: '';
   position: fixed; inset: 0;
-  pointer-events: none !important; z-index: 9999;
+  pointer-events: none;
+  z-index: 9999;
   opacity: 0.028;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 160px;
 }
 
 /* ── NAVBAR ── */
+/* .nav-neg / .nav-occ / .nav-ori are all identical — one rule covers all three */
 .nav-neg, .nav-occ, .nav-ori {
   position: fixed; top: 0; left: 0; right: 0;
   z-index: 1000;
@@ -85,7 +87,7 @@ body::after {
   background: transparent;
 }
 .nav-neg.scrolled, .nav-occ.scrolled, .nav-ori.scrolled {
-  background: var(--paper) !important;
+  background: var(--paper);
   padding: 0.9rem 0;
   border-bottom-color: var(--paper-3);
 }
@@ -93,22 +95,23 @@ body::after {
 .nav-brand {
   font-family: var(--f-display);
   font-size: 1.35rem; font-weight: 400;
-  color: #fff !important;
+  color: #fff;
   letter-spacing: 6px; text-transform: uppercase;
   transition: color 0.3s;
 }
-.nav-brand span { color: var(--gold-lt) !important; }
-.scrolled .nav-brand { color: var(--ink) !important; }
-.scrolled .nav-brand span { color: var(--accent) !important; }
+.nav-brand span { color: var(--gold-lt); }
+.scrolled .nav-brand { color: var(--ink); }
+.scrolled .nav-brand span { color: var(--accent); }
 
+/* .nav-link-custom / .nav-link-occ / .nav-link-ori are identical */
 .nav-link-custom, .nav-link-occ, .nav-link-ori {
-  color: rgba(255,255,255,0.82) !important;
+  color: rgba(255,255,255,0.82);
   font-size: 0.68rem; font-weight: 500;
   letter-spacing: 2.5px; text-transform: uppercase;
-  padding: 0.3rem 0 !important;
+  padding: 0.3rem 0;
   transition: color 0.2s;
   position: relative;
-  text-decoration: none !important;
+  text-decoration: none;
 }
 .nav-link-custom::after, .nav-link-occ::after, .nav-link-ori::after {
   content: ''; position: absolute;
@@ -117,20 +120,21 @@ body::after {
   background: var(--gold-lt);
   transition: width 0.3s;
 }
-.nav-link-custom:hover, .nav-link-occ:hover, .nav-link-ori:hover { color: #fff !important; }
+.nav-link-custom:hover, .nav-link-occ:hover, .nav-link-ori:hover { color: #fff; }
 .nav-link-custom:hover::after, .nav-link-occ:hover::after, .nav-link-ori:hover::after { width: 100%; }
 
 .scrolled .nav-link-custom, .scrolled .nav-link-occ, .scrolled .nav-link-ori {
-  color: var(--ink-2) !important;
+  color: var(--ink-2);
 }
 .scrolled .nav-link-custom:hover, .scrolled .nav-link-occ:hover, .scrolled .nav-link-ori:hover {
-  color: var(--ink) !important;
+  color: var(--ink);
 }
 
+/* .nav-pill / .nav-pill-ori are identical */
 .nav-pill, .nav-pill-ori {
   font-size: 0.65rem; font-weight: 600;
   letter-spacing: 2px; text-transform: uppercase;
-  color: rgba(255,255,255,0.9) !important;
+  color: rgba(255,255,255,0.9);
   border: 1px solid rgba(255,255,255,0.3);
   padding: 0.38rem 1rem;
   border-radius: var(--radius);
@@ -140,15 +144,15 @@ body::after {
 .nav-pill:hover, .nav-pill-ori:hover {
   background: rgba(255,255,255,0.12);
   border-color: rgba(255,255,255,0.55);
-  color: #fff !important;
+  color: #fff;
 }
 .scrolled .nav-pill, .scrolled .nav-pill-ori {
-  color: var(--ink-2) !important;
+  color: var(--ink-2);
   border-color: var(--paper-3);
 }
 .scrolled .nav-pill:hover, .scrolled .nav-pill-ori:hover {
   background: var(--paper-2);
-  color: var(--ink) !important;
+  color: var(--ink);
 }
 
 /* Mobile toggler */
@@ -161,63 +165,66 @@ body::after {
 .scrolled .navbar-toggler-icon { filter: none; }
 
 #navMenu.show, #navMenu.collapsing {
-  background: rgba(15, 15, 13, 0.97);
-  padding: 1rem 1.5rem 1.5rem !important;
+  background: rgba(15,15,13,0.97);
+  padding: 1rem 1.5rem 1.5rem;
   border-top: 1px solid rgba(255,255,255,0.08);
   margin-top: 0.75rem;
   border-radius: 0 0 4px 4px;
 }
 .scrolled #navMenu.show, .scrolled #navMenu.collapsing {
-  background: rgba(247,243,238, 1);
+  background: var(--paper);
   border-top-color: var(--paper-3);
 }
-#navMenu.show .nav-link-custom, #navMenu.show .nav-link-occ, #navMenu.show .nav-link-ori {
-  color: rgba(255,255,255,0.85) !important;
-  padding: 0.55rem 0 !important;
+#navMenu.show .nav-link-custom,
+#navMenu.show .nav-link-occ,
+#navMenu.show .nav-link-ori {
+  color: rgba(255,255,255,0.85);
+  padding: 0.55rem 0;
   border-bottom: 1px solid rgba(255,255,255,0.06);
   font-size: 0.75rem;
+  display: block;
 }
-#navMenu.show .nav-link-custom:last-of-type, #navMenu.show .nav-link-occ:last-of-type, #navMenu.show .nav-link-ori:last-of-type {
-  border-bottom: none;
-}
-.scrolled #navMenu.show .nav-link-custom, .scrolled #navMenu.show .nav-link-occ, .scrolled #navMenu.show .nav-link-ori {
-  color: var(--ink-2) !important;
+#navMenu.show .nav-link-custom:last-of-type,
+#navMenu.show .nav-link-occ:last-of-type,
+#navMenu.show .nav-link-ori:last-of-type { border-bottom: none; }
+.scrolled #navMenu.show .nav-link-custom,
+.scrolled #navMenu.show .nav-link-occ,
+.scrolled #navMenu.show .nav-link-ori {
+  color: var(--ink-2);
   border-bottom-color: var(--paper-3);
 }
-#navMenu.show .nav-pill, #navMenu.show .nav-pill-ori {
+#navMenu.show .nav-pill,
+#navMenu.show .nav-pill-ori {
   margin-top: 0.75rem;
-  color: rgba(255,255,255,0.9) !important;
+  color: rgba(255,255,255,0.9);
   border-color: rgba(255,255,255,0.25);
   display: inline-block;
 }
-.scrolled #navMenu.show .nav-pill, .scrolled #navMenu.show .nav-pill-ori {
-  color: var(--ink-2) !important;
+.scrolled #navMenu.show .nav-pill,
+.scrolled #navMenu.show .nav-pill-ori {
+  color: var(--ink-2);
   border-color: var(--paper-3);
 }
 
-/* Sub-pages navbar fix */
+/* Sub-pages: navbar always visible (no hero image behind it) */
 body[data-page="where-to-go"] .nav-neg,
 body[data-page="what-to-buy"] .nav-neg,
-body[data-page="festivals"] .nav-neg {
-  background: rgba(247,243,238,0.97) !important;
+body[data-page="festivals"]   .nav-neg {
+  background: rgba(247,243,238,0.97);
   backdrop-filter: blur(20px);
   padding: 0.9rem 0;
   border-bottom-color: var(--paper-3);
 }
 body[data-page="where-to-go"] .nav-link-custom,
 body[data-page="what-to-buy"] .nav-link-custom,
-body[data-page="festivals"] .nav-link-custom {
-  color: var(--ink-2) !important;
-}
+body[data-page="festivals"]   .nav-link-custom { color: var(--ink-2); }
 body[data-page="where-to-go"] .nav-brand,
 body[data-page="what-to-buy"] .nav-brand,
-body[data-page="festivals"] .nav-brand {
-  color: var(--ink) !important;
-}
+body[data-page="festivals"]   .nav-brand { color: var(--ink); }
 body[data-page="where-to-go"] .nav-pill,
 body[data-page="what-to-buy"] .nav-pill,
-body[data-page="festivals"] .nav-pill {
-  color: var(--ink-2) !important;
+body[data-page="festivals"]   .nav-pill {
+  color: var(--ink-2);
   border-color: var(--paper-3);
 }
 
@@ -237,7 +244,7 @@ body[data-page="festivals"] .nav-pill {
 }
 .hero-occ:hover .hero-bg, .hero-ori:hover .hero-bg { transform: scale(1.03); }
 
-.hero-tint  { position: absolute; inset: 0; }
+.hero-tint     { position: absolute; inset: 0; }
 .hero-vignette {
   position: absolute; inset: 0;
   background: radial-gradient(ellipse at center, transparent 35%, rgba(0,0,0,0.55) 100%);
@@ -278,6 +285,7 @@ body[data-page="festivals"] .nav-pill {
 }
 .hero-h1 span { color: var(--gold-lt); font-style: italic; }
 
+/* Index hero heading */
 .hero-index h1 {
   font-family: var(--f-display);
   font-size: clamp(2.8rem,8vw,7rem);
@@ -294,7 +302,7 @@ body[data-page="festivals"] .nav-pill {
   margin-bottom: 2.5rem;
   font-weight: 300; letter-spacing: 0.01em;
 }
-.hero-index .hero-sub { max-width: 460px; margin-left: auto; margin-right: auto; }
+.hero-index .hero-sub { max-width: 460px; margin-inline: auto; }
 
 .hero-content { position: relative; z-index: 2; width: 100%; padding: 0 0 5rem; }
 .hero-main-text { max-width: 620px; }
@@ -309,7 +317,10 @@ body[data-page="festivals"] .nav-pill {
   bottom: 3rem; left: 50%; transform: translateX(-50%);
   animation: scrollBob 3s ease-in-out infinite;
 }
-.hero-occ .hero-scroll { left: auto; right: 2.5rem; transform: none; animation-name: scrollBobR; }
+.hero-occ .hero-scroll {
+  left: auto; right: 2.5rem; transform: none;
+  animation-name: scrollBobR;
+}
 .hero-scroll-line {
   width: 1px; height: 40px;
   background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.35));
@@ -317,12 +328,12 @@ body[data-page="festivals"] .nav-pill {
 @keyframes scrollBob  { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
 @keyframes scrollBobR { 0%,100%{transform:translateY(0)} 50%{transform:translateY(8px)} }
 
+/* Page-level (sub-page) hero strip */
 .page-hero {
   min-height: 380px; display: flex; align-items: flex-end;
   background-size: cover; background-position: center;
   position: relative; color: #fff;
-  padding-bottom: 3.5rem;
-  padding-top: 80px;
+  padding-bottom: 3.5rem; padding-top: 80px;
 }
 .page-hero::before {
   content: ''; position: absolute; inset: 0;
@@ -333,6 +344,7 @@ body[data-page="festivals"] .nav-pill {
 /* ── SECTION UTILITIES ── */
 .section-pad { padding: 96px 0; }
 
+/* .section-eyebrow and .eyebrow are identical */
 .section-eyebrow, .eyebrow {
   display: block;
   font-family: var(--f-sans);
@@ -347,6 +359,7 @@ body[data-page="festivals"] .nav-pill {
   margin-bottom: 1.25rem; opacity: 0.7;
 }
 
+/* .section-heading and .section-h2 are identical */
 .section-heading, .section-h2 {
   font-family: var(--f-display);
   font-size: clamp(2rem,4vw,3.2rem);
@@ -354,6 +367,7 @@ body[data-page="festivals"] .nav-pill {
 }
 .section-heading em, .section-h2 em { color: var(--accent); font-style: italic; }
 
+/* .pullquote / .sea-pullquote / .ruins-pullquote are identical */
 .pullquote, .sea-pullquote, .ruins-pullquote {
   font-family: var(--f-sans); font-size: 0.9rem;
   color: var(--ink-3);
@@ -362,6 +376,7 @@ body[data-page="festivals"] .nav-pill {
   margin: 1.75rem 0; line-height: 1.8; opacity: 0.9;
 }
 
+/* .body-serif / .ruins-body-text / .body-text are identical */
 .body-serif, .ruins-body-text, .body-text {
   font-family: var(--f-sans); font-size: 0.9rem;
   color: var(--ink-2); line-height: 1.85;
@@ -374,24 +389,24 @@ body[data-page="festivals"] .nav-pill {
   line-height: 1.85; margin-bottom: 1rem; font-weight: 300;
 }
 
-.stat-block, .sugar-stat {
+/* .stat-block and .sugar-stat share structure */
+.stat-block {
   border-left: 1px solid var(--accent);
   padding: 0.5rem 1.2rem; margin-bottom: 1.5rem; opacity: 0.8;
 }
-.stat-block .num, .sugar-stat-num {
+.stat-block .num {
   font-family: var(--f-display); font-size: 2rem;
   font-weight: 400; color: var(--ink); line-height: 1;
 }
-.sugar-stat-num { font-size: 2.4rem; color: rgba(255,255,255,0.85); }
-.stat-block .lbl, .sugar-stat-lbl {
+.stat-block .lbl {
   font-size: 0.72rem; color: var(--ink-3);
   margin-top: 3px; line-height: 1.4; letter-spacing: 0.02em;
 }
-.sugar-stat-lbl { color: rgba(255,255,255,0.4); font-size: 0.7rem; }
 
 .letter-wide { letter-spacing: 4px; }
 
 /* ── BUTTONS ── */
+/* .btn-gold / .btn-cane / .btn-sea are identical */
 .btn-gold, .btn-cane, .btn-sea {
   display: inline-block;
   background: var(--ink); color: var(--paper);
@@ -406,6 +421,7 @@ body[data-page="festivals"] .nav-pill {
   background: var(--accent); color: #fff; transform: translateY(-2px);
 }
 
+/* .btn-outline-light-custom and .btn-ghost-light are identical */
 .btn-outline-light-custom, .btn-ghost-light {
   display: inline-block; background: transparent;
   color: rgba(255,255,255,0.8);
@@ -420,6 +436,7 @@ body[data-page="festivals"] .nav-pill {
   background: rgba(255,255,255,0.08); color: #fff;
 }
 
+/* .btn-ghost-dark and .btn-outline-gold are identical */
 .btn-ghost-dark, .btn-outline-gold {
   display: inline-block; background: transparent;
   color: var(--ink); padding: 11px 26px;
@@ -449,9 +466,8 @@ body[data-page="festivals"] .nav-pill {
 .chip:hover, .chip.active, .filter-btn:hover, .filter-btn.active {
   background: var(--ink); border-color: var(--ink); color: var(--paper);
 }
-/* Filter row scrollable on mobile */
 .filter-row {
-  flex-wrap: nowrap !important;
+  flex-wrap: nowrap;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
@@ -459,7 +475,7 @@ body[data-page="festivals"] .nav-pill {
 }
 .filter-row::-webkit-scrollbar { display: none; }
 
-/* ── CARDS ── */
+/* ── DESTINATION / PRODUCT / FESTIVAL CARDS ── */
 .dest-card, .product-card, .festival-card, .destination-card {
   background: var(--paper);
   border-radius: var(--radius); overflow: hidden;
@@ -494,9 +510,7 @@ body[data-page="festivals"] .nav-pill {
   backdrop-filter: blur(8px);
 }
 
-.dest-card-body, .card-body {
-  padding: 1.25rem 1.4rem 1.6rem;
-}
+.dest-card-body, .card-body { padding: 1.25rem 1.4rem 1.6rem; }
 .dest-card-body h5 {
   font-family: var(--f-display);
   font-size: 1.1rem; font-weight: 400;
@@ -605,7 +619,7 @@ body[data-page="festivals"] .nav-pill {
 }
 .modal-close-x:hover { background: rgba(15,15,13,0.75); }
 
-/* ── OCCIDENTAL-SPECIFIC ── */
+/* ── OCCIDENTAL COMPONENTS ── */
 .ruins-img-wrap { position: relative; padding-bottom: 50px; }
 .ruins-img-main {
   width: 100%; height: 520px; object-fit: cover;
@@ -713,7 +727,7 @@ body[data-page="festivals"] .nav-pill {
 .food-card-body h4 { font-family: var(--f-display); font-size: 1.3rem; font-weight: 400; margin-bottom: 0.4rem; }
 .food-card-body p  { font-size: 0.84rem; color: var(--ink-3); line-height: 1.7; margin: 0; font-weight: 300; }
 
-/* ── ORIENTAL-SPECIFIC ── */
+/* ── ORIENTAL COMPONENTS ── */
 .bubble-wrap { position: relative; display: flex; justify-content: center; padding: 2rem 0 3rem; }
 .bubble-main {
   width: 320px; height: 320px; object-fit: cover;
@@ -769,12 +783,21 @@ body[data-page="festivals"] .nav-pill {
 }
 .info-card p { font-size: 0.84rem; color: var(--ink-2); line-height: 1.7; margin: 0; font-weight: 300; }
 
-.whale-stat { text-align: center; padding: 2.25rem 1rem; }
+.whale-stat {
+  text-align: center; padding: 1.5rem 1rem;
+  border-left: 1px solid rgba(255,255,255,0.15);
+  margin-bottom: 1rem;
+  transition: background 0.3s ease;
+}
+.whale-stat:hover { background: rgba(255,255,255,0.05); }
 .whale-num {
   font-family: var(--f-display); font-size: 3.2rem; font-weight: 400;
-  color: rgba(255,255,255,0.8); line-height: 1; margin-bottom: 0.5rem;
+  color: #fff; line-height: 1; margin-bottom: 0.25rem;
 }
-.whale-lbl { font-size: 0.78rem; color: rgba(255,255,255,0.35); line-height: 1.6; font-weight: 300; }
+.whale-lbl {
+  font-size: 0.75rem; color: rgba(255,255,255,0.8);
+  line-height: 1.5; font-weight: 300;
+}
 
 .fall-card {
   border-radius: var(--radius); overflow: hidden;
@@ -811,6 +834,7 @@ body[data-page="festivals"] .nav-pill {
   color: var(--ink); display: block; line-height: 1;
 }
 
+/* .sea-food-card mirrors .food-card with minor tweaks */
 .sea-food-card {
   background: var(--paper); border-radius: var(--radius); overflow: hidden;
   border: 1px solid var(--paper-3);
@@ -823,7 +847,7 @@ body[data-page="festivals"] .nav-pill {
 .sea-food-body h4 { font-family: var(--f-display); font-size: 1.3rem; font-weight: 400; margin-bottom: 0.4rem; }
 .sea-food-body p  { font-size: 0.84rem; color: var(--ink-3); line-height: 1.7; margin: 0; font-weight: 300; }
 
-/* ── IMG STACK ── */
+/* ── IMAGE STACK ── */
 .img-stack { position: relative; }
 .img-main-r {
   width: 100%; height: 380px; object-fit: cover;
@@ -844,18 +868,18 @@ body[data-page="festivals"] .nav-pill {
 }
 
 /* ── FOOTER ── */
+/* No z-index hacks needed — grain overlay has pointer-events:none */
 .footer {
   background: var(--ink);
   color: rgba(255,255,255,0.55);
   padding: 72px 0 28px;
   position: relative; overflow: hidden;
-  z-index: 10000 !important;
-  pointer-events: auto !important;
 }
 .footer::before {
   content: ''; position: absolute; inset: 0; opacity: 0.03;
+  pointer-events: none;
   background-image:
-    repeating-linear-gradient(45deg, rgba(255,255,255,0.5) 0, rgba(255,255,255,0.5) 1px, transparent 1px, transparent 10px),
+    repeating-linear-gradient(45deg,  rgba(255,255,255,0.5) 0, rgba(255,255,255,0.5) 1px, transparent 1px, transparent 10px),
     repeating-linear-gradient(-45deg, rgba(255,255,255,0.5) 0, rgba(255,255,255,0.5) 1px, transparent 1px, transparent 10px);
 }
 .footer-brand {
@@ -873,10 +897,6 @@ body[data-page="festivals"] .nav-pill {
 .footer-link {
   display: block; color: rgba(255,255,255,0.4); font-size: 0.83rem;
   margin-bottom: 0.45rem; transition: color 0.2s; font-weight: 300;
-  cursor: pointer !important;
-  pointer-events: auto !important;
-  position: relative;
-  z-index: 10001;
 }
 .footer-link:hover { color: rgba(255,255,255,0.8); }
 .social-btn {
@@ -887,10 +907,6 @@ body[data-page="festivals"] .nav-pill {
   color: rgba(255,255,255,0.35); font-size: 0.95rem;
   transition: background 0.2s, border-color 0.2s, color 0.2s, transform 0.2s;
   margin-right: 0.35rem;
-  cursor: pointer !important;
-  pointer-events: auto !important;
-  position: relative;
-  z-index: 10001;
 }
 .social-btn:hover {
   background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.25);
@@ -909,56 +925,54 @@ body[data-page="festivals"] .nav-pill {
 .reveal-d2 { transition-delay: 0.2s; }
 .reveal-d3 { transition-delay: 0.3s; }
 
-/* ── SUGAR/ABACA SECTION ── */
+/* ── SUGAR / DARK SECTION ── */
 .abaca-bg {
-  background-color: #0d1f10 !important;
+  background-color: #0d1f10;
   background-image:
-    repeating-linear-gradient(0deg, rgba(255,255,255,0.018) 0, rgba(255,255,255,0.018) 1px, transparent 1px, transparent 8px),
-    repeating-linear-gradient(90deg, rgba(255,255,255,0.018) 0, rgba(255,255,255,0.018) 1px, transparent 1px, transparent 8px) !important;
+    repeating-linear-gradient(0deg,   rgba(255,255,255,0.018) 0, rgba(255,255,255,0.018) 1px, transparent 1px, transparent 8px),
+    repeating-linear-gradient(90deg,  rgba(255,255,255,0.018) 0, rgba(255,255,255,0.018) 1px, transparent 1px, transparent 8px);
 }
 .sugar-stat {
   border-left: 1px solid var(--gold);
-  padding: 1rem 1.5rem;
-  margin-bottom: 1.5rem;
+  padding: 1rem 1.5rem; margin-bottom: 1.5rem;
   background: rgba(255,255,255,0.04);
-  border-radius: 2px;
+  border-radius: var(--radius);
   transition: background 0.3s ease;
 }
 .sugar-stat:hover { background: rgba(255,255,255,0.08); }
+.sugar-stat-num {
+  font-family: var(--f-display); font-size: 2.4rem; font-weight: 400;
+  color: rgba(255,255,255,0.85); line-height: 1; margin-bottom: 0.25rem;
+}
 .sugar-stat-lbl {
-  color: rgba(255,255,255,0.65) !important;
-  font-weight: 400;
+  font-size: 0.7rem; color: rgba(255,255,255,0.65);
+  font-weight: 400; line-height: 1.4;
 }
 
-/* ── WHALE SECTION ── */
+/* ── WHALE / DARK OCEAN SECTION ── */
 .net-bg {
-  background-color: #061622 !important;
+  background-color: #061622;
   background-image:
-    repeating-linear-gradient(0deg, rgba(255,255,255,0.02) 0, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 20px),
-    repeating-linear-gradient(90deg, rgba(255,255,255,0.02) 0, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 20px) !important;
-}
-.whale-stat {
-  text-align: center;
-  padding: 1.5rem 1rem;
-  border-left: 1px solid rgba(255,255,255,0.15);
-  margin-bottom: 1rem;
-  transition: background 0.3s ease;
-}
-.whale-stat:hover { background: rgba(255,255,255,0.05); }
-.whale-num {
-  font-family: var(--f-display); font-size: 3.2rem; font-weight: 400;
-  color: #fff !important; line-height: 1; margin-bottom: 0.25rem;
-}
-.whale-lbl {
-  font-size: 0.75rem;
-  color: rgba(255,255,255,0.8) !important;
-  line-height: 1.5; font-weight: 300;
+    repeating-linear-gradient(0deg,  rgba(255,255,255,0.02) 0, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 20px),
+    repeating-linear-gradient(90deg, rgba(255,255,255,0.02) 0, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 20px);
 }
 .net-bg img {
   width: 100%; height: 360px; object-fit: cover;
-  border-radius: 3px;
+  border-radius: var(--radius);
   box-shadow: 0 20px 50px rgba(0,0,0,0.4);
   border: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Parallax: disable scroll attachment on mobile for perf */
+.parallax-dark {
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+}
+.parallax-dark::before {
+  content: ''; position: absolute; inset: 0;
+  background: rgba(10,16,10,0.72);
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -974,272 +988,123 @@ body[data-page="festivals"] .nav-pill {
 /* ── TABLET (≤991px) ── */
 @media (max-width: 991px) {
   .section-pad { padding: 72px 0; }
-
-  /* Hero */
   .hero-content { padding: 0 0 4rem; }
   .hero-main-text { max-width: 100%; }
-
-  /* Province cards */
   .province-card { height: 420px; }
   .province-card-body { padding: 1.75rem; }
   .province-card-body h3 { font-size: 2rem; }
-
-  /* Glass cards */
   .glass-card { padding: 1.75rem; }
-
-  /* Stat blocks side by side */
   .stat-block { margin-bottom: 1rem; }
-
-  /* Sugar stats: 2-col stays but tighter */
   .sugar-stat { padding: 0.75rem 1rem; }
   .sugar-stat-num { font-size: 2rem; }
-
-  /* Twin lakes banner */
   .twin-lakes-banner { padding: 1.5rem; }
-
-  /* Bubble */
   .bubble-main { width: 280px; height: 280px; }
-
-  /* Footer: stack earlier */
   .footer { padding: 56px 0 24px; }
 }
 
 /* ── TABLET PORTRAIT / LARGE MOBILE (≤767px) ── */
 @media (max-width: 767px) {
-  /* General */
   .section-pad { padding: 56px 0; }
 
   /* Hide decorative floating elements */
-  .img-float-r,
-  .ruins-img-float,
-  .bubble-small { display: none; }
+  .img-float-r, .ruins-img-float, .bubble-small { display: none; }
 
-  /* Hero */
-  .hero-base,
-  .hero-occ,
-  .hero-ori { min-height: 100svh; }
-
+  .hero-base, .hero-occ, .hero-ori { min-height: 100svh; }
   .hero-h1 { letter-spacing: -0.5px; margin-bottom: 1rem; }
   .hero-index h1 { letter-spacing: -0.5px; margin-bottom: 1rem; }
   .hero-sub { font-size: 0.86rem; margin-bottom: 1.75rem; max-width: 100%; }
   .hero-content { padding: 0 0 3rem; }
   .hero-inner { padding: 0 1rem; }
   .hero-province-label { display: none; }
-
-  /* Hero CTA buttons — stack on very small, flex-wrap on medium */
-  .hero-cta-group,
-  .hero-base .d-flex,
-  .hero-occ .d-flex,
-  .hero-ori .d-flex {
-    flex-wrap: wrap !important;
-    gap: 0.75rem !important;
-    justify-content: center;
-  }
-  .btn-gold, .btn-outline-light-custom,
-  .btn-ghost-light, .btn-cane, .btn-sea {
-    width: 100%;
-    max-width: 280px;
-    text-align: center;
-    justify-content: center;
-  }
-
-  /* Page hero */
-  .page-hero {
-    min-height: 260px;
-    padding-bottom: 2.5rem;
-    padding-top: 72px;
-  }
-  .page-hero h1 { font-size: clamp(1.9rem,6vw,3rem) !important; }
-
-  /* Scroll hint */
   .hero-scroll { display: none; }
 
-  /* Province cards */
+  /* CTA buttons stack on mobile */
+  .btn-gold, .btn-outline-light-custom, .btn-ghost-light, .btn-cane, .btn-sea {
+    width: 100%; max-width: 280px;
+    text-align: center; justify-content: center;
+  }
+
+  .page-hero { min-height: 260px; padding-bottom: 2.5rem; padding-top: 72px; }
+  .page-hero h1 { font-size: clamp(1.9rem,6vw,3rem); }
+
   .province-card { height: 360px; }
   .province-card-body { padding: 1.5rem; }
   .province-card-body h3 { font-size: 1.75rem; }
   .province-card-body p { display: none; }
 
-  /* Dest card images shorter on mobile */
   .dest-card-img, .card-img-wrapper { height: 190px; }
-
-  /* Mansion cards */
   .mansion-card { height: 280px; }
-
-  /* Food / sea food card images */
   .food-card img { height: 200px; }
   .sea-food-card img { height: 195px; }
-
-  /* Ruins image */
   .ruins-img-main { height: 280px; }
-
-  /* Sandbar */
   .sandbar-img { height: 240px; }
-
-  /* Bubble */
   .bubble-main { width: 240px; height: 240px; }
   .bubble-wrap { padding: 1.5rem 0 2rem; }
-
-  /* Waterfalls */
   .fall-card { height: 300px; }
   .fall-label h4 { font-size: 1.2rem; }
-
-  /* Net bg image */
   .net-bg img { height: 260px; }
 
-  /* Whale stats: 3 cols → each one simpler */
   .whale-stat { padding: 1rem 0.5rem; border-left: none; border-bottom: 1px solid rgba(255,255,255,0.1); }
   .whale-num { font-size: 2.4rem; }
-
-  /* Sugar stats: 2-col → full */
   .sugar-stat { margin-bottom: 1rem; }
-
-  /* Glass cards */
   .glass-card { padding: 1.5rem; }
   .highland-feat { gap: 0.75rem; margin-bottom: 1.25rem; }
-
-  /* Stats row */
   .stat-block .num { font-size: 1.6rem; }
-
-  /* Twin lakes banner */
   .twin-lakes-banner { padding: 1.25rem 1.5rem; }
   .twin-lakes-banner h4 { font-size: 1.2rem; }
-
-  /* Parallax: disable on mobile */
-  .parallax-dark { background-attachment: scroll !important; }
-
-  /* Footer */
+  .parallax-dark { background-attachment: scroll; }
   .footer { padding: 48px 0 20px; }
   .footer-brand { font-size: 1.5rem; }
-  .footer .col-lg-2.col-6 { margin-bottom: 1.5rem; }
-
-  /* Section headings */
-  .section-heading, .section-h2 {
-    font-size: clamp(1.75rem, 6vw, 2.6rem);
-  }
-
-  /* Silliman badges: wrap */
-  .d-flex.gap-3.flex-wrap.mt-4 { gap: 0.75rem !important; }
-
-  /* Modal */
-  .modal-body-inner { padding: 1.25rem 1.25rem 1.5rem; }
-  .modal-hero-img { height: 220px; }
+  .section-heading, .section-h2 { font-size: clamp(1.75rem, 6vw, 2.6rem); }
 }
 
 /* ── MOBILE (≤575px) ── */
 @media (max-width: 575px) {
-  /* Body text */
   body { font-size: 14px; }
-
-  /* Tighter section padding */
   .section-pad { padding: 44px 0; }
-
-  /* Hero text */
   .hero-h1 { letter-spacing: 0; }
   .hero-index h1 { letter-spacing: 0; }
   .hero-eyebrow { font-size: 0.56rem; letter-spacing: 4px; margin-bottom: 1rem; }
-
-  /* Province card text */
   .province-card-body h3 { font-size: 1.5rem; }
-
-  /* Dest card body */
   .dest-card-body h5 { font-size: 1rem; }
   .dest-card-body p   { font-size: 0.8rem; }
-
-  /* Section headings */
-  .section-heading, .section-h2 {
-    font-size: clamp(1.6rem, 7vw, 2.2rem);
-  }
-
-  /* Pullquote */
-  .pullquote, .sea-pullquote, .ruins-pullquote {
-    font-size: 0.84rem;
-    padding: 0.5rem 1rem;
-  }
-
-  /* Stats: single column flex */
-  .d-flex.gap-4.flex-wrap.mt-3 {
-    gap: 0 !important;
-    flex-direction: column;
-  }
-  .stat-block { border-left: 1px solid var(--accent); margin-bottom: 0.75rem; }
-
-  /* Sugar stat 2-col */
-  .row.g-3 .col-6 { flex: 0 0 100%; max-width: 100%; }
-
-  /* Province cards full height */
+  .section-heading, .section-h2 { font-size: clamp(1.6rem, 7vw, 2.2rem); }
+  .pullquote, .sea-pullquote, .ruins-pullquote { font-size: 0.84rem; padding: 0.5rem 1rem; }
+  .stat-block { margin-bottom: 0.75rem; }
   .province-card { height: 320px; }
-
-  /* Dest card images */
   .dest-card-img { height: 175px; }
-
-  /* Detail modal fixes */
-  .detail-imgs { grid-template-columns: 1fr !important; }
-  .detail-info-grid { grid-template-columns: 1fr !important; }
-  .detail-hero { height: 220px; }
-  .detail-hero-label h4 { font-size: 1.4rem; }
-  .detail-body { padding: 1rem 1rem 1.25rem; }
-
-  /* Modal */
+  .mansion-card { height: 240px; }
+  .fall-card { height: 260px; }
+  .food-card img { height: 180px; }
+  .sea-food-card img { height: 175px; }
   .modal-dialog { margin: 0.5rem; }
   .modal-body-inner { padding: 1rem; }
   .modal-hero-img { height: 190px; }
   .modal-body-inner h4 { font-size: 1.35rem; }
-
-  /* Page hero */
   .page-hero { min-height: 230px; padding-top: 64px; padding-bottom: 2rem; }
-
-  /* Timeline */
   .timeline { padding-left: 1.25rem; }
-
-  /* Silliman badges stacked */
-  .silliman-badge { width: 100%; }
-  .d-flex.gap-3.flex-wrap.mt-4 { flex-direction: column; }
-
-  /* Glass card */
   .glass-card { padding: 1.25rem; }
-
-  /* Mansion card */
-  .mansion-card { height: 240px; }
-
-  /* Fall card */
-  .fall-card { height: 260px; }
-
-  /* Food cards */
-  .food-card img { height: 180px; }
-  .sea-food-card img { height: 175px; }
-
-  /* Footer */
   .footer { padding: 40px 0 16px; }
   .footer-brand { font-size: 1.3rem; letter-spacing: 2px; }
-  .footer .col-lg-2.col-6 { flex: 0 0 50%; }
-
-  /* Eyebrow labels */
   .section-eyebrow, .eyebrow { font-size: 0.55rem; letter-spacing: 4px; }
-
-  /* Filter chips: smaller */
   .chip, .filter-btn { font-size: 0.6rem; padding: 0.3rem 0.75rem; }
-
-  /* Button padding tighter */
   .btn-gold, .btn-cane, .btn-sea { padding: 10px 22px; font-size: 0.62rem; }
   .btn-outline-light-custom, .btn-ghost-light { padding: 9px 20px; font-size: 0.62rem; }
   .btn-ghost-dark, .btn-outline-gold { padding: 9px 20px; font-size: 0.62rem; }
+
+  /* Detail modal grids collapse to single column */
+  .detail-imgs, .detail-info-grid { grid-template-columns: 1fr; }
+  .detail-hero { height: 220px; }
+  .detail-hero-label h4 { font-size: 1.4rem; }
+  .detail-body { padding: 1rem 1rem 1.25rem; }
 }
 
 /* ── VERY SMALL (≤380px) ── */
 @media (max-width: 380px) {
-  .hero-h1,
-  .hero-index h1 { font-size: clamp(2.2rem, 10vw, 3rem); }
-
+  .hero-h1, .hero-index h1 { font-size: clamp(2.2rem, 10vw, 3rem); }
   .province-card-body h3 { font-size: 1.3rem; }
-
   .dest-card-img { height: 160px; }
-
   .mansion-card { height: 220px; }
-
-  .section-heading, .section-h2 {
-    font-size: clamp(1.45rem, 8vw, 2rem);
-  }
-
+  .section-heading, .section-h2 { font-size: clamp(1.45rem, 8vw, 2rem); }
   .navbar-brand { font-size: 1.1rem; letter-spacing: 4px; }
 }
